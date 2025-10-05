@@ -5,6 +5,7 @@ import GiftView from './pages/GiftView';
 import Gallery from './pages/Gallery';
 import Leaderboard from './pages/Leaderboard';
 import Impact from './pages/Impact';
+import PaymentSuccess from './pages/PaymentSuccess';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/impact" element={<Impact />} />
+        <Route path="/payment/success" element={<PaymentSuccess />} />
         <Route path="/gift/:giftId" element={<GiftView />} />
       </Routes>
     </Router>

@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/database.js';
 import giftRoutes from './routes/gifts.js';
+import paymentRoutes from './routes/payments.js';
 
 dotenv.config();
 
@@ -10,6 +11,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
+
+// Stripe webhook needs raw body, so we add it before express.json()
+app.use('/api/payments/webhook', express.raw({ type: 'application/json' }));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -17,12 +22,14 @@ app.get('/', (req, res) => {
     message: '🌿 Gifted Air API',
     version: '1.0.0',
     endpoints: {
-      gifts: '/api/gifts'
+      gifts: '/api/gifts',
+      payments: '/api/payments'
     }
   });
 });
 
 app.use('/api/gifts', giftRoutes);
+app.use('/api/payments', paymentRoutes);
 
 async function startServer() {
   try {

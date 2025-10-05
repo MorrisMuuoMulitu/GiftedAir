@@ -56,7 +56,7 @@ export default function Compose() {
 
   const handleCreateGift = async () => {
     if (!selectedType || !recipientName || !senderName || !message) {
-      alert('Please fill in all fields');
+      alert('Please fill in all required fields');
       return;
     }
 
@@ -72,24 +72,26 @@ export default function Compose() {
     };
 
     try {
-      const response = await fetch(`${API_URL}/api/gifts`, {
+      // Create Stripe checkout session
+      const response = await fetch(`${API_URL}/api/payments/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(giftData)
+        body: JSON.stringify({ giftData })
       });
 
       const data = await response.json();
 
-      if (data.success) {
-        navigate(`/gift/${data.gift._id}`);
+      if (data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
       } else {
-        alert('Failed to create gift');
+        alert('Failed to start payment process. Please try again.');
       }
     } catch (error) {
-      console.error('Error creating gift:', error);
-      alert('Failed to create gift. Please try again.');
+      console.error('Error creating checkout session:', error);
+      alert('Failed to start payment. Please try again.');
     }
   };
 
@@ -220,17 +222,47 @@ export default function Compose() {
           </div>
         )}
 
-        {/* Create Button */}
+        {/* Payment Summary & Checkout Button */}
         {selectedType && recipientName && senderName && message && (
-          <div className="text-center">
+          <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-2xl p-8 text-center">
+            <h3 className="text-2xl font-bold text-forest mb-4">Ready to Send Your Gift?</h3>
+            
+            {/* Price Summary */}
+            <div className="bg-white rounded-xl p-6 mb-6 max-w-md mx-auto">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-gray-700 font-semibold">Gift Type:</span>
+                <span className="text-forest font-bold">{selectedGift.name}</span>
+              </div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-gray-700 font-semibold">Quantity:</span>
+                <span className="text-forest font-bold">{quantity}</span>
+              </div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-gray-700 font-semibold">Price per unit:</span>
+                <span className="text-forest font-bold">${selectedGift.unitPrice}</span>
+              </div>
+              <div className="border-t-2 border-gray-300 my-4"></div>
+              <div className="flex justify-between items-center">
+                <span className="text-xl font-bold text-gray-900">Total:</span>
+                <span className="text-3xl font-black text-forest">${totalCost}</span>
+              </div>
+            </div>
+
             <button
               onClick={handleCreateGift}
-              className="bg-forest text-white px-16 py-4 rounded-full text-xl font-semibold 
+              className="bg-forest text-white px-16 py-5 rounded-full text-xl font-bold 
                        hover:bg-green-800 transition-all duration-300 transform hover:scale-105 
-                       shadow-lg hover:shadow-xl"
+                       shadow-2xl hover:shadow-3xl flex items-center gap-3 mx-auto"
             >
-              Create Gift ✨
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+              </svg>
+              Proceed to Payment
             </button>
+            
+            <p className="text-sm text-gray-600 mt-4">
+              🔒 Secure payment powered by Stripe
+            </p>
           </div>
         )}
 
