@@ -30,6 +30,34 @@ const giftTypeDetails = {
     textColor: 'text-blue-800',
     name: 'Ocean',
     gradient: 'from-blue-400 to-cyan-500'
+  },
+  coral: { 
+    icon: '🪸', 
+    color: 'bg-pink-100 border-pink-300', 
+    textColor: 'text-pink-800',
+    name: 'Coral Reef',
+    gradient: 'from-pink-400 to-rose-500'
+  },
+  wildlife: { 
+    icon: '🦁', 
+    color: 'bg-amber-100 border-amber-400', 
+    textColor: 'text-amber-900',
+    name: 'Wildlife',
+    gradient: 'from-amber-400 to-yellow-600'
+  },
+  water: { 
+    icon: '💧', 
+    color: 'bg-sky-100 border-sky-300', 
+    textColor: 'text-sky-800',
+    name: 'Clean Water',
+    gradient: 'from-blue-300 to-sky-500'
+  },
+  rainforest: { 
+    icon: '🌴', 
+    color: 'bg-emerald-100 border-emerald-400', 
+    textColor: 'text-emerald-900',
+    name: 'Rainforest',
+    gradient: 'from-green-500 to-emerald-600'
   }
 };
 
