@@ -31,6 +31,34 @@ const giftTypeDetails = {
     color: 'from-blue-400 to-cyan-600',
     impact: 'Kg of plastic removed',
     bgGradient: 'from-blue-50 to-cyan-100'
+  },
+  coral: {
+    icon: '🪸',
+    name: 'Coral Reef Restoration',
+    color: 'from-pink-400 to-rose-600',
+    impact: 'Coral fragments planted',
+    bgGradient: 'from-pink-50 to-rose-100'
+  },
+  wildlife: {
+    icon: '🦁',
+    name: 'Wildlife Conservation',
+    color: 'from-amber-600 to-yellow-700',
+    impact: 'Animals protected',
+    bgGradient: 'from-amber-50 to-yellow-100'
+  },
+  water: {
+    icon: '💧',
+    name: 'Clean Water Access',
+    color: 'from-blue-400 to-sky-600',
+    impact: 'People with clean water',
+    bgGradient: 'from-blue-50 to-sky-100'
+  },
+  rainforest: {
+    icon: '🌴',
+    name: 'Rainforest Protection',
+    color: 'from-green-600 to-emerald-700',
+    impact: 'Acres protected',
+    bgGradient: 'from-green-50 to-emerald-100'
   }
 };
 
@@ -323,6 +351,34 @@ export default function GiftView() {
                     <ImpactItem icon="🐠" text={`${gift.quantity} kg of plastic removed`} />
                     <ImpactItem icon="🌊" text="Protects marine ecosystems" />
                     <ImpactItem icon="🐢" text="Saves sea life from pollution" />
+                  </>
+                )}
+                {gift.type === 'coral' && (
+                  <>
+                    <ImpactItem icon="🪸" text={`${gift.quantity} coral fragments planted`} />
+                    <ImpactItem icon="🐠" text="Rebuilds fish habitats and biodiversity" />
+                    <ImpactItem icon="🌊" text="Protects coastlines from erosion" />
+                  </>
+                )}
+                {gift.type === 'wildlife' && (
+                  <>
+                    <ImpactItem icon="🦁" text={`${gift.quantity} animals protected`} />
+                    <ImpactItem icon="🌳" text="Preserves critical habitats" />
+                    <ImpactItem icon="🌍" text="Maintains ecosystem balance" />
+                  </>
+                )}
+                {gift.type === 'water' && (
+                  <>
+                    <ImpactItem icon="💧" text={`${gift.quantity} people with clean water access`} />
+                    <ImpactItem icon="🏥" text="Reduces waterborne diseases" />
+                    <ImpactItem icon="📚" text="More time for education and work" />
+                  </>
+                )}
+                {gift.type === 'rainforest' && (
+                  <>
+                    <ImpactItem icon="🌴" text={`${gift.quantity} acres of rainforest protected`} />
+                    <ImpactItem icon="🦜" text="Preserves biodiversity hotspots" />
+                    <ImpactItem icon="💨" text="Maintains Earth's oxygen production" />
                   </>
                 )}
               </div>

@@ -143,6 +143,18 @@ router.get('/stats/summary', async (req, res) => {
         case 'ocean':
           stats.impact.plasticRemoved += gift.quantity;
           break;
+        case 'coral':
+          // Coral reef restoration
+          break;
+        case 'wildlife':
+          // Wildlife conservation
+          break;
+        case 'water':
+          // Clean water access
+          break;
+        case 'rainforest':
+          // Rainforest protection
+          break;
       }
     });
 
@@ -221,6 +233,18 @@ router.get('/impact/:senderName', async (req, res) => {
           stats.impact.plasticRemoved += gift.quantity;
           stats.impact.totalImpactScore += gift.quantity * 50;
           break;
+        case 'coral':
+          stats.impact.totalImpactScore += gift.quantity * 60;
+          break;
+        case 'wildlife':
+          stats.impact.totalImpactScore += gift.quantity * 80;
+          break;
+        case 'water':
+          stats.impact.totalImpactScore += gift.quantity * 40;
+          break;
+        case 'rainforest':
+          stats.impact.totalImpactScore += gift.quantity * 70;
+          break;
       }
     });
     
@@ -278,6 +302,18 @@ router.get('/leaderboard/top', async (req, res) => {
           break;
         case 'ocean':
           senderStats[sender].totalImpact += gift.quantity * 50; // Kg plastic * weight
+          break;
+        case 'coral':
+          senderStats[sender].totalImpact += gift.quantity * 60; // Coral fragments
+          break;
+        case 'wildlife':
+          senderStats[sender].totalImpact += gift.quantity * 80; // Animals protected
+          break;
+        case 'water':
+          senderStats[sender].totalImpact += gift.quantity * 40; // People with clean water
+          break;
+        case 'rainforest':
+          senderStats[sender].totalImpact += gift.quantity * 70; // Acres protected
           break;
       }
     });

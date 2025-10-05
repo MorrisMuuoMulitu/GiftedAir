@@ -13,7 +13,11 @@ const giftTypeInfo = {
   tree: { icon: '🌳', name: 'Trees', impact: 'Each tree absorbs 48 lbs of CO₂ per year!' },
   cookstove: { icon: '🏡', name: 'Clean Cookstoves', impact: 'Provides clean air for families!' },
   solar: { icon: '☀️', name: 'Solar Panels', impact: 'Powers homes with renewable energy!' },
-  ocean: { icon: '🌊', name: 'Ocean Cleanup', impact: 'Removes plastic from our oceans!' }
+  ocean: { icon: '🌊', name: 'Ocean Cleanup', impact: 'Removes plastic from our oceans!' },
+  coral: { icon: '🪸', name: 'Coral Reef Restoration', impact: 'Rebuilds vital ocean ecosystems!' },
+  wildlife: { icon: '🦁', name: 'Wildlife Conservation', impact: 'Protects endangered species!' },
+  water: { icon: '💧', name: 'Clean Water Access', impact: 'Provides safe drinking water!' },
+  rainforest: { icon: '🌴', name: 'Rainforest Protection', impact: 'Preserves critical biodiversity!' }
 };
 
 export async function sendGiftNotification(gift, giftUrl) {

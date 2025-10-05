@@ -32,14 +32,22 @@ router.post('/create-checkout-session', async (req, res) => {
       tree: 'Tree Planting',
       cookstove: 'Clean Cookstove',
       solar: 'Solar Panel',
-      ocean: 'Ocean Cleanup'
+      ocean: 'Ocean Cleanup',
+      coral: 'Coral Reef Restoration',
+      wildlife: 'Wildlife Conservation',
+      water: 'Clean Water Access',
+      rainforest: 'Rainforest Protection'
     };
 
     const giftTypeIcons = {
       tree: '🌳',
       cookstove: '🏡',
       solar: '☀️',
-      ocean: '🌊'
+      ocean: '🌊',
+      coral: '🪸',
+      wildlife: '🦁',
+      water: '💧',
+      rainforest: '🌴'
     };
 
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5174';

@@ -38,6 +38,81 @@ const giftTypes = [
     color: 'ocean',
     unitPrice: 15,
     unit: 'kg'
+  },
+  {
+    id: 'coral',
+    icon: '🪸',
+    name: 'Coral Reef Restoration',
+    description: 'Rebuilds vital ocean ecosystems',
+    color: 'pink-500',
+    unitPrice: 30,
+    unit: 'coral'
+  },
+  {
+    id: 'wildlife',
+    icon: '🦁',
+    name: 'Wildlife Conservation',
+    description: 'Protects endangered species and habitats',
+    color: 'amber-600',
+    unitPrice: 40,
+    unit: 'animal'
+  },
+  {
+    id: 'water',
+    icon: '💧',
+    name: 'Clean Water Access',
+    description: 'Provides safe drinking water to communities',
+    color: 'blue-400',
+    unitPrice: 20,
+    unit: 'person'
+  },
+  {
+    id: 'rainforest',
+    icon: '🌴',
+    name: 'Rainforest Protection',
+    description: 'Preserves critical biodiversity hotspots',
+    color: 'green-600',
+    unitPrice: 35,
+    unit: 'acre'
+  }
+];
+
+const messageTemplates = [
+  {
+    id: 'birthday',
+    icon: '🎂',
+    name: 'Birthday',
+    message: 'Happy Birthday! 🎉\n\nInstead of something that adds to the world\'s clutter, I wanted to give you a gift that makes a real difference. This is for you and for our planet.\n\nMay this year bring you joy, and may our Earth flourish with the positive impact we create together.\n\nWith love and hope for a greener future,'
+  },
+  {
+    id: 'thank-you',
+    icon: '🙏',
+    name: 'Thank You',
+    message: 'Thank You! 💚\n\nYour kindness and support mean the world to me. I wanted to express my gratitude in a way that also gives back to our planet.\n\nThis gift represents the positive ripple effect you\'ve had on my life, now extending to the Earth we share.\n\nWith sincere appreciation,'
+  },
+  {
+    id: 'anniversary',
+    icon: '💑',
+    name: 'Anniversary',
+    message: 'Happy Anniversary! 💕\n\nJust as our love has grown stronger with each passing year, I hope this gift helps our planet grow stronger too.\n\nTogether, we\'re not just building a life—we\'re nurturing a world worth living in. Here\'s to many more years of love and impact.\n\nForever yours,'
+  },
+  {
+    id: 'apology',
+    icon: '🌹',
+    name: 'Apology',
+    message: 'I\'m Sorry 🌿\n\nI know actions speak louder than words, so I wanted to make a meaningful gesture. This gift is a step toward healing—both between us and for our planet.\n\nI hope you can forgive me, and I promise to do better. Let this be a symbol of new growth and fresh beginnings.\n\nWith sincere regret and hope,'
+  },
+  {
+    id: 'graduation',
+    icon: '🎓',
+    name: 'Graduation',
+    message: 'Congratulations Graduate! 🎓\n\nAs you step into this new chapter, I wanted to celebrate your achievement with a gift that plants seeds for the future—both yours and our planet\'s.\n\nYou\'ve worked so hard to get here. May your impact on the world be as meaningful as this moment.\n\nProud of you always,'
+  },
+  {
+    id: 'just-because',
+    icon: '✨',
+    name: 'Just Because',
+    message: 'Thinking of You 💭\n\nNo special occasion—just wanted to remind you how much you mean to me. In a world that often feels heavy, you\'re a bright spot.\n\nThis gift is a small way to spread some of that light to our planet too. Because people like you make the world worth caring for.\n\nWith love,'
   }
 ];
 
@@ -211,11 +286,32 @@ export default function Compose() {
             </div>
 
             <h2 className="text-2xl font-bold text-forest mb-6">4. Write Your Message</h2>
+            
+            {/* Message Templates */}
+            <div className="mb-6">
+              <p className="text-sm text-gray-600 font-semibold mb-3">💡 Need inspiration? Choose a template:</p>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                {messageTemplates.map((template) => (
+                  <button
+                    key={template.id}
+                    onClick={() => setMessage(template.message)}
+                    className="flex flex-col items-center gap-2 p-3 bg-white border-2 border-gray-200 rounded-xl 
+                             hover:border-forest hover:bg-green-50 transition-all duration-200 group"
+                  >
+                    <span className="text-3xl group-hover:scale-110 transition-transform">{template.icon}</span>
+                    <span className="text-xs font-bold text-gray-700 group-hover:text-forest text-center">
+                      {template.name}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Dear earth guardian, this gift is a symbol of my love for you and our planet..."
-              rows={6}
+              rows={8}
               className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-forest 
                        focus:outline-none resize-none font-poetic text-lg"
             />
