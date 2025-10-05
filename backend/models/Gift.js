@@ -61,6 +61,10 @@ const giftSchema = new mongoose.Schema({
       default: null
     }
   },
+  showInGallery: {
+    type: Boolean,
+    default: true
+  },
   createdAt: {
     type: Date,
     default: Date.now

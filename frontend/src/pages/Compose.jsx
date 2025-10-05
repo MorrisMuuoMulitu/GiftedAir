@@ -127,6 +127,7 @@ export default function Compose() {
   const [location, setLocation] = useState('');
   const [scheduledDate, setScheduledDate] = useState('');
   const [scheduleEnabled, setScheduleEnabled] = useState(false);
+  const [showInGallery, setShowInGallery] = useState(true);
 
   const selectedGift = giftTypes.find(g => g.id === selectedType);
   
@@ -159,7 +160,8 @@ export default function Compose() {
       totalCost,
       location: location || '',
       scheduledDate: scheduleEnabled && scheduledDate ? new Date(scheduledDate).toISOString() : null,
-      status: scheduleEnabled && scheduledDate ? 'scheduled' : 'sent'
+      status: scheduleEnabled && scheduledDate ? 'scheduled' : 'sent',
+      showInGallery
     };
 
     try {
@@ -244,10 +246,56 @@ export default function Compose() {
           </div>
         )}
 
-        {/* Step 3: Personal Message */}
+        {/* Step 3: Schedule Delivery (Optional) */}
         {selectedType && (
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold text-forest mb-6">3. Add Your Details</h2>
+          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <h2 className="text-2xl font-bold text-forest mb-6">3. Schedule Delivery (Optional) ⏰</h2>
+            
+            <div className="mb-6">
+              <label className="flex items-center gap-3 cursor-pointer p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                <input
+                  type="checkbox"
+                  checked={scheduleEnabled}
+                  onChange={(e) => setScheduleEnabled(e.target.checked)}
+                  className="w-5 h-5 text-forest focus:ring-forest rounded"
+                />
+                <div>
+                  <span className="text-gray-700 font-semibold block">
+                    Schedule this gift for a future date
+                  </span>
+                  <span className="text-sm text-gray-500">
+                    Perfect for birthdays, anniversaries, or reminders!
+                  </span>
+                </div>
+              </label>
+              
+              {scheduleEnabled && (
+                <div className="mt-6 animate-fade-in-up p-6 bg-amber-50 rounded-xl border-2 border-amber-200">
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    📅 When should we send this gift?
+                  </label>
+                  <input
+                    type="date"
+                    value={scheduledDate}
+                    onChange={(e) => setScheduledDate(e.target.value)}
+                    min={new Date().toISOString().split('T')[0]}
+                    className="w-full p-4 border-2 border-amber-300 rounded-lg focus:border-forest focus:outline-none text-lg"
+                    required={scheduleEnabled}
+                  />
+                  <p className="text-sm text-gray-600 mt-3 flex items-start gap-2">
+                    <span>💡</span>
+                    <span>We'll automatically send this gift on the date you choose!</span>
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Step 4: Personal Details */}
+        {selectedType && (
+          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+            <h2 className="text-2xl font-bold text-forest mb-6">4. Add Your Details</h2>
             <div className="space-y-4 mb-6">
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">From:</label>
@@ -331,6 +379,27 @@ export default function Compose() {
               className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-forest 
                        focus:outline-none resize-none font-poetic text-lg"
             />
+            
+            {/* Privacy Toggle */}
+            <div className="mt-6 p-4 bg-blue-50 rounded-xl border-2 border-blue-200">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={showInGallery}
+                  onChange={(e) => setShowInGallery(e.target.checked)}
+                  className="w-5 h-5 text-forest focus:ring-forest rounded mt-0.5"
+                />
+                <div>
+                  <span className="text-gray-800 font-semibold block">
+                    📸 Share this gift in the public gallery
+                  </span>
+                  <span className="text-sm text-gray-600 block mt-1">
+                    Your gift and message will be visible to inspire others. 
+                    Uncheck to keep it private (only you and recipient can see it).
+                  </span>
+                </div>
+              </label>
+            </div>
           </div>
         )}
 
