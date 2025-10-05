@@ -1,8 +1,6 @@
-import sgMail from '@sendgrid/mail';
+import { Resend } from 'resend';
 
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-}
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const giftTypeInfo = {
   tree: { icon: '🌳', name: 'Trees', impact: 'Each tree absorbs 48 lbs of CO₂ per year!' },
@@ -12,9 +10,9 @@ const giftTypeInfo = {
 };
 
 export async function sendGiftNotification(gift, giftUrl) {
-  if (!process.env.SENDGRID_API_KEY) {
-    console.log('⚠️  SendGrid not configured. Email not sent.');
-    return { success: false, message: 'SendGrid not configured' };
+  if (!resend) {
+    console.log('⚠️  Resend not configured. Email not sent.');
+    return { success: false, message: 'Resend not configured' };
   }
 
   if (!gift.recipientEmail) {
@@ -23,14 +21,11 @@ export async function sendGiftNotification(gift, giftUrl) {
   }
 
   const giftInfo = giftTypeInfo[gift.type];
-  const fromEmail = process.env.SENDGRID_FROM_EMAIL || 'hello@giftedair.com';
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 
-  const msg = {
+  const emailData = {
+    from: `Gifted Air <${fromEmail}>`,
     to: gift.recipientEmail,
-    from: {
-      email: fromEmail,
-      name: 'Gifted Air'
-    },
     subject: `🌿 ${gift.senderName} sent you a gift of climate love!`,
     html: `
 <!DOCTYPE html>
@@ -160,11 +155,11 @@ https://gifted-air.vercel.app
   };
 
   try {
-    await sgMail.send(msg);
-    console.log(`✅ Email sent to ${gift.recipientEmail}`);
-    return { success: true, message: 'Email sent successfully' };
+    const data = await resend.emails.send(emailData);
+    console.log(`✅ Email sent to ${gift.recipientEmail}`, data);
+    return { success: true, message: 'Email sent successfully', data };
   } catch (error) {
-    console.error('❌ SendGrid error:', error.response ? error.response.body : error);
+    console.error('❌ Resend error:', error);
     return { success: false, message: 'Failed to send email', error };
   }
 }
