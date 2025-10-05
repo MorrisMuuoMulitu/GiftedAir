@@ -71,8 +71,14 @@ export default function Certificate() {
       `}</style>
 
       <div className="min-h-screen bg-gray-100 py-8 px-4">
-        {/* Print Button */}
-        <div className="max-w-4xl mx-auto mb-4 no-print">
+        {/* Navigation Buttons */}
+        <div className="max-w-4xl mx-auto mb-4 no-print flex gap-3">
+          <button
+            onClick={() => window.history.back()}
+            className="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition shadow-lg"
+          >
+            ← Back to Gift
+          </button>
           <button
             onClick={handlePrint}
             className="bg-forest text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-800 transition shadow-lg"

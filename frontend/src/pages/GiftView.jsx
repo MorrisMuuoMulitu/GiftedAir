@@ -192,6 +192,41 @@ export default function GiftView() {
     }
   };
 
+  const handleSendThankYou = async () => {
+    if (!thankYouMessage.trim() || !thankYouName.trim()) {
+      alert('Please enter your name and message');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/api/gifts/${giftId}/thank-you`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: thankYouMessage,
+          recipientName: thankYouName
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setThankYouSent(true);
+        setShowThankYou(false);
+        setTimeout(() => {
+          alert('Thank you note sent! 💚');
+        }, 100);
+      } else {
+        alert('Failed to send thank you note');
+      }
+    } catch (err) {
+      console.error('Error sending thank you:', err);
+      alert('Failed to send. Please try again.');
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-blue-50">
