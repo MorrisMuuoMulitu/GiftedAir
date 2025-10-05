@@ -48,6 +48,7 @@ export default function Compose() {
   const [message, setMessage] = useState('');
   const [recipientName, setRecipientName] = useState('');
   const [senderName, setSenderName] = useState('');
+  const [location, setLocation] = useState('');
 
   const selectedGift = giftTypes.find(g => g.id === selectedType);
   const totalCost = selectedGift ? selectedGift.unitPrice * quantity : 0;
@@ -64,7 +65,8 @@ export default function Compose() {
       message,
       recipientName,
       senderName,
-      totalCost
+      totalCost,
+      location: location || ''
     };
 
     try {
@@ -150,7 +152,7 @@ export default function Compose() {
         {/* Step 3: Personal Message */}
         {selectedType && (
           <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold text-forest mb-6">3. Add Your Names</h2>
+            <h2 className="text-2xl font-bold text-forest mb-6">3. Add Your Details</h2>
             <div className="space-y-4 mb-6">
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">From:</label>
@@ -171,6 +173,21 @@ export default function Compose() {
                   placeholder="Recipient's name"
                   className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-forest focus:outline-none"
                 />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  📍 Your Location (Optional):
+                </label>
+                <input
+                  type="text"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="e.g., Nairobi, Kenya or New York, USA"
+                  className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-forest focus:outline-none"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Show where your climate love is coming from!
+                </p>
               </div>
             </div>
 

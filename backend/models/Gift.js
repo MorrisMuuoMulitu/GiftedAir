@@ -31,6 +31,11 @@ const giftSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
+  location: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   createdAt: {
     type: Date,
     default: Date.now

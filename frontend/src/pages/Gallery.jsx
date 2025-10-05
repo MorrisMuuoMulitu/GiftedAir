@@ -3,17 +3,43 @@ import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../config';
 
 const giftTypeDetails = {
-  tree: { icon: '🌳', color: 'bg-green-100 border-green-300', textColor: 'text-green-800' },
-  cookstove: { icon: '🏡', color: 'bg-orange-100 border-orange-300', textColor: 'text-orange-800' },
-  solar: { icon: '☀️', color: 'bg-yellow-100 border-yellow-300', textColor: 'text-yellow-800' },
-  ocean: { icon: '🌊', color: 'bg-blue-100 border-blue-300', textColor: 'text-blue-800' }
+  tree: { 
+    icon: '🌳', 
+    color: 'bg-green-100 border-green-300', 
+    textColor: 'text-green-800',
+    name: 'Trees',
+    gradient: 'from-green-400 to-emerald-500'
+  },
+  cookstove: { 
+    icon: '🏡', 
+    color: 'bg-orange-100 border-orange-300', 
+    textColor: 'text-orange-800',
+    name: 'Cookstoves',
+    gradient: 'from-orange-400 to-red-500'
+  },
+  solar: { 
+    icon: '☀️', 
+    color: 'bg-yellow-100 border-yellow-300', 
+    textColor: 'text-yellow-800',
+    name: 'Solar',
+    gradient: 'from-yellow-400 to-orange-500'
+  },
+  ocean: { 
+    icon: '🌊', 
+    color: 'bg-blue-100 border-blue-300', 
+    textColor: 'text-blue-800',
+    name: 'Ocean',
+    gradient: 'from-blue-400 to-cyan-500'
+  }
 };
 
 export default function Gallery() {
   const navigate = useNavigate();
   const [gifts, setGifts] = useState([]);
+  const [filteredGifts, setFilteredGifts] = useState([]);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState('all');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +52,9 @@ export default function Gallery() {
         const giftsData = await giftsRes.json();
         const statsData = await statsRes.json();
 
-        setGifts(giftsData.gifts || []);
+        const allGifts = giftsData.gifts || [];
+        setGifts(allGifts);
+        setFilteredGifts(allGifts);
         setStats(statsData.stats);
       } catch (error) {
         console.error('Error fetching gallery data:', error);
@@ -37,6 +65,15 @@ export default function Gallery() {
 
     fetchData();
   }, []);
+
+  const handleFilter = (type) => {
+    setActiveFilter(type);
+    if (type === 'all') {
+      setFilteredGifts(gifts);
+    } else {
+      setFilteredGifts(gifts.filter(gift => gift.type === type));
+    }
+  };
 
   if (loading) {
     return (
@@ -136,9 +173,38 @@ export default function Gallery() {
             <h2 className="text-4xl font-bold text-forest mb-3">
               💝 Gift Gallery
             </h2>
-            <p className="text-lg text-gray-600">
-              {gifts.length === 0 ? 'Be the first to create a gift!' : `${gifts.length} ${gifts.length === 1 ? 'gift' : 'gifts'} spreading climate love`}
+            <p className="text-lg text-gray-600 mb-8">
+              {gifts.length === 0 ? 'Be the first to create a gift!' : `${filteredGifts.length} ${filteredGifts.length === 1 ? 'gift' : 'gifts'} ${activeFilter !== 'all' ? `(${giftTypeDetails[activeFilter].name})` : 'spreading climate love'}`}
             </p>
+
+            {/* Filter Buttons */}
+            {gifts.length > 0 && (
+              <div className="flex flex-wrap justify-center gap-3 mb-8">
+                <FilterButton
+                  active={activeFilter === 'all'}
+                  onClick={() => handleFilter('all')}
+                  count={gifts.length}
+                >
+                  All Gifts
+                </FilterButton>
+                {Object.entries(giftTypeDetails).map(([key, details]) => {
+                  const count = gifts.filter(g => g.type === key).length;
+                  if (count === 0) return null;
+                  return (
+                    <FilterButton
+                      key={key}
+                      active={activeFilter === key}
+                      onClick={() => handleFilter(key)}
+                      icon={details.icon}
+                      count={count}
+                      gradient={details.gradient}
+                    >
+                      {details.name}
+                    </FilterButton>
+                  );
+                })}
+              </div>
+            )}
           </div>
           
           {gifts.length === 0 ? (
@@ -157,8 +223,13 @@ export default function Gallery() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {gifts.map((gift) => (
-                <GiftCard key={gift._id} gift={gift} onClick={() => navigate(`/gift/${gift._id}`)} />
+              {filteredGifts.map((gift, index) => (
+                <GiftCard 
+                  key={gift._id} 
+                  gift={gift} 
+                  onClick={() => navigate(`/gift/${gift._id}`)}
+                  index={index}
+                />
               ))}
             </div>
           )}
@@ -199,19 +270,24 @@ export default function Gallery() {
 
 function StatCard({ icon, value, unit, label, gradient }) {
   return (
-    <div className={`bg-gradient-to-br ${gradient} rounded-2xl p-6 text-white shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl`}>
-      <div className="flex flex-col items-center">
-        <div className="text-5xl mb-3">{icon}</div>
+    <div className={`relative overflow-hidden bg-white rounded-2xl p-8 shadow-xl border-2 border-gray-200 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group`}>
+      {/* Gradient background on hover */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+      
+      <div className="relative flex flex-col items-center">
+        <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+          {icon}
+        </div>
         <div className="text-center">
-          <div className="text-3xl md:text-4xl font-bold mb-1 leading-tight">
+          <div className="text-4xl md:text-5xl font-black mb-2 text-gray-900 leading-none">
             {value}
           </div>
           {unit && (
-            <div className="text-sm font-medium opacity-90 mb-2">
+            <div className="text-sm font-bold text-gray-600 mb-3 uppercase tracking-wide">
               {unit}
             </div>
           )}
-          <div className="text-sm md:text-base font-medium opacity-95">
+          <div className="text-base md:text-lg font-semibold text-gray-700">
             {label}
           </div>
         </div>
@@ -222,7 +298,7 @@ function StatCard({ icon, value, unit, label, gradient }) {
 
 function SecondaryStatCard({ icon, value, label }) {
   return (
-    <div className="flex items-center gap-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 border border-gray-200">
+    <div className="flex items-center gap-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
       <div className="text-4xl">{icon}</div>
       <div>
         <div className="text-2xl font-bold text-forest">{value}</div>
@@ -232,7 +308,31 @@ function SecondaryStatCard({ icon, value, label }) {
   );
 }
 
-function GiftCard({ gift, onClick }) {
+function FilterButton({ children, active, onClick, icon, count, gradient }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`relative overflow-hidden px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
+        active 
+          ? 'bg-forest text-white shadow-lg' 
+          : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-forest'
+      }`}
+    >
+      {active && gradient && (
+        <div className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-20`}></div>
+      )}
+      <span className="relative flex items-center gap-2">
+        {icon && <span className="text-xl">{icon}</span>}
+        <span>{children}</span>
+        <span className={`text-xs ${active ? 'text-white' : 'text-gray-500'} ml-1`}>
+          ({count})
+        </span>
+      </span>
+    </button>
+  );
+}
+
+function GiftCard({ gift, onClick, index }) {
   const details = giftTypeDetails[gift.type];
   const truncateMessage = (text, maxLength = 120) => {
     if (text.length <= maxLength) return text;
@@ -243,7 +343,9 @@ function GiftCard({ gift, onClick }) {
     <div
       onClick={onClick}
       className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-6 cursor-pointer 
-                  transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-forest group"
+                  transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-forest group
+                  animate-fade-in-up"
+      style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
@@ -261,16 +363,22 @@ function GiftCard({ gift, onClick }) {
         </div>
       </div>
 
-      {/* Names */}
+      {/* Names and Location */}
       <div className="mb-4 pb-4 border-b border-gray-200">
         <div className="flex items-center gap-2 mb-1">
           <span className="text-gray-500 text-xs font-medium">From:</span>
           <span className="text-forest text-sm font-bold">{gift.senderName}</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mb-1">
           <span className="text-gray-500 text-xs font-medium">To:</span>
           <span className="text-forest text-sm font-bold">{gift.recipientName}</span>
         </div>
+        {gift.location && (
+          <div className="flex items-center gap-2 mt-2">
+            <span className="text-xl">📍</span>
+            <span className="text-gray-600 text-xs font-medium">{gift.location}</span>
+          </div>
+        )}
       </div>
 
       {/* Message Preview */}
