@@ -95,72 +95,66 @@ export default function Gallery() {
           <p className="text-xl text-gray-600">Celebrating every act of climate love</p>
         </div>
 
-        {/* Impact Stats Dashboard */}
+        {/* Impact Stats Dashboard - COMPLETELY REDESIGNED */}
         {stats && (
-          <div className="mb-16">
-            <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-              <h2 className="text-4xl font-bold text-forest text-center mb-3">
-                🌍 Collective Impact
-              </h2>
-              <p className="text-center text-gray-600 mb-10">
-                Every gift creates real change. Here's what we've achieved together.
-              </p>
+          <div className="mb-16 relative">
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-blue-50 to-purple-100 rounded-3xl blur-3xl opacity-30"></div>
+            
+            <div className="relative">
+              {/* Header */}
+              <div className="text-center mb-10">
+                <div className="inline-block bg-forest text-white px-6 py-2 rounded-full text-sm font-bold mb-4 shadow-lg">
+                  🌍 OUR COLLECTIVE IMPACT
+                </div>
+                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-2">
+                  Together We're Making History
+                </h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Every gift is a step towards a healthier planet. Here's the real impact we've created.
+                </p>
+              </div>
               
-              {/* Main Stats */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <StatCard
+              {/* Main Stats - Hero Grid */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+                <ImpactCard
                   icon="🎁"
                   value={stats.totalGifts}
-                  label="Gifts of Love"
-                  gradient="from-purple-500 to-pink-500"
+                  label="Gifts Sent"
+                  bgColor="bg-gradient-to-br from-purple-500 to-pink-600"
                 />
-                <StatCard
+                <ImpactCard
                   icon="🌳"
                   value={stats.impact.treesPlanted}
                   label="Trees Planted"
-                  gradient="from-green-500 to-emerald-600"
+                  bgColor="bg-gradient-to-br from-green-500 to-emerald-600"
                 />
-                <StatCard
+                <ImpactCard
                   icon="💨"
                   value={stats.impact.co2Absorbed.toLocaleString()}
-                  unit="lbs/year"
-                  label="CO₂ Absorbed"
-                  gradient="from-sky-500 to-blue-600"
+                  label="lbs CO₂/year"
+                  bgColor="bg-gradient-to-br from-sky-500 to-blue-600"
                 />
-                <StatCard
+                <ImpactCard
                   icon="💰"
                   value={`$${stats.totalValue.toLocaleString()}`}
                   label="Climate Value"
-                  gradient="from-amber-500 to-orange-600"
+                  bgColor="bg-gradient-to-br from-amber-500 to-orange-600"
                 />
               </div>
 
-              {/* Secondary Stats */}
+              {/* Secondary Stats - Clean Inline */}
               {(stats.impact.familiesHelped > 0 || stats.impact.solarPanels > 0 || stats.impact.plasticRemoved > 0) && (
-                <div className="pt-8 border-t border-gray-200">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {stats.impact.familiesHelped > 0 && (
-                      <SecondaryStatCard
-                        icon="🏠"
-                        value={stats.impact.familiesHelped}
-                        label="Families with Clean Air"
-                      />
-                    )}
-                    {stats.impact.solarPanels > 0 && (
-                      <SecondaryStatCard
-                        icon="☀️"
-                        value={stats.impact.solarPanels}
-                        label="Solar Panels"
-                      />
-                    )}
-                    {stats.impact.plasticRemoved > 0 && (
-                      <SecondaryStatCard
-                        icon="🌊"
-                        value={`${stats.impact.plasticRemoved} kg`}
-                        label="Ocean Plastic Removed"
-                      />
-                    )}
-                  </div>
+                <div className="flex flex-wrap justify-center gap-6 bg-white/50 backdrop-blur-sm rounded-2xl p-6">
+                  {stats.impact.familiesHelped > 0 && (
+                    <MiniStat icon="🏠" value={stats.impact.familiesHelped} label="Families Helped" />
+                  )}
+                  {stats.impact.solarPanels > 0 && (
+                    <MiniStat icon="☀️" value={stats.impact.solarPanels} label="Solar Panels" />
+                  )}
+                  {stats.impact.plasticRemoved > 0 && (
+                    <MiniStat icon="🌊" value={`${stats.impact.plasticRemoved}kg`} label="Plastic Removed" />
+                  )}
                 </div>
               )}
             </div>
@@ -268,41 +262,31 @@ export default function Gallery() {
   );
 }
 
-function StatCard({ icon, value, unit, label, gradient }) {
+function ImpactCard({ icon, value, label, bgColor }) {
   return (
-    <div className={`relative overflow-hidden bg-white rounded-2xl p-8 shadow-xl border-2 border-gray-200 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group`}>
-      {/* Gradient background on hover */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-      
-      <div className="relative flex flex-col items-center">
-        <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+    <div className={`${bgColor} rounded-2xl p-6 text-white shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2`}>
+      <div className="flex flex-col items-center text-center">
+        <div className="text-5xl md:text-6xl mb-3 drop-shadow-lg">
           {icon}
         </div>
-        <div className="text-center">
-          <div className="text-4xl md:text-5xl font-black mb-2 text-gray-900 leading-none">
-            {value}
-          </div>
-          {unit && (
-            <div className="text-sm font-bold text-gray-600 mb-3 uppercase tracking-wide">
-              {unit}
-            </div>
-          )}
-          <div className="text-base md:text-lg font-semibold text-gray-700">
-            {label}
-          </div>
+        <div className="text-3xl md:text-5xl font-black mb-2 drop-shadow-md">
+          {value}
+        </div>
+        <div className="text-sm md:text-base font-semibold uppercase tracking-wide opacity-90">
+          {label}
         </div>
       </div>
     </div>
   );
 }
 
-function SecondaryStatCard({ icon, value, label }) {
+function MiniStat({ icon, value, label }) {
   return (
-    <div className="flex items-center gap-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-      <div className="text-4xl">{icon}</div>
+    <div className="flex items-center gap-3 bg-white rounded-xl px-5 py-3 shadow-md hover:shadow-lg transition-shadow">
+      <span className="text-3xl">{icon}</span>
       <div>
-        <div className="text-2xl font-bold text-forest">{value}</div>
-        <div className="text-sm text-gray-600">{label}</div>
+        <div className="text-xl font-bold text-gray-900">{value}</div>
+        <div className="text-xs text-gray-600 font-medium">{label}</div>
       </div>
     </div>
   );
