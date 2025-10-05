@@ -13,7 +13,9 @@ export default {
         'ocean': '#006994',
       },
       fontFamily: {
-        'poetic': ['Georgia', 'serif'],
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'display': ['Playfair Display', 'Georgia', 'serif'],
+        'poetic': ['Playfair Display', 'Georgia', 'serif'],
       },
     },
   },

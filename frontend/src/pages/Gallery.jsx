@@ -263,8 +263,13 @@ export default function Gallery() {
 }
 
 function ImpactCard({ icon, value, label, bgColor }) {
+  // Special darker blue for CO2 card for better visibility
+  const finalBgColor = label.includes('CO₂') 
+    ? 'bg-gradient-to-br from-blue-600 to-indigo-700' 
+    : bgColor;
+    
   return (
-    <div className={`${bgColor} rounded-2xl p-6 text-white shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2`}>
+    <div className={`${finalBgColor} rounded-2xl p-6 text-white shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2`}>
       <div className="flex flex-col items-center text-center">
         <div className="text-5xl md:text-6xl mb-3 drop-shadow-lg">
           {icon}
@@ -272,7 +277,7 @@ function ImpactCard({ icon, value, label, bgColor }) {
         <div className="text-3xl md:text-5xl font-black mb-2 drop-shadow-md">
           {value}
         </div>
-        <div className="text-sm md:text-base font-semibold uppercase tracking-wide opacity-90">
+        <div className="text-sm md:text-base font-bold uppercase tracking-wider opacity-95">
           {label}
         </div>
       </div>
@@ -282,11 +287,11 @@ function ImpactCard({ icon, value, label, bgColor }) {
 
 function MiniStat({ icon, value, label }) {
   return (
-    <div className="flex items-center gap-3 bg-white rounded-xl px-5 py-3 shadow-md hover:shadow-lg transition-shadow">
-      <span className="text-3xl">{icon}</span>
+    <div className="flex items-center gap-4 bg-white rounded-xl px-6 py-4 shadow-lg hover:shadow-xl transition-all hover:scale-105 border-2 border-gray-100">
+      <span className="text-4xl">{icon}</span>
       <div>
-        <div className="text-xl font-bold text-gray-900">{value}</div>
-        <div className="text-xs text-gray-600 font-medium">{label}</div>
+        <div className="text-2xl font-black text-gray-900">{value}</div>
+        <div className="text-sm text-gray-700 font-semibold">{label}</div>
       </div>
     </div>
   );
@@ -349,18 +354,18 @@ function GiftCard({ gift, onClick, index }) {
 
       {/* Names and Location */}
       <div className="mb-4 pb-4 border-b border-gray-200">
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-gray-500 text-xs font-medium">From:</span>
-          <span className="text-forest text-sm font-bold">{gift.senderName}</span>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-gray-500 text-xs font-bold uppercase tracking-wide">From:</span>
+          <span className="text-forest text-base font-bold">{gift.senderName}</span>
         </div>
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-gray-500 text-xs font-medium">To:</span>
-          <span className="text-forest text-sm font-bold">{gift.recipientName}</span>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-gray-500 text-xs font-bold uppercase tracking-wide">To:</span>
+          <span className="text-forest text-base font-bold">{gift.recipientName}</span>
         </div>
         {gift.location && (
-          <div className="flex items-center gap-2 mt-2">
-            <span className="text-xl">📍</span>
-            <span className="text-gray-600 text-xs font-medium">{gift.location}</span>
+          <div className="flex items-center gap-2 mt-3 bg-green-50 rounded-lg px-3 py-2 border border-green-200">
+            <span className="text-2xl">📍</span>
+            <span className="text-gray-700 text-sm font-semibold">{gift.location}</span>
           </div>
         )}
       </div>
