@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from '../config';
+import QRCode from 'qrcode';
 
 const giftTypeDetails = {
   tree: {
@@ -42,6 +43,9 @@ export default function GiftView() {
   const [isEditing, setIsEditing] = useState(false);
   const [editedMessage, setEditedMessage] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
+  const [showQR, setShowQR] = useState(false);
+  const qrCanvasRef = useRef(null);
 
   useEffect(() => {
     const fetchGift = async () => {
@@ -52,6 +56,18 @@ export default function GiftView() {
         if (response.ok && data.gift) {
           setGift(data.gift);
           setEditedMessage(data.gift.message);
+          
+          // Generate QR code
+          const url = window.location.href;
+          const qrDataUrl = await QRCode.toDataURL(url, {
+            width: 300,
+            margin: 2,
+            color: {
+              dark: '#2D5016', // forest green
+              light: '#FFFFFF'
+            }
+          });
+          setQrCodeUrl(qrDataUrl);
         } else {
           setError(true);
         }
@@ -103,6 +119,13 @@ export default function GiftView() {
     const url = window.location.href;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
     window.open(facebookUrl, '_blank', 'width=550,height=420');
+  };
+
+  const handleDownloadQR = () => {
+    const link = document.createElement('a');
+    link.download = `gifted-air-${gift.recipientName}-qr.png`;
+    link.href = qrCodeUrl;
+    link.click();
   };
 
   const handleSaveEdit = async () => {
@@ -367,6 +390,37 @@ export default function GiftView() {
               </svg>
               Copy Link
             </button>
+          </div>
+        </div>
+
+        {/* QR Code Section */}
+        <div className="mt-8 bg-white rounded-2xl p-8 border-2 border-gray-200 text-center">
+          <h3 className="text-2xl font-bold text-forest mb-3">
+            📲 Print & Share
+          </h3>
+          <p className="text-gray-600 mb-6">
+            Download this QR code to print on physical cards or share offline!
+          </p>
+          
+          <div className="flex flex-col items-center gap-6">
+            {qrCodeUrl && (
+              <>
+                <div className="bg-white p-4 rounded-xl border-4 border-forest shadow-lg">
+                  <img src={qrCodeUrl} alt="QR Code" className="w-64 h-64" />
+                </div>
+                <button
+                  onClick={handleDownloadQR}
+                  className="bg-forest text-white px-8 py-3 rounded-full font-bold 
+                           hover:bg-green-800 transition-all duration-300 transform hover:scale-105 
+                           shadow-lg flex items-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  Download QR Code
+                </button>
+              </>
+            )}
           </div>
         </div>
 

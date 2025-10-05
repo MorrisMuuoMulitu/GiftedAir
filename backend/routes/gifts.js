@@ -153,6 +153,87 @@ router.get('/stats/summary', async (req, res) => {
   }
 });
 
+// Get sender impact stats
+router.get('/impact/:senderName', async (req, res) => {
+  try {
+    const senderName = decodeURIComponent(req.params.senderName);
+    const gifts = await getAllGifts();
+    
+    // Filter gifts by sender
+    const senderGifts = gifts.filter(g => g.senderName.toLowerCase() === senderName.toLowerCase());
+    
+    if (senderGifts.length === 0) {
+      return res.status(404).json({ error: 'No gifts found for this sender' });
+    }
+    
+    // Calculate stats
+    const stats = {
+      name: senderGifts[0].senderName,
+      totalGifts: senderGifts.length,
+      totalValue: 0,
+      byType: {
+        tree: { count: 0, quantity: 0 },
+        cookstove: { count: 0, quantity: 0 },
+        solar: { count: 0, quantity: 0 },
+        ocean: { count: 0, quantity: 0 }
+      },
+      impact: {
+        treesPlanted: 0,
+        co2Absorbed: 0,
+        familiesHelped: 0,
+        solarPanels: 0,
+        plasticRemoved: 0,
+        totalImpactScore: 0
+      },
+      recipients: [],
+      locations: new Set(),
+      firstGift: senderGifts[0].createdAt,
+      lastGift: senderGifts[0].createdAt
+    };
+    
+    senderGifts.forEach(gift => {
+      stats.totalValue += gift.totalCost;
+      stats.byType[gift.type].count++;
+      stats.byType[gift.type].quantity += gift.quantity;
+      stats.recipients.push(gift.recipientName);
+      
+      if (gift.location) stats.locations.add(gift.location);
+      
+      const giftDate = new Date(gift.createdAt);
+      if (giftDate < new Date(stats.firstGift)) stats.firstGift = gift.createdAt;
+      if (giftDate > new Date(stats.lastGift)) stats.lastGift = gift.createdAt;
+      
+      switch (gift.type) {
+        case 'tree':
+          stats.impact.treesPlanted += gift.quantity;
+          stats.impact.co2Absorbed += gift.quantity * 48;
+          stats.impact.totalImpactScore += gift.quantity * 48;
+          break;
+        case 'cookstove':
+          stats.impact.familiesHelped += gift.quantity;
+          stats.impact.totalImpactScore += gift.quantity * 100;
+          break;
+        case 'solar':
+          stats.impact.solarPanels += gift.quantity;
+          stats.impact.totalImpactScore += gift.quantity * 300;
+          break;
+        case 'ocean':
+          stats.impact.plasticRemoved += gift.quantity;
+          stats.impact.totalImpactScore += gift.quantity * 50;
+          break;
+      }
+    });
+    
+    stats.locations = Array.from(stats.locations);
+    stats.uniqueRecipients = [...new Set(stats.recipients)].length;
+    
+    res.json({ stats, gifts: senderGifts });
+  } catch (error) {
+    console.error('Error getting sender impact:', error);
+    res.status(500).json({ error: 'Failed to get sender impact' });
+  }
+});
+
 router.get('/leaderboard/top', async (req, res) => {
   try {
     const gifts = await getAllGifts();

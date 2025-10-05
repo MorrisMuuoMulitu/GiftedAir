@@ -51,6 +51,14 @@ export default function Landing() {
             >
               🏆 Leaderboard
             </button>
+            <button
+              onClick={() => navigate('/impact')}
+              className="bg-gradient-to-r from-blue-400 to-purple-500 text-white px-12 py-4 rounded-full text-xl font-semibold 
+                         hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 
+                         shadow-lg hover:shadow-xl"
+            >
+              📊 My Impact
+            </button>
           </div>
         </div>
 
