@@ -4,7 +4,7 @@ const giftSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ['tree', 'cookstove', 'solar', 'ocean']
+    enum: ['tree', 'cookstove', 'solar', 'ocean', 'coral', 'wildlife', 'water', 'rainforest']
   },
   quantity: {
     type: Number,
@@ -41,6 +41,25 @@ const giftSchema = new mongoose.Schema({
     type: String,
     trim: true,
     default: ''
+  },
+  scheduledDate: {
+    type: Date,
+    default: null
+  },
+  status: {
+    type: String,
+    enum: ['scheduled', 'sent'],
+    default: 'sent'
+  },
+  thankYouNote: {
+    message: {
+      type: String,
+      default: ''
+    },
+    sentAt: {
+      type: Date,
+      default: null
+    }
   },
   createdAt: {
     type: Date,

@@ -125,6 +125,8 @@ export default function Compose() {
   const [recipientEmail, setRecipientEmail] = useState('');
   const [senderName, setSenderName] = useState('');
   const [location, setLocation] = useState('');
+  const [scheduledDate, setScheduledDate] = useState('');
+  const [scheduleEnabled, setScheduleEnabled] = useState(false);
 
   const selectedGift = giftTypes.find(g => g.id === selectedType);
   
@@ -155,7 +157,9 @@ export default function Compose() {
       recipientEmail: recipientEmail || '',
       senderName,
       totalCost,
-      location: location || ''
+      location: location || '',
+      scheduledDate: scheduleEnabled && scheduledDate ? new Date(scheduledDate).toISOString() : null,
+      status: scheduleEnabled && scheduledDate ? 'scheduled' : 'sent'
     };
 
     try {
@@ -297,7 +301,7 @@ export default function Compose() {
               </div>
             </div>
 
-            <h2 className="text-2xl font-bold text-forest mb-6">4. Write Your Message</h2>
+            <h2 className="text-2xl font-bold text-forest mb-6">5. Write Your Message</h2>
             
             {/* Message Templates */}
             <div className="mb-6">

@@ -20,6 +20,94 @@ const giftTypeInfo = {
   rainforest: { icon: '🌴', name: 'Rainforest Protection', impact: 'Preserves critical biodiversity!' }
 };
 
+export async function sendThankYouNotification({ senderEmail, senderName, originalSenderName, giftType, giftQuantity, thankYouMessage, giftUrl }) {
+  const resendClient = getResend();
+  
+  if (!resendClient) {
+    console.log('⚠️  Resend not configured, skipping thank you email');
+    return;
+  }
+
+  const info = giftTypeInfo[giftType] || giftTypeInfo.tree;
+
+  try {
+    await resendClient.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
+      to: senderEmail || 'hello@giftedair.com',
+      subject: `💚 ${senderName} says thank you for your gift!`,
+      html: `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: linear-gradient(135deg, #2D5016 0%, #4a7c28 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+            .content { background: #f9fafb; padding: 30px; border-radius: 0 0 10px 10px; }
+            .icon { font-size: 60px; margin: 20px 0; }
+            .message-box { background: white; padding: 20px; border-left: 4px solid #2D5016; margin: 20px 0; border-radius: 5px; }
+            .button { display: inline-block; background: #2D5016; color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; margin: 20px 0; }
+            .footer { text-align: center; color: #666; padding: 20px; font-size: 14px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>💚 You Got a Thank You!</h1>
+              <p style="font-size: 18px; margin: 10px 0 0 0;">Someone appreciated your gift</p>
+            </div>
+            <div class="content">
+              <div style="text-align: center;">
+                <div class="icon">${info.icon}</div>
+                <h2 style="color: #2D5016; margin: 10px 0;">${senderName} sent you thanks!</h2>
+                <p style="color: #666; font-size: 16px;">
+                  Remember that ${info.name} gift you sent? ${senderName} loved it!
+                </p>
+              </div>
+
+              <div class="message-box">
+                <p style="margin: 0; color: #666; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Their Message:</p>
+                <p style="font-size: 18px; color: #333; margin: 15px 0 0 0; font-style: italic;">
+                  "${thankYouMessage}"
+                </p>
+                <p style="margin: 15px 0 0 0; color: #2D5016; font-weight: bold;">
+                  — ${senderName}
+                </p>
+              </div>
+
+              <div style="text-align: center;">
+                <a href="${giftUrl}" class="button">View Your Gift</a>
+              </div>
+
+              <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin-top: 30px;">
+                <p style="margin: 0; color: #2D5016; font-weight: bold;">
+                  💚 Your Impact: ${giftQuantity} ${info.name}
+                </p>
+                <p style="margin: 10px 0 0 0; color: #666; font-size: 14px;">
+                  ${info.impact}
+                </p>
+              </div>
+
+              <p style="text-align: center; color: #666; margin-top: 30px;">
+                Gifts that create connection and climate action 🌍
+              </p>
+            </div>
+            <div class="footer">
+              <p>Gifted Air - Climate Love</p>
+              <p>Transforming climate action into meaningful gifts</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `
+    });
+
+    console.log('✅ Thank you notification sent successfully');
+  } catch (error) {
+    console.error('❌ Error sending thank you notification:', error);
+  }
+}
+
 export async function sendGiftNotification(gift, giftUrl) {
   const resendClient = getResend();
   

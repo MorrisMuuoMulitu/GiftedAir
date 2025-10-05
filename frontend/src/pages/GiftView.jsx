@@ -74,6 +74,10 @@ export default function GiftView() {
   const [qrCodeUrl, setQrCodeUrl] = useState('');
   const [showQR, setShowQR] = useState(false);
   const qrCanvasRef = useRef(null);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [thankYouMessage, setThankYouMessage] = useState('');
+  const [thankYouName, setThankYouName] = useState('');
+  const [thankYouSent, setThankYouSent] = useState(false);
 
   useEffect(() => {
     const fetchGift = async () => {
@@ -392,6 +396,89 @@ export default function GiftView() {
             </div>
           </div>
         </div>
+
+        {/* Thank You Note Section */}
+        {!gift.thankYouNote?.message && !thankYouSent && (
+          <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
+            <h3 className="text-2xl font-bold text-center text-purple-900 mb-4">
+              💌 Send a Thank You Note
+            </h3>
+            <p className="text-center text-gray-600 mb-6">
+              Let {gift.senderName} know you appreciate their thoughtful gift!
+            </p>
+            
+            {!showThankYou ? (
+              <div className="text-center">
+                <button
+                  onClick={() => setShowThankYou(true)}
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-xl 
+                           font-semibold hover:from-purple-600 hover:to-pink-600 transition-all 
+                           transform hover:scale-105 shadow-lg"
+                >
+                  Write Thank You Note ✨
+                </button>
+              </div>
+            ) : (
+              <div className="max-w-2xl mx-auto animate-fade-in-up">
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Your Name:
+                    </label>
+                    <input
+                      type="text"
+                      value={thankYouName}
+                      onChange={(e) => setThankYouName(e.target.value)}
+                      placeholder="Your name"
+                      className="w-full p-3 border-2 border-purple-200 rounded-lg focus:border-purple-500 focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Your Message:
+                    </label>
+                    <textarea
+                      value={thankYouMessage}
+                      onChange={(e) => setThankYouMessage(e.target.value)}
+                      placeholder="Thank you so much for this thoughtful gift! It really means a lot to me..."
+                      rows={4}
+                      className="w-full p-3 border-2 border-purple-200 rounded-lg focus:border-purple-500 focus:outline-none resize-none"
+                    />
+                  </div>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={handleSendThankYou}
+                      className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg 
+                               font-semibold hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg"
+                    >
+                      Send Thank You 💚
+                    </button>
+                    <button
+                      onClick={() => setShowThankYou(false)}
+                      className="px-6 py-3 border-2 border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {gift.thankYouNote?.message && (
+          <div className="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8 border-2 border-green-300">
+            <div className="text-center">
+              <div className="text-5xl mb-4">💚</div>
+              <h3 className="text-2xl font-bold text-green-900 mb-2">
+                Thank You Note Sent!
+              </h3>
+              <p className="text-gray-600">
+                {gift.senderName} has been notified of your appreciation
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Share Buttons */}
         <div className="mt-8 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 border-2 border-green-200">
