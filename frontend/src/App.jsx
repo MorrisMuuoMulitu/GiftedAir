@@ -6,6 +6,8 @@ import Gallery from './pages/Gallery';
 import Leaderboard from './pages/Leaderboard';
 import Impact from './pages/Impact';
 import PaymentSuccess from './pages/PaymentSuccess';
+import Transparency from './pages/Transparency';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/impact" element={<Impact />} />
         <Route path="/payment/success" element={<PaymentSuccess />} />
+        <Route path="/transparency" element={<Transparency />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/gift/:giftId" element={<GiftView />} />
       </Routes>
     </Router>

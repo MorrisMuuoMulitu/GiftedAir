@@ -1,0 +1,302 @@
+import { Link } from 'react-router-dom';
+
+export default function Transparency() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-green-100 py-12 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-forest mb-4">
+            💚 How Your Gift Makes Real Impact
+          </h1>
+          <p className="text-xl text-gray-600">
+            Complete transparency on where every dollar goes
+          </p>
+        </div>
+
+        {/* Money Breakdown */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+          <h2 className="text-3xl font-bold text-forest mb-6">Where Your Money Goes</h2>
+          
+          <p className="text-gray-700 mb-8 text-lg">
+            We believe in complete transparency. Here's the honest breakdown of how your gift funds are used:
+          </p>
+
+          <div className="space-y-6">
+            {/* Climate Action */}
+            <div className="flex items-start gap-4 p-6 bg-green-50 rounded-xl border-2 border-green-200">
+              <div className="text-4xl">🌍</div>
+              <div className="flex-1">
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="text-xl font-bold text-forest">Climate Action Partners</h3>
+                  <span className="text-2xl font-bold text-green-600">~50%</span>
+                </div>
+                <p className="text-gray-700">
+                  Funds actual environmental projects through verified partner organizations. 
+                  This plants the trees, removes the plastic, provides clean water, and protects wildlife.
+                </p>
+              </div>
+            </div>
+
+            {/* Payment Processing */}
+            <div className="flex items-start gap-4 p-6 bg-blue-50 rounded-xl border-2 border-blue-200">
+              <div className="text-4xl">💳</div>
+              <div className="flex-1">
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="text-xl font-bold text-forest">Payment Processing (Stripe)</h3>
+                  <span className="text-2xl font-bold text-blue-600">~33%</span>
+                </div>
+                <p className="text-gray-700">
+                  Credit card processing fees ($0.30 + 2.9% per transaction). 
+                  This is industry standard and goes directly to Stripe, not us.
+                </p>
+              </div>
+            </div>
+
+            {/* Platform Operations */}
+            <div className="flex items-start gap-4 p-6 bg-purple-50 rounded-xl border-2 border-purple-200">
+              <div className="text-4xl">🖥️</div>
+              <div className="flex-1">
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="text-xl font-bold text-forest">Platform Operations</h3>
+                  <span className="text-2xl font-bold text-purple-600">~7%</span>
+                </div>
+                <p className="text-gray-700">
+                  Hosting, email services, database, and technical maintenance to keep the platform running.
+                </p>
+              </div>
+            </div>
+
+            {/* Growth & Sustainability */}
+            <div className="flex items-start gap-4 p-6 bg-amber-50 rounded-xl border-2 border-amber-200">
+              <div className="text-4xl">📈</div>
+              <div className="flex-1">
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="text-xl font-bold text-forest">Growth & Sustainability</h3>
+                  <span className="text-2xl font-bold text-amber-600">~10%</span>
+                </div>
+                <p className="text-gray-700">
+                  Reinvested into marketing, new features, and expanding our impact. 
+                  Allows us to reach more people and create more climate action.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Example Breakdown */}
+          <div className="mt-8 p-6 bg-gradient-to-r from-green-100 to-blue-100 rounded-xl">
+            <h3 className="text-xl font-bold text-forest mb-4">📊 Example: $1 Tree Gift</h3>
+            <div className="grid md:grid-cols-2 gap-4 text-sm">
+              <div className="bg-white p-4 rounded-lg">
+                <p className="font-semibold text-gray-700">You Pay: <span className="text-green-600 text-lg">$1.00</span></p>
+              </div>
+              <div className="bg-white p-4 rounded-lg space-y-2">
+                <p className="text-gray-700">• Stripe Fee: <span className="font-semibold">$0.33</span></p>
+                <p className="text-gray-700">• To Tree Planting: <span className="font-semibold text-green-600">$0.50</span></p>
+                <p className="text-gray-700">• Platform Costs: <span className="font-semibold">$0.07</span></p>
+                <p className="text-gray-700">• Reinvestment: <span className="font-semibold">$0.10</span></p>
+              </div>
+            </div>
+            <p className="mt-4 text-sm text-gray-600 italic">
+              * Your $1 gift funds approximately 0.5 trees through our bulk partnerships with verified organizations
+            </p>
+          </div>
+        </div>
+
+        {/* Our Partners */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+          <h2 className="text-3xl font-bold text-forest mb-6">🤝 Our Partner Organizations</h2>
+          
+          <p className="text-gray-700 mb-8 text-lg">
+            We partner with verified, reputable organizations to ensure real environmental impact:
+          </p>
+
+          <div className="space-y-6">
+            <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-green-400 transition">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">🌳</div>
+                <div>
+                  <h3 className="text-xl font-bold text-forest mb-2">One Tree Planted</h3>
+                  <p className="text-gray-700 mb-2">
+                    Non-profit focused on global reforestation. Plants trees in 43+ countries across 6 continents.
+                  </p>
+                  <a href="https://onetreeplanted.org/" target="_blank" rel="noopener noreferrer" 
+                     className="text-green-600 hover:underline font-semibold">
+                    Learn more →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-blue-400 transition">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">🌊</div>
+                <div>
+                  <h3 className="text-xl font-bold text-forest mb-2">The Ocean Cleanup</h3>
+                  <p className="text-gray-700 mb-2">
+                    Developing advanced technologies to rid the oceans of plastic pollution.
+                  </p>
+                  <a href="https://theoceancleanup.com/" target="_blank" rel="noopener noreferrer" 
+                     className="text-blue-600 hover:underline font-semibold">
+                    Learn more →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-sky-400 transition">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">💧</div>
+                <div>
+                  <h3 className="text-xl font-bold text-forest mb-2">Charity: Water</h3>
+                  <p className="text-gray-700 mb-2">
+                    100% of donations fund clean water projects. Bringing clean water to people in developing nations.
+                  </p>
+                  <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer" 
+                     className="text-sky-600 hover:underline font-semibold">
+                    Learn more →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-amber-400 transition">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">🦁</div>
+                <div>
+                  <h3 className="text-xl font-bold text-forest mb-2">World Wildlife Fund</h3>
+                  <p className="text-gray-700 mb-2">
+                    Leading conservation organization protecting wildlife and endangered species worldwide.
+                  </p>
+                  <a href="https://www.worldwildlife.org/" target="_blank" rel="noopener noreferrer" 
+                     className="text-amber-600 hover:underline font-semibold">
+                    Learn more →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 bg-gray-50 rounded-xl">
+              <p className="text-gray-600 text-sm">
+                <strong className="text-forest">Note:</strong> We're currently establishing formal partnerships with these organizations. 
+                In the meantime, we make monthly bulk donations on behalf of all gifts sent. 
+                Once partnerships are formalized, you'll receive direct impact certificates from our partners.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Impact Tracking */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+          <h2 className="text-3xl font-bold text-forest mb-6">📊 Impact Tracking</h2>
+          
+          <p className="text-gray-700 mb-6 text-lg">
+            We track every gift sent and fulfill our climate commitments monthly through bulk donations to partner organizations.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="p-6 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl">
+              <h3 className="text-xl font-bold text-forest mb-2">Monthly Reports</h3>
+              <p className="text-gray-700">
+                We publish monthly impact reports showing total gifts, funds raised, and donations made to partners.
+              </p>
+            </div>
+
+            <div className="p-6 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl">
+              <h3 className="text-xl font-bold text-forest mb-2">Public Ledger</h3>
+              <p className="text-gray-700">
+                Coming soon: Real-time public dashboard showing all impact owed and fulfilled.
+              </p>
+            </div>
+
+            <div className="p-6 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl">
+              <h3 className="text-xl font-bold text-forest mb-2">Donation Receipts</h3>
+              <p className="text-gray-700">
+                We share receipts from all partner donations publicly to maintain trust and transparency.
+              </p>
+            </div>
+
+            <div className="p-6 bg-gradient-to-br from-amber-100 to-orange-100 rounded-xl">
+              <h3 className="text-xl font-bold text-forest mb-2">Impact Verification</h3>
+              <p className="text-gray-700">
+                Working toward B Corp and Climate Neutral certifications for third-party verification.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+          <h2 className="text-3xl font-bold text-forest mb-6">❓ Frequently Asked Questions</h2>
+          
+          <div className="space-y-6">
+            <div className="border-b pb-4">
+              <h3 className="text-lg font-bold text-forest mb-2">Do you make a profit?</h3>
+              <p className="text-gray-700">
+                Yes, about 10% of each gift goes toward sustainable business operations and growth. 
+                This allows us to keep the platform running, add new features, and reach more people. 
+                We're transparent about this because a sustainable business creates sustainable impact.
+              </p>
+            </div>
+
+            <div className="border-b pb-4">
+              <h3 className="text-lg font-bold text-forest mb-2">Why are Stripe fees so high?</h3>
+              <p className="text-gray-700">
+                Stripe charges 2.9% + $0.30 per transaction. For a $1 gift, the $0.30 flat fee is 30% of the total. 
+                As we grow and average order values increase, this percentage will decrease significantly.
+              </p>
+            </div>
+
+            <div className="border-b pb-4">
+              <h3 className="text-lg font-bold text-forest mb-2">How do I know the impact is real?</h3>
+              <p className="text-gray-700">
+                We provide monthly impact reports with donation receipts from partner organizations. 
+                You can also check our partners' websites to see their verified impact and certifications.
+              </p>
+            </div>
+
+            <div className="border-b pb-4">
+              <h3 className="text-lg font-bold text-forest mb-2">Can I get a tax deduction?</h3>
+              <p className="text-gray-700">
+                Currently, no. Gifted Air is a for-profit platform that makes donations on your behalf. 
+                We're exploring nonprofit status for the future, which would enable tax-deductible giving.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-forest mb-2">How can I verify your claims?</h3>
+              <p className="text-gray-700">
+                We publish monthly reports with donation receipts. You can also email us at hello@giftedair.com 
+                for detailed breakdowns or specific impact questions. Full transparency is our commitment to you.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Our Commitment */}
+        <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl shadow-xl p-8 text-white text-center">
+          <h2 className="text-3xl font-bold mb-4">Our Commitment to You 💚</h2>
+          <p className="text-lg mb-6 opacity-90">
+            We promise complete transparency, real impact, and honest communication. 
+            Every gift sent creates measurable environmental change through verified partners.
+          </p>
+          <p className="text-xl font-bold mb-6">
+            Together, we're turning emotional connections into climate action.
+          </p>
+          <Link to="/compose" 
+                className="inline-block bg-white text-green-600 px-8 py-4 rounded-full font-bold 
+                         hover:bg-green-50 transition-all transform hover:scale-105 shadow-lg">
+            Send Your First Gift 🌍
+          </Link>
+        </div>
+
+        {/* Back to Home */}
+        <div className="text-center mt-8">
+          <Link to="/" className="text-forest hover:underline font-semibold">
+            ← Back to Home
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

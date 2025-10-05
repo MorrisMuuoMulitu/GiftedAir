@@ -207,7 +207,7 @@ export default function Compose() {
                 <div className="text-5xl mb-3">{gift.icon}</div>
                 <h3 className="text-xl font-bold text-forest mb-2">{gift.name}</h3>
                 <p className="text-gray-600 text-sm mb-2">{gift.description}</p>
-                <p className="text-forest font-semibold">${gift.unitPrice} per {gift.unit}</p>
+                <p className="text-forest font-semibold">${gift.unitPrice} supports {gift.unit} {gift.id === 'tree' ? 'planting' : gift.id === 'ocean' ? 'cleanup' : gift.id === 'water' ? 'access' : gift.id === 'rainforest' ? 'protection' : gift.id === 'wildlife' ? 'conservation' : gift.id === 'coral' ? 'restoration' : 'funding'}</p>
               </button>
             ))}
           </div>

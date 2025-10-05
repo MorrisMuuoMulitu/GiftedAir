@@ -59,6 +59,14 @@ export default function Landing() {
             >
               📊 My Impact
             </button>
+            <button
+              onClick={() => navigate('/transparency')}
+              className="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-12 py-4 rounded-full text-xl font-semibold 
+                         hover:from-green-500 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 
+                         shadow-lg hover:shadow-xl"
+            >
+              💚 How It Works
+            </button>
           </div>
         </div>
 
