@@ -47,6 +47,7 @@ export default function Compose() {
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState('');
   const [recipientName, setRecipientName] = useState('');
+  const [recipientEmail, setRecipientEmail] = useState('');
   const [senderName, setSenderName] = useState('');
   const [location, setLocation] = useState('');
 
@@ -64,6 +65,7 @@ export default function Compose() {
       quantity,
       message,
       recipientName,
+      recipientEmail: recipientEmail || '',
       senderName,
       totalCost,
       location: location || ''
@@ -173,6 +175,21 @@ export default function Compose() {
                   placeholder="Recipient's name"
                   className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-forest focus:outline-none"
                 />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  📧 Recipient's Email (Optional):
+                </label>
+                <input
+                  type="email"
+                  value={recipientEmail}
+                  onChange={(e) => setRecipientEmail(e.target.value)}
+                  placeholder="recipient@example.com"
+                  className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-forest focus:outline-none"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  💌 We'll send them a beautiful email notification!
+                </p>
               </div>
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">

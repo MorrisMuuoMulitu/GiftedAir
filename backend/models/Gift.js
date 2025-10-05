@@ -21,6 +21,12 @@ const giftSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  recipientEmail: {
+    type: String,
+    trim: true,
+    lowercase: true,
+    default: ''
+  },
   senderName: {
     type: String,
     required: true,

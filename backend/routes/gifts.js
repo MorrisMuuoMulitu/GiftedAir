@@ -1,11 +1,12 @@
 import express from 'express';
 import { createGift, getGift, getAllGifts, updateGift } from '../data/storage.js';
+import { sendGiftNotification } from '../services/email.js';
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { type, quantity, message, recipientName, senderName, totalCost } = req.body;
+    const { type, quantity, message, recipientName, recipientEmail, senderName, totalCost, location } = req.body;
 
     if (!type || !quantity || !message || !recipientName || !senderName) {
       return res.status(400).json({ 
@@ -19,14 +20,26 @@ router.post('/', async (req, res) => {
       quantity,
       message,
       recipientName,
+      recipientEmail: recipientEmail || '',
       senderName,
-      totalCost
+      totalCost,
+      location: location || ''
     });
+
+    const giftUrl = process.env.FRONTEND_URL 
+      ? `${process.env.FRONTEND_URL}/gift/${gift._id}`
+      : `${req.protocol}://${req.get('host')}/gift/${gift._id}`;
+
+    // Send email notification if recipient email provided
+    if (recipientEmail) {
+      await sendGiftNotification(gift, giftUrl);
+    }
 
     res.status(201).json({ 
       success: true,
       gift,
-      shareUrl: `${req.protocol}://${req.get('host')}/gift/${gift._id}`
+      shareUrl: giftUrl,
+      emailSent: !!recipientEmail
     });
   } catch (error) {
     console.error('Error creating gift:', error);

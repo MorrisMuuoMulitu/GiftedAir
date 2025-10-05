@@ -1,0 +1,170 @@
+import sgMail from '@sendgrid/mail';
+
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
+
+const giftTypeInfo = {
+  tree: { icon: '🌳', name: 'Trees', impact: 'Each tree absorbs 48 lbs of CO₂ per year!' },
+  cookstove: { icon: '🏡', name: 'Clean Cookstoves', impact: 'Provides clean air for families!' },
+  solar: { icon: '☀️', name: 'Solar Panels', impact: 'Powers homes with renewable energy!' },
+  ocean: { icon: '🌊', name: 'Ocean Cleanup', impact: 'Removes plastic from our oceans!' }
+};
+
+export async function sendGiftNotification(gift, giftUrl) {
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log('⚠️  SendGrid not configured. Email not sent.');
+    return { success: false, message: 'SendGrid not configured' };
+  }
+
+  if (!gift.recipientEmail) {
+    console.log('⚠️  No recipient email provided. Email not sent.');
+    return { success: false, message: 'No recipient email' };
+  }
+
+  const giftInfo = giftTypeInfo[gift.type];
+  const fromEmail = process.env.SENDGRID_FROM_EMAIL || 'hello@giftedair.com';
+
+  const msg = {
+    to: gift.recipientEmail,
+    from: {
+      email: fromEmail,
+      name: 'Gifted Air'
+    },
+    subject: `🌿 ${gift.senderName} sent you a gift of climate love!`,
+    html: `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background-color: #f0fdf4;">
+  <div style="max-width: 600px; margin: 40px auto; background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+    
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #2D5016 0%, #4a7c28 100%); padding: 40px 30px; text-align: center;">
+      <div style="font-size: 60px; margin-bottom: 10px;">${giftInfo.icon}</div>
+      <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 900;">You Received a Gift!</h1>
+      <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">Someone is thinking of you and our planet 🌍</p>
+    </div>
+
+    <!-- Content -->
+    <div style="padding: 40px 30px;">
+      
+      <!-- Greeting -->
+      <div style="text-align: center; margin-bottom: 30px;">
+        <p style="font-size: 24px; color: #1f2937; margin: 0 0 10px 0; font-weight: 700;">
+          Dear ${gift.recipientName},
+        </p>
+        <p style="font-size: 16px; color: #6b7280; margin: 0;">
+          <strong>${gift.senderName}</strong> has sent you something special!
+        </p>
+      </div>
+
+      <!-- Gift Box -->
+      <div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 2px solid #86efac;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <div style="font-size: 80px; line-height: 1;">${giftInfo.icon}</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 48px; font-weight: 900; color: #2D5016; margin-bottom: 5px;">
+            ${gift.quantity}
+          </div>
+          <div style="font-size: 20px; font-weight: 700; color: #15803d; margin-bottom: 10px;">
+            ${giftInfo.name}
+          </div>
+          <div style="font-size: 14px; color: #16a34a; font-weight: 600;">
+            ${giftInfo.impact}
+          </div>
+        </div>
+      </div>
+
+      <!-- Message -->
+      ${gift.message ? `
+      <div style="background: #fef3c7; border-radius: 16px; padding: 25px; margin-bottom: 30px; border-left: 4px solid #f59e0b;">
+        <div style="font-size: 32px; text-align: center; margin-bottom: 15px;">💌</div>
+        <p style="font-size: 16px; line-height: 1.6; color: #78350f; font-style: italic; margin: 0; text-align: center;">
+          "${gift.message}"
+        </p>
+      </div>
+      ` : ''}
+
+      <!-- Location -->
+      ${gift.location ? `
+      <div style="text-align: center; margin-bottom: 30px;">
+        <p style="font-size: 14px; color: #6b7280; margin: 0;">
+          📍 Sent from <strong>${gift.location}</strong>
+        </p>
+      </div>
+      ` : ''}
+
+      <!-- CTA Button -->
+      <div style="text-align: center; margin: 40px 0;">
+        <a href="${giftUrl}" style="display: inline-block; background: linear-gradient(135deg, #2D5016 0%, #4a7c28 100%); color: white; text-decoration: none; padding: 18px 40px; border-radius: 50px; font-size: 18px; font-weight: 700; box-shadow: 0 4px 15px rgba(45, 80, 22, 0.4);">
+          View Your Gift ✨
+        </a>
+      </div>
+
+      <!-- Impact Stats -->
+      <div style="background: #f3f4f6; border-radius: 12px; padding: 20px; text-align: center;">
+        <p style="font-size: 14px; color: #6b7280; margin: 0 0 10px 0;">
+          <strong>Climate Value:</strong> $${gift.totalCost}
+        </p>
+        <p style="font-size: 12px; color: #9ca3af; margin: 0;">
+          This gift represents real climate action that makes a difference! 🌱
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="background: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #e5e7eb;">
+      <p style="font-size: 16px; color: #2D5016; margin: 0 0 10px 0; font-weight: 700;">
+        🌿 Gifted Air
+      </p>
+      <p style="font-size: 14px; color: #6b7280; margin: 0 0 15px 0;">
+        A ritual of climate love
+      </p>
+      <p style="font-size: 12px; color: #9ca3af; margin: 0;">
+        Want to send your own climate gift? <a href="https://gifted-air.vercel.app" style="color: #2D5016; text-decoration: none; font-weight: 600;">Visit Gifted Air</a>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
+    `,
+    text: `
+🌿 GIFTED AIR - You Received a Gift!
+
+Dear ${gift.recipientName},
+
+${gift.senderName} has sent you a gift of climate love!
+
+${giftInfo.icon} ${gift.quantity} ${giftInfo.name}
+${giftInfo.impact}
+
+${gift.message ? `\nPersonal Message:\n"${gift.message}"\n` : ''}
+${gift.location ? `\nSent from: ${gift.location}\n` : ''}
+
+Climate Value: $${gift.totalCost}
+
+View your gift here:
+${giftUrl}
+
+---
+Gifted Air - A ritual of climate love
+https://gifted-air.vercel.app
+    `
+  };
+
+  try {
+    await sgMail.send(msg);
+    console.log(`✅ Email sent to ${gift.recipientEmail}`);
+    return { success: true, message: 'Email sent successfully' };
+  } catch (error) {
+    console.error('❌ SendGrid error:', error.response ? error.response.body : error);
+    return { success: false, message: 'Failed to send email', error };
+  }
+}
