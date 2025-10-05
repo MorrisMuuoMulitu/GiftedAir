@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../config';
 
@@ -9,7 +9,7 @@ const giftTypes = [
     name: 'Plant a Tree',
     description: 'One tree absorbs ~48 lbs of CO₂ per year',
     color: 'forest',
-    unitPrice: 5,
+    unitPrice: 1,
     unit: 'tree'
   },
   {
@@ -18,7 +18,7 @@ const giftTypes = [
     name: 'Clean Cookstove',
     description: 'Reduces indoor pollution and saves forests',
     color: 'earth',
-    unitPrice: 25,
+    unitPrice: 5,
     unit: 'stove'
   },
   {
@@ -27,7 +27,7 @@ const giftTypes = [
     name: 'Solar Panel',
     description: 'Powers homes with clean energy',
     color: 'orange-500',
-    unitPrice: 50,
+    unitPrice: 10,
     unit: 'panel'
   },
   {
@@ -36,7 +36,7 @@ const giftTypes = [
     name: 'Ocean Cleanup',
     description: 'Removes plastic from our waters',
     color: 'ocean',
-    unitPrice: 15,
+    unitPrice: 2,
     unit: 'kg'
   },
   {
@@ -45,7 +45,7 @@ const giftTypes = [
     name: 'Coral Reef Restoration',
     description: 'Rebuilds vital ocean ecosystems',
     color: 'pink-500',
-    unitPrice: 30,
+    unitPrice: 5,
     unit: 'coral'
   },
   {
@@ -54,7 +54,7 @@ const giftTypes = [
     name: 'Wildlife Conservation',
     description: 'Protects endangered species and habitats',
     color: 'amber-600',
-    unitPrice: 40,
+    unitPrice: 8,
     unit: 'animal'
   },
   {
@@ -63,7 +63,7 @@ const giftTypes = [
     name: 'Clean Water Access',
     description: 'Provides safe drinking water to communities',
     color: 'blue-400',
-    unitPrice: 20,
+    unitPrice: 3,
     unit: 'person'
   },
   {
@@ -72,7 +72,7 @@ const giftTypes = [
     name: 'Rainforest Protection',
     description: 'Preserves critical biodiversity hotspots',
     color: 'green-600',
-    unitPrice: 35,
+    unitPrice: 7,
     unit: 'acre'
   }
 ];
@@ -127,6 +127,18 @@ export default function Compose() {
   const [location, setLocation] = useState('');
 
   const selectedGift = giftTypes.find(g => g.id === selectedType);
+  
+  // Auto-scroll to form when gift type is selected
+  useEffect(() => {
+    if (selectedType) {
+      const formSection = document.getElementById('gift-form-section');
+      if (formSection) {
+        setTimeout(() => {
+          formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, [selectedType]);
   const totalCost = selectedGift ? selectedGift.unitPrice * quantity : 0;
 
   const handleCreateGift = async () => {
@@ -203,7 +215,7 @@ export default function Compose() {
 
         {/* Step 2: Quantity & Details */}
         {selectedType && (
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-grow">
+          <div id="gift-form-section" className="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-grow">
             <h2 className="text-2xl font-bold text-forest mb-6">2. How Many?</h2>
             <div className="flex items-center gap-4 mb-6">
               <button
