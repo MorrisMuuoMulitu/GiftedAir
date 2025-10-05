@@ -275,6 +275,17 @@ export default function GiftView() {
                   </button>
                 )}
               </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-4 justify-center mt-6 flex-wrap">
+                <button
+                  onClick={() => navigate(`/certificate/${giftId}`)}
+                  className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-8 py-3 rounded-full font-semibold 
+                           hover:from-purple-600 hover:to-indigo-600 transition-all transform hover:scale-105 shadow-lg"
+                >
+                  📜 Get Certificate
+                </button>
+              </div>
               
               <div className="max-w-2xl mx-auto">
                 {isEditing ? (
