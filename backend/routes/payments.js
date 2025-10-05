@@ -2,11 +2,22 @@ import express from 'express';
 import Stripe from 'stripe';
 
 const router = express.Router();
-const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY) : null;
+
+// Lazy-load Stripe to ensure env vars are loaded first
+let stripe = null;
+function getStripe() {
+  if (!stripe && process.env.STRIPE_SECRET_KEY) {
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  }
+  return stripe;
+}
 
 // Create checkout session
 router.post('/create-checkout-session', async (req, res) => {
-  if (!stripe) {
+  const stripeClient = getStripe();
+  
+  if (!stripeClient) {
+    console.log('⚠️  Stripe not configured. STRIPE_SECRET_KEY:', process.env.STRIPE_SECRET_KEY ? 'PRESENT' : 'MISSING');
     return res.status(500).json({ error: 'Stripe not configured' });
   }
 
@@ -33,7 +44,7 @@ router.post('/create-checkout-session', async (req, res) => {
 
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5174';
 
-    const session = await stripe.checkout.sessions.create({
+    const session = await stripeClient.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
@@ -72,12 +83,14 @@ router.post('/create-checkout-session', async (req, res) => {
 
 // Retrieve session details after successful payment
 router.get('/session/:sessionId', async (req, res) => {
-  if (!stripe) {
+  const stripeClient = getStripe();
+  
+  if (!stripeClient) {
     return res.status(500).json({ error: 'Stripe not configured' });
   }
 
   try {
-    const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
+    const session = await stripeClient.checkout.sessions.retrieve(req.params.sessionId);
     
     if (session.payment_status === 'paid') {
       res.json({
@@ -99,7 +112,9 @@ router.get('/session/:sessionId', async (req, res) => {
 
 // Webhook handler for Stripe events
 router.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
-  if (!stripe) {
+  const stripeClient = getStripe();
+  
+  if (!stripeClient) {
     return res.status(500).json({ error: 'Stripe not configured' });
   }
 
@@ -114,7 +129,7 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
+    event = stripeClient.webhooks.constructEvent(req.body, sig, webhookSecret);
   } catch (err) {
     console.error('⚠️  Webhook signature verification failed:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
