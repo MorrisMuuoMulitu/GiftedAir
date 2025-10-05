@@ -1,6 +1,13 @@
 import { Resend } from 'resend';
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+// Lazy-load Resend to ensure env vars are loaded first
+let resend = null;
+function getResend() {
+  if (!resend && process.env.RESEND_API_KEY) {
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resend;
+}
 
 const giftTypeInfo = {
   tree: { icon: '🌳', name: 'Trees', impact: 'Each tree absorbs 48 lbs of CO₂ per year!' },
@@ -10,8 +17,11 @@ const giftTypeInfo = {
 };
 
 export async function sendGiftNotification(gift, giftUrl) {
-  if (!resend) {
+  const resendClient = getResend();
+  
+  if (!resendClient) {
     console.log('⚠️  Resend not configured. Email not sent.');
+    console.log('⚠️  RESEND_API_KEY:', process.env.RESEND_API_KEY ? 'PRESENT' : 'MISSING');
     return { success: false, message: 'Resend not configured' };
   }
 
@@ -155,7 +165,7 @@ https://gifted-air.vercel.app
   };
 
   try {
-    const data = await resend.emails.send(emailData);
+    const data = await resendClient.emails.send(emailData);
     console.log(`✅ Email sent to ${gift.recipientEmail}`, data);
     return { success: true, message: 'Email sent successfully', data };
   } catch (error) {
