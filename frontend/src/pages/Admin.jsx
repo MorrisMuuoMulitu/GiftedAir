@@ -42,10 +42,12 @@ export default function Admin() {
         const giftsData = await giftsRes.json();
 
         setStats(statsData);
-        setGifts(giftsData);
+        // Ensure giftsData is an array
+        setGifts(Array.isArray(giftsData) ? giftsData : []);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching admin data:', error);
+        setGifts([]); // Set empty array on error
         setLoading(false);
       }
     };
@@ -95,7 +97,7 @@ export default function Admin() {
   }
 
   // Calculate what we owe to partners
-  const giftsByType = gifts.reduce((acc, gift) => {
+  const giftsByType = Array.isArray(gifts) ? gifts.reduce((acc, gift) => {
     if (!acc[gift.type]) {
       acc[gift.type] = { count: 0, quantity: 0, revenue: 0 };
     }
@@ -103,7 +105,7 @@ export default function Admin() {
     acc[gift.type].quantity += gift.quantity;
     acc[gift.type].revenue += gift.totalCost;
     return acc;
-  }, {});
+  }, {}) : {};
 
   const giftTypeInfo = {
     tree: { name: 'Trees', icon: '🌳', partnerCut: 0.50, partner: 'One Tree Planted' },
@@ -157,7 +159,7 @@ export default function Admin() {
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="text-3xl mb-2">👥</div>
             <div className="text-2xl font-bold text-blue-600">
-              {new Set(gifts.map(g => g.senderName)).size}
+              {Array.isArray(gifts) ? new Set(gifts.map(g => g.senderName)).size : 0}
             </div>
             <div className="text-gray-600">Unique Senders</div>
           </div>
@@ -310,7 +312,7 @@ export default function Admin() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {gifts.slice(0, 20).map((gift) => (
+                {Array.isArray(gifts) && gifts.slice(0, 20).map((gift) => (
                   <tr key={gift._id} className="hover:bg-gray-50">
                     <td className="px-4 py-3 text-sm text-gray-600">
                       {new Date(gift.createdAt).toLocaleDateString()}
