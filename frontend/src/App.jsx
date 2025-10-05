@@ -8,6 +8,7 @@ import Impact from './pages/Impact';
 import PaymentSuccess from './pages/PaymentSuccess';
 import Transparency from './pages/Transparency';
 import Admin from './pages/Admin';
+import Certificate from './pages/Certificate';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/payment/success" element={<PaymentSuccess />} />
         <Route path="/transparency" element={<Transparency />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/certificate/:giftId" element={<Certificate />} />
         <Route path="/gift/:giftId" element={<GiftView />} />
       </Routes>
     </Router>
