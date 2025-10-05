@@ -153,4 +153,68 @@ router.get('/stats/summary', async (req, res) => {
   }
 });
 
+router.get('/leaderboard/top', async (req, res) => {
+  try {
+    const gifts = await getAllGifts();
+    
+    // Aggregate by sender
+    const senderStats = {};
+    
+    gifts.forEach(gift => {
+      const sender = gift.senderName;
+      if (!senderStats[sender]) {
+        senderStats[sender] = {
+          name: sender,
+          totalGifts: 0,
+          totalValue: 0,
+          totalTrees: 0,
+          totalImpact: 0,
+          location: gift.location || '',
+          lastGiftDate: gift.createdAt
+        };
+      }
+      
+      senderStats[sender].totalGifts++;
+      senderStats[sender].totalValue += gift.totalCost;
+      
+      // Track most recent gift
+      if (new Date(gift.createdAt) > new Date(senderStats[sender].lastGiftDate)) {
+        senderStats[sender].lastGiftDate = gift.createdAt;
+        senderStats[sender].location = gift.location || senderStats[sender].location;
+      }
+      
+      // Calculate impact
+      switch (gift.type) {
+        case 'tree':
+          senderStats[sender].totalTrees += gift.quantity;
+          senderStats[sender].totalImpact += gift.quantity * 48; // CO2
+          break;
+        case 'cookstove':
+          senderStats[sender].totalImpact += gift.quantity * 100; // Families * weight
+          break;
+        case 'solar':
+          senderStats[sender].totalImpact += gift.quantity * 300; // Watts
+          break;
+        case 'ocean':
+          senderStats[sender].totalImpact += gift.quantity * 50; // Kg plastic * weight
+          break;
+      }
+    });
+    
+    // Convert to array and sort
+    const leaderboard = Object.values(senderStats)
+      .sort((a, b) => b.totalImpact - a.totalImpact)
+      .map((sender, index) => ({
+        ...sender,
+        rank: index + 1,
+        badge: index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? 'bronze' : null
+      }));
+    
+    res.json({ leaderboard });
+  } catch (error) {
+    console.error('Error getting leaderboard:', error);
+    res.status(500).json({ error: 'Failed to get leaderboard' });
+  }
+});
+
 export default router;

@@ -43,6 +43,14 @@ export default function Landing() {
             >
               View Gallery 🎁
             </button>
+            <button
+              onClick={() => navigate('/leaderboard')}
+              className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-12 py-4 rounded-full text-xl font-semibold 
+                         hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 
+                         shadow-lg hover:shadow-xl"
+            >
+              🏆 Leaderboard
+            </button>
           </div>
         </div>
 
