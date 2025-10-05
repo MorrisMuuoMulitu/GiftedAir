@@ -25,15 +25,25 @@ export default function Landing() {
             offset a flight, support clean energy—in honor of someone you care about.
           </p>
 
-          {/* CTA Button */}
-          <button
-            onClick={() => navigate('/compose')}
-            className="bg-forest text-white px-12 py-4 rounded-full text-xl font-semibold 
-                       hover:bg-green-800 transition-all duration-300 transform hover:scale-105 
-                       shadow-lg hover:shadow-xl"
-          >
-            Create a Gift
-          </button>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={() => navigate('/compose')}
+              className="bg-forest text-white px-12 py-4 rounded-full text-xl font-semibold 
+                         hover:bg-green-800 transition-all duration-300 transform hover:scale-105 
+                         shadow-lg hover:shadow-xl"
+            >
+              Create a Gift
+            </button>
+            <button
+              onClick={() => navigate('/gallery')}
+              className="bg-white text-forest border-2 border-forest px-12 py-4 rounded-full text-xl font-semibold 
+                         hover:bg-green-50 transition-all duration-300 transform hover:scale-105 
+                         shadow-lg hover:shadow-xl"
+            >
+              View Gallery 🎁
+            </button>
+          </div>
         </div>
 
         {/* Features Grid */}

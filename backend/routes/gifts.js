@@ -86,4 +86,58 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/stats/summary', async (req, res) => {
+  try {
+    const gifts = await getAllGifts();
+    
+    const stats = {
+      totalGifts: gifts.length,
+      totalValue: 0,
+      byType: {
+        tree: { count: 0, quantity: 0 },
+        cookstove: { count: 0, quantity: 0 },
+        solar: { count: 0, quantity: 0 },
+        ocean: { count: 0, quantity: 0 }
+      },
+      impact: {
+        treesPlanted: 0,
+        co2Absorbed: 0,
+        familiesHelped: 0,
+        solarPanels: 0,
+        plasticRemoved: 0
+      }
+    };
+
+    gifts.forEach(gift => {
+      stats.totalValue += gift.totalCost || 0;
+      
+      if (stats.byType[gift.type]) {
+        stats.byType[gift.type].count += 1;
+        stats.byType[gift.type].quantity += gift.quantity;
+      }
+
+      switch (gift.type) {
+        case 'tree':
+          stats.impact.treesPlanted += gift.quantity;
+          stats.impact.co2Absorbed += gift.quantity * 48;
+          break;
+        case 'cookstove':
+          stats.impact.familiesHelped += gift.quantity;
+          break;
+        case 'solar':
+          stats.impact.solarPanels += gift.quantity;
+          break;
+        case 'ocean':
+          stats.impact.plasticRemoved += gift.quantity;
+          break;
+      }
+    });
+
+    res.json({ stats });
+  } catch (error) {
+    console.error('Error calculating stats:', error);
+    res.status(500).json({ error: 'Failed to calculate statistics' });
+  }
+});
+
 export default router;

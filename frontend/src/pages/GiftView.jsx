@@ -296,6 +296,13 @@ export default function GiftView() {
             Send Your Own Gift
           </button>
           <button
+            onClick={() => navigate('/gallery')}
+            className="bg-white text-forest border-2 border-forest px-8 py-3 rounded-full font-semibold 
+                     hover:bg-green-50 transition-all duration-300"
+          >
+            View Gallery 🎁
+          </button>
+          <button
             onClick={() => {
               const url = window.location.href;
               navigator.clipboard.writeText(url);
