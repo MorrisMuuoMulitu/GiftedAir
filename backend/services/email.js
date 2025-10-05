@@ -66,17 +66,19 @@ export async function sendThankYouNotification({ senderEmail, senderName, origin
               </div>
 
               <div class="message-box">
-                <p style="margin: 0; color: #666; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Their Message:</p>
-                <p style="font-size: 18px; color: #333; margin: 15px 0 0 0; font-style: italic;">
+                <p style="margin: 0; color: #666; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Their Message:</p>
+                <p style="font-size: 20px; color: #1f2937; margin: 15px 0 0 0; font-style: italic; line-height: 1.6; font-weight: 500;">
                   "${thankYouMessage}"
                 </p>
-                <p style="margin: 15px 0 0 0; color: #2D5016; font-weight: bold;">
+                <p style="margin: 20px 0 0 0; color: #2D5016; font-weight: bold; font-size: 16px;">
                   — ${senderName}
                 </p>
               </div>
 
               <div style="text-align: center;">
-                <a href="${giftUrl}" class="button">View Your Gift</a>
+                <a href="${giftUrl}" style="display: inline-block; background: linear-gradient(135deg, #2D5016 0%, #4a7c28 100%); color: white !important; text-decoration: none; padding: 18px 40px; border-radius: 50px; font-size: 18px; font-weight: 700; box-shadow: 0 4px 15px rgba(45, 80, 22, 0.4); margin: 20px 0;">
+                  View Your Gift ✨
+                </a>
               </div>
 
               <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin-top: 30px;">
