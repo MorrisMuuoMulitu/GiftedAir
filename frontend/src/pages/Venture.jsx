@@ -186,6 +186,21 @@ export default function Venture() {
 
   return (
     <>
+      {/* Inject CSS keyframes for animated gradient */}
+      <style>{`
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+      `}</style>
+      
       <SEO 
         title="Venture Deck - Gifted Air | Climate Action as a Love Language"
         description="Comprehensive venture strategy for Gifted Air: transforming climate action into meaningful gifts. Market analysis, business model, and roadmap."
@@ -193,10 +208,17 @@ export default function Venture() {
       />
       <div className="min-h-screen bg-[#1A1A1A] text-white py-12 px-4">
         <div className="max-w-7xl mx-auto">
-        {/* Hero Header - Ultra Modern */}
+        {/* Hero Header - Ultra Modern with ANIMATED Gradient */}
         <div className="relative overflow-hidden rounded-3xl mb-12">
-          {/* Animated background - Radial Gradient */}
-          <div className="absolute inset-0" style={{ background: 'radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%)' }}></div>
+          {/* Animated Shifting Gradient Background */}
+          <div 
+            className="absolute inset-0" 
+            style={{ 
+              background: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)',
+              backgroundSize: '400% 400%',
+              animation: 'gradient 15s ease infinite'
+            }}
+          ></div>
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjAgMjBjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNMTYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
           
           <div className="relative z-10 px-8 md:px-16 py-16 md:py-24">
