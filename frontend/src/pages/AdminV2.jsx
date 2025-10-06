@@ -348,7 +348,7 @@ export default function AdminV2() {
         <div className="bg-gradient-to-r from-forest to-green-700 rounded-2xl shadow-xl p-8 mb-8 text-white">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <h1 className="text-4xl font-bold mb-2">🚀 Admin Dashboard V2</h1>
+              <h1 className="text-4xl font-bold mb-2">🚀 Gifted Air Admin Dashboard</h1>
               <p className="text-green-100 text-lg">Analytics & Gift Management</p>
             </div>
             <div className="flex gap-2 flex-wrap">
