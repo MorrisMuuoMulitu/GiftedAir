@@ -1,20 +1,28 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Landing from './pages/Landing';
-import Compose from './pages/Compose';
-import GiftView from './pages/GiftView';
-import Gallery from './pages/Gallery';
-import Leaderboard from './pages/Leaderboard';
-import Impact from './pages/Impact';
-import PaymentSuccess from './pages/PaymentSuccess';
-import Transparency from './pages/Transparency';
-import Admin from './pages/Admin';
-import Certificate from './pages/Certificate';
-import BulkGift from './pages/BulkGift';
-import BulkSuccess from './pages/BulkSuccess';
+import { Suspense, lazy, useState, useEffect } from 'react';
+import LoadingScreen from './components/LoadingScreen';
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 
-function App() {
+// Lazy load pages for better performance
+const Landing = lazy(() => import('./pages/Landing'));
+const Compose = lazy(() => import('./pages/Compose'));
+const GiftView = lazy(() => import('./pages/GiftView'));
+const Gallery = lazy(() => import('./pages/Gallery'));
+const Leaderboard = lazy(() => import('./pages/Leaderboard'));
+const Impact = lazy(() => import('./pages/Impact'));
+const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'));
+const Transparency = lazy(() => import('./pages/Transparency'));
+const Admin = lazy(() => import('./pages/Admin'));
+const Certificate = lazy(() => import('./pages/Certificate'));
+const BulkGift = lazy(() => import('./pages/BulkGift'));
+const BulkSuccess = lazy(() => import('./pages/BulkSuccess'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+function AppContent() {
+  useKeyboardShortcuts();
+  
   return (
-    <Router>
+    <Suspense fallback={<LoadingScreen />}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/compose" element={<Compose />} />
@@ -28,7 +36,36 @@ function App() {
         <Route path="/bulk" element={<BulkGift />} />
         <Route path="/certificate/:giftId" element={<Certificate />} />
         <Route path="/gift/:giftId" element={<GiftView />} />
+        {/* 404 catch-all */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
+    </Suspense>
+  );
+}
+
+function App() {
+  const [showInitialLoader, setShowInitialLoader] = useState(true);
+
+  useEffect(() => {
+    // Show initial loading screen for first visit
+    const hasVisited = sessionStorage.getItem('hasVisited');
+    if (hasVisited) {
+      setShowInitialLoader(false);
+    } else {
+      setTimeout(() => {
+        setShowInitialLoader(false);
+        sessionStorage.setItem('hasVisited', 'true');
+      }, 2000);
+    }
+  }, []);
+
+  if (showInitialLoader) {
+    return <LoadingScreen />;
+  }
+
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
