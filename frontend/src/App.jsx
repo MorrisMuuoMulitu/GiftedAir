@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useState, useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import LoadingScreen from './components/LoadingScreen';
+import FloatingFeedbackButton from './components/FloatingFeedbackButton';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 
 // Lazy load pages for better performance
@@ -50,6 +51,9 @@ function AppContent() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       </Suspense>
+      
+      {/* Floating Feedback Button - Available on all pages */}
+      <FloatingFeedbackButton />
     </>
   );
 }

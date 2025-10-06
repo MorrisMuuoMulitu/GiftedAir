@@ -27,7 +27,7 @@ function Navigation() {
         onMouseLeave={() => setSidebarExpanded(false)}
         style={{ width: sidebarExpanded ? '240px' : '100px' }}
       >
-        <div className="h-full border-r border-gray-200/30 flex flex-col">
+        <div className="h-full backdrop-blur-md bg-white/70 border-r border-gray-300/50 shadow-sm flex flex-col">
           {/* Navigation Links - Centered Vertically */}
           <div className="flex-1 flex flex-col justify-center space-y-8 px-3">
             {navLinks.map((link) => (
