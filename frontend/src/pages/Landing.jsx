@@ -76,6 +76,14 @@ export default function Landing() {
               🏆 Leaderboard
             </button>
             <button
+              onClick={() => navigate('/referral')}
+              className="px-6 py-2.5 bg-gradient-to-r from-orange-100 to-red-100 backdrop-blur text-orange-700 rounded-full font-semibold 
+                         hover:from-orange-200 hover:to-red-200 transition-all duration-300 shadow-md hover:shadow-lg
+                         border border-orange-300"
+            >
+              🎯 Refer & Earn
+            </button>
+            <button
               onClick={() => navigate('/impact')}
               className="px-6 py-2.5 bg-white/90 backdrop-blur text-forest rounded-full font-semibold 
                          hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg

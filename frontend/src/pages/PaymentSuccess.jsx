@@ -186,12 +186,18 @@ export default function PaymentSuccess() {
           <h3 className="text-2xl font-bold text-purple-900 mb-4">
             What's Next?
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <button
               onClick={() => gift && navigate(`/gift/${gift._id}`)}
               className="bg-white text-purple-700 px-6 py-4 rounded-xl font-bold hover:shadow-lg transition-all"
             >
               📱 Share on Social
+            </button>
+            <button
+              onClick={() => navigate('/referral')}
+              className="bg-white text-orange-700 px-6 py-4 rounded-xl font-bold hover:shadow-lg transition-all"
+            >
+              🎯 Refer & Earn
             </button>
             <button
               onClick={() => navigate('/impact')}
