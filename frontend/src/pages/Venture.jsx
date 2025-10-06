@@ -1816,7 +1816,7 @@ export default function Venture() {
 
             <div className="bg-gradient-to-r from-emerald-700 via-teal-700 to-cyan-700 rounded-2xl p-8 text-white text-center">
               <p className="text-2xl font-bold mb-4">
-                💚 Thank you for your time and consideration, <a href="https://www.aneripradhan.com" target="_blank" rel="noopener noreferrer" className="text-cyan-200 hover:text-white transition-colors underline">Aneri</a>.
+                💚 Thank you for your time and consideration.
               </p>
               <p className="text-lg leading-relaxed max-w-3xl mx-auto">
                 We are excited to build a platform that doesn't just offset carbon, but creates <span className="font-black text-cyan-300">connection</span>, <span className="font-black text-pink-300">hope</span>, and a new <span className="font-black text-yellow-300">ritual of climate love</span>.
