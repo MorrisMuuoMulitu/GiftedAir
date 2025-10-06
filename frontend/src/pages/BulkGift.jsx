@@ -142,7 +142,9 @@ function BulkGift() {
   
   // Validation
   const canProceedStep1 = selectedType && quantity >= 10;
-  const canProceedStep2 = recipientMode === 'same' || recipients.length >= quantity;
+  const canProceedStep2 = recipientMode === 'same' || 
+                          (recipientMode === 'csv' && recipients.length > 0) || 
+                          (recipientMode === 'manual' && recipients.length > 0);
   const canProceedStep3 = senderName && globalMessage;
   
   return (
@@ -355,6 +357,25 @@ function BulkGift() {
               <div className="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
                 <p className="text-blue-900">
                   <strong>Same Link Mode:</strong> You'll get {quantity} identical gift links that you can distribute yourself (print on cards, emails, etc.)
+                </p>
+                <p className="text-green-700 font-bold mt-3">
+                  ✅ Ready to continue!
+                </p>
+              </div>
+            )}
+            
+            {recipientMode === 'csv' && recipients.length === 0 && (
+              <div className="bg-amber-50 p-4 rounded-xl border-2 border-amber-200 mt-4">
+                <p className="text-amber-900">
+                  ⚠️ Please upload a CSV file with at least 1 recipient to continue
+                </p>
+              </div>
+            )}
+            
+            {recipientMode === 'manual' && recipients.length === 0 && (
+              <div className="bg-amber-50 p-4 rounded-xl border-2 border-amber-200 mt-4">
+                <p className="text-amber-900">
+                  ⚠️ Please add at least 1 recipient to continue
                 </p>
               </div>
             )}
