@@ -84,9 +84,11 @@ export default function Gallery() {
         const giftsData = await giftsRes.json();
         const statsData = await statsRes.json();
 
+        // Only show gifts that are pinned to gallery (showInGallery === true)
         const allGifts = giftsData.gifts || [];
-        setGifts(allGifts);
-        setFilteredGifts(allGifts);
+        const galleryGifts = allGifts.filter(gift => gift.showInGallery !== false);
+        setGifts(galleryGifts);
+        setFilteredGifts(galleryGifts);
         setStats(statsData.stats);
       } catch (error) {
         console.error('Error fetching gallery data:', error);
