@@ -26,17 +26,17 @@ function Navigation() {
         onMouseLeave={() => setSidebarExpanded(false)}
         style={{ width: sidebarExpanded ? '240px' : '100px' }}
       >
-        <div className="h-full backdrop-blur-md bg-white/70 border-r border-gray-300/50 shadow-sm flex flex-col">
+        <div className="h-full border-r border-gray-200/20 flex flex-col">
           {/* Navigation Links - Centered Vertically */}
           <div className="flex-1 flex flex-col justify-center space-y-6 px-3">
             {navLinks.map((link) => (
               <button
                 key={link.path}
                 onClick={() => navigate(link.path)}
-                className={`w-full flex items-center gap-5 px-4 py-6 rounded-2xl transition-all duration-300 group relative overflow-hidden ${
+                className={`w-full flex items-center gap-5 px-4 py-6 transition-all duration-300 group relative overflow-hidden ${
                   isActive(link.path)
-                    ? 'text-green-600 bg-green-50/80'
-                    : 'text-gray-600 hover:text-green-600 hover:bg-green-50/50'
+                    ? 'text-green-600'
+                    : 'text-gray-600 hover:text-green-600'
                 }`}
               >
                 {/* Animated background on hover */}

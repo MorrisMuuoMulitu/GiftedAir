@@ -1138,8 +1138,8 @@ export default function Venture() {
                   The Problem We're Solving
                 </h2>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-4 md:p-6 border border-zinc-700">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-2xl">🎁</span>
                     <h3 className="font-black text-red-400 text-lg">Gift Fatigue</h3>
@@ -1304,9 +1304,9 @@ export default function Venture() {
                 <p className="text-white/70">Complete business model framework following the beVisioneers Fellowship approach</p>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 {/* 1. Problem */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-4 md:p-6 border border-zinc-700">
                   <h3 className="font-black text-lg text-red-400 mb-4 flex items-center gap-2">
                     <span className="text-2xl">⚠️</span> 1. Problem
                   </h3>
@@ -1427,7 +1427,7 @@ export default function Venture() {
               </div>
 
               {/* Grid Sections */}
-              <div className="grid md:grid-cols-2 gap-6 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-6">
                 {/* 8. Channels */}
                 <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
                   <h3 className="font-black text-lg text-cyan-400 mb-4 flex items-center gap-2">
