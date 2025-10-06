@@ -60,19 +60,32 @@ export default function Admin() {
   const exportToCSV = () => {
     try {
       setExporting(true);
+      
+      console.log('Exporting gifts:', gifts);
 
-      const headers = ['Date', 'From', 'To', 'Type', 'Amount', 'Message'];
+      if (!gifts || gifts.length === 0) {
+        alert('⚠️ No gifts to export yet!');
+        setExporting(false);
+        return;
+      }
+
+      const headers = ['Date', 'From', 'To', 'Type', 'Quantity', 'Amount', 'Message'];
       const rows = gifts.map(gift => [
-        new Date(gift.createdAt).toLocaleDateString(),
-        gift.from || 'Anonymous',
-        gift.to || 'Not specified',
-        gift.type,
-        `$${gift.amount}`,
-        gift.message ? gift.message.substring(0, 50) : 'No message'
+        gift.createdAt ? new Date(gift.createdAt).toLocaleDateString() : 'N/A',
+        gift.senderName || gift.from || 'Anonymous',
+        gift.recipientName || gift.to || 'Not specified',
+        gift.type || 'Unknown',
+        gift.quantity || 1,
+        `$${gift.totalCost || gift.amount || 0}`,
+        gift.message ? gift.message.substring(0, 100) : 'No message'
       ]);
 
-      const csvContent = [headers.join(','), ...rows.map(row => row.map(cell => `"${cell}"`).join(','))].join('\n');
-      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const csvContent = [
+        headers.join(','),
+        ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      ].join('\n');
+      
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -81,9 +94,12 @@ export default function Admin() {
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
+      
+      alert(`✅ Exported ${gifts.length} gifts to CSV!`);
       setExporting(false);
     } catch (error) {
       console.error('Export failed:', error);
+      alert(`❌ Export failed: ${error.message}`);
       setExporting(false);
     }
   };
@@ -91,18 +107,44 @@ export default function Admin() {
   const exportReport = () => {
     try {
       setExporting(true);
+      
+      console.log('Creating report from gifts:', gifts);
+
+      if (!gifts || gifts.length === 0) {
+        alert('⚠️ No gifts to report yet!');
+        setExporting(false);
+        return;
+      }
 
       // Calculate totals from gifts
       const totalGifts = gifts.length;
       const totalRevenue = gifts.reduce((sum, g) => sum + (g.totalCost || g.amount || 0), 0);
       const giftsByType = gifts.reduce((acc, g) => {
-        acc[g.type] = (acc[g.type] || 0) + 1;
+        const type = g.type || 'Unknown';
+        acc[type] = (acc[type] || 0) + 1;
         return acc;
       }, {});
 
-      const summary = `GIFTED AIR ADMIN REPORT
-Generated: ${new Date().toLocaleString()}
+      const typeBreakdown = Object.entries(giftsByType)
+        .map(([type, count]) => `  ${type}: ${count} gifts`)
+        .join('\n') || '  No data';
+
+      const recentGifts = gifts.slice(0, 10)
+        .map((gift, i) => {
+          const date = gift.createdAt ? new Date(gift.createdAt).toLocaleDateString() : 'N/A';
+          const type = gift.type || 'Unknown';
+          const amount = gift.totalCost || gift.amount || 0;
+          const from = gift.senderName || gift.from || 'Anonymous';
+          return `  ${i + 1}. ${date} - ${type} ($${amount}) - From: ${from}`;
+        })
+        .join('\n') || '  No gifts yet';
+
+      const summary = `
 ==========================================
+     GIFTED AIR ADMIN REPORT
+==========================================
+
+Generated: ${new Date().toLocaleString()}
 
 OVERVIEW:
 ---------
@@ -111,16 +153,18 @@ Total Revenue: $${totalRevenue.toFixed(2)}
 
 GIFT TYPE BREAKDOWN:
 -------------------
-${Object.entries(giftsByType).map(([type, count]) => `${type}: ${count}`).join('\n')}
+${typeBreakdown}
 
 RECENT GIFTS (Last 10):
 -----------------------
-${gifts.slice(0, 10).map((gift, i) => `${i + 1}. ${new Date(gift.createdAt).toLocaleDateString()} - ${gift.type} ($${gift.amount || gift.totalCost || 0}) - From: ${gift.from || 'Anonymous'}`).join('\n')}
+${recentGifts}
 
 ==========================================
-Report End`;
+Report End
+==========================================
+`.trim();
 
-      const blob = new Blob([summary], { type: 'text/plain' });
+      const blob = new Blob([summary], { type: 'text/plain;charset=utf-8;' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -129,24 +173,41 @@ Report End`;
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
+      
+      alert(`✅ Report generated with ${totalGifts} gifts!`);
       setExporting(false);
     } catch (error) {
       console.error('Export failed:', error);
-      alert('❌ Export failed. Please try again.');
+      alert(`❌ Export failed: ${error.message}`);
       setExporting(false);
     }
   };
 
   const copyStats = async () => {
     try {
+      console.log('Copying stats from gifts:', gifts);
+
+      if (!gifts || gifts.length === 0) {
+        alert('⚠️ No data to copy yet!');
+        return;
+      }
+
       // Calculate from gifts
       const totalGifts = gifts.length;
       const totalRevenue = gifts.reduce((sum, g) => sum + (g.totalCost || g.amount || 0), 0);
+      const giftsByType = gifts.reduce((acc, g) => {
+        const type = g.type || 'Unknown';
+        acc[type] = (acc[type] || 0) + 1;
+        return acc;
+      }, {});
+      
+      const topType = Object.entries(giftsByType).sort((a, b) => b[1] - a[1])[0];
       
       const text = `📊 Gifted Air Stats (${new Date().toLocaleDateString()})
 
 Total Gifts: ${totalGifts}
 Total Revenue: $${totalRevenue.toFixed(2)}
+Most Popular: ${topType ? `${topType[0]} (${topType[1]} gifts)` : 'N/A'}
 
 Generated from Admin Dashboard`;
       
@@ -154,7 +215,7 @@ Generated from Admin Dashboard`;
       alert('✅ Stats copied to clipboard!');
     } catch (error) {
       console.error('Copy failed:', error);
-      alert('❌ Copy failed. Please try again.');
+      alert(`❌ Copy failed: ${error.message}`);
     }
   };
 
