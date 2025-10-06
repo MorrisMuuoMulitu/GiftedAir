@@ -1638,28 +1638,28 @@ export default function Venture() {
 
         {/* Timeline Section */}
         {activeSection === 'timeline' && (
-          <div className="space-y-8 animate-fade-in">
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
-              <div className="text-center mb-8">
-                <div className="inline-block p-3 bg-gradient-to-br from-amber-600 to-orange-600 rounded-xl mb-4">
-                  <span className="text-3xl">🗓️</span>
+          <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-10 border border-zinc-700">
+              <div className="text-center mb-4 sm:mb-6 md:mb-8">
+                <div className="inline-block p-2 sm:p-3 bg-gradient-to-br from-amber-600 to-orange-600 rounded-lg sm:rounded-xl mb-2 sm:mb-3 md:mb-4">
+                  <span className="text-2xl sm:text-3xl">🗓️</span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black text-white">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">
                   Execution Timeline
                 </h2>
               </div>
 
-              <div className="space-y-8">
+              <div className="space-y-4 sm:space-y-6 md:space-y-8">
                 {timeline.map((phase, idx) => (
-                  <div key={idx} className={`border-l-4 pl-8 pb-8 ${
+                  <div key={idx} className={`border-l-2 sm:border-l-4 pl-4 sm:pl-6 md:pl-8 pb-4 sm:pb-6 md:pb-8 ${
                     phase.status === 'completed' 
                       ? 'border-green-500 dark:border-green-600' 
                       : phase.status === 'in-progress'
                       ? 'border-blue-500 dark:border-blue-600'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}>
-                    <div className="relative -left-10 mb-4">
-                      <div className={`w-6 h-6 rounded-full ${
+                    <div className="relative -left-6 sm:-left-8 md:-left-10 mb-3 sm:mb-4">
+                      <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ${
                         phase.status === 'completed'
                           ? 'bg-green-500'
                           : phase.status === 'in-progress'
@@ -1668,18 +1668,18 @@ export default function Venture() {
                       }`}></div>
                     </div>
 
-                    <div className={`rounded-2xl p-6 ${
+                    <div className={`rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 ${
                       phase.status === 'completed'
                         ? 'bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800'
                         : phase.status === 'in-progress'
                         ? 'bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800'
                         : 'bg-gray-50 dark:bg-gray-900/20 border-2 border-gray-200 dark:border-gray-700'
                     }`}>
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3 sm:mb-4">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-white">
                           {phase.phase}
                         </h3>
-                        <span className={`px-4 py-2 rounded-full text-sm font-bold ${
+                        <span className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold self-start sm:self-auto ${
                           phase.status === 'completed'
                             ? 'bg-green-500 text-white'
                             : phase.status === 'in-progress'
@@ -1690,20 +1690,20 @@ export default function Venture() {
                         </span>
                       </div>
 
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 font-semibold">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3 sm:mb-4 font-semibold">
                         {phase.period}
                       </p>
 
-                      <div className="space-y-2">
+                      <div className="space-y-1.5 sm:space-y-2">
                         {phase.tasks.map((task, taskIdx) => (
-                          <div key={taskIdx} className="flex items-start gap-3 bg-white dark:bg-gray-800 rounded-lg p-3">
+                          <div key={taskIdx} className="flex items-start gap-2 sm:gap-3 bg-white dark:bg-gray-800 rounded-lg p-2 sm:p-3">
                             <input
                               type="checkbox"
                               checked={task.done}
                               readOnly
-                              className="mt-1 w-5 h-5 text-green-600 rounded"
+                              className="mt-0.5 sm:mt-1 w-4 h-4 sm:w-5 sm:h-5 text-green-600 rounded flex-shrink-0"
                             />
-                            <span className={`flex-1 ${
+                            <span className={`flex-1 text-xs sm:text-sm md:text-base ${
                               task.done 
                                 ? 'text-gray-600 dark:text-gray-400 line-through' 
                                 : 'text-gray-800 dark:text-white font-medium'
@@ -1715,16 +1715,16 @@ export default function Venture() {
                       </div>
 
                       {/* Progress Bar */}
-                      <div className="mt-6">
-                        <div className="flex justify-between text-sm mb-2">
+                      <div className="mt-4 sm:mt-5 md:mt-6">
+                        <div className="flex justify-between text-xs sm:text-sm mb-1.5 sm:mb-2">
                           <span className="font-semibold text-gray-700 dark:text-gray-300">Progress</span>
                           <span className="font-bold text-gray-800 dark:text-white">
                             {phase.tasks.filter(t => t.done).length} / {phase.tasks.length}
                           </span>
                         </div>
-                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3">
                           <div
-                            className={`h-3 rounded-full transition-all ${
+                            className={`h-2 sm:h-3 rounded-full transition-all ${
                               phase.status === 'completed'
                                 ? 'bg-green-500'
                                 : phase.status === 'in-progress'
@@ -1743,26 +1743,26 @@ export default function Venture() {
               </div>
 
               {/* Overall Progress */}
-              <div className="mt-12 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-8 border border-zinc-700">
-                <div className="text-center mb-4">
-                  <div className="inline-block p-3 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl mb-2">
+              <div className="mt-6 sm:mt-8 md:mt-12 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-zinc-700">
+                <div className="text-center mb-3 sm:mb-4">
+                  <div className="inline-block p-2 sm:p-3 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg sm:rounded-xl mb-2">
                     <span className="text-xl sm:text-2xl">📊</span>
                   </div>
-                  <h3 className="text-xl md:text-2xl font-black text-white">Overall Platform Progress</h3>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white">Overall Platform Progress</h3>
                 </div>
-                <div className="text-center mb-4">
-                  <div className="text-4xl md:text-5xl font-black text-[#00CED1]">
+                <div className="text-center mb-3 sm:mb-4">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-black text-[#00CED1]">
                     {Math.round((timeline.reduce((sum, phase) => sum + phase.tasks.filter(t => t.done).length, 0) / 
                       timeline.reduce((sum, phase) => sum + phase.tasks.length, 0)) * 100)}%
                   </div>
-                  <div className="text-base md:text-lg mt-2 text-zinc-300">
+                  <div className="text-sm sm:text-base md:text-lg mt-1.5 sm:mt-2 text-zinc-300">
                     {timeline.reduce((sum, phase) => sum + phase.tasks.filter(t => t.done).length, 0)} of{' '}
                     {timeline.reduce((sum, phase) => sum + phase.tasks.length, 0)} tasks completed
                   </div>
                 </div>
-                <div className="w-full bg-zinc-700 rounded-full h-4">
+                <div className="w-full bg-zinc-700 rounded-full h-3 sm:h-4">
                   <div
-                    className="bg-gradient-to-r from-emerald-500 to-teal-500 h-4 rounded-full transition-all"
+                    className="bg-gradient-to-r from-emerald-500 to-teal-500 h-3 sm:h-4 rounded-full transition-all"
                     style={{ 
                       width: `${(timeline.reduce((sum, phase) => sum + phase.tasks.filter(t => t.done).length, 0) / 
                         timeline.reduce((sum, phase) => sum + phase.tasks.length, 0)) * 100}%` 
