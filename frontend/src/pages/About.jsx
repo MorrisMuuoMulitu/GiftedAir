@@ -23,80 +23,9 @@ export default function About() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Climate Action as a Love Language
             </h1>
-            <p className="text-xl md:text-2xl text-blue-50 leading-relaxed mb-8">
+            <p className="text-xl md:text-2xl text-blue-50 leading-relaxed">
               What if the best gift you could give someone was a healthier planet in their name?
             </p>
-            
-            {/* DOPE Lean Canvas Button */}
-            <style>{`
-              @keyframes star-pulse {
-                0%, 100% {
-                  transform: scale(1) rotate(0deg);
-                  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2);
-                }
-                50% {
-                  transform: scale(1.05) rotate(2deg);
-                  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.6), 0 0 90px rgba(255, 215, 0, 0.4);
-                }
-              }
-              
-              @keyframes shimmer {
-                0% {
-                  background-position: -200% center;
-                }
-                100% {
-                  background-position: 200% center;
-                }
-              }
-              
-              .star-button {
-                animation: star-pulse 2s ease-in-out infinite;
-                background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
-                background-size: 200% auto;
-                transition: all 0.3s ease;
-              }
-              
-              .star-button:hover {
-                animation: star-pulse 1s ease-in-out infinite, shimmer 1.5s linear infinite;
-                transform: scale(1.1) rotate(-2deg) !important;
-              }
-              
-              .star-button::before {
-                content: '⭐';
-                position: absolute;
-                left: -30px;
-                animation: spin 3s linear infinite;
-              }
-              
-              .star-button::after {
-                content: '⭐';
-                position: absolute;
-                right: -30px;
-                animation: spin 3s linear infinite reverse;
-              }
-              
-              @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-              }
-            `}</style>
-            
-            <button
-              onClick={() => navigate('/venture')}
-              className="star-button relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg text-slate-900 hover:text-black shadow-2xl border-4 border-yellow-300"
-            >
-              <span className="text-2xl">📊</span>
-              <span>View My Lean Canvas</span>
-              <span className="text-2xl">✨</span>
-            </button>
-          </div>
-          
-          {/* Animated background particles */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-10 left-10 text-4xl animate-bounce">⭐</div>
-            <div className="absolute top-20 right-20 text-3xl animate-pulse">✨</div>
-            <div className="absolute bottom-10 left-1/4 text-5xl animate-bounce" style={{animationDelay: '0.5s'}}>💫</div>
-            <div className="absolute bottom-20 right-1/3 text-4xl animate-pulse" style={{animationDelay: '1s'}}>⭐</div>
           </div>
         </div>
 

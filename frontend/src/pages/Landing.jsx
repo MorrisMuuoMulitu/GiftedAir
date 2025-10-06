@@ -9,6 +9,79 @@ export default function Landing() {
     <>
       <SEO {...SEOConfig.home} />
       <Navigation />
+      
+      {/* Michelin Star Button Styles */}
+      <style>{`
+        @keyframes star-glow {
+          0%, 100% {
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+          }
+          50% {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.8));
+          }
+        }
+        
+        @keyframes star-rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        .michelin-star {
+          position: relative;
+          width: 200px;
+          height: 200px;
+          clip-path: polygon(
+            50% 0%, 
+            61% 35%, 
+            98% 35%, 
+            68% 57%, 
+            79% 91%, 
+            50% 70%, 
+            21% 91%, 
+            32% 57%, 
+            2% 35%, 
+            39% 35%
+          );
+          background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+          animation: star-glow 2s ease-in-out infinite;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+        
+        .michelin-star:hover {
+          animation: star-glow 1s ease-in-out infinite, star-rotate 3s linear infinite;
+          transform: scale(1.1);
+        }
+        
+        .michelin-star-container {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .star-text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+          pointer-events: none;
+          z-index: 10;
+        }
+        
+        @keyframes float-up-down {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        
+        .walk-of-fame-frame {
+          border: 4px solid #B8860B;
+          padding: 8px;
+          background: linear-gradient(145deg, #DAA520, #FFD700, #DAA520);
+          box-shadow: 0 8px 16px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.5);
+          animation: float-up-down 3s ease-in-out infinite;
+        }
+      `}</style>
+      
       <div className="min-h-screen bg-gradient-to-br from-sky via-white to-green-50">
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-20">
@@ -29,6 +102,22 @@ export default function Landing() {
             Transform climate action into a love language. Send symbolic gifts—plant a tree, 
             offset a flight, support clean energy—in honor of someone you care about.
           </p>
+
+          {/* Michelin Star - Lean Canvas Button */}
+          <div className="mb-12 flex justify-center">
+            <div className="michelin-star-container walk-of-fame-frame">
+              <button
+                onClick={() => navigate('/venture')}
+                className="michelin-star"
+                title="View My Lean Canvas"
+              >
+              </button>
+              <div className="star-text">
+                <div className="text-2xl font-bold text-slate-900 mb-1">📊</div>
+                <div className="text-xs font-bold text-slate-900 px-2">Lean<br/>Canvas</div>
+              </div>
+            </div>
+          </div>
 
           {/* Primary CTA */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
