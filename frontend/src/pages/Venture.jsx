@@ -396,40 +396,50 @@ export default function Venture() {
               </div>
             </div>
 
-            {/* Partner Pipeline */}
+            {/* Target Partner Categories */}
             <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-white">Target Partner Pipeline</h3>
+                <h3 className="text-2xl font-bold text-white">Target Partner Categories</h3>
                 <span className="px-4 py-2 bg-amber-500/20 text-amber-400 rounded-full text-sm font-semibold border border-amber-500/30">
-                  In Development
+                  Seeking Partners
                 </span>
               </div>
               <p className="text-zinc-400 mb-6">
-                We're building relationships with verified environmental organizations. These are our target partners for launch:
+                We're seeking verified organizations in these impact categories to power our gifting platform:
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { name: 'One Tree Planted', url: partnerLinks.oneTreePlanted, icon: '🌳' },
-                  { name: 'The Ocean Cleanup', url: partnerLinks.oceanCleanup, icon: '🌊' },
-                  { name: 'Charity: Water', url: partnerLinks.charityWater, icon: '💧' },
-                  { name: 'Green Belt Movement', url: partnerLinks.greenBeltMovement, icon: '🌿' },
-                  { name: 'Coral Restoration Foundation', url: partnerLinks.coralRestoration, icon: '🪸' },
-                  { name: 'World Wildlife Fund', url: partnerLinks.wwf, icon: '🦁' },
-                  { name: 'Rainforest Trust', url: partnerLinks.rainforestTrust, icon: '🌴' },
-                  { name: 'Solar Aid', url: partnerLinks.solarAid, icon: '☀️' }
+                  { category: 'Tree Planting', description: 'Reforestation & afforestation orgs', icon: '🌳', color: 'emerald' },
+                  { category: 'Ocean Cleanup', description: 'Plastic removal & marine conservation', icon: '🌊', color: 'blue' },
+                  { category: 'Clean Water', description: 'Water access & sanitation projects', icon: '💧', color: 'cyan' },
+                  { category: 'Mangrove Restoration', description: 'Coastal ecosystem protection', icon: '🌿', color: 'green' },
+                  { category: 'Coral Reef Protection', description: 'Marine habitat restoration', icon: '🪸', color: 'pink' },
+                  { category: 'Wildlife Conservation', description: 'Species protection & habitat', icon: '🦁', color: 'amber' },
+                  { category: 'Rainforest Protection', description: 'Tropical forest preservation', icon: '🌴', color: 'emerald' },
+                  { category: 'Solar Energy Access', description: 'Off-grid solar solutions', icon: '☀️', color: 'yellow' },
+                  { category: 'Carbon Credits', description: 'Verified offset programs', icon: '🍃', color: 'green' },
+                  { category: 'Clean Cookstoves', description: 'Household emissions reduction', icon: '🏡', color: 'orange' },
+                  { category: 'Sustainable Agriculture', description: 'Regenerative farming practices', icon: '🌾', color: 'yellow' },
+                  { category: 'Ocean Conservation', description: 'Marine protected areas', icon: '🐋', color: 'blue' }
                 ].map((partner, idx) => (
-                  <a
+                  <div
                     key={idx}
-                    href={partner.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-4 bg-zinc-800 rounded-xl hover:bg-zinc-700 transition-all border border-zinc-700 hover:border-emerald-500/50 opacity-75 hover:opacity-100"
+                    className={`p-4 bg-zinc-800 rounded-xl border border-zinc-700 hover:border-${partner.color}-500/50 transition-all`}
                   >
-                    <span className="text-3xl">{partner.icon}</span>
-                    <span className="text-sm font-semibold text-zinc-300 hover:text-white">{partner.name}</span>
-                    <span className="ml-auto text-zinc-500">→</span>
-                  </a>
+                    <div className="flex items-start gap-3 mb-2">
+                      <span className="text-3xl">{partner.icon}</span>
+                      <div className="flex-1">
+                        <div className="font-bold text-white text-sm mb-1">{partner.category}</div>
+                        <div className="text-xs text-zinc-400 leading-tight">{partner.description}</div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
+              </div>
+              <div className="mt-6 p-4 bg-emerald-900/30 rounded-xl border border-emerald-500/30">
+                <p className="text-sm text-emerald-300">
+                  <span className="font-bold">Partnership Model:</span> We share 50% of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. Win-win for organizations seeking new funding streams.
+                </p>
               </div>
             </div>
 
