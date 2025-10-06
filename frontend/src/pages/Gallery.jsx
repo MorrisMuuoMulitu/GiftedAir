@@ -71,6 +71,7 @@ export default function Gallery() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,12 +100,17 @@ export default function Gallery() {
 
   const handleFilter = (type) => {
     setActiveFilter(type);
-    if (type === 'all') {
-      setFilteredGifts(gifts);
-    } else {
-      setFilteredGifts(gifts.filter(gift => gift.type === type));
-    }
   };
+
+  // Apply both type filter and search filter
+  const displayedGifts = gifts
+    .filter(gift => activeFilter === 'all' || gift.type === activeFilter)
+    .filter(gift => 
+      searchQuery === '' ||
+      gift.senderName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      gift.recipientName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      gift.message?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   if (loading) {
     return (
@@ -199,8 +205,30 @@ export default function Gallery() {
               💝 Gift Gallery
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              {gifts.length === 0 ? 'Be the first to create a gift!' : `${filteredGifts.length} ${filteredGifts.length === 1 ? 'gift' : 'gifts'} ${activeFilter !== 'all' ? `(${giftTypeDetails[activeFilter].name})` : 'spreading climate love'}`}
+              {gifts.length === 0 ? 'Be the first to create a gift!' : `${displayedGifts.length} ${displayedGifts.length === 1 ? 'gift' : 'gifts'} ${activeFilter !== 'all' ? `(${giftTypeDetails[activeFilter].name})` : 'spreading climate love'}`}
             </p>
+            
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto mb-8">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="🔍 Search by sender, recipient, or message..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full px-6 py-4 pr-12 border-2 border-gray-200 rounded-xl text-lg focus:border-forest focus:outline-none shadow-sm hover:shadow-md transition-shadow"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                    title="Clear search"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            </div>
 
             {/* Filter Buttons */}
             {gifts.length > 0 && (
