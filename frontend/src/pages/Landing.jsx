@@ -10,6 +10,19 @@ export default function Landing() {
       <SEO {...SEOConfig.home} />
       <Navigation />
       
+      {/* Michelin Star - Lean Canvas Button (Top Right) */}
+      <div className="michelin-star-container" style={{animation: 'float-up-down 3s ease-in-out infinite'}}>
+        <button
+          onClick={() => navigate('/venture')}
+          className="michelin-star"
+          title="View My Lean Canvas"
+        >
+        </button>
+        <div className="star-text">
+          <div className="text-sm font-bold text-slate-900">📊</div>
+        </div>
+      </div>
+      
       {/* Michelin Star Button Styles */}
       <style>{`
         @keyframes star-glow {
@@ -28,8 +41,8 @@ export default function Landing() {
         
         .michelin-star {
           position: relative;
-          width: 200px;
-          height: 200px;
+          width: 80px;
+          height: 80px;
           clip-path: polygon(
             50% 0%, 
             61% 35%, 
@@ -50,12 +63,14 @@ export default function Landing() {
         
         .michelin-star:hover {
           animation: star-glow 1s ease-in-out infinite, star-rotate 3s linear infinite;
-          transform: scale(1.1);
+          transform: scale(1.15);
         }
         
         .michelin-star-container {
-          position: relative;
-          display: inline-block;
+          position: fixed;
+          top: 100px;
+          right: 20px;
+          z-index: 40;
         }
         
         .star-text {
@@ -71,14 +86,6 @@ export default function Landing() {
         @keyframes float-up-down {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
-        }
-        
-        .walk-of-fame-frame {
-          border: 4px solid #B8860B;
-          padding: 8px;
-          background: linear-gradient(145deg, #DAA520, #FFD700, #DAA520);
-          box-shadow: 0 8px 16px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.5);
-          animation: float-up-down 3s ease-in-out infinite;
         }
       `}</style>
       
@@ -102,22 +109,6 @@ export default function Landing() {
             Transform climate action into a love language. Send symbolic gifts—plant a tree, 
             offset a flight, support clean energy—in honor of someone you care about.
           </p>
-
-          {/* Michelin Star - Lean Canvas Button */}
-          <div className="mb-12 flex justify-center">
-            <div className="michelin-star-container walk-of-fame-frame">
-              <button
-                onClick={() => navigate('/venture')}
-                className="michelin-star"
-                title="View My Lean Canvas"
-              >
-              </button>
-              <div className="star-text">
-                <div className="text-2xl font-bold text-slate-900 mb-1">📊</div>
-                <div className="text-xs font-bold text-slate-900 px-2">Lean<br/>Canvas</div>
-              </div>
-            </div>
-          </div>
 
           {/* Primary CTA */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
