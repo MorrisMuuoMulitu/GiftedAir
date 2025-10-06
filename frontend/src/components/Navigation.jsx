@@ -13,7 +13,6 @@ function Navigation() {
     { path: '/compose', label: 'Create Gift', icon: 'fa-solid fa-gift' },
     { path: '/gallery', label: 'Gallery', icon: 'fa-solid fa-images' },
     { path: '/transparency', label: 'Transparency', icon: 'fa-solid fa-chart-line' },
-    { path: '/feedback', label: 'Give Feedback', icon: 'fa-solid fa-comment', highlight: true },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -29,29 +28,37 @@ function Navigation() {
       >
         <div className="h-full backdrop-blur-md bg-white/70 border-r border-gray-300/50 shadow-sm flex flex-col">
           {/* Navigation Links - Centered Vertically */}
-          <div className="flex-1 flex flex-col justify-center space-y-8 px-3">
+          <div className="flex-1 flex flex-col justify-center space-y-6 px-3">
             {navLinks.map((link) => (
               <button
                 key={link.path}
                 onClick={() => navigate(link.path)}
-                className={`w-full flex items-center gap-5 px-3 py-5 transition-all duration-300 group relative ${
-                  link.highlight
-                    ? 'text-purple-600 hover:text-purple-700'
-                    : isActive(link.path)
-                    ? 'text-green-600'
-                    : 'text-gray-600 hover:text-green-600'
+                className={`w-full flex items-center gap-5 px-4 py-6 rounded-2xl transition-all duration-300 group relative overflow-hidden ${
+                  isActive(link.path)
+                    ? 'text-green-600 bg-green-50/80'
+                    : 'text-gray-600 hover:text-green-600 hover:bg-green-50/50'
                 }`}
               >
-                <i className={`${link.icon} text-4xl flex-shrink-0 transition-all duration-300 group-hover:scale-110 ${
-                  isActive(link.path) ? 'drop-shadow-lg' : ''
+                {/* Animated background on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-green-400/0 via-green-400/10 to-green-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
+                
+                {/* Icon with enhanced effects */}
+                <i className={`${link.icon} text-4xl flex-shrink-0 transition-all duration-300 relative z-10 ${
+                  isActive(link.path) 
+                    ? 'drop-shadow-lg scale-110 animate-pulse' 
+                    : 'group-hover:scale-125 group-hover:rotate-6 group-hover:drop-shadow-md'
                 }`}></i>
+                
+                {/* Label with slide-in effect */}
                 {sidebarExpanded && (
-                  <span className="font-bold text-base whitespace-nowrap opacity-0 animate-fadeIn">
+                  <span className="font-bold text-base whitespace-nowrap opacity-0 animate-fadeIn relative z-10">
                     {link.label}
                   </span>
                 )}
+                
+                {/* Active indicator bar */}
                 {!sidebarExpanded && isActive(link.path) && (
-                  <div className="absolute left-0 w-1.5 h-12 bg-green-600 rounded-r-full shadow-lg"></div>
+                  <div className="absolute left-0 w-2 h-14 bg-gradient-to-b from-green-400 via-green-600 to-green-400 rounded-r-full shadow-lg animate-pulse"></div>
                 )}
               </button>
             ))}
@@ -114,9 +121,7 @@ function Navigation() {
                       setMobileMenuOpen(false);
                     }}
                     className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all ${
-                      link.highlight
-                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg hover:shadow-xl'
-                        : isActive(link.path)
+                      isActive(link.path)
                         ? 'bg-green-600 text-white shadow-md'
                         : 'text-gray-700 hover:bg-gray-100 hover:text-green-600'
                     }`}
