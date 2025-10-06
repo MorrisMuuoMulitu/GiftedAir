@@ -9,7 +9,7 @@ export default function AdminV2() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [selectedGifts, setSelectedGifts] = useState([]);
-  const [activeTab, setActiveTab] = useState('overview'); // overview, gifts, analytics
+  const [activeTab, setActiveTab] = useState('overview'); // overview, gifts, analytics, financials
   const [filterType, setFilterType] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -365,6 +365,16 @@ export default function AdminV2() {
           >
             📈 Analytics
           </button>
+          <button
+            onClick={() => setActiveTab('financials')}
+            className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
+              activeTab === 'financials'
+                ? 'bg-forest text-white'
+                : 'text-gray-600 hover:bg-gray-100'
+            }`}
+          >
+            💰 Financials
+          </button>
         </div>
 
         {/* Overview Tab */}
@@ -680,6 +690,258 @@ export default function AdminV2() {
                   </div>
                   <div className="text-gray-600">Locations</div>
                 </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Financials Tab */}
+        {activeTab === 'financials' && (
+          <>
+            {/* Financial Breakdown by Gift Type */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+              <h2 className="text-2xl font-bold text-forest mb-6">💰 Financial Breakdown by Gift Type</h2>
+              <div className="space-y-4">
+                {Object.entries(giftTypeInfo).map(([type, info]) => {
+                  const typeGifts = gifts.filter(g => g.type === type);
+                  if (typeGifts.length === 0) return null;
+
+                  const revenue = typeGifts.reduce((sum, g) => sum + g.totalCost, 0);
+                  const count = typeGifts.length;
+                  const quantity = typeGifts.reduce((sum, g) => sum + g.quantity, 0);
+                  const stripeFee = (revenue * 0.029) + (count * 0.30);
+                  const owedToPartner = revenue * 0.50;
+                  const platformCut = revenue - stripeFee - owedToPartner;
+
+                  const partnerNames = {
+                    tree: 'One Tree Planted',
+                    ocean: 'The Ocean Cleanup',
+                    water: 'Charity: Water',
+                    cookstove: 'Carbon offset partners',
+                    solar: 'Solar Aid',
+                    coral: 'Coral Restoration Foundation',
+                    wildlife: 'World Wildlife Fund',
+                    rainforest: 'Rainforest Trust'
+                  };
+
+                  return (
+                    <div key={type} className="border-2 border-gray-200 rounded-xl p-6 hover:border-green-400 transition">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-start gap-4 flex-1">
+                          <div className="text-5xl">{info.icon}</div>
+                          <div className="flex-1">
+                            <h3 className="text-xl font-bold text-forest mb-1">{info.name}</h3>
+                            <p className="text-sm text-gray-600 mb-3">Partner: {partnerNames[type]}</p>
+                            
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm mb-4">
+                              <div>
+                                <div className="text-gray-500">Gifts Sent</div>
+                                <div className="font-bold text-lg">{count}</div>
+                              </div>
+                              <div>
+                                <div className="text-gray-500">Total Quantity</div>
+                                <div className="font-bold text-lg">{quantity}</div>
+                              </div>
+                              <div>
+                                <div className="text-gray-500">Revenue</div>
+                                <div className="font-bold text-lg text-green-600">${revenue.toFixed(2)}</div>
+                              </div>
+                              <div>
+                                <div className="text-gray-500">Owed to Partner</div>
+                                <div className="font-bold text-lg text-blue-600">${owedToPartner.toFixed(2)}</div>
+                              </div>
+                            </div>
+
+                            <div className="pt-4 border-t border-gray-200">
+                              <div className="grid grid-cols-3 gap-4 text-xs text-gray-600">
+                                <div>
+                                  <span className="font-semibold">Stripe Fees (2.9% + $0.30):</span> ${stripeFee.toFixed(2)}
+                                </div>
+                                <div>
+                                  <span className="font-semibold">To Partner (50%):</span> ${owedToPartner.toFixed(2)}
+                                </div>
+                                <div>
+                                  <span className="font-semibold">Platform Revenue:</span> ${platformCut.toFixed(2)}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Total Summary */}
+              <div className="mt-8 pt-8 border-t-4 border-green-200">
+                <h3 className="text-xl font-bold text-forest mb-4">📊 Total Summary</h3>
+                <div className="grid md:grid-cols-4 gap-6">
+                  <div className="bg-green-50 p-6 rounded-xl">
+                    <div className="text-sm text-gray-600 mb-1">Total Revenue</div>
+                    <div className="text-3xl font-bold text-green-600">
+                      ${gifts.reduce((sum, g) => sum + g.totalCost, 0).toFixed(2)}
+                    </div>
+                  </div>
+                  <div className="bg-blue-50 p-6 rounded-xl">
+                    <div className="text-sm text-gray-600 mb-1">Stripe Fees</div>
+                    <div className="text-3xl font-bold text-blue-600">
+                      ${((gifts.reduce((sum, g) => sum + g.totalCost, 0) * 0.029) + (gifts.length * 0.30)).toFixed(2)}
+                    </div>
+                    <div className="text-xs text-gray-500 mt-1">2.9% + $0.30 per transaction</div>
+                  </div>
+                  <div className="bg-purple-50 p-6 rounded-xl">
+                    <div className="text-sm text-gray-600 mb-1">Owed to Partners</div>
+                    <div className="text-3xl font-bold text-purple-600">
+                      ${(gifts.reduce((sum, g) => sum + g.totalCost, 0) * 0.50).toFixed(2)}
+                    </div>
+                    <div className="text-xs text-gray-500 mt-1">50% of revenue</div>
+                  </div>
+                  <div className="bg-amber-50 p-6 rounded-xl">
+                    <div className="text-sm text-gray-600 mb-1">Platform Revenue</div>
+                    <div className="text-3xl font-bold text-amber-600">
+                      ${(() => {
+                        const totalRevenue = gifts.reduce((sum, g) => sum + g.totalCost, 0);
+                        const stripeFees = (totalRevenue * 0.029) + (gifts.length * 0.30);
+                        const partnerCut = totalRevenue * 0.50;
+                        return (totalRevenue - stripeFees - partnerCut).toFixed(2);
+                      })()}
+                    </div>
+                    <div className="text-xs text-gray-500 mt-1">After fees & partner cuts</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Monthly Action Items */}
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl shadow-lg p-8 mb-8 border-2 border-amber-200">
+              <h2 className="text-2xl font-bold text-amber-800 mb-4">⚡ Monthly Action Items</h2>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="text-2xl">💸</div>
+                  <div>
+                    <div className="font-bold text-gray-800">Make Partner Donations</div>
+                    <div className="text-gray-600">
+                      Total to donate this month: <span className="font-bold text-green-600">
+                        ${(gifts.reduce((sum, g) => sum + g.totalCost, 0) * 0.50).toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="text-2xl">📧</div>
+                  <div>
+                    <div className="font-bold text-gray-800">Email Partner Organizations</div>
+                    <div className="text-gray-600">Notify partners of donation amounts and gift counts</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="text-2xl">📊</div>
+                  <div>
+                    <div className="font-bold text-gray-800">Update Public Report</div>
+                    <div className="text-gray-600">Publish monthly impact report with donation receipts</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="text-2xl">🧾</div>
+                  <div>
+                    <div className="font-bold text-gray-800">Save Receipts</div>
+                    <div className="text-gray-600">Keep all donation receipts for transparency and taxes</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Profit Margin Breakdown */}
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <h2 className="text-2xl font-bold text-forest mb-6">📈 Revenue Distribution</h2>
+              <div className="space-y-4">
+                {(() => {
+                  const totalRevenue = gifts.reduce((sum, g) => sum + g.totalCost, 0);
+                  const stripeFees = (totalRevenue * 0.029) + (gifts.length * 0.30);
+                  const partnerCut = totalRevenue * 0.50;
+                  const platformRevenue = totalRevenue - stripeFees - partnerCut;
+
+                  const stripePercent = (stripeFees / totalRevenue) * 100;
+                  const partnerPercent = (partnerCut / totalRevenue) * 100;
+                  const platformPercent = (platformRevenue / totalRevenue) * 100;
+
+                  return (
+                    <>
+                      <div className="mb-6">
+                        <div className="flex justify-between text-sm mb-2">
+                          <span className="font-semibold">Partners (50%)</span>
+                          <span className="text-purple-600 font-bold">${partnerCut.toFixed(2)}</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-6">
+                          <div
+                            className="bg-purple-600 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                            style={{ width: `${partnerPercent}%` }}
+                          >
+                            {partnerPercent.toFixed(1)}%
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mb-6">
+                        <div className="flex justify-between text-sm mb-2">
+                          <span className="font-semibold">Platform Revenue (~{platformPercent.toFixed(1)}%)</span>
+                          <span className="text-amber-600 font-bold">${platformRevenue.toFixed(2)}</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-6">
+                          <div
+                            className="bg-amber-600 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                            style={{ width: `${platformPercent}%` }}
+                          >
+                            {platformPercent.toFixed(1)}%
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mb-6">
+                        <div className="flex justify-between text-sm mb-2">
+                          <span className="font-semibold">Stripe Fees (~{stripePercent.toFixed(1)}%)</span>
+                          <span className="text-blue-600 font-bold">${stripeFees.toFixed(2)}</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-6">
+                          <div
+                            className="bg-blue-600 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                            style={{ width: `${stripePercent}%` }}
+                          >
+                            {stripePercent.toFixed(1)}%
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-gray-50 rounded-xl p-6 mt-6">
+                        <div className="grid md:grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <span className="text-gray-600">Average Gift Value:</span>
+                            <span className="font-bold text-forest ml-2">
+                              ${(totalRevenue / gifts.length).toFixed(2)}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Average Platform Revenue per Gift:</span>
+                            <span className="font-bold text-amber-600 ml-2">
+                              ${(platformRevenue / gifts.length).toFixed(2)}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Total Transactions:</span>
+                            <span className="font-bold text-forest ml-2">{gifts.length}</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Total Quantity Delivered:</span>
+                            <span className="font-bold text-forest ml-2">
+                              {gifts.reduce((sum, g) => sum + g.quantity, 0)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
             </div>
           </>
