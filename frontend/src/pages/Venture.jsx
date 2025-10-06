@@ -196,7 +196,7 @@ export default function Venture() {
         {/* Hero Header - Ultra Modern */}
         <div className="relative overflow-hidden rounded-3xl mb-12">
           {/* Animated background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#8A2BE2] via-[#C38B4A] to-[#D8BFD8] opacity-90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] opacity-90"></div>
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjAgMjBjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNMTYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
           
           <div className="relative z-10 px-8 md:px-16 py-16 md:py-24">
@@ -204,7 +204,7 @@ export default function Venture() {
               {/* Left: Branding */}
               <div className="flex-1 text-center md:text-left">
                 <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full mb-6 border border-white/20">
-                  <span className="w-2 h-2 bg-[#C38B4A] rounded-full animate-pulse"></span>
+                  <span className="w-2 h-2 bg-[#ADD8E6] rounded-full animate-pulse"></span>
                   <span className="text-sm font-semibold">LIVE PROTOTYPE</span>
                 </div>
                 
@@ -294,7 +294,7 @@ export default function Venture() {
                 onClick={() => setActiveSection(tab.id)}
                 className={`flex-1 min-w-[140px] px-6 py-3 rounded-xl font-bold text-sm transition-all ${
                   activeSection === tab.id
-                    ? 'bg-gradient-to-r from-[#8A2BE2] via-[#C38B4A] to-[#D8BFD8] text-white shadow-lg shadow-[#C38B4A]/30'
+                    ? 'bg-gradient-to-r from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] text-white shadow-lg shadow-[#00CED1]/40'
                     : 'text-zinc-400 hover:text-white hover:bg-[#1A1A1A]'
                 }`}
               >
@@ -310,7 +310,7 @@ export default function Venture() {
           <div className="space-y-8 animate-fade-in">
             {/* Executive Summary */}
             <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-3xl p-12 border border-[#D8BFD8]/30">
-              <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-[#8A2BE2] via-[#C38B4A] to-[#D8BFD8] bg-clip-text text-transparent">
+              <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] bg-clip-text text-transparent">
                 Executive Summary
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
@@ -551,7 +551,7 @@ export default function Venture() {
             </div>
 
             {/* Use Cases - How It Works In Practice */}
-            <div className="bg-gradient-to-br from-[#C38B4A]/15 to-[#8A2BE2]/15 rounded-2xl p-8 border border-[#C38B4A]/30">
+            <div className="bg-gradient-to-br from-[#8A2BE2]/15 via-[#D8BFD8]/10 to-[#ADD8E6]/15 rounded-2xl p-8 border border-[#8A2BE2]/30">
               <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
                 <span className="text-3xl">🎯</span>
                 Real-World Use Cases: Inclusive Climate Action at Scale
@@ -564,7 +564,7 @@ export default function Venture() {
                 {/* Use Case 1: Individual Gifting */}
                 <div className="bg-[#1A1A1A]/80 rounded-xl p-6 border border-[#D8BFD8]/20">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D8BFD8] to-[#8A2BE2] flex items-center justify-center flex-shrink-0 text-2xl">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D8BFD8] via-[#8A2BE2] to-[#00CED1] flex items-center justify-center flex-shrink-0 text-2xl shadow-lg shadow-[#8A2BE2]/30">
                       💝
                     </div>
                     <div className="flex-1">
@@ -611,7 +611,7 @@ export default function Venture() {
                 {/* Use Case 2: Community Fundraising */}
                 <div className="bg-black/40 rounded-xl p-6 border border-blue-500/20">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-2xl">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#00CED1] via-[#ADD8E6] to-[#D8BFD8] flex items-center justify-center flex-shrink-0 text-2xl shadow-lg shadow-[#00CED1]/30">
                       🌍
                     </div>
                     <div className="flex-1">
@@ -654,7 +654,7 @@ export default function Venture() {
                 {/* Use Case 3: Corporate B2B */}
                 <div className="bg-black/40 rounded-xl p-6 border border-purple-500/20">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-2xl">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#8A2BE2] via-[#D8BFD8] to-[#C38B4A] flex items-center justify-center flex-shrink-0 text-2xl shadow-lg shadow-[#8A2BE2]/30">
                       🏢
                     </div>
                     <div className="flex-1">
@@ -711,7 +711,7 @@ export default function Venture() {
                 {/* Use Case 4: Event Partnerships */}
                 <div className="bg-black/40 rounded-xl p-6 border border-amber-500/20">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0 text-2xl">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C38B4A] via-[#00CED1] to-[#8A2BE2] flex items-center justify-center flex-shrink-0 text-2xl shadow-lg shadow-[#C38B4A]/30">
                       🎓
                     </div>
                     <div className="flex-1">
@@ -757,7 +757,7 @@ export default function Venture() {
               </div>
 
               {/* Key Insight */}
-              <div className="mt-8 p-6 bg-gradient-to-r from-[#8A2BE2]/30 to-[#D8BFD8]/30 rounded-xl border border-[#D8BFD8]/50">
+              <div className="mt-8 p-6 bg-gradient-to-r from-[#00CED1]/25 via-[#8A2BE2]/25 to-[#D8BFD8]/25 rounded-xl border border-[#00CED1]/40">
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">💡</div>
                   <div>
@@ -773,7 +773,7 @@ export default function Venture() {
             </div>
 
             {/* Competitive Advantages */}
-            <div className="bg-gradient-to-br from-[#00CED1]/20 to-[#ADD8E6]/20 rounded-2xl p-8 border border-[#00CED1]/30">
+            <div className="bg-gradient-to-br from-[#8A2BE2]/20 via-[#C38B4A]/15 to-[#00CED1]/20 rounded-2xl p-8 border border-[#8A2BE2]/30">
               <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
                 <span className="text-3xl">🛡️</span>
                 Why We'll Win: Unfair Advantages
@@ -835,7 +835,7 @@ export default function Venture() {
 
             {/* Customer Acquisition Strategy */}
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-[#1A1A1A] rounded-2xl p-8 border border-[#C38B4A]/30 hover:border-[#C38B4A]/50 transition-all">
+              <div className="bg-gradient-to-br from-[#1A1A1A] to-[#C38B4A]/5 rounded-2xl p-8 border border-[#C38B4A]/30 hover:border-[#C38B4A]/60 hover:shadow-lg hover:shadow-[#C38B4A]/20 transition-all">
                 <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-3">
                   <span className="text-3xl">🎣</span>
                   Customer Acquisition
@@ -872,7 +872,7 @@ export default function Venture() {
                 </div>
               </div>
               
-              <div className="bg-[#1A1A1A] rounded-2xl p-8 border border-[#8A2BE2]/30 hover:border-[#8A2BE2]/50 transition-all">
+              <div className="bg-gradient-to-br from-[#1A1A1A] to-[#8A2BE2]/5 rounded-2xl p-8 border border-[#8A2BE2]/30 hover:border-[#8A2BE2]/60 hover:shadow-lg hover:shadow-[#8A2BE2]/20 transition-all">
                 <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-3">
                   <span className="text-3xl">💸</span>
                   Revenue Multipliers
