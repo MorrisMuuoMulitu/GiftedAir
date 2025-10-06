@@ -374,27 +374,39 @@ export default function Venture() {
               <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:border-pink-500/50 transition-all">
                 <div className="text-5xl mb-4">💰</div>
                 <h3 className="text-xl font-bold mb-3 text-white">Revenue Model</h3>
-                <p className="text-zinc-400 mb-4">Transparent platform fee on each gift</p>
+                <p className="text-zinc-400 mb-4">Multiple revenue streams, immediate profitability</p>
                 <ul className="space-y-2 text-sm text-zinc-500">
                   <li className="flex items-start gap-2">
-                    <span className="text-purple-500">→</span>
-                    <span>~47% platform revenue per gift</span>
+                    <span className="text-green-500">✓</span>
+                    <span><span className="text-green-400 font-bold">41% margin</span> on every transaction</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-purple-500">→</span>
-                    <span>50% to environmental partners</span>
+                    <span>B2B: Corporate gifting & events (higher AOV)</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-purple-500">→</span>
-                    <span>Future: Subscriptions & corporate packages</span>
+                    <span className="text-cyan-500">→</span>
+                    <span>Subscriptions: Recurring monthly giving</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-pink-500">→</span>
+                    <span>Zero CAC with viral loops & referrals</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            {/* Partner Organizations */}
+            {/* Partner Pipeline */}
             <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
-              <h3 className="text-2xl font-bold mb-6 text-white">Environmental Partners</h3>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-white">Target Partner Pipeline</h3>
+                <span className="px-4 py-2 bg-amber-500/20 text-amber-400 rounded-full text-sm font-semibold border border-amber-500/30">
+                  In Development
+                </span>
+              </div>
+              <p className="text-zinc-400 mb-6">
+                We're building relationships with verified environmental organizations. These are our target partners for launch:
+              </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   { name: 'One Tree Planted', url: partnerLinks.oneTreePlanted, icon: '🌳' },
@@ -411,13 +423,245 @@ export default function Venture() {
                     href={partner.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-4 bg-zinc-800 rounded-xl hover:bg-zinc-700 transition-all border border-zinc-700 hover:border-emerald-500/50"
+                    className="flex items-center gap-3 p-4 bg-zinc-800 rounded-xl hover:bg-zinc-700 transition-all border border-zinc-700 hover:border-emerald-500/50 opacity-75 hover:opacity-100"
                   >
                     <span className="text-3xl">{partner.icon}</span>
                     <span className="text-sm font-semibold text-zinc-300 hover:text-white">{partner.name}</span>
                     <span className="ml-auto text-zinc-500">→</span>
                   </a>
                 ))}
+              </div>
+            </div>
+
+            {/* Unit Economics - NEW */}
+            <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 rounded-2xl p-8 border border-green-500/30">
+              <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+                <span className="text-3xl">💵</span>
+                Unit Economics: The Money Machine
+              </h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-bold text-green-400 mb-4">Per Gift Breakdown ($5 example)</h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center p-3 bg-zinc-900/50 rounded-lg">
+                      <span className="text-zinc-300">Customer Pays</span>
+                      <span className="text-2xl font-bold text-white">$5.00</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-red-900/30 rounded-lg border-l-4 border-red-500">
+                      <span className="text-zinc-300">Stripe Fee (2.9% + $0.30)</span>
+                      <span className="font-bold text-red-400">-$0.45</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-blue-900/30 rounded-lg border-l-4 border-blue-500">
+                      <span className="text-zinc-300">To Partner (50%)</span>
+                      <span className="font-bold text-blue-400">-$2.50</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-green-900/50 rounded-lg border-2 border-green-500">
+                      <span className="text-green-300 font-bold">Platform Revenue</span>
+                      <span className="text-3xl font-black text-green-400">$2.05</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-4 bg-emerald-500/20 rounded-lg border border-emerald-500/50">
+                    <p className="text-sm text-emerald-300 font-semibold">
+                      ✨ 41% margin per transaction | Pure profit after infrastructure costs
+                    </p>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="text-xl font-bold text-cyan-400 mb-4">Scale Projection</h4>
+                  <div className="space-y-4">
+                    <div className="p-4 bg-zinc-900/50 rounded-xl">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-zinc-400">1,000 gifts/month @ $5 avg</span>
+                        <span className="text-xl font-bold text-white">$5K</span>
+                      </div>
+                      <div className="text-sm text-emerald-400 font-semibold">
+                        Monthly Revenue: $2,050
+                      </div>
+                    </div>
+                    
+                    <div className="p-4 bg-zinc-900/50 rounded-xl border-l-4 border-cyan-500">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-zinc-400">10,000 gifts/month @ $5 avg</span>
+                        <span className="text-xl font-bold text-white">$50K</span>
+                      </div>
+                      <div className="text-sm text-cyan-400 font-semibold">
+                        Monthly Revenue: $20,500 | $246K/year
+                      </div>
+                    </div>
+                    
+                    <div className="p-4 bg-zinc-900/50 rounded-xl border-l-4 border-purple-500">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-zinc-400">100,000 gifts/month @ $5 avg</span>
+                        <span className="text-xl font-bold text-white">$500K</span>
+                      </div>
+                      <div className="text-sm text-purple-400 font-semibold">
+                        Monthly Revenue: $205K | $2.46M/year
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 p-4 bg-purple-500/20 rounded-lg border border-purple-500/50">
+                    <p className="text-sm text-purple-300 font-semibold">
+                      🚀 With just 0.02% of $300B digital gifting market = $60M/year
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Growth Engine */}
+            <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
+              <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+                <span className="text-3xl">📈</span>
+                Viral Growth Engine
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="p-6 bg-gradient-to-br from-pink-900/30 to-rose-900/30 rounded-xl border border-pink-500/30">
+                  <div className="text-4xl mb-3">💝</div>
+                  <h4 className="font-bold text-white mb-2">Gift Sharing</h4>
+                  <p className="text-sm text-zinc-300 mb-3">Every gift has a unique shareable URL. Recipients post their environmental gifts on social media.</p>
+                  <div className="text-xs text-pink-400 font-semibold">K-Factor: 1.5-2.0 (viral loop)</div>
+                </div>
+                
+                <div className="p-6 bg-gradient-to-br from-purple-900/30 to-indigo-900/30 rounded-xl border border-purple-500/30">
+                  <div className="text-4xl mb-3">🎯</div>
+                  <h4 className="font-bold text-white mb-2">Referral Program</h4>
+                  <p className="text-sm text-zinc-300 mb-3">Users earn rewards for referring friends. Built-in incentive for organic growth.</p>
+                  <div className="text-xs text-purple-400 font-semibold">Target: 30% of users refer 2+ friends</div>
+                </div>
+                
+                <div className="p-6 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-xl border border-cyan-500/30">
+                  <div className="text-4xl mb-3">🔥</div>
+                  <h4 className="font-bold text-white mb-2">Emotional Resonance</h4>
+                  <p className="text-sm text-zinc-300 mb-3">Gifts for birthdays, anniversaries, holidays create recurring usage patterns.</p>
+                  <div className="text-xs text-cyan-400 font-semibold">LTV: 5-7 gifts per user lifetime</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Competitive Advantages */}
+            <div className="bg-gradient-to-br from-indigo-900/50 to-purple-900/50 rounded-2xl p-8 border border-indigo-500/30">
+              <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+                <span className="text-3xl">🛡️</span>
+                Why We'll Win: Unfair Advantages
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                    <div>
+                      <h4 className="font-bold text-white mb-1">Emotional Connection</h4>
+                      <p className="text-sm text-zinc-300">We're the ONLY platform combining gifting psychology with climate action. Not a charity, not a gift card—a new category.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                    <div>
+                      <h4 className="font-bold text-white mb-1">Built-in Virality</h4>
+                      <p className="text-sm text-zinc-300">Every gift creates a beautiful shareable page. Recipients become marketers. Zero CAC at scale.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                    <div>
+                      <h4 className="font-bold text-white mb-1">Network Effects</h4>
+                      <p className="text-sm text-zinc-300">More users = more social proof = more gifts = more visibility. Compounding growth loop.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                    <div>
+                      <h4 className="font-bold text-white mb-1">First Mover in Category</h4>
+                      <p className="text-sm text-zinc-300">Defining "emotional offsetting" before copycats arrive. Brand becomes the category.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0 font-bold">5</div>
+                    <div>
+                      <h4 className="font-bold text-white mb-1">Recurring Revenue Model</h4>
+                      <p className="text-sm text-zinc-300">Birthdays, anniversaries, holidays repeat yearly. Users come back 5-7 times lifetime.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0 font-bold">6</div>
+                    <div>
+                      <h4 className="font-bold text-white mb-1">Global Scalability</h4>
+                      <p className="text-sm text-zinc-300">Digital product, no inventory, low overhead. Launch in 100+ countries day one.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Customer Acquisition Strategy */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
+                <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-3">
+                  <span className="text-3xl">🎣</span>
+                  Customer Acquisition
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 p-3 bg-zinc-800 rounded-lg">
+                    <span className="text-2xl">📱</span>
+                    <div>
+                      <div className="font-semibold text-white text-sm">Social Media</div>
+                      <div className="text-xs text-zinc-400">TikTok, Instagram Reels (organic viral content)</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-zinc-800 rounded-lg">
+                    <span className="text-2xl">🎯</span>
+                    <div>
+                      <div className="font-semibold text-white text-sm">Influencer Partnerships</div>
+                      <div className="text-xs text-zinc-400">Eco-influencers, lifestyle creators (affiliate model)</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-zinc-800 rounded-lg">
+                    <span className="text-2xl">💝</span>
+                    <div>
+                      <div className="font-semibold text-white text-sm">Gift-Based Virality</div>
+                      <div className="text-xs text-zinc-400">Every gift creates 2-3 new potential users</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-zinc-800 rounded-lg">
+                    <span className="text-2xl">🔍</span>
+                    <div>
+                      <div className="font-semibold text-white text-sm">SEO & Content</div>
+                      <div className="text-xs text-zinc-400">"Eco-friendly gifts", "sustainable presents"</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
+                <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-3">
+                  <span className="text-3xl">💸</span>
+                  Revenue Multipliers
+                </h3>
+                <div className="space-y-3">
+                  <div className="p-4 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-lg border border-purple-500/30">
+                    <div className="font-bold text-white mb-1">Corporate Gifting</div>
+                    <p className="text-sm text-zinc-300 mb-2">$258B corporate gift market. 50-500 gifts per order.</p>
+                    <div className="text-xs text-purple-400 font-semibold">AOV: 10-20x higher than B2C</div>
+                  </div>
+                  <div className="p-4 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 rounded-lg border border-cyan-500/30">
+                    <div className="font-bold text-white mb-1">Subscription Model</div>
+                    <p className="text-sm text-zinc-300 mb-2">Monthly recurring gifts. Stable MRR stream.</p>
+                    <div className="text-xs text-cyan-400 font-semibold">Target: 20% of users convert to subscription</div>
+                  </div>
+                  <div className="p-4 bg-gradient-to-r from-green-900/30 to-emerald-900/30 rounded-lg border border-green-500/30">
+                    <div className="font-bold text-white mb-1">Event Partnerships</div>
+                    <p className="text-sm text-zinc-300 mb-2">Weddings, conferences, fundraisers.</p>
+                    <div className="text-xs text-green-400 font-semibold">100-1000+ gifts per event</div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -429,21 +673,21 @@ export default function Venture() {
                   <span className="text-3xl">🤝</span>
                   <div>
                     <h4 className="font-bold text-white mb-1">Strategic Introductions</h4>
-                    <p className="text-sm text-zinc-300">Legal counsel & Kenya climate network connections</p>
+                    <p className="text-sm text-zinc-300">Legal counsel, global partner network, & strategic advisors in climate/tech space</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="text-3xl">🗺️</span>
                   <div>
                     <h4 className="font-bold text-white mb-1">Roadmap Validation</h4>
-                    <p className="text-sm text-zinc-300">Feature prioritization & launch strategy feedback</p>
+                    <p className="text-sm text-zinc-300">Feature prioritization, global market entry strategy & launch feedback</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="text-3xl">💰</span>
                   <div>
                     <h4 className="font-bold text-white mb-1">Funding Strategy</h4>
-                    <p className="text-sm text-zinc-300">Bootstrap vs. pre-seed funding advice</p>
+                    <p className="text-sm text-zinc-300">Bootstrap vs. pre-seed funding, investor intros & cap table advice</p>
                   </div>
                 </div>
               </div>
