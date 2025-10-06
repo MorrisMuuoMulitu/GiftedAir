@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center px-4">
         <div className="max-w-2xl w-full text-center">
           {/* Large 404 */}
           <div className="mb-8">
@@ -22,10 +22,10 @@ export default function NotFound() {
           </div>
 
           {/* Message */}
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Oops! Page Not Found
           </h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-lg mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-lg mx-auto">
             This page seems to have floated away like CO₂ in the wind. 
             Let's get you back to solid ground!
           </p>

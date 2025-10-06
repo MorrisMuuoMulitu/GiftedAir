@@ -18,7 +18,7 @@ function Navigation() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-green-100">
+    <nav className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md border-b border-green-100 dark:border-gray-700">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo - Left Side */}
@@ -28,7 +28,7 @@ function Navigation() {
             title="Go to Home"
           >
             <span className="text-3xl transform group-hover:scale-110 transition-transform">🌿</span>
-            <span className="text-2xl font-bold text-forest">Gifted Air</span>
+            <span className="text-2xl font-bold text-forest dark:text-green-400">Gifted Air</span>
           </button>
 
           {/* Desktop Navigation - Center/Right */}
@@ -39,8 +39,8 @@ function Navigation() {
                 onClick={() => navigate(link.path)}
                 className={`px-3 py-2 rounded-lg font-medium text-sm transition-all ${
                   isActive(link.path)
-                    ? 'bg-forest text-white shadow-md'
-                    : 'text-gray-700 hover:bg-green-50 hover:text-forest'
+                    ? 'bg-forest dark:bg-green-600 text-white shadow-md'
+                    : 'text-gray-700 dark:text-gray-200 hover:bg-green-50 dark:hover:bg-gray-800 hover:text-forest dark:hover:text-green-400'
                 }`}
               >
                 <span className="mr-1.5">{link.icon}</span>
@@ -52,7 +52,7 @@ function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-200"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
@@ -69,7 +69,7 @@ function Navigation() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-green-100 animate-fade-in-up">
+          <div className="md:hidden py-4 border-t border-green-100 dark:border-gray-700 animate-fade-in-up">
             {navLinks.map((link) => (
               <button
                 key={link.path}
@@ -79,8 +79,8 @@ function Navigation() {
                 }}
                 className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition-all mb-1 ${
                   isActive(link.path)
-                    ? 'bg-forest text-white'
-                    : 'text-gray-700 hover:bg-green-50'
+                    ? 'bg-forest dark:bg-green-600 text-white'
+                    : 'text-gray-700 dark:text-gray-200 hover:bg-green-50 dark:hover:bg-gray-800'
                 }`}
               >
                 <span className="mr-2">{link.icon}</span>

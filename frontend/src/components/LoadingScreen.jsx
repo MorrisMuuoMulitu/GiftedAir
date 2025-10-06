@@ -1,6 +1,6 @@
 export default function LoadingScreen() {
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-green-100 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-green-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center z-50">
       <div className="text-center">
         {/* Animated Logo */}
         <div className="mb-8 relative">
@@ -16,10 +16,10 @@ export default function LoadingScreen() {
         </div>
 
         {/* Text */}
-        <h2 className="text-3xl font-bold text-forest mb-4">
+        <h2 className="text-3xl font-bold text-forest dark:text-green-400 mb-4">
           Gifted Air
         </h2>
-        <p className="text-gray-600 text-lg mb-8">
+        <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
           Loading something beautiful...
         </p>
 
@@ -30,13 +30,13 @@ export default function LoadingScreen() {
 
         {/* Fun facts that rotate */}
         <div className="mt-12 max-w-md mx-auto">
-          <p className="text-sm text-gray-500 italic animate-fade-in">
+          <p className="text-sm text-gray-500 dark:text-gray-400 italic animate-fade-in">
             💡 A single tree absorbs up to 48 lbs of CO₂ per year
           </p>
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes loading-bar {
           0% { width: 0%; }
           50% { width: 70%; }
