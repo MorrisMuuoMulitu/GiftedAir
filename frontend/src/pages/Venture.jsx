@@ -550,6 +550,232 @@ export default function Venture() {
               </div>
             </div>
 
+            {/* Use Cases - How It Works In Practice */}
+            <div className="bg-gradient-to-br from-emerald-900/30 to-teal-900/30 rounded-2xl p-8 border border-emerald-500/30">
+              <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+                <span className="text-3xl">🎯</span>
+                Real-World Use Cases: Inclusive Climate Action at Scale
+              </h3>
+              <p className="text-zinc-300 mb-8">
+                A systems approach to climate action—making environmental impact accessible, emotional, and viral across every demographic.
+              </p>
+              
+              <div className="space-y-6">
+                {/* Use Case 1: Individual Gifting */}
+                <div className="bg-black/40 rounded-xl p-6 border border-emerald-500/20">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center flex-shrink-0 text-2xl">
+                      💝
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-white text-lg mb-2">Personal Milestone Gifting</h4>
+                      <p className="text-sm text-emerald-300 font-semibold mb-3">Making Climate Action Personal & Shareable</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-zinc-900/50 rounded-lg p-4 mb-4">
+                    <p className="text-zinc-300 text-sm leading-relaxed">
+                      <span className="font-bold text-white">Scenario:</span> Sarah wants to give her best friend Maya a meaningful 30th birthday gift. Instead of buying something that will collect dust, she plants <span className="text-emerald-400 font-semibold">10 trees in Maya's name</span> for $10 through Gifted Air.
+                    </p>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-emerald-900/30 rounded-lg p-4 border border-emerald-500/30">
+                      <div className="text-xs text-emerald-400 font-bold mb-2">THE GIFT</div>
+                      <ul className="text-sm text-zinc-300 space-y-1">
+                        <li>✓ Personalized message & certificate</li>
+                        <li>✓ Beautiful shareable gift page</li>
+                        <li>✓ Real environmental impact (verified)</li>
+                        <li>✓ Cost: $10 (vs. $30+ physical gift)</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-500/30">
+                      <div className="text-xs text-purple-400 font-bold mb-2">THE VIRAL LOOP</div>
+                      <ul className="text-sm text-zinc-300 space-y-1">
+                        <li>→ Maya shares on Instagram (2,000 followers)</li>
+                        <li>→ 50 people click the link</li>
+                        <li>→ 3 new users sign up</li>
+                        <li>→ 2 send gifts within 30 days</li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full font-semibold">CAC: $0</span>
+                    <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full font-semibold">K-Factor: 1.5-2.0</span>
+                    <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full font-semibold">Repeat Usage: 5-7x/lifetime</span>
+                  </div>
+                </div>
+
+                {/* Use Case 2: Community Fundraising */}
+                <div className="bg-black/40 rounded-xl p-6 border border-blue-500/20">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-2xl">
+                      🌍
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-white text-lg mb-2">Community-Led Climate Action</h4>
+                      <p className="text-sm text-blue-300 font-semibold mb-3">Grassroots Engagement Without Infrastructure Barriers</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-zinc-900/50 rounded-lg p-4 mb-4">
+                    <p className="text-zinc-300 text-sm leading-relaxed">
+                      <span className="font-bold text-white">Scenario:</span> A women's collective in rural Kenya wants to fundraise for clean cookstoves. Using Gifted Air, they create a <span className="text-cyan-400 font-semibold">community campaign</span> where global supporters can "gift" clean energy to specific families.
+                    </p>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-500/30">
+                      <div className="text-xs text-blue-400 font-bold mb-2">IMPACT</div>
+                      <ul className="text-sm text-zinc-300 space-y-1">
+                        <li>✓ 50 families receive cookstoves ($25 each)</li>
+                        <li>✓ Total raised: $1,250</li>
+                        <li>✓ Zero platform fees for communities</li>
+                        <li>✓ Direct connection: Donor ↔ Recipient</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-cyan-900/30 rounded-lg p-4 border border-cyan-500/30">
+                      <div className="text-xs text-cyan-400 font-bold mb-2">SYSTEMS THINKING</div>
+                      <ul className="text-sm text-zinc-300 space-y-1">
+                        <li>→ No payment infrastructure needed</li>
+                        <li>→ Bypasses traditional charity middlemen</li>
+                        <li>→ Community ownership of impact story</li>
+                        <li>→ Enables Global South-North solidarity</li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div className="p-3 bg-blue-900/30 rounded-lg border border-blue-500/30">
+                    <p className="text-xs text-blue-300 italic">
+                      💡 <span className="font-bold">Aneri's Note:</span> This model aligns with the community-based distribution systems I built at ENVenture—enabling environment + grassroots agency = scale.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Use Case 3: Corporate B2B */}
+                <div className="bg-black/40 rounded-xl p-6 border border-purple-500/20">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-2xl">
+                      🏢
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-white text-lg mb-2">Corporate Sustainability Partnerships</h4>
+                      <p className="text-sm text-purple-300 font-semibold mb-3">Win-Win: Employee Engagement + Brand Value + Real Impact</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-zinc-900/50 rounded-lg p-4 mb-4">
+                    <p className="text-zinc-300 text-sm leading-relaxed">
+                      <span className="font-bold text-white">Scenario:</span> A tech startup (150 employees) wants to demonstrate climate commitment. Instead of generic swag, they give each employee a <span className="text-purple-400 font-semibold">$20 Gifted Air credit</span> to fund environmental projects of their choice.
+                    </p>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-3 gap-4 mb-4">
+                    <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-500/30">
+                      <div className="text-xs text-purple-400 font-bold mb-2">COMPANY BENEFITS</div>
+                      <ul className="text-sm text-zinc-300 space-y-1 text-xs">
+                        <li>✓ Employee engagement</li>
+                        <li>✓ ESG reporting data</li>
+                        <li>✓ PR story ("150 employees, 3,000 trees")</li>
+                        <li>✓ Tax deductible</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-pink-900/30 rounded-lg p-4 border border-pink-500/30">
+                      <div className="text-xs text-pink-400 font-bold mb-2">FINANCIAL MODEL</div>
+                      <ul className="text-sm text-zinc-300 space-y-1 text-xs">
+                        <li>→ Order: $3,000 (150 × $20)</li>
+                        <li>→ Gifted Air revenue: $1,230 (41%)</li>
+                        <li>→ To partners: $1,500 (50%)</li>
+                        <li>→ AOV: 10-20x higher than B2C</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-cyan-900/30 rounded-lg p-4 border border-cyan-500/30">
+                      <div className="text-xs text-cyan-400 font-bold mb-2">VIRAL AMPLIFICATION</div>
+                      <ul className="text-sm text-zinc-300 space-y-1 text-xs">
+                        <li>→ 150 employees share gifts</li>
+                        <li>→ 50,000+ social impressions</li>
+                        <li>→ 200+ website visitors</li>
+                        <li>→ 10-15 B2C conversions</li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full font-semibold">$258B Corporate Market</span>
+                    <span className="px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full font-semibold">Recurring Annual</span>
+                    <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full font-semibold">Scalable via API</span>
+                  </div>
+                </div>
+
+                {/* Use Case 4: Event Partnerships */}
+                <div className="bg-black/40 rounded-xl p-6 border border-amber-500/20">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0 text-2xl">
+                      🎓
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-white text-lg mb-2">Event & Conference Ecosystem Building</h4>
+                      <p className="text-sm text-amber-300 font-semibold mb-3">Creating Climate Networks Through Shared Experiences</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-zinc-900/50 rounded-lg p-4 mb-4">
+                    <p className="text-zinc-300 text-sm leading-relaxed">
+                      <span className="font-bold text-white">Scenario:</span> A climate tech conference (500 attendees) partners with Gifted Air. Each attendee receives a <span className="text-amber-400 font-semibold">"Thank You" gift</span>—a mangrove planted in their name—creating a shared forest and lasting network connection.
+                    </p>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-amber-900/30 rounded-lg p-4 border border-amber-500/30">
+                      <div className="text-xs text-amber-400 font-bold mb-2">ECOSYSTEM VALUE</div>
+                      <ul className="text-sm text-zinc-300 space-y-1">
+                        <li>✓ Tangible shared impact (500-tree conference forest)</li>
+                        <li>✓ Network strengthening (shared climate action)</li>
+                        <li>✓ Post-event engagement (track forest growth)</li>
+                        <li>✓ Conference brand differentiation</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-orange-900/30 rounded-lg p-4 border border-orange-500/30">
+                      <div className="text-xs text-orange-400 font-bold mb-2">SCALE POTENTIAL</div>
+                      <ul className="text-sm text-zinc-300 space-y-1">
+                        <li>→ 500 gifts × $5 = $2,500 order</li>
+                        <li>→ Platform revenue: $1,025 (41%)</li>
+                        <li>→ Partner revenue: $1,250 (50%)</li>
+                        <li>→ Template for all climate conferences</li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div className="p-3 bg-gradient-to-r from-amber-900/30 to-orange-900/30 rounded-lg border border-amber-500/30">
+                    <p className="text-xs text-amber-300">
+                      <span className="font-bold">Target Events:</span> BeVisioneers Fellowship cohorts, Do School programs, climate tech accelerators, corporate sustainability summits—turning participants into a connected climate ecosystem.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Insight */}
+              <div className="mt-8 p-6 bg-gradient-to-r from-emerald-900/50 to-teal-900/50 rounded-xl border border-emerald-500/50">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl">💡</div>
+                  <div>
+                    <h4 className="font-bold text-white mb-2 text-lg">Systems Thinking in Action</h4>
+                    <p className="text-emerald-200 leading-relaxed">
+                      Each use case demonstrates how Gifted Air creates an <span className="font-bold text-white">enabling environment</span> for climate action—removing barriers (cost, complexity, trust), 
+                      enabling agency (personal choice, community ownership), and building network effects (viral sharing, ecosystem building). 
+                      From individuals to communities to corporations, we're creating interconnected loops where <span className="font-bold text-emerald-400">everyone wins: givers, receivers, partners, and the planet.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Competitive Advantages */}
             <div className="bg-gradient-to-br from-indigo-900/50 to-purple-900/50 rounded-2xl p-8 border border-indigo-500/30">
               <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
