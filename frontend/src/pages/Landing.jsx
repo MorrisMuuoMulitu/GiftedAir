@@ -19,7 +19,8 @@ export default function Landing() {
         >
         </button>
         <div className="star-text">
-          <div className="text-sm font-bold text-slate-900">📊</div>
+          <div className="text-xl font-bold text-slate-900 mb-1">📊</div>
+          <div className="text-xs font-bold text-slate-900 leading-tight">Lean<br/>Canvas</div>
         </div>
       </div>
       
@@ -41,8 +42,8 @@ export default function Landing() {
         
         .michelin-star {
           position: relative;
-          width: 80px;
-          height: 80px;
+          width: 140px;
+          height: 140px;
           clip-path: polygon(
             50% 0%, 
             61% 35%, 
@@ -57,13 +58,13 @@ export default function Landing() {
           );
           background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
           animation: star-glow 2s ease-in-out infinite;
-          transition: all 0.3s ease;
+          transition: all 0.4s ease;
           cursor: pointer;
         }
         
         .michelin-star:hover {
-          animation: star-glow 1s ease-in-out infinite, star-rotate 3s linear infinite;
-          transform: scale(1.15);
+          animation: star-glow 0.8s ease-in-out infinite;
+          transform: scale(1.25) rotate(360deg);
         }
         
         .michelin-star-container {
@@ -81,6 +82,11 @@ export default function Landing() {
           text-align: center;
           pointer-events: none;
           z-index: 10;
+          transition: all 0.4s ease;
+        }
+        
+        .michelin-star:hover ~ .star-text {
+          transform: translate(-50%, -50%) scale(1.25) rotate(360deg);
         }
         
         @keyframes float-up-down {
