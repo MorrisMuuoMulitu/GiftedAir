@@ -586,12 +586,12 @@ export default function Venture() {
                     <div className="text-4xl mb-3">🚀</div>
                     <h4 className="font-black text-white text-lg mb-2">Become a Partner</h4>
                     <p className="text-xs text-white/90 mb-4">Join our network of verified environmental partners</p>
-                    <a 
-                      href="mailto:contact@giftedair.com?subject=Partnership Inquiry&body=I'm interested in becoming a Gifted Air partner to receive 50% of gift revenue for environmental impact in Kenya." 
+                    <button
+                      onClick={() => navigate('/partner-application')}
                       className="w-full bg-white text-[#8A2BE2] font-bold py-3 px-6 rounded-lg text-center hover:bg-zinc-100 transition-colors shadow-lg"
                     >
                       Apply Now
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

@@ -7,6 +7,7 @@ import paymentRoutes from './routes/payments.js';
 import thankYouRoutes from './routes/thankYou.js';
 import bulkOrderHelper from './routes/bulkOrderHelper.js';
 import referralRoutes from './routes/referrals.js';
+import partnerApplicationRoutes from './routes/partnerApplications.js';
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api', thankYouRoutes);
 app.use('/api/bulk-helper', bulkOrderHelper);
 app.use('/api/referrals', referralRoutes);
+app.use('/api/partner-applications', partnerApplicationRoutes);
 
 async function startServer() {
   try {
