@@ -7,7 +7,6 @@ function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { path: '/', label: 'Home', icon: '🏠' },
     { path: '/compose', label: 'Create Gift', icon: '🎁' },
     { path: '/bulk', label: 'Bulk Orders', icon: '💰' },
     { path: '/gallery', label: 'Gallery', icon: '🎨' },
@@ -22,28 +21,29 @@ function Navigation() {
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-green-100">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo - Left Side */}
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2 group cursor-pointer"
+            title="Go to Home"
           >
             <span className="text-3xl transform group-hover:scale-110 transition-transform">🌿</span>
-            <span className="text-2xl font-bold text-forest hidden sm:block">Gifted Air</span>
+            <span className="text-2xl font-bold text-forest">Gifted Air</span>
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          {/* Desktop Navigation - Center/Right */}
+          <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => (
               <button
                 key={link.path}
                 onClick={() => navigate(link.path)}
-                className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                className={`px-3 py-2 rounded-lg font-medium text-sm transition-all ${
                   isActive(link.path)
-                    ? 'bg-forest text-white'
-                    : 'text-gray-700 hover:bg-green-50'
+                    ? 'bg-forest text-white shadow-md'
+                    : 'text-gray-700 hover:bg-green-50 hover:text-forest'
                 }`}
               >
-                <span className="mr-1">{link.icon}</span>
+                <span className="mr-1.5">{link.icon}</span>
                 {link.label}
               </button>
             ))}
@@ -52,7 +52,8 @@ function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,7 +69,7 @@ function Navigation() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-green-100 animate-fade-in-up">
+          <div className="md:hidden py-4 border-t border-green-100 animate-fade-in-up">
             {navLinks.map((link) => (
               <button
                 key={link.path}
@@ -76,7 +77,7 @@ function Navigation() {
                   navigate(link.path);
                   setMobileMenuOpen(false);
                 }}
-                className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition-all ${
+                className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition-all mb-1 ${
                   isActive(link.path)
                     ? 'bg-forest text-white'
                     : 'text-gray-700 hover:bg-green-50'
