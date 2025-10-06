@@ -5,6 +5,12 @@ import SEO, { SEOConfig } from '../components/SEO';
 export default function Aneri() {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('idea');
+  
+  const currentDate = new Date().toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
 
   // Timeline with completion status
   const timeline = [
@@ -171,17 +177,40 @@ export default function Aneri() {
         <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-block mb-4">
-            <div className="flex items-center gap-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-8 py-4 rounded-full shadow-2xl">
-              <span className="text-4xl">🌿</span>
-              <h1 className="text-4xl font-black">ANERI</h1>
+          <div className="inline-block mb-6">
+            <div className="flex flex-col items-center gap-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white px-12 py-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all">
+              <span className="text-6xl animate-float">🌿</span>
+              <h1 className="text-5xl md:text-6xl font-black tracking-tight">GIFTED AIR</h1>
+              <div className="h-1 w-32 bg-white/50 rounded-full"></div>
+              <p className="text-xl md:text-2xl font-medium italic">A Ritual of Climate Love</p>
             </div>
           </div>
-          <p className="text-xl text-gray-700 dark:text-gray-300 font-medium">
-            The Future of Environmental Gifting
-          </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            Business Plan & Market Validation
+          
+          {/* Dedication to Aneri */}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 max-w-3xl mx-auto mb-8 border-l-8 border-emerald-500">
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              <span className="font-bold text-2xl text-emerald-700 dark:text-emerald-400">For Aneri Pradhan</span>
+              <br />
+              <span className="text-base text-gray-600 dark:text-gray-400 mt-2 block">
+                Venture Coach, BeVisioneers Fellowship @ Do School
+              </span>
+            </p>
+            <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 grid md:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-400">
+              <div>
+                <p className="font-semibold text-gray-800 dark:text-white mb-1">Document Date</p>
+                <p>{currentDate}</p>
+              </div>
+              <div>
+                <p className="font-semibold text-gray-800 dark:text-white mb-1">Live Prototype</p>
+                <a href="https://gifted-air.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 dark:text-emerald-400 hover:underline font-semibold">
+                  gifted-air.vercel.app →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-xl text-gray-700 dark:text-gray-300 font-medium max-w-4xl mx-auto">
+            Concept & Strategy Document
           </p>
         </div>
 
@@ -550,7 +579,40 @@ export default function Aneri() {
         {/* Market Research Section */}
         {activeSection === 'market' && (
           <div className="space-y-8 animate-fade-in">
-            {/* Market Size */}
+            {/* Market Opportunity - Enhanced */}
+            <div className="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 rounded-3xl shadow-2xl p-10 text-white mb-8">
+              <h2 className="text-4xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+                <span className="text-5xl">💰</span>
+                The Confluence of Billion-Dollar Markets
+              </h2>
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-6 transform hover:scale-105 transition-all">
+                  <div className="text-5xl mb-4 text-center">🌍</div>
+                  <h3 className="text-2xl font-bold mb-3 text-cyan-300">Voluntary Carbon Market</h3>
+                  <p className="text-4xl font-black mb-2">$10-40B</p>
+                  <p className="text-white/80">Projected by 2030</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-6 transform hover:scale-105 transition-all">
+                  <div className="text-5xl mb-4 text-center">💝</div>
+                  <h3 className="text-2xl font-bold mb-3 text-pink-300">Conscious Gifting Economy</h3>
+                  <p className="text-4xl font-black mb-2">60%+</p>
+                  <p className="text-white/80">Consumers prefer sustainable brands</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-6 transform hover:scale-105 transition-all">
+                  <div className="text-5xl mb-4 text-center">📱</div>
+                  <h3 className="text-2xl font-bold mb-3 text-green-300">Digital Gifting Market</h3>
+                  <p className="text-4xl font-black mb-2">$300B+</p>
+                  <p className="text-white/80">Industry ripe for innovation</p>
+                </div>
+              </div>
+              <div className="bg-amber-500/30 backdrop-blur-sm border-2 border-amber-300/50 rounded-2xl p-6">
+                <p className="text-2xl text-center font-bold">
+                  🎯 Our Target: <span className="text-amber-300">$2-5B</span> Eco-Gifting Market Opportunity
+                </p>
+              </div>
+            </div>
+
+            {/* Market Size Details */}
             <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10">
               <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 flex items-center gap-3">
                 <span className="text-4xl">📈</span>
@@ -772,6 +834,72 @@ export default function Aneri() {
             </div>
           </div>
         )}
+
+          {/* The Ask Section - For Aneri */}
+          <div className="mt-12 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-pink-900/30 dark:via-purple-900/30 dark:to-blue-900/30 rounded-3xl shadow-2xl p-12 border-4 border-purple-300 dark:border-purple-700">
+            <h2 className="text-4xl font-black text-gray-900 dark:text-white mb-6 text-center flex items-center justify-center gap-3">
+              <span className="text-5xl">🙏</span>
+              Next Steps & The Ask
+            </h2>
+            
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 mb-8">
+              <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                We have a powerful vision, a validated market, tangible progress with a <span className="font-bold text-emerald-600 dark:text-emerald-400">live prototype</span>, and a clear, actionable plan.
+              </p>
+              
+              <p className="text-2xl font-bold text-purple-700 dark:text-purple-400 mb-6 text-center">
+                We are seeking your guidance on:
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-t-4 border-emerald-500">
+                <div className="text-4xl mb-4 text-center">🤝</div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Strategic Introductions</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Connections to legal counsel for structuring our social enterprise and to key players in the Kenyan climate/non-profit space (e.g., Green Belt Movement).
+                </p>
+              </div>
+
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-t-4 border-blue-500">
+                <div className="text-4xl mb-4 text-center">🗺️</div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Roadmap Validation</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Feedback on our phased launch plan and feature prioritization to ensure we're building the right things in the right order.
+                </p>
+              </div>
+
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-t-4 border-purple-500">
+                <div className="text-4xl mb-4 text-center">💰</div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Funding Strategy</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Advice on whether to bootstrap this initial phase or seek pre-seed funding to accelerate development and market entry.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-emerald-700 via-teal-700 to-cyan-700 rounded-2xl p-8 text-white text-center">
+              <p className="text-2xl font-bold mb-4">
+                💚 Thank you for your time and consideration, Aneri.
+              </p>
+              <p className="text-lg leading-relaxed max-w-3xl mx-auto">
+                We are excited to build a platform that doesn't just offset carbon, but creates <span className="font-black text-cyan-300">connection</span>, <span className="font-black text-pink-300">hope</span>, and a new <span className="font-black text-yellow-300">ritual of climate love</span>.
+              </p>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="mt-12 text-center">
+            <button
+              onClick={() => navigate('/')}
+              className="px-10 py-5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold text-xl hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+            >
+              🏠 Back to Home
+            </button>
+            <p className="mt-6 text-gray-600 dark:text-gray-400 text-sm">
+              Document prepared for Aneri Pradhan | BeVisioneers Fellowship @ Do School
+            </p>
+          </div>
         </div>
       </div>
     </>
