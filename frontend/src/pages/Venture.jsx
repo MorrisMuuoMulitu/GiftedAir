@@ -379,28 +379,30 @@ export default function Venture() {
           </div>
         </div>
 
-        {/* Navigation Tabs - Ultra Sleek */}
-        <div className="bg-[#1A1A1A] rounded-xl sm:rounded-2xl p-1 sm:p-2 mb-8 sm:mb-12 border border-[#D8BFD8]/30 overflow-x-auto">
-          <div className="flex gap-1 sm:gap-2">
+        {/* Navigation Tabs - Ultra Sleek - 2 Rows on Mobile */}
+        <div className="bg-[#1A1A1A] rounded-xl sm:rounded-2xl p-2 sm:p-2 mb-8 sm:mb-12 border border-[#D8BFD8]/30">
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
             {[
               { id: 'overview', label: 'Overview', icon: '⚡' },
               { id: 'idea', label: 'Vision', icon: '💡' },
-              { id: 'canvas', label: 'Business Model', icon: '📊' },
+              { id: 'canvas', label: 'Business Model', shortLabel: 'Business', icon: '📊' },
               { id: 'market', label: 'Market', icon: '🔍' },
               { id: 'timeline', label: 'Roadmap', icon: '🗓️' }
             ].map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveSection(tab.id)}
-                className={`flex-1 min-w-[70px] sm:min-w-[100px] md:min-w-[140px] px-2 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-bold text-[10px] sm:text-xs md:text-sm transition-all whitespace-nowrap ${
+                className={`px-3 sm:px-4 md:px-6 py-3 sm:py-3 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all ${
                   activeSection === tab.id
                     ? 'bg-gradient-to-r from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] text-white shadow-lg shadow-[#00CED1]/40'
-                    : 'text-zinc-400 hover:text-white hover:bg-[#1A1A1A]'
+                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
                 }`}
               >
-                <span className="mr-1 sm:mr-2">{tab.icon}</span>
-                <span className="hidden sm:inline">{tab.label}</span>
-                <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-lg sm:text-xl">{tab.icon}</span>
+                  <span className="hidden sm:inline text-center leading-tight">{tab.label}</span>
+                  <span className="sm:hidden text-center leading-tight">{tab.shortLabel || tab.label}</span>
+                </div>
               </button>
             ))}
           </div>
@@ -1283,9 +1285,9 @@ export default function Venture() {
             <div className="text-center">
               <button
                 onClick={() => navigate('/')}
-                className="px-4 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-base sm:text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+                className="text-forest hover:underline font-semibold text-base"
               >
-                🏠 Back to Home
+                ← Back to Home
               </button>
             </div>
           </div>
@@ -1497,105 +1499,105 @@ export default function Venture() {
         {activeSection === 'market' && (
           <div className="space-y-8 animate-fade-in">
             {/* Market Opportunity - Enhanced */}
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-2xl p-8 md:p-10 border border-zinc-700 mb-8">
-              <div className="text-center mb-8">
-                <div className="inline-block p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl mb-4">
-                  <span className="text-3xl">💰</span>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-10 border border-zinc-700 mb-6 sm:mb-8">
+              <div className="text-center mb-4 sm:mb-6 md:mb-8">
+                <div className="inline-block p-2 sm:p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg sm:rounded-xl mb-3 sm:mb-4">
+                  <span className="text-2xl sm:text-3xl">💰</span>
                 </div>
-                <h2 className="text-2xl md:text-4xl font-black text-white mb-2">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2">
                   The Confluence of Billion-Dollar Markets
                 </h2>
               </div>
-              <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
-                  <div className="text-4xl mb-4 text-center bg-gradient-to-br from-cyan-400 to-blue-500 text-transparent bg-clip-text">🌍</div>
-                  <h3 className="text-lg md:text-xl font-black mb-3 text-cyan-400">Voluntary Carbon Market</h3>
-                  <p className="text-3xl md:text-4xl font-black mb-2 text-white">$10-40B</p>
-                  <p className="text-zinc-400 text-sm md:text-base">Projected by 2030</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
+                  <div className="text-3xl sm:text-4xl mb-3 sm:mb-4 text-center bg-gradient-to-br from-cyan-400 to-blue-500 text-transparent bg-clip-text">🌍</div>
+                  <h3 className="text-base sm:text-lg md:text-xl font-black mb-2 sm:mb-3 text-cyan-400 text-center">Voluntary Carbon Market</h3>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-black mb-1 sm:mb-2 text-white text-center">$10-40B</p>
+                  <p className="text-zinc-400 text-xs sm:text-sm md:text-base text-center">Projected by 2030</p>
                 </div>
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(255,105,180,0.3)] transition-all duration-300">
-                  <div className="text-4xl mb-4 text-center bg-gradient-to-br from-pink-400 to-rose-500 text-transparent bg-clip-text">💝</div>
-                  <h3 className="text-lg md:text-xl font-black mb-3 text-pink-400">Conscious Gifting Economy</h3>
-                  <p className="text-3xl md:text-4xl font-black mb-2 text-white">60%+</p>
-                  <p className="text-zinc-400 text-sm md:text-base">Consumers prefer sustainable brands</p>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(255,105,180,0.3)] transition-all duration-300">
+                  <div className="text-3xl sm:text-4xl mb-3 sm:mb-4 text-center bg-gradient-to-br from-pink-400 to-rose-500 text-transparent bg-clip-text">💝</div>
+                  <h3 className="text-base sm:text-lg md:text-xl font-black mb-2 sm:mb-3 text-pink-400 text-center">Conscious Gifting Economy</h3>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-black mb-1 sm:mb-2 text-white text-center">60%+</p>
+                  <p className="text-zinc-400 text-xs sm:text-sm md:text-base text-center">Consumers prefer sustainable brands</p>
                 </div>
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
-                  <div className="text-4xl mb-4 text-center bg-gradient-to-br from-emerald-400 to-teal-500 text-transparent bg-clip-text">📱</div>
-                  <h3 className="text-lg md:text-xl font-black mb-3 text-emerald-400">Digital Gifting Market</h3>
-                  <p className="text-3xl md:text-4xl font-black mb-2 text-white">$300B+</p>
-                  <p className="text-zinc-400 text-sm md:text-base">Industry ripe for innovation</p>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
+                  <div className="text-3xl sm:text-4xl mb-3 sm:mb-4 text-center bg-gradient-to-br from-emerald-400 to-teal-500 text-transparent bg-clip-text">📱</div>
+                  <h3 className="text-base sm:text-lg md:text-xl font-black mb-2 sm:mb-3 text-emerald-400 text-center">Digital Gifting Market</h3>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-black mb-1 sm:mb-2 text-white text-center">$300B+</p>
+                  <p className="text-zinc-400 text-xs sm:text-sm md:text-base text-center">Industry ripe for innovation</p>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 rounded-2xl p-6 border border-amber-500/30">
-                <p className="text-lg md:text-2xl text-center font-black">
+              <div className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-amber-500/30">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-center font-black">
                   🎯 Our Target: <span className="text-amber-400">$2-5B</span> Eco-Gifting Market Opportunity
                 </p>
               </div>
             </div>
 
             {/* Market Size Details */}
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="p-3 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl">
-                  <span className="text-3xl">📈</span>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
+                <div className="p-2 sm:p-3 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-lg sm:rounded-xl">
+                  <span className="text-2xl sm:text-3xl">📈</span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black text-white">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-white">
                   {marketResearch.marketSize.title}
                 </h2>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                 {marketResearch.marketSize.data.map((item, idx) => (
-                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                    <div className="text-sm text-zinc-400 mb-2">{item.metric}</div>
-                    <div className="text-2xl md:text-3xl font-black text-[#00CED1]">{item.value}</div>
+                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-zinc-700">
+                    <div className="text-xs sm:text-sm text-zinc-400 mb-1 sm:mb-2">{item.metric}</div>
+                    <div className="text-xl sm:text-2xl md:text-3xl font-black text-[#00CED1]">{item.value}</div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Competitive Analysis */}
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="p-3 bg-gradient-to-br from-red-600 to-orange-600 rounded-xl">
-                  <span className="text-3xl">🥊</span>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
+                <div className="p-2 sm:p-3 bg-gradient-to-br from-red-600 to-orange-600 rounded-lg sm:rounded-xl">
+                  <span className="text-2xl sm:text-3xl">🥊</span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black text-white">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-white">
                   Competitive Landscape
                 </h2>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {marketResearch.competitors.map((comp, idx) => (
-                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-black text-lg md:text-xl text-white">{comp.name}</h3>
-                      <span className="px-4 py-2 bg-gradient-to-r from-red-900 to-red-800 text-red-300 rounded-full text-sm font-bold">
+                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                      <h3 className="font-black text-base sm:text-lg md:text-xl text-white">{comp.name}</h3>
+                      <span className="px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r from-red-900 to-red-800 text-red-300 rounded-full text-xs sm:text-sm font-bold self-start sm:self-auto">
                         Their Weakness
                       </span>
                     </div>
-                    <p className="text-zinc-400 mt-3">{comp.weakness}</p>
+                    <p className="text-zinc-400 mt-2 sm:mt-3 text-sm sm:text-base">{comp.weakness}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Market Validation */}
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="p-3 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl">
-                  <span className="text-3xl">✅</span>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
+                <div className="p-2 sm:p-3 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg sm:rounded-xl">
+                  <span className="text-2xl sm:text-3xl">✅</span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black text-white">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-white">
                   Market Validation Data
                 </h2>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {marketResearch.validation.map((val, idx) => (
-                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                    <div className="flex items-start gap-4">
-                      <span className="text-3xl bg-gradient-to-br from-emerald-400 to-teal-500 text-transparent bg-clip-text">📊</span>
+                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-zinc-700">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <span className="text-2xl sm:text-3xl bg-gradient-to-br from-emerald-400 to-teal-500 text-transparent bg-clip-text">📊</span>
                       <div className="flex-1">
-                        <h3 className="font-black text-base md:text-lg text-emerald-400 mb-2">{val.source}</h3>
-                        <p className="text-zinc-400">{val.finding}</p>
+                        <h3 className="font-black text-sm sm:text-base md:text-lg text-emerald-400 mb-1 sm:mb-2">{val.source}</h3>
+                        <p className="text-zinc-400 text-sm sm:text-base">{val.finding}</p>
                       </div>
                     </div>
                   </div>
@@ -1604,20 +1606,20 @@ export default function Venture() {
             </div>
 
             {/* Our Differentiators */}
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-2xl p-8 md:p-10 border border-zinc-700">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl">
-                  <span className="text-3xl">🌟</span>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
+                <div className="p-2 sm:p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg sm:rounded-xl">
+                  <span className="text-2xl sm:text-3xl">🌟</span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black text-white">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-white">
                   Why We'll Win
                 </h2>
               </div>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {marketResearch.differentiators.map((diff, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl p-4 border border-zinc-700">
-                    <span className="text-2xl bg-gradient-to-br from-purple-400 to-pink-500 text-transparent bg-clip-text">✨</span>
-                    <p className="text-base md:text-lg text-zinc-300">{diff}</p>
+                  <div key={idx} className="flex items-start gap-2 sm:gap-3 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-zinc-700">
+                    <span className="text-xl sm:text-2xl bg-gradient-to-br from-purple-400 to-pink-500 text-transparent bg-clip-text">✨</span>
+                    <p className="text-sm sm:text-base md:text-lg text-zinc-300">{diff}</p>
                   </div>
                 ))}
               </div>
@@ -1626,9 +1628,9 @@ export default function Venture() {
             <div className="text-center">
               <button
                 onClick={() => navigate('/')}
-                className="px-4 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-base sm:text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+                className="text-forest hover:underline font-semibold text-base"
               >
-                🏠 Back to Home
+                ← Back to Home
               </button>
             </div>
           </div>
@@ -1773,9 +1775,9 @@ export default function Venture() {
             <div className="text-center">
               <button
                 onClick={() => navigate('/')}
-                className="px-4 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-base sm:text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+                className="text-forest hover:underline font-semibold text-base"
               >
-                🏠 Back to Home
+                ← Back to Home
               </button>
             </div>
           </div>
@@ -1838,9 +1840,9 @@ export default function Venture() {
           <div className="mt-12 text-center">
             <button
               onClick={() => navigate('/')}
-              className="px-10 py-5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold text-xl hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+              className="text-forest hover:underline font-semibold text-base"
             >
-              🏠 Back to Home
+              ← Back to Home
             </button>
             <p className="mt-6 text-gray-600 dark:text-gray-400 text-sm">
               Document prepared for <a href="https://www.aneripradhan.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Aneri Pradhan</a>, Venture Coach | BeVisioneers Fellowship @ Do School
