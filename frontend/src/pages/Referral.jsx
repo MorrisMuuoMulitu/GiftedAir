@@ -87,7 +87,7 @@ export default function Referral() {
               Referral Program
             </h1>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-              Share climate love, earn rewards! Get $1 credit for every friend who sends a gift using your code.
+              Share climate love, grow the movement! Your friends get 10% off, and you climb the leaderboard.
             </p>
           </div>
 
@@ -139,7 +139,7 @@ export default function Referral() {
               <div className="mt-6 bg-purple-50 dark:bg-purple-900/30 rounded-xl p-4">
                 <p className="text-sm text-purple-900 dark:text-purple-200 text-center">
                   💡 Your friends get <strong>10% off</strong> their first gift!<br/>
-                  You get <strong>$1 credit</strong> for each referral!
+                  You get <strong>leaderboard status</strong> and help grow the climate movement! 🌍
                 </p>
               </div>
             </div>
@@ -177,7 +177,7 @@ export default function Referral() {
                 <div className="mt-6 bg-purple-50 dark:bg-purple-900/30 rounded-xl p-4">
                   <p className="text-sm text-purple-900 dark:text-purple-200">
                     <strong>Share with friends:</strong><br/>
-                    Send them your code or link. When they use it, you both win!
+                    They get 10% off, you climb the leaderboard, and together we grow the climate movement! 🌱
                   </p>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export default function Referral() {
               {stats && (
                 <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8">
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Your Stats
+                    Your Impact
                   </h2>
 
                   <div className="grid grid-cols-2 gap-4 mb-6">
@@ -195,16 +195,16 @@ export default function Referral() {
                         {stats.totalReferrals}
                       </div>
                       <div className="text-sm font-bold opacity-90">
-                        Total Referrals
+                        Friends Joined
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl p-6 text-white text-center">
+                    <div className="bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl p-6 text-white text-center">
                       <div className="text-4xl font-black mb-2">
-                        ${stats.totalRewards}
+                        ${stats.totalRevenue || 0}
                       </div>
                       <div className="text-sm font-bold opacity-90">
-                        Credits Earned
+                        Climate Impact
                       </div>
                     </div>
                   </div>
@@ -225,14 +225,20 @@ export default function Referral() {
                                 {new Date(ref.createdAt).toLocaleDateString()}
                               </div>
                             </div>
-                            <div className="text-green-600 dark:text-green-400 font-bold">
-                              +${ref.referrerRewardGiven}
+                            <div className="text-green-600 dark:text-green-400 font-bold text-xl">
+                              🌱
                             </div>
                           </div>
                         ))}
                       </div>
                     </div>
                   )}
+
+                  <div className="mt-6 bg-green-50 dark:bg-green-900/30 rounded-xl p-4 text-center">
+                    <p className="text-sm text-green-900 dark:text-green-200">
+                      <strong>Keep sharing!</strong> Every referral grows the climate movement and helps more people discover gifting with purpose. 🌍💚
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
