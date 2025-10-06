@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SEO, { SEOConfig } from '../components/SEO';
 
-export default function Aneri() {
+export default function Venture() {
   const navigate = useNavigate();
-  const [activeSection, setActiveSection] = useState('idea');
+  const [activeSection, setActiveSection] = useState('overview');
   
   const currentDate = new Date().toLocaleDateString('en-US', { 
     year: 'numeric', 
@@ -170,93 +170,286 @@ export default function Aneri() {
     ]
   };
 
+  // Partner links for easy reference
+  const partnerLinks = {
+    oneTreePlanted: 'https://onetreeplanted.org/',
+    oceanCleanup: 'https://theoceancleanup.com/',
+    charityWater: 'https://www.charitywater.org/',
+    greenBeltMovement: 'https://www.greenbeltmovement.org/',
+    coralRestoration: 'https://www.coralrestoration.org/',
+    wwf: 'https://www.worldwildlife.org/',
+    rainforestTrust: 'https://www.rainforesttrust.org/',
+    solarAid: 'https://solar-aid.org/',
+    doSchool: 'https://www.do-school.org/',
+    beVisioneers: 'https://www.do-school.org/programs/bevisioneers'
+  };
+
   return (
     <>
-      <SEO {...SEOConfig.aneri} />
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-gray-900 dark:via-emerald-900 dark:to-gray-900 py-12 px-4">
+      <SEO 
+        title="Venture Deck - Gifted Air | Climate Action as a Love Language"
+        description="Comprehensive venture strategy for Gifted Air: transforming climate action into meaningful gifts. Market analysis, business model, and roadmap."
+        keywords="gifted air venture, climate gifting startup, environmental business plan, sustainable gifting platform"
+      />
+      <div className="min-h-screen bg-black text-white py-12 px-4">
         <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block mb-6">
-            <div className="flex flex-col items-center gap-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white px-12 py-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all">
-              <span className="text-6xl animate-float">🌿</span>
-              <h1 className="text-5xl md:text-6xl font-black tracking-tight">GIFTED AIR</h1>
-              <div className="h-1 w-32 bg-white/50 rounded-full"></div>
-              <p className="text-xl md:text-2xl font-medium italic">A Ritual of Climate Love</p>
-            </div>
-          </div>
+        {/* Hero Header - Ultra Modern */}
+        <div className="relative overflow-hidden rounded-3xl mb-12">
+          {/* Animated background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 opacity-90"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjAgMjBjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNMTYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
           
-          {/* Dedication to Aneri */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 max-w-3xl mx-auto mb-8 border-l-8 border-emerald-500">
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              <span className="font-bold text-2xl text-emerald-700 dark:text-emerald-400">For Aneri Pradhan</span>
-              <br />
-              <span className="text-base text-gray-600 dark:text-gray-400 mt-2 block">
-                Venture Coach, BeVisioneers Fellowship @ Do School
-              </span>
-            </p>
-            <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 grid md:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-400">
-              <div>
-                <p className="font-semibold text-gray-800 dark:text-white mb-1">Document Date</p>
-                <p>{currentDate}</p>
+          <div className="relative z-10 px-8 md:px-16 py-16 md:py-24">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              {/* Left: Branding */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full mb-6 border border-white/20">
+                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                  <span className="text-sm font-semibold">LIVE PROTOTYPE</span>
+                </div>
+                
+                <h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-4 tracking-tighter">
+                  GIFTED<br />AIR
+                </h1>
+                
+                <p className="text-2xl md:text-3xl font-light italic mb-8 text-white/90">
+                  A Ritual of Climate Love
+                </p>
+                
+                <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                  <a 
+                    href="https://gifted-air.vercel.app/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white text-emerald-700 px-6 py-3 rounded-xl font-bold hover:bg-green-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    <span>🚀</span>
+                    <span>View Live Site</span>
+                  </a>
+                  <a 
+                    href={partnerLinks.doSchool}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-6 py-3 rounded-xl font-bold hover:bg-white/20 transition-all border border-white/20"
+                  >
+                    <span>🎓</span>
+                    <span>Do School</span>
+                  </a>
+                </div>
               </div>
-              <div>
-                <p className="font-semibold text-gray-800 dark:text-white mb-1">Live Prototype</p>
-                <a href="https://gifted-air.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 dark:text-emerald-400 hover:underline font-semibold">
-                  gifted-air.vercel.app →
-                </a>
+              
+              {/* Right: Quick Stats */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
+                  <div className="text-4xl font-black mb-1">66%</div>
+                  <div className="text-sm font-semibold opacity-90">Platform Complete</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
+                  <div className="text-4xl font-black mb-1">$2-5B</div>
+                  <div className="text-sm font-semibold opacity-90">Market Opportunity</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
+                  <div className="text-4xl font-black mb-1">8</div>
+                  <div className="text-sm font-semibold opacity-90">Impact Categories</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
+                  <div className="text-4xl font-black mb-1">$1-10</div>
+                  <div className="text-sm font-semibold opacity-90">Gift Price Range</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* For Aneri - Sleek Badge */}
+            <div className="mt-12 pt-8 border-t border-white/20">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                  <p className="text-lg font-semibold mb-1">
+                    Prepared for <span className="text-cyan-300">Aneri Pradhan</span>
+                  </p>
+                  <p className="text-white/70">
+                    Venture Coach, <a href={partnerLinks.beVisioneers} target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan-300 transition-colors">BeVisioneers Fellowship</a> @ Do School
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-white/70 mb-1">Document Date</p>
+                  <p className="font-semibold">{currentDate}</p>
+                </div>
               </div>
             </div>
           </div>
-
-          <p className="text-xl text-gray-700 dark:text-gray-300 font-medium max-w-4xl mx-auto">
-            Concept & Strategy Document
-          </p>
         </div>
 
-        {/* Navigation Tabs */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2 mb-8 flex gap-2 flex-wrap">
-          <button
-            onClick={() => setActiveSection('idea')}
-            className={`flex-1 min-w-[150px] px-6 py-3 rounded-xl font-semibold transition-all ${
-              activeSection === 'idea'
-                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-            }`}
-          >
-            💡 The Idea
-          </button>
-          <button
-            onClick={() => setActiveSection('canvas')}
-            className={`flex-1 min-w-[150px] px-6 py-3 rounded-xl font-semibold transition-all ${
-              activeSection === 'canvas'
-                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-            }`}
-          >
-            📊 Lean Canvas
-          </button>
-          <button
-            onClick={() => setActiveSection('market')}
-            className={`flex-1 min-w-[150px] px-6 py-3 rounded-xl font-semibold transition-all ${
-              activeSection === 'market'
-                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-            }`}
-          >
-            🔍 Market Research
-          </button>
-          <button
-            onClick={() => setActiveSection('timeline')}
-            className={`flex-1 min-w-[150px] px-6 py-3 rounded-xl font-semibold transition-all ${
-              activeSection === 'timeline'
-                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-            }`}
-          >
-            🗓️ Timeline
-          </button>
+        {/* Navigation Tabs - Ultra Sleek */}
+        <div className="bg-zinc-900 rounded-2xl p-2 mb-12 border border-zinc-800 overflow-x-auto">
+          <div className="flex gap-2">
+            {[
+              { id: 'overview', label: 'Overview', icon: '⚡' },
+              { id: 'idea', label: 'Vision', icon: '💡' },
+              { id: 'canvas', label: 'Business Model', icon: '📊' },
+              { id: 'market', label: 'Market', icon: '🔍' },
+              { id: 'timeline', label: 'Roadmap', icon: '🗓️' }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveSection(tab.id)}
+                className={`flex-1 min-w-[140px] px-6 py-3 rounded-xl font-bold text-sm transition-all ${
+                  activeSection === tab.id
+                    ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/30'
+                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
+                }`}
+              >
+                <span className="mr-2">{tab.icon}</span>
+                <span>{tab.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* Overview Section - NEW */}
+        {activeSection === 'overview' && (
+          <div className="space-y-8 animate-fade-in">
+            {/* Executive Summary */}
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl p-12 border border-zinc-700">
+              <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                Executive Summary
+              </h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-2xl font-bold mb-4 text-white">The Concept</h3>
+                  <p className="text-zinc-300 leading-relaxed text-lg">
+                    Gifted Air transforms <span className="text-emerald-400 font-semibold">climate action into a love language</span>. We're building a poetic web platform where users gift verified environmental actions—plant trees, clean oceans, provide clean water—with personalized messages and beautiful, shareable pages.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-4 text-white">The Opportunity</h3>
+                  <p className="text-zinc-300 leading-relaxed text-lg">
+                    We exist at the intersection of three massive markets: the <span className="text-cyan-400 font-semibold">$10-40B voluntary carbon market</span>, the <span className="text-pink-400 font-semibold">$300B+ digital gifting</span> industry, and the growing conscious consumer movement where <span className="text-green-400 font-semibold">60%+ prefer sustainable brands</span>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Key Highlights Grid */}
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:border-emerald-500/50 transition-all">
+                <div className="text-5xl mb-4">🎯</div>
+                <h3 className="text-xl font-bold mb-3 text-white">Target Market</h3>
+                <p className="text-zinc-400 mb-4">$2-5B eco-gifting opportunity within larger markets</p>
+                <ul className="space-y-2 text-sm text-zinc-500">
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500">→</span>
+                    <span>Climate-conscious Millennials & Gen Z</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500">→</span>
+                    <span>Long-distance relationships & diaspora</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500">→</span>
+                    <span>Corporate gifting & events</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:border-cyan-500/50 transition-all">
+                <div className="text-5xl mb-4">🚀</div>
+                <h3 className="text-xl font-bold mb-3 text-white">Current Progress</h3>
+                <p className="text-zinc-400 mb-4">Platform 66% complete with live prototype</p>
+                <ul className="space-y-2 text-sm text-zinc-500">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>8 gift types (Trees, Ocean, Water, Solar, etc.)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Stripe payments integrated</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Gallery, Leaderboard, Referral program</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:border-pink-500/50 transition-all">
+                <div className="text-5xl mb-4">💰</div>
+                <h3 className="text-xl font-bold mb-3 text-white">Revenue Model</h3>
+                <p className="text-zinc-400 mb-4">Transparent platform fee on each gift</p>
+                <ul className="space-y-2 text-sm text-zinc-500">
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-500">→</span>
+                    <span>~47% platform revenue per gift</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-500">→</span>
+                    <span>50% to environmental partners</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-500">→</span>
+                    <span>Future: Subscriptions & corporate packages</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Partner Organizations */}
+            <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
+              <h3 className="text-2xl font-bold mb-6 text-white">Environmental Partners</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { name: 'One Tree Planted', url: partnerLinks.oneTreePlanted, icon: '🌳' },
+                  { name: 'The Ocean Cleanup', url: partnerLinks.oceanCleanup, icon: '🌊' },
+                  { name: 'Charity: Water', url: partnerLinks.charityWater, icon: '💧' },
+                  { name: 'Green Belt Movement', url: partnerLinks.greenBeltMovement, icon: '🌿' },
+                  { name: 'Coral Restoration Foundation', url: partnerLinks.coralRestoration, icon: '🪸' },
+                  { name: 'World Wildlife Fund', url: partnerLinks.wwf, icon: '🦁' },
+                  { name: 'Rainforest Trust', url: partnerLinks.rainforestTrust, icon: '🌴' },
+                  { name: 'Solar Aid', url: partnerLinks.solarAid, icon: '☀️' }
+                ].map((partner, idx) => (
+                  <a
+                    key={idx}
+                    href={partner.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-4 bg-zinc-800 rounded-xl hover:bg-zinc-700 transition-all border border-zinc-700 hover:border-emerald-500/50"
+                  >
+                    <span className="text-3xl">{partner.icon}</span>
+                    <span className="text-sm font-semibold text-zinc-300 hover:text-white">{partner.name}</span>
+                    <span className="ml-auto text-zinc-500">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* The Ask - Quick Summary */}
+            <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 rounded-2xl p-8 border border-purple-500/30">
+              <h3 className="text-2xl font-bold mb-4 text-white">Seeking Guidance On</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="flex items-start gap-3">
+                  <span className="text-3xl">🤝</span>
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Strategic Introductions</h4>
+                    <p className="text-sm text-zinc-300">Legal counsel & Kenya climate network connections</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-3xl">🗺️</span>
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Roadmap Validation</h4>
+                    <p className="text-sm text-zinc-300">Feature prioritization & launch strategy feedback</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-3xl">💰</span>
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Funding Strategy</h4>
+                    <p className="text-sm text-zinc-300">Bootstrap vs. pre-seed funding advice</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* The Idea Section */}
         {activeSection === 'idea' && (
