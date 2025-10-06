@@ -92,7 +92,34 @@ export default function Admin() {
     try {
       setExporting(true);
 
-      const summary = `GIFTED AIR REPORT\n${new Date().toLocaleString()}\n\nTotal Gifts: ${stats.totalGifts}\nRevenue: $${stats.totalRevenue.toFixed(2)}\nCO₂ Offset: ${stats.totalImpact.co2}kg\nTrees: ${stats.totalImpact.trees}`;
+      // Calculate totals from gifts
+      const totalGifts = gifts.length;
+      const totalRevenue = gifts.reduce((sum, g) => sum + (g.totalCost || g.amount || 0), 0);
+      const giftsByType = gifts.reduce((acc, g) => {
+        acc[g.type] = (acc[g.type] || 0) + 1;
+        return acc;
+      }, {});
+
+      const summary = `GIFTED AIR ADMIN REPORT
+Generated: ${new Date().toLocaleString()}
+==========================================
+
+OVERVIEW:
+---------
+Total Gifts Sent: ${totalGifts}
+Total Revenue: $${totalRevenue.toFixed(2)}
+
+GIFT TYPE BREAKDOWN:
+-------------------
+${Object.entries(giftsByType).map(([type, count]) => `${type}: ${count}`).join('\n')}
+
+RECENT GIFTS (Last 10):
+-----------------------
+${gifts.slice(0, 10).map((gift, i) => `${i + 1}. ${new Date(gift.createdAt).toLocaleDateString()} - ${gift.type} ($${gift.amount || gift.totalCost || 0}) - From: ${gift.from || 'Anonymous'}`).join('\n')}
+
+==========================================
+Report End`;
+
       const blob = new Blob([summary], { type: 'text/plain' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -105,17 +132,29 @@ export default function Admin() {
       setExporting(false);
     } catch (error) {
       console.error('Export failed:', error);
+      alert('❌ Export failed. Please try again.');
       setExporting(false);
     }
   };
 
   const copyStats = async () => {
     try {
-      const text = `Gifted Air Stats\nGifts: ${stats.totalGifts}\nRevenue: $${stats.totalRevenue.toFixed(2)}\nCO₂: ${stats.totalImpact.co2}kg`;
+      // Calculate from gifts
+      const totalGifts = gifts.length;
+      const totalRevenue = gifts.reduce((sum, g) => sum + (g.totalCost || g.amount || 0), 0);
+      
+      const text = `📊 Gifted Air Stats (${new Date().toLocaleDateString()})
+
+Total Gifts: ${totalGifts}
+Total Revenue: $${totalRevenue.toFixed(2)}
+
+Generated from Admin Dashboard`;
+      
       await navigator.clipboard.writeText(text);
       alert('✅ Stats copied to clipboard!');
     } catch (error) {
       console.error('Copy failed:', error);
+      alert('❌ Copy failed. Please try again.');
     }
   };
 
