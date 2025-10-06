@@ -196,7 +196,7 @@ export default function Venture() {
         {/* Hero Header - Ultra Modern */}
         <div className="relative overflow-hidden rounded-3xl mb-12">
           {/* Animated background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] opacity-90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#8A2BE2] via-[#C38B4A] to-[#D8BFD8] opacity-90"></div>
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjAgMjBjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNMTYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
           
           <div className="relative z-10 px-8 md:px-16 py-16 md:py-24">
@@ -204,7 +204,7 @@ export default function Venture() {
               {/* Left: Branding */}
               <div className="flex-1 text-center md:text-left">
                 <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full mb-6 border border-white/20">
-                  <span className="w-2 h-2 bg-[#00CED1] rounded-full animate-pulse"></span>
+                  <span className="w-2 h-2 bg-[#C38B4A] rounded-full animate-pulse"></span>
                   <span className="text-sm font-semibold">LIVE PROTOTYPE</span>
                 </div>
                 
@@ -294,7 +294,7 @@ export default function Venture() {
                 onClick={() => setActiveSection(tab.id)}
                 className={`flex-1 min-w-[140px] px-6 py-3 rounded-xl font-bold text-sm transition-all ${
                   activeSection === tab.id
-                    ? 'bg-gradient-to-r from-[#8A2BE2] to-[#00CED1] text-white shadow-lg shadow-[#8A2BE2]/30'
+                    ? 'bg-gradient-to-r from-[#8A2BE2] via-[#C38B4A] to-[#D8BFD8] text-white shadow-lg shadow-[#C38B4A]/30'
                     : 'text-zinc-400 hover:text-white hover:bg-[#1A1A1A]'
                 }`}
               >
@@ -310,7 +310,7 @@ export default function Venture() {
           <div className="space-y-8 animate-fade-in">
             {/* Executive Summary */}
             <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-3xl p-12 border border-[#D8BFD8]/30">
-              <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-[#8A2BE2] to-[#00CED1] bg-clip-text text-transparent">
+              <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-[#8A2BE2] via-[#C38B4A] to-[#D8BFD8] bg-clip-text text-transparent">
                 Executive Summary
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
@@ -551,7 +551,7 @@ export default function Venture() {
             </div>
 
             {/* Use Cases - How It Works In Practice */}
-            <div className="bg-gradient-to-br from-[#8A2BE2]/20 to-[#00CED1]/20 rounded-2xl p-8 border border-[#8A2BE2]/30">
+            <div className="bg-gradient-to-br from-[#C38B4A]/15 to-[#8A2BE2]/15 rounded-2xl p-8 border border-[#C38B4A]/30">
               <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
                 <span className="text-3xl">🎯</span>
                 Real-World Use Cases: Inclusive Climate Action at Scale
@@ -648,11 +648,7 @@ export default function Venture() {
                     </div>
                   </div>
                   
-                  <div className="p-3 bg-blue-900/30 rounded-lg border border-blue-500/30">
-                    <p className="text-xs text-blue-300 italic">
-                      💡 <span className="font-bold">Aneri's Note:</span> This model aligns with the community-based distribution systems I built at ENVenture—enabling environment + grassroots agency = scale.
-                    </p>
-                  </div>
+
                 </div>
 
                 {/* Use Case 3: Corporate B2B */}
@@ -761,15 +757,15 @@ export default function Venture() {
               </div>
 
               {/* Key Insight */}
-              <div className="mt-8 p-6 bg-gradient-to-r from-emerald-900/50 to-teal-900/50 rounded-xl border border-emerald-500/50">
+              <div className="mt-8 p-6 bg-gradient-to-r from-[#8A2BE2]/30 to-[#D8BFD8]/30 rounded-xl border border-[#D8BFD8]/50">
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">💡</div>
                   <div>
                     <h4 className="font-bold text-white mb-2 text-lg">Systems Thinking in Action</h4>
-                    <p className="text-emerald-200 leading-relaxed">
+                    <p className="text-white/80 leading-relaxed">
                       Each use case demonstrates how Gifted Air creates an <span className="font-bold text-white">enabling environment</span> for climate action—removing barriers (cost, complexity, trust), 
                       enabling agency (personal choice, community ownership), and building network effects (viral sharing, ecosystem building). 
-                      From individuals to communities to corporations, we're creating interconnected loops where <span className="font-bold text-emerald-400">everyone wins: givers, receivers, partners, and the planet.</span>
+                      From individuals to communities to corporations, we're creating interconnected loops where <span className="font-bold text-[#C38B4A]">everyone wins: givers, receivers, partners, and the planet.</span>
                     </p>
                   </div>
                 </div>
@@ -777,7 +773,7 @@ export default function Venture() {
             </div>
 
             {/* Competitive Advantages */}
-            <div className="bg-gradient-to-br from-indigo-900/50 to-purple-900/50 rounded-2xl p-8 border border-indigo-500/30">
+            <div className="bg-gradient-to-br from-[#00CED1]/20 to-[#ADD8E6]/20 rounded-2xl p-8 border border-[#00CED1]/30">
               <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
                 <span className="text-3xl">🛡️</span>
                 Why We'll Win: Unfair Advantages
@@ -785,7 +781,7 @@ export default function Venture() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                    <div className="w-8 h-8 rounded-full bg-[#00CED1] flex items-center justify-center flex-shrink-0 font-bold text-black">1</div>
                     <div>
                       <h4 className="font-bold text-white mb-1">Emotional Connection</h4>
                       <p className="text-sm text-zinc-300">We're the ONLY platform combining gifting psychology with climate action. Not a charity, not a gift card—a new category.</p>
@@ -793,7 +789,7 @@ export default function Venture() {
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                    <div className="w-8 h-8 rounded-full bg-[#ADD8E6] flex items-center justify-center flex-shrink-0 font-bold text-black">2</div>
                     <div>
                       <h4 className="font-bold text-white mb-1">Built-in Virality</h4>
                       <p className="text-sm text-zinc-300">Every gift creates a beautiful shareable page. Recipients become marketers. Zero CAC at scale.</p>
@@ -801,7 +797,7 @@ export default function Venture() {
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                    <div className="w-8 h-8 rounded-full bg-[#8A2BE2] flex items-center justify-center flex-shrink-0 font-bold">3</div>
                     <div>
                       <h4 className="font-bold text-white mb-1">Network Effects</h4>
                       <p className="text-sm text-zinc-300">More users = more social proof = more gifts = more visibility. Compounding growth loop.</p>
@@ -811,7 +807,7 @@ export default function Venture() {
                 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                    <div className="w-8 h-8 rounded-full bg-[#D8BFD8] flex items-center justify-center flex-shrink-0 font-bold text-black">4</div>
                     <div>
                       <h4 className="font-bold text-white mb-1">First Mover in Category</h4>
                       <p className="text-sm text-zinc-300">Defining "emotional offsetting" before copycats arrive. Brand becomes the category.</p>
@@ -819,7 +815,7 @@ export default function Venture() {
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0 font-bold">5</div>
+                    <div className="w-8 h-8 rounded-full bg-[#C38B4A] flex items-center justify-center flex-shrink-0 font-bold">5</div>
                     <div>
                       <h4 className="font-bold text-white mb-1">Recurring Revenue Model</h4>
                       <p className="text-sm text-zinc-300">Birthdays, anniversaries, holidays repeat yearly. Users come back 5-7 times lifetime.</p>
@@ -827,7 +823,7 @@ export default function Venture() {
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0 font-bold">6</div>
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00CED1] to-[#8A2BE2] flex items-center justify-center flex-shrink-0 font-bold">6</div>
                     <div>
                       <h4 className="font-bold text-white mb-1">Global Scalability</h4>
                       <p className="text-sm text-zinc-300">Digital product, no inventory, low overhead. Launch in 100+ countries day one.</p>
@@ -839,34 +835,34 @@ export default function Venture() {
 
             {/* Customer Acquisition Strategy */}
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
+              <div className="bg-[#1A1A1A] rounded-2xl p-8 border border-[#C38B4A]/30 hover:border-[#C38B4A]/50 transition-all">
                 <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-3">
                   <span className="text-3xl">🎣</span>
                   Customer Acquisition
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 p-3 bg-zinc-800 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-[#C38B4A]/10 rounded-lg border border-[#C38B4A]/20 hover:border-[#C38B4A]/40 transition-all">
                     <span className="text-2xl">📱</span>
                     <div>
                       <div className="font-semibold text-white text-sm">Social Media</div>
                       <div className="text-xs text-zinc-400">TikTok, Instagram Reels (organic viral content)</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-zinc-800 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-[#C38B4A]/10 rounded-lg border border-[#C38B4A]/20 hover:border-[#C38B4A]/40 transition-all">
                     <span className="text-2xl">🎯</span>
                     <div>
                       <div className="font-semibold text-white text-sm">Influencer Partnerships</div>
                       <div className="text-xs text-zinc-400">Eco-influencers, lifestyle creators (affiliate model)</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-zinc-800 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-[#C38B4A]/10 rounded-lg border border-[#C38B4A]/20 hover:border-[#C38B4A]/40 transition-all">
                     <span className="text-2xl">💝</span>
                     <div>
                       <div className="font-semibold text-white text-sm">Gift-Based Virality</div>
                       <div className="text-xs text-zinc-400">Every gift creates 2-3 new potential users</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-zinc-800 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-[#C38B4A]/10 rounded-lg border border-[#C38B4A]/20 hover:border-[#C38B4A]/40 transition-all">
                     <span className="text-2xl">🔍</span>
                     <div>
                       <div className="font-semibold text-white text-sm">SEO & Content</div>
@@ -876,26 +872,26 @@ export default function Venture() {
                 </div>
               </div>
               
-              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
+              <div className="bg-[#1A1A1A] rounded-2xl p-8 border border-[#8A2BE2]/30 hover:border-[#8A2BE2]/50 transition-all">
                 <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-3">
                   <span className="text-3xl">💸</span>
                   Revenue Multipliers
                 </h3>
                 <div className="space-y-3">
-                  <div className="p-4 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-lg border border-purple-500/30">
+                  <div className="p-4 bg-gradient-to-r from-[#8A2BE2]/20 to-[#D8BFD8]/20 rounded-lg border border-[#8A2BE2]/30">
                     <div className="font-bold text-white mb-1">Corporate Gifting</div>
                     <p className="text-sm text-zinc-300 mb-2">$258B corporate gift market. 50-500 gifts per order.</p>
-                    <div className="text-xs text-purple-400 font-semibold">AOV: 10-20x higher than B2C</div>
+                    <div className="text-xs text-[#8A2BE2] font-semibold">AOV: 10-20x higher than B2C</div>
                   </div>
-                  <div className="p-4 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 rounded-lg border border-cyan-500/30">
+                  <div className="p-4 bg-gradient-to-r from-[#00CED1]/20 to-[#ADD8E6]/20 rounded-lg border border-[#00CED1]/30">
                     <div className="font-bold text-white mb-1">Subscription Model</div>
                     <p className="text-sm text-zinc-300 mb-2">Monthly recurring gifts. Stable MRR stream.</p>
-                    <div className="text-xs text-cyan-400 font-semibold">Target: 20% of users convert to subscription</div>
+                    <div className="text-xs text-[#ADD8E6] font-semibold">Target: 20% of users convert to subscription</div>
                   </div>
-                  <div className="p-4 bg-gradient-to-r from-green-900/30 to-emerald-900/30 rounded-lg border border-green-500/30">
+                  <div className="p-4 bg-gradient-to-r from-[#00CED1]/20 to-[#C38B4A]/20 rounded-lg border border-[#00CED1]/30">
                     <div className="font-bold text-white mb-1">Event Partnerships</div>
                     <p className="text-sm text-zinc-300 mb-2">Weddings, conferences, fundraisers.</p>
-                    <div className="text-xs text-green-400 font-semibold">100-1000+ gifts per event</div>
+                    <div className="text-xs text-[#C38B4A] font-semibold">100-1000+ gifts per event</div>
                   </div>
                 </div>
               </div>
