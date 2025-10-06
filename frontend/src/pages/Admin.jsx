@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { API_URL } from '../config';
-import { trackAdminAction } from '../utils/analytics';
 
 export default function Admin() {
   const [stats, setStats] = useState(null);
@@ -61,7 +60,6 @@ export default function Admin() {
   const exportToCSV = () => {
     try {
       setExporting(true);
-      if (typeof trackAdminAction === 'function') trackAdminAction('export_csv', { totalGifts: gifts.length });
 
       const headers = ['Date', 'From', 'To', 'Type', 'Amount', 'Message'];
       const rows = gifts.map(gift => [
@@ -93,7 +91,6 @@ export default function Admin() {
   const exportReport = () => {
     try {
       setExporting(true);
-      if (typeof trackAdminAction === 'function') trackAdminAction('export_report', stats);
 
       const summary = `GIFTED AIR REPORT\n${new Date().toLocaleString()}\n\nTotal Gifts: ${stats.totalGifts}\nRevenue: $${stats.totalRevenue.toFixed(2)}\nCO₂ Offset: ${stats.totalImpact.co2}kg\nTrees: ${stats.totalImpact.trees}`;
       const blob = new Blob([summary], { type: 'text/plain' });
@@ -117,7 +114,6 @@ export default function Admin() {
       const text = `Gifted Air Stats\nGifts: ${stats.totalGifts}\nRevenue: $${stats.totalRevenue.toFixed(2)}\nCO₂: ${stats.totalImpact.co2}kg`;
       await navigator.clipboard.writeText(text);
       alert('✅ Stats copied to clipboard!');
-      if (typeof trackAdminAction === 'function') trackAdminAction('copy_stats', stats);
     } catch (error) {
       console.error('Copy failed:', error);
     }
