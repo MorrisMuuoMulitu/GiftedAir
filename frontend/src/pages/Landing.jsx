@@ -36,6 +36,14 @@ export default function Landing() {
               Create a Gift
             </button>
             <button
+              onClick={() => navigate('/bulk')}
+              className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-12 py-4 rounded-full text-xl font-semibold 
+                         hover:from-amber-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 
+                         shadow-lg hover:shadow-xl"
+            >
+              💰 Bulk Orders
+            </button>
+            <button
               onClick={() => navigate('/gallery')}
               className="bg-white text-forest border-2 border-forest px-12 py-4 rounded-full text-xl font-semibold 
                          hover:bg-green-50 transition-all duration-300 transform hover:scale-105 
