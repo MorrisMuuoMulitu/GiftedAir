@@ -191,12 +191,12 @@ export default function Venture() {
         description="Comprehensive venture strategy for Gifted Air: transforming climate action into meaningful gifts. Market analysis, business model, and roadmap."
         keywords="gifted air venture, climate gifting startup, environmental business plan, sustainable gifting platform"
       />
-      <div className="min-h-screen bg-black text-white py-12 px-4">
+      <div className="min-h-screen bg-[#1A1A1A] text-white py-12 px-4">
         <div className="max-w-7xl mx-auto">
         {/* Hero Header - Ultra Modern */}
         <div className="relative overflow-hidden rounded-3xl mb-12">
           {/* Animated background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 opacity-90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] opacity-90"></div>
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjAgMjBjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNMTYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
           
           <div className="relative z-10 px-8 md:px-16 py-16 md:py-24">
@@ -204,7 +204,7 @@ export default function Venture() {
               {/* Left: Branding */}
               <div className="flex-1 text-center md:text-left">
                 <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full mb-6 border border-white/20">
-                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                  <span className="w-2 h-2 bg-[#00CED1] rounded-full animate-pulse"></span>
                   <span className="text-sm font-semibold">LIVE PROTOTYPE</span>
                 </div>
                 
@@ -221,7 +221,7 @@ export default function Venture() {
                     href="https://gifted-air.vercel.app/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white text-emerald-700 px-6 py-3 rounded-xl font-bold hover:bg-green-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="inline-flex items-center gap-2 bg-white text-[#8A2BE2] px-6 py-3 rounded-xl font-bold hover:bg-[#D8BFD8]/20 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
                     <span>🚀</span>
                     <span>View Live Site</span>
@@ -264,10 +264,10 @@ export default function Venture() {
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
                   <p className="text-lg font-semibold mb-1">
-                    Prepared for <span className="text-cyan-300">Aneri Pradhan</span>
+                    Prepared for <span className="text-[#ADD8E6]">Aneri Pradhan</span>
                   </p>
                   <p className="text-white/70">
-                    Venture Coach, <a href={partnerLinks.beVisioneers} target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan-300 transition-colors">BeVisioneers Fellowship</a> @ Do School
+                    Venture Coach, Climate Tech Ecosystem Builder
                   </p>
                 </div>
                 <div className="text-right">
@@ -280,7 +280,7 @@ export default function Venture() {
         </div>
 
         {/* Navigation Tabs - Ultra Sleek */}
-        <div className="bg-zinc-900 rounded-2xl p-2 mb-12 border border-zinc-800 overflow-x-auto">
+        <div className="bg-[#1A1A1A] rounded-2xl p-2 mb-12 border border-[#D8BFD8]/30 overflow-x-auto">
           <div className="flex gap-2">
             {[
               { id: 'overview', label: 'Overview', icon: '⚡' },
@@ -294,8 +294,8 @@ export default function Venture() {
                 onClick={() => setActiveSection(tab.id)}
                 className={`flex-1 min-w-[140px] px-6 py-3 rounded-xl font-bold text-sm transition-all ${
                   activeSection === tab.id
-                    ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/30'
-                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
+                    ? 'bg-gradient-to-r from-[#8A2BE2] to-[#00CED1] text-white shadow-lg shadow-[#8A2BE2]/30'
+                    : 'text-zinc-400 hover:text-white hover:bg-[#1A1A1A]'
                 }`}
               >
                 <span className="mr-2">{tab.icon}</span>
@@ -309,21 +309,21 @@ export default function Venture() {
         {activeSection === 'overview' && (
           <div className="space-y-8 animate-fade-in">
             {/* Executive Summary */}
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl p-12 border border-zinc-700">
-              <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-3xl p-12 border border-[#D8BFD8]/30">
+              <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-[#8A2BE2] to-[#00CED1] bg-clip-text text-transparent">
                 Executive Summary
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-2xl font-bold mb-4 text-white">The Concept</h3>
                   <p className="text-zinc-300 leading-relaxed text-lg">
-                    Gifted Air transforms <span className="text-emerald-400 font-semibold">climate action into a love language</span>. We're building a poetic web platform where users gift verified environmental actions—plant trees, clean oceans, provide clean water—with personalized messages and beautiful, shareable pages.
+                    Gifted Air transforms <span className="text-[#00CED1] font-semibold">climate action into a love language</span>. We're building a poetic web platform where users gift verified environmental actions—plant trees, clean oceans, provide clean water—with personalized messages and beautiful, shareable pages.
                   </p>
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold mb-4 text-white">The Opportunity</h3>
                   <p className="text-zinc-300 leading-relaxed text-lg">
-                    We exist at the intersection of three massive markets: the <span className="text-cyan-400 font-semibold">$10-40B voluntary carbon market</span>, the <span className="text-pink-400 font-semibold">$300B+ digital gifting</span> industry, and the growing conscious consumer movement where <span className="text-green-400 font-semibold">60%+ prefer sustainable brands</span>.
+                    We exist at the intersection of three massive markets: the <span className="text-[#ADD8E6] font-semibold">$10-40B voluntary carbon market</span>, the <span className="text-[#D8BFD8] font-semibold">$300B+ digital gifting</span> industry, and the growing conscious consumer movement where <span className="text-[#00CED1] font-semibold">60%+ prefer sustainable brands</span>.
                   </p>
                 </div>
               </div>
@@ -331,21 +331,21 @@ export default function Venture() {
 
             {/* Key Highlights Grid */}
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:border-emerald-500/50 transition-all">
+              <div className="bg-[#1A1A1A] rounded-2xl p-8 border border-[#D8BFD8]/20 hover:border-[#8A2BE2]/50 transition-all">
                 <div className="text-5xl mb-4">🎯</div>
                 <h3 className="text-xl font-bold mb-3 text-white">Target Market</h3>
-                <p className="text-zinc-400 mb-4">$2-5B eco-gifting opportunity within larger markets</p>
+                <p className="text-zinc-300 mb-4">$2-5B eco-gifting opportunity within larger markets</p>
                 <ul className="space-y-2 text-sm text-zinc-500">
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500">→</span>
+                    <span className="text-[#00CED1]">→</span>
                     <span>Climate-conscious Millennials & Gen Z</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500">→</span>
+                    <span className="text-[#00CED1]">→</span>
                     <span>Long-distance relationships & diaspora</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500">→</span>
+                    <span className="text-[#00CED1]">→</span>
                     <span>Corporate gifting & events</span>
                   </li>
                 </ul>
@@ -754,7 +754,7 @@ export default function Venture() {
                   
                   <div className="p-3 bg-gradient-to-r from-amber-900/30 to-orange-900/30 rounded-lg border border-amber-500/30">
                     <p className="text-xs text-amber-300">
-                      <span className="font-bold">Target Events:</span> BeVisioneers Fellowship cohorts, Do School programs, climate tech accelerators, corporate sustainability summits—turning participants into a connected climate ecosystem.
+                      <span className="font-bold">Target Events:</span> Climate tech accelerators, corporate sustainability summits, environmental conferences, and climate action workshops—turning participants into a connected climate ecosystem.
                     </p>
                   </div>
                 </div>
