@@ -182,13 +182,7 @@ export default function About() {
           {/* Our Potential Partners */}
           <section className="mb-16">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-              <div className="flex items-center gap-4">
-                <h2 className="text-3xl font-bold text-slate-900">Our Potential Partners in Kenya</h2>
-                <div className="flex items-center gap-2 text-blue-600 font-semibold">
-                  <span className="text-2xl">→</span>
-                  <span className="text-lg">You could be Next</span>
-                </div>
-              </div>
+              <h2 className="text-3xl font-bold text-slate-900">Our Potential Partners in Kenya</h2>
               <button
                 onClick={() => navigate('/partner-application')}
                 className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
