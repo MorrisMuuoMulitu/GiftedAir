@@ -355,7 +355,7 @@ export default function Venture() {
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
                   <p className="text-lg font-semibold mb-1">
-                    Prepared by <span className="text-[#00CED1]">Morris Mulitu</span>
+                    Prepared by <a href="https://www.linkedin.com/in/morrismuuo/" target="_blank" rel="noopener noreferrer" className="text-[#00CED1] hover:text-[#ADD8E6] transition-colors underline">Morris Mulitu</a>
                   </p>
                   <p className="text-white/70">
                     BeVisioneers Fellow, Climate Tech Ecosystem Builder
@@ -1280,8 +1280,6 @@ export default function Venture() {
             </div>
           </div>
         )}
-          </div>
-        )}
 
         {/* beVisioneers Lean Canvas Section */}
         {activeSection === 'canvas' && (
@@ -1818,7 +1816,7 @@ export default function Venture() {
 
             <div className="bg-gradient-to-r from-emerald-700 via-teal-700 to-cyan-700 rounded-2xl p-8 text-white text-center">
               <p className="text-2xl font-bold mb-4">
-                💚 Thank you for your time and consideration, Aneri.
+                💚 Thank you for your time and consideration, <a href="https://www.aneripradhan.com" target="_blank" rel="noopener noreferrer" className="text-cyan-200 hover:text-white transition-colors underline">Aneri</a>.
               </p>
               <p className="text-lg leading-relaxed max-w-3xl mx-auto">
                 We are excited to build a platform that doesn't just offset carbon, but creates <span className="font-black text-cyan-300">connection</span>, <span className="font-black text-pink-300">hope</span>, and a new <span className="font-black text-yellow-300">ritual of climate love</span>.
@@ -1835,10 +1833,11 @@ export default function Venture() {
               🏠 Back to Home
             </button>
             <p className="mt-6 text-gray-600 dark:text-gray-400 text-sm">
-              Document prepared for Aneri Pradhan | BeVisioneers Fellowship @ Do School
+              Document prepared for <a href="https://www.aneripradhan.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Aneri Pradhan</a>, my Venture Coach | BeVisioneers Fellowship @ Do School
             </p>
           </div>
         </div>
+      </div>
     </>
   );
 }
