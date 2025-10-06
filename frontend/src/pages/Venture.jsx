@@ -1833,7 +1833,7 @@ export default function Venture() {
               🏠 Back to Home
             </button>
             <p className="mt-6 text-gray-600 dark:text-gray-400 text-sm">
-              Document prepared for <a href="https://www.aneripradhan.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Aneri Pradhan</a>, my Venture Coach | BeVisioneers Fellowship @ Do School
+              Document prepared for <a href="https://www.aneripradhan.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Aneri Pradhan</a>, Venture Coach | BeVisioneers Fellowship @ Do School
             </p>
           </div>
         </div>
