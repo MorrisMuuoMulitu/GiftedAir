@@ -8,12 +8,12 @@ function Navigation() {
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
   const navLinks = [
-    { path: '/', label: 'Home', icon: '🏡' },
-    { path: '/about', label: 'About', icon: '✨' },
-    { path: '/compose', label: 'Create Gift', icon: '🎁' },
-    { path: '/gallery', label: 'Gallery', icon: '🌟' },
-    { path: '/transparency', label: 'Transparency', icon: '🔍' },
-    { path: '/feedback', label: 'Give Feedback', icon: '💬', highlight: true },
+    { path: '/', label: 'Home', icon: 'fa-solid fa-house' },
+    { path: '/about', label: 'About', icon: 'fa-solid fa-circle-info' },
+    { path: '/compose', label: 'Create Gift', icon: 'fa-solid fa-gift' },
+    { path: '/gallery', label: 'Gallery', icon: 'fa-solid fa-images' },
+    { path: '/transparency', label: 'Transparency', icon: 'fa-solid fa-chart-line' },
+    { path: '/feedback', label: 'Give Feedback', icon: 'fa-solid fa-comment', highlight: true },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -42,9 +42,7 @@ function Navigation() {
                     : 'text-gray-700 hover:bg-gray-100 hover:text-green-600'
                 }`}
               >
-                <span className="text-2xl flex-shrink-0 transition-transform duration-200 group-hover:scale-125">
-                  {link.icon}
-                </span>
+                <i className={`${link.icon} text-2xl flex-shrink-0 transition-transform duration-200 group-hover:scale-125`}></i>
                 {sidebarExpanded && (
                   <span className="font-semibold text-sm whitespace-nowrap opacity-0 animate-fadeIn">
                     {link.label}
@@ -121,7 +119,7 @@ function Navigation() {
                         : 'text-gray-700 hover:bg-gray-100 hover:text-green-600'
                     }`}
                   >
-                    <span className="text-2xl">{link.icon}</span>
+                    <i className={`${link.icon} text-2xl`}></i>
                     <span className="font-semibold">{link.label}</span>
                   </button>
                 ))}
