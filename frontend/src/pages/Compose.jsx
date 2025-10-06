@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QRCode from 'qrcode';
 import { API_URL } from '../config';
+import Navigation from '../components/Navigation';
 
 const giftTypes = [
   {
