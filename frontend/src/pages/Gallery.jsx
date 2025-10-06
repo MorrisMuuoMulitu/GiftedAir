@@ -261,22 +261,24 @@ export default function Gallery() {
           </div>
           
           {gifts.length === 0 ? (
-            <div className="bg-white rounded-3xl shadow-xl p-16 text-center">
-              <div className="text-8xl mb-6">🎁</div>
-              <p className="text-2xl text-gray-700 mb-4 font-semibold">No gifts yet!</p>
-              <p className="text-lg text-gray-600 mb-8">Be the first to send a gift of climate love</p>
-              <button
-                onClick={() => navigate('/compose')}
-                className="bg-forest text-white px-12 py-4 rounded-full text-lg font-semibold 
-                         hover:bg-green-800 transition-all duration-300 transform hover:scale-105 
-                         shadow-lg hover:shadow-xl"
-              >
-                Create First Gift
-              </button>
-            </div>
+            <EmptyState
+              icon="🎁"
+              title="No gifts yet!"
+              description="Be the first to send a gift of climate love"
+              actionLabel="Create First Gift"
+              actionPath="/compose"
+            />
+          ) : displayedGifts.length === 0 ? (
+            <EmptyState
+              icon={searchQuery ? '🔍' : '🎁'}
+              title={searchQuery ? 'No gifts found' : `No ${giftTypeDetails[activeFilter]?.name || ''} gifts yet`}
+              description={searchQuery ? `No results for "${searchQuery}"` : 'Try a different filter or send the first one!'}
+              actionLabel="Send First Gift"
+              actionPath="/compose"
+            />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredGifts.map((gift, index) => (
+              {displayedGifts.map((gift, index) => (
                 <GiftCard 
                   key={gift._id} 
                   gift={gift} 
