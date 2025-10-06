@@ -9,10 +9,12 @@ export default function AdminV2() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [selectedGifts, setSelectedGifts] = useState([]);
-  const [activeTab, setActiveTab] = useState('overview'); // overview, gifts, analytics, financials
+  const [activeTab, setActiveTab] = useState('overview'); // overview, gifts, analytics, financials, partners
   const [filterType, setFilterType] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [partnerApplications, setPartnerApplications] = useState([]);
+  const [loadingPartners, setLoadingPartners] = useState(false);
 
   const ADMIN_PASSWORD = '12April@Muuo';
 
@@ -57,9 +59,46 @@ export default function AdminV2() {
     }
   };
 
+  const fetchPartnerApplications = async () => {
+    setLoadingPartners(true);
+    try {
+      const res = await fetch(`${API_URL}/api/partner-applications`);
+      const data = await res.json();
+      if (data.success) {
+        setPartnerApplications(data.applications || []);
+      }
+    } catch (error) {
+      console.error('Error fetching partner applications:', error);
+      setPartnerApplications([]);
+    } finally {
+      setLoadingPartners(false);
+    }
+  };
+
+  const updateApplicationStatus = async (id, status) => {
+    try {
+      const res = await fetch(`${API_URL}/api/partner-applications/${id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+
+      if (res.ok) {
+        alert(`✅ Application ${status} successfully!`);
+        fetchPartnerApplications();
+      } else {
+        alert('❌ Failed to update application status');
+      }
+    } catch (error) {
+      console.error('Error updating application:', error);
+      alert('❌ Error updating application');
+    }
+  };
+
   useEffect(() => {
     if (!isAuthenticated) return;
     fetchData();
+    fetchPartnerApplications();
   }, [isAuthenticated]);
 
   // Delete gift
@@ -374,6 +413,16 @@ export default function AdminV2() {
             }`}
           >
             💰 Financials
+          </button>
+          <button
+            onClick={() => setActiveTab('partners')}
+            className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
+              activeTab === 'partners'
+                ? 'bg-forest text-white'
+                : 'text-gray-600 hover:bg-gray-100'
+            }`}
+          >
+            🤝 Partners
           </button>
         </div>
 
@@ -943,6 +992,153 @@ export default function AdminV2() {
                   );
                 })()}
               </div>
+            </div>
+          </>
+        )}
+
+        {/* Partner Applications Tab */}
+        {activeTab === 'partners' && (
+          <>
+            <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-forest">Partner Applications</h2>
+                <div className="flex items-center gap-4">
+                  <span className="text-sm text-gray-600">
+                    Total: {partnerApplications.length}
+                  </span>
+                  <button
+                    onClick={fetchPartnerApplications}
+                    className="px-4 py-2 bg-forest text-white rounded-lg hover:bg-green-800 transition"
+                  >
+                    🔄 Refresh
+                  </button>
+                </div>
+              </div>
+
+              {/* Status Filter */}
+              <div className="flex gap-2 mb-6">
+                {['all', 'pending', 'under_review', 'approved', 'rejected'].map(status => (
+                  <button
+                    key={status}
+                    onClick={() => setFilterStatus(status)}
+                    className={`px-4 py-2 rounded-lg font-semibold transition ${
+                      filterStatus === status
+                        ? 'bg-forest text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {status.replace('_', ' ').toUpperCase()}
+                  </button>
+                ))}
+              </div>
+
+              {loadingPartners ? (
+                <div className="text-center py-12">
+                  <div className="text-4xl mb-4">⏳</div>
+                  <p className="text-gray-600">Loading applications...</p>
+                </div>
+              ) : partnerApplications.length === 0 ? (
+                <div className="text-center py-12 bg-gray-50 rounded-xl">
+                  <div className="text-6xl mb-4">📋</div>
+                  <p className="text-gray-600 text-lg">No partner applications yet</p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {partnerApplications
+                    .filter(app => filterStatus === 'all' || app.status === filterStatus)
+                    .map(app => (
+                    <div 
+                      key={app._id} 
+                      className="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition"
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h3 className="text-xl font-bold text-forest">{app.organizationName}</h3>
+                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                              app.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                              app.status === 'under_review' ? 'bg-blue-100 text-blue-800' :
+                              app.status === 'approved' ? 'bg-green-100 text-green-800' :
+                              'bg-red-100 text-red-800'
+                            }`}>
+                              {app.status.replace('_', ' ').toUpperCase()}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-1">
+                            <span className="font-semibold">Contact:</span> {app.contactPerson} • {app.email}
+                          </p>
+                          <p className="text-sm text-gray-600 mb-1">
+                            <span className="font-semibold">Type:</span> {app.organizationType} • {app.location}
+                          </p>
+                          <p className="text-sm text-gray-600 mb-1">
+                            <span className="font-semibold">Focus Area:</span> {app.focusArea}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            <span className="font-semibold">Submitted:</span> {new Date(app.submittedAt).toLocaleDateString()}
+                          </p>
+                        </div>
+                        
+                        {/* Action Buttons */}
+                        <div className="flex flex-col gap-2">
+                          {app.status !== 'approved' && (
+                            <button
+                              onClick={() => updateApplicationStatus(app._id, 'approved')}
+                              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-sm font-semibold"
+                            >
+                              ✅ Approve
+                            </button>
+                          )}
+                          {app.status !== 'under_review' && (
+                            <button
+                              onClick={() => updateApplicationStatus(app._id, 'under_review')}
+                              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-semibold"
+                            >
+                              👀 Review
+                            </button>
+                          )}
+                          {app.status !== 'rejected' && (
+                            <button
+                              onClick={() => updateApplicationStatus(app._id, 'rejected')}
+                              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm font-semibold"
+                            >
+                              ❌ Reject
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Expandable Details */}
+                      <details className="mt-4">
+                        <summary className="cursor-pointer text-sm font-semibold text-forest hover:text-green-800">
+                          View Full Details
+                        </summary>
+                        <div className="mt-4 grid md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
+                          <div>
+                            <p className="text-sm mb-2"><span className="font-semibold">Phone:</span> {app.phone}</p>
+                            {app.website && <p className="text-sm mb-2"><span className="font-semibold">Website:</span> <a href={app.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{app.website}</a></p>}
+                            {app.registrationNumber && <p className="text-sm mb-2"><span className="font-semibold">Reg Number:</span> {app.registrationNumber}</p>}
+                            {app.yearsOfOperation && <p className="text-sm mb-2"><span className="font-semibold">Years Operating:</span> {app.yearsOfOperation}</p>}
+                            {app.teamSize && <p className="text-sm mb-2"><span className="font-semibold">Team Size:</span> {app.teamSize}</p>}
+                            {app.currentFunding && <p className="text-sm mb-2"><span className="font-semibold">Annual Budget:</span> {app.currentFunding}</p>}
+                          </div>
+                          <div>
+                            <p className="text-sm mb-2"><span className="font-semibold">Description:</span></p>
+                            <p className="text-sm text-gray-700 mb-3">{app.description}</p>
+                            <p className="text-sm mb-2"><span className="font-semibold">Why Partner:</span></p>
+                            <p className="text-sm text-gray-700">{app.whyPartner}</p>
+                            {app.socialMediaLinks && (
+                              <>
+                                <p className="text-sm mt-3 mb-1"><span className="font-semibold">Social Media:</span></p>
+                                <p className="text-xs text-gray-600">{app.socialMediaLinks}</p>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </details>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </>
         )}
