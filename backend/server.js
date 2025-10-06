@@ -5,6 +5,7 @@ import { connectDB } from './config/database.js';
 import giftRoutes from './routes/gifts.js';
 import paymentRoutes from './routes/payments.js';
 import thankYouRoutes from './routes/thankYou.js';
+import bulkOrderHelper from './routes/bulkOrderHelper.js';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
 app.use('/api/gifts', giftRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api', thankYouRoutes);
+app.use('/api/bulk-helper', bulkOrderHelper);
 
 async function startServer() {
   try {

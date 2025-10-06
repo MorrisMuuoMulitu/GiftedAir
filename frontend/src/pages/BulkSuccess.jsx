@@ -15,12 +15,26 @@ function BulkSuccess() {
   useEffect(() => {
     const fetchBulkOrder = async () => {
       try {
+        // First, process the bulk order (creates gifts if not done)
+        console.log('Processing bulk order:', bulkOrderId);
+        await fetch(`${API_URL}/api/bulk-helper/process/${bulkOrderId}`, {
+          method: 'POST'
+        });
+        
+        // Wait a moment for gifts to be created
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Then fetch the order details
         const response = await fetch(`${API_URL}/api/payments/bulk-order/${bulkOrderId}`);
         const data = await response.json();
+        
+        console.log('Bulk order response:', data);
         
         if (data.bulkOrder) {
           setBulkOrder(data.bulkOrder);
           setGifts(data.gifts || []);
+        } else {
+          console.error('No bulk order found:', data);
         }
       } catch (err) {
         console.error('Error fetching bulk order:', err);
@@ -30,7 +44,11 @@ function BulkSuccess() {
     };
     
     if (bulkOrderId) {
+      console.log('Fetching bulk order:', bulkOrderId);
       fetchBulkOrder();
+    } else {
+      console.error('No bulk_order_id in URL');
+      setLoading(false);
     }
   }, [bulkOrderId]);
   
