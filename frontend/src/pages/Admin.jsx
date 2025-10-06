@@ -191,17 +191,47 @@ export default function Admin() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="bg-gradient-to-r from-forest to-green-700 rounded-2xl shadow-xl p-8 mb-8 text-white">
-          <h1 className="text-4xl font-bold mb-2">🔧 Admin Dashboard</h1>
-          <p className="text-green-100 text-lg">Impact Tracking & Financial Overview</p>
-          <button
-            onClick={() => {
-              localStorage.removeItem('admin_auth');
-              setIsAuthenticated(false);
-            }}
-            className="mt-4 bg-white text-forest px-6 py-2 rounded-lg font-semibold hover:bg-green-50 transition"
-          >
-            Logout
-          </button>
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+            <div>
+              <h1 className="text-4xl font-bold mb-2">🔧 Admin Dashboard</h1>
+              <p className="text-green-100 text-lg">Impact Tracking & Financial Overview</p>
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              <button
+                onClick={exportToCSV}
+                disabled={exporting || gifts.length === 0}
+                className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Export all gifts to CSV"
+              >
+                📊 CSV
+              </button>
+              <button
+                onClick={exportReport}
+                disabled={exporting || !stats}
+                className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Export summary report"
+              >
+                📄 Report
+              </button>
+              <button
+                onClick={copyStats}
+                disabled={!stats}
+                className="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Copy stats"
+              >
+                📋 Copy
+              </button>
+              <button
+                onClick={() => {
+                  localStorage.removeItem('admin_auth');
+                  setIsAuthenticated(false);
+                }}
+                className="px-4 py-2 bg-white text-forest font-semibold rounded-lg hover:bg-green-50 transition"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Overview Stats */}
