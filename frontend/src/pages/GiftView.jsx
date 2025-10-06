@@ -213,6 +213,7 @@ export default function GiftView() {
       const data = await response.json();
 
       if (data.success) {
+        quickCelebrate(); // 🎉 Confetti!
         setThankYouSent(true);
         setShowThankYou(false);
         setTimeout(() => {
@@ -257,7 +258,9 @@ export default function GiftView() {
   const giftDetails = giftTypeDetails[gift.type];
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${giftDetails.bgGradient} py-12`}>
+    <>
+      <Navigation />
+      <div className={`min-h-screen bg-gradient-to-br ${giftDetails.bgGradient} py-12`}>
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Gift Card */}
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
