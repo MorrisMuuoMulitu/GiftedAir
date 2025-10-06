@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { API_URL } from '../config';
+import { trackAdminAction } from '../utils/analytics';
 
 export default function Admin() {
   const [stats, setStats] = useState(null);
@@ -7,6 +8,7 @@ export default function Admin() {
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [exporting, setExporting] = useState(false);
 
   // Simple password protection (use proper auth in production!)
   const ADMIN_PASSWORD = 'giftedair2025'; // Change this!
@@ -54,6 +56,72 @@ export default function Admin() {
 
     fetchData();
   }, [isAuthenticated]);
+
+  // Export to CSV
+  const exportToCSV = () => {
+    try {
+      setExporting(true);
+      if (typeof trackAdminAction === 'function') trackAdminAction('export_csv', { totalGifts: gifts.length });
+
+      const headers = ['Date', 'From', 'To', 'Type', 'Amount', 'Message'];
+      const rows = gifts.map(gift => [
+        new Date(gift.createdAt).toLocaleDateString(),
+        gift.from || 'Anonymous',
+        gift.to || 'Not specified',
+        gift.type,
+        `$${gift.amount}`,
+        gift.message ? gift.message.substring(0, 50) : 'No message'
+      ]);
+
+      const csvContent = [headers.join(','), ...rows.map(row => row.map(cell => `"${cell}"`).join(','))].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `gifted-air-gifts-${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      setExporting(false);
+    } catch (error) {
+      console.error('Export failed:', error);
+      setExporting(false);
+    }
+  };
+
+  const exportReport = () => {
+    try {
+      setExporting(true);
+      if (typeof trackAdminAction === 'function') trackAdminAction('export_report', stats);
+
+      const summary = `GIFTED AIR REPORT\n${new Date().toLocaleString()}\n\nTotal Gifts: ${stats.totalGifts}\nRevenue: $${stats.totalRevenue.toFixed(2)}\nCO₂ Offset: ${stats.totalImpact.co2}kg\nTrees: ${stats.totalImpact.trees}`;
+      const blob = new Blob([summary], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `gifted-air-report-${new Date().toISOString().split('T')[0]}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      setExporting(false);
+    } catch (error) {
+      console.error('Export failed:', error);
+      setExporting(false);
+    }
+  };
+
+  const copyStats = async () => {
+    try {
+      const text = `Gifted Air Stats\nGifts: ${stats.totalGifts}\nRevenue: $${stats.totalRevenue.toFixed(2)}\nCO₂: ${stats.totalImpact.co2}kg`;
+      await navigator.clipboard.writeText(text);
+      alert('✅ Stats copied to clipboard!');
+      if (typeof trackAdminAction === 'function') trackAdminAction('copy_stats', stats);
+    } catch (error) {
+      console.error('Copy failed:', error);
+    }
+  };
 
   if (!isAuthenticated) {
     return (
