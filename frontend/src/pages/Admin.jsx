@@ -44,14 +44,14 @@ export default function Admin() {
         }
 
         const giftsData = await giftsRes.json();
-        console.log('Fetched gifts data:', giftsData);
-        console.log('Is array?', Array.isArray(giftsData));
-        console.log('Length:', giftsData?.length);
+        console.log('Raw API response:', giftsData);
+        
+        // API returns {gifts: [...], count: X}, extract the gifts array
+        const giftsArray = giftsData.gifts || (Array.isArray(giftsData) ? giftsData : []);
+        console.log('Extracted gifts array:', giftsArray.length, 'gifts');
 
-        // Ensure giftsData is an array
-        const giftsArray = Array.isArray(giftsData) ? giftsData : [];
         setGifts(giftsArray);
-        console.log('Set gifts state to:', giftsArray.length, 'gifts');
+        console.log('✅ Loaded', giftsArray.length, 'gifts into admin');
         
         // Try to fetch stats too
         try {
