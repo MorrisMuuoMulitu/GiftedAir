@@ -339,7 +339,7 @@ export default function Venture() {
               </div>
               
               {/* Right: Quick Stats */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
                   <div className="text-4xl font-black mb-1">66%</div>
                   <div className="text-sm font-semibold opacity-90">Platform Complete</div>
@@ -413,7 +413,7 @@ export default function Venture() {
               <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] bg-clip-text text-transparent">
                 Executive Summary
               </h2>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 <div>
                   <h3 className="text-2xl font-bold mb-4 text-white">The Concept</h3>
                   <p className="text-zinc-300 leading-relaxed text-lg">
@@ -430,7 +430,7 @@ export default function Venture() {
             </div>
 
             {/* Key Highlights Grid */}
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               <div className="bg-[#1A1A1A] rounded-2xl p-8 border border-[#D8BFD8]/20 hover:border-[#8A2BE2]/50 transition-all">
                 <div className="text-5xl mb-4">🎯</div>
                 <h3 className="text-xl font-bold mb-3 text-white">Target Market</h3>
@@ -616,7 +616,7 @@ export default function Venture() {
                   Unit Economics: The Money Machine
                 </h3>
               </div>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 <div className="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 p-6 rounded-2xl border border-zinc-700">
                   <h4 className="text-xl font-black mb-4 text-[#00CED1] flex items-center gap-2">
                     <span>🧮</span>
@@ -703,7 +703,7 @@ export default function Venture() {
                   Viral Growth Engine
                 </h3>
               </div>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(255,20,147,0.3)] transition-all duration-300">
                   <div className="text-4xl mb-3 bg-gradient-to-br from-pink-400 to-rose-500 text-transparent bg-clip-text">💝</div>
                   <h4 className="font-black text-white mb-2 text-lg">Gift Sharing</h4>
@@ -1077,7 +1077,7 @@ export default function Venture() {
             {/* The Ask - Quick Summary */}
             <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 rounded-2xl p-8 border border-purple-500/30">
               <h3 className="text-2xl font-bold mb-4 text-white">Seeking Guidance On</h3>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 <div className="flex items-start gap-3">
                   <span className="text-3xl">🤝</span>
                   <div>
@@ -1257,7 +1257,7 @@ export default function Venture() {
                   Platform Features
                 </h2>
               </div>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 {[
                   { icon: '🌳', title: '8 Gift Types', desc: 'Trees, Ocean, Water, Solar, Cookstoves, Coral, Wildlife, Rainforest' },
                   { icon: '💳', title: 'Stripe Payments', desc: 'Secure, instant processing for all transactions' },

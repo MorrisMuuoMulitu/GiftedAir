@@ -9,32 +9,32 @@ export default function Transparency() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-forest mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-forest mb-4">
             💚 How Your Gift Makes Real Impact
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600">
             Complete transparency on where every dollar goes
           </p>
         </div>
 
         {/* Money Breakdown */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-          <h2 className="text-3xl font-bold text-forest mb-6">Where Your Money Goes</h2>
+        <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-forest mb-6">Where Your Money Goes</h2>
           
-          <p className="text-gray-700 mb-8 text-lg">
+          <p className="text-gray-700 mb-8 text-sm sm:text-base md:text-lg">
             We believe in complete transparency. Here's the honest breakdown of how your gift funds are used:
           </p>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Climate Action */}
-            <div className="flex items-start gap-4 p-6 bg-green-50 rounded-xl border-2 border-green-200">
-              <div className="text-4xl">🌍</div>
+            <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-green-50 rounded-xl border-2 border-green-200">
+              <div className="text-2xl sm:text-3xl md:text-4xl">🌍</div>
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-xl font-bold text-forest">Climate Action Partners</h3>
-                  <span className="text-2xl font-bold text-green-600">~50%</span>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-forest">Climate Action Partners</h3>
+                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-green-600">~50%</span>
                 </div>
-                <p className="text-gray-700">
+                <p className="text-sm sm:text-base text-gray-700">
                   Funds actual environmental projects through verified partner organizations. 
                   This plants the trees, removes the plastic, provides clean water, and protects wildlife.
                 </p>
@@ -42,14 +42,14 @@ export default function Transparency() {
             </div>
 
             {/* Payment Processing */}
-            <div className="flex items-start gap-4 p-6 bg-blue-50 rounded-xl border-2 border-blue-200">
-              <div className="text-4xl">💳</div>
+            <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-blue-50 rounded-xl border-2 border-blue-200">
+              <div className="text-2xl sm:text-3xl md:text-4xl">💳</div>
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-xl font-bold text-forest">Payment Processing (Stripe)</h3>
-                  <span className="text-2xl font-bold text-blue-600">~33%</span>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-forest">Payment Processing (Stripe)</h3>
+                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600">~33%</span>
                 </div>
-                <p className="text-gray-700">
+                <p className="text-sm sm:text-base text-gray-700">
                   Credit card processing fees ($0.30 + 2.9% per transaction). 
                   This is industry standard and goes directly to Stripe, not us.
                 </p>
@@ -125,7 +125,7 @@ export default function Transparency() {
               </p>
               <Link 
                 to="/partner-application"
-                className="inline-block bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-full font-bold hover:from-green-700 hover:to-emerald-700 transition-all transform hover:scale-105 shadow-lg"
+                className="inline-block bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-sm sm:text-base hover:from-green-700 hover:to-emerald-700 transition-all transform hover:scale-105 shadow-lg"
               >
                 🤝 Register Your Organization
               </Link>

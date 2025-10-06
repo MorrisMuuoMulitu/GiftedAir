@@ -288,6 +288,16 @@ export default function About() {
             </div>
           </section>
 
+          {/* Back to Home Button */}
+          <section className="text-center py-12">
+            <button
+              onClick={() => navigate('/')}
+              className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+            >
+              🏠 Back to Home
+            </button>
+          </section>
+
         </div>
       </div>
     </>
