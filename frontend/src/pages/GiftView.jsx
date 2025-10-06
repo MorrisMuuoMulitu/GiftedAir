@@ -646,6 +646,7 @@ export default function GiftView() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
