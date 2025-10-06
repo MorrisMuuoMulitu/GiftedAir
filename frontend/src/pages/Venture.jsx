@@ -551,38 +551,38 @@ export default function Venture() {
             </div>
 
             {/* Use Cases - How It Works In Practice */}
-            <div className="bg-gradient-to-br from-emerald-900/30 to-teal-900/30 rounded-2xl p-8 border border-emerald-500/30">
+            <div className="bg-gradient-to-br from-[#8A2BE2]/20 to-[#00CED1]/20 rounded-2xl p-8 border border-[#8A2BE2]/30">
               <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
                 <span className="text-3xl">🎯</span>
                 Real-World Use Cases: Inclusive Climate Action at Scale
               </h3>
-              <p className="text-zinc-300 mb-8">
+              <p className="text-white/80 mb-8">
                 A systems approach to climate action—making environmental impact accessible, emotional, and viral across every demographic.
               </p>
               
               <div className="space-y-6">
                 {/* Use Case 1: Individual Gifting */}
-                <div className="bg-black/40 rounded-xl p-6 border border-emerald-500/20">
+                <div className="bg-[#1A1A1A]/80 rounded-xl p-6 border border-[#D8BFD8]/20">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center flex-shrink-0 text-2xl">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D8BFD8] to-[#8A2BE2] flex items-center justify-center flex-shrink-0 text-2xl">
                       💝
                     </div>
                     <div className="flex-1">
                       <h4 className="font-bold text-white text-lg mb-2">Personal Milestone Gifting</h4>
-                      <p className="text-sm text-emerald-300 font-semibold mb-3">Making Climate Action Personal & Shareable</p>
+                      <p className="text-sm text-[#ADD8E6] font-semibold mb-3">Making Climate Action Personal & Shareable</p>
                     </div>
                   </div>
                   
-                  <div className="bg-zinc-900/50 rounded-lg p-4 mb-4">
-                    <p className="text-zinc-300 text-sm leading-relaxed">
-                      <span className="font-bold text-white">Scenario:</span> Sarah wants to give her best friend Maya a meaningful 30th birthday gift. Instead of buying something that will collect dust, she plants <span className="text-emerald-400 font-semibold">10 trees in Maya's name</span> for $10 through Gifted Air.
+                  <div className="bg-[#1A1A1A]/80 rounded-lg p-4 mb-4">
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      <span className="font-bold text-white">Scenario:</span> Sarah wants to give her best friend Maya a meaningful 30th birthday gift. Instead of buying something that will collect dust, she plants <span className="text-[#00CED1] font-semibold">10 trees in Maya's name</span> for $10 through Gifted Air.
                     </p>
                   </div>
                   
                   <div className="grid md:grid-cols-2 gap-4 mb-4">
-                    <div className="bg-emerald-900/30 rounded-lg p-4 border border-emerald-500/30">
-                      <div className="text-xs text-emerald-400 font-bold mb-2">THE GIFT</div>
-                      <ul className="text-sm text-zinc-300 space-y-1">
+                    <div className="bg-[#00CED1]/20 rounded-lg p-4 border border-[#00CED1]/30">
+                      <div className="text-xs text-[#00CED1] font-bold mb-2">THE GIFT</div>
+                      <ul className="text-sm text-white/70 space-y-1">
                         <li>✓ Personalized message & certificate</li>
                         <li>✓ Beautiful shareable gift page</li>
                         <li>✓ Real environmental impact (verified)</li>
@@ -590,9 +590,9 @@ export default function Venture() {
                       </ul>
                     </div>
                     
-                    <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-500/30">
-                      <div className="text-xs text-purple-400 font-bold mb-2">THE VIRAL LOOP</div>
-                      <ul className="text-sm text-zinc-300 space-y-1">
+                    <div className="bg-[#8A2BE2]/20 rounded-lg p-4 border border-[#8A2BE2]/30">
+                      <div className="text-xs text-[#8A2BE2] font-bold mb-2">THE VIRAL LOOP</div>
+                      <ul className="text-sm text-white/70 space-y-1">
                         <li>→ Maya shares on Instagram (2,000 followers)</li>
                         <li>→ 50 people click the link</li>
                         <li>→ 3 new users sign up</li>
@@ -602,9 +602,9 @@ export default function Venture() {
                   </div>
                   
                   <div className="flex items-center gap-2 text-sm">
-                    <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full font-semibold">CAC: $0</span>
-                    <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full font-semibold">K-Factor: 1.5-2.0</span>
-                    <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full font-semibold">Repeat Usage: 5-7x/lifetime</span>
+                    <span className="px-3 py-1 bg-[#00CED1]/20 text-[#00CED1] rounded-full font-semibold">CAC: $0</span>
+                    <span className="px-3 py-1 bg-[#8A2BE2]/20 text-[#8A2BE2] rounded-full font-semibold">K-Factor: 1.5-2.0</span>
+                    <span className="px-3 py-1 bg-[#ADD8E6]/20 text-[#ADD8E6] rounded-full font-semibold">Repeat Usage: 5-7x/lifetime</span>
                   </div>
                 </div>
 
@@ -629,7 +629,7 @@ export default function Venture() {
                   <div className="grid md:grid-cols-2 gap-4 mb-4">
                     <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-500/30">
                       <div className="text-xs text-blue-400 font-bold mb-2">IMPACT</div>
-                      <ul className="text-sm text-zinc-300 space-y-1">
+                      <ul className="text-sm text-white/70 space-y-1">
                         <li>✓ 50 families receive cookstoves ($25 each)</li>
                         <li>✓ Total raised: $1,250</li>
                         <li>✓ Zero platform fees for communities</li>
@@ -639,7 +639,7 @@ export default function Venture() {
                     
                     <div className="bg-cyan-900/30 rounded-lg p-4 border border-cyan-500/30">
                       <div className="text-xs text-cyan-400 font-bold mb-2">SYSTEMS THINKING</div>
-                      <ul className="text-sm text-zinc-300 space-y-1">
+                      <ul className="text-sm text-white/70 space-y-1">
                         <li>→ No payment infrastructure needed</li>
                         <li>→ Bypasses traditional charity middlemen</li>
                         <li>→ Community ownership of impact story</li>
@@ -674,7 +674,7 @@ export default function Venture() {
                   </div>
                   
                   <div className="grid md:grid-cols-3 gap-4 mb-4">
-                    <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-500/30">
+                    <div className="bg-[#8A2BE2]/20 rounded-lg p-4 border border-[#8A2BE2]/30">
                       <div className="text-xs text-purple-400 font-bold mb-2">COMPANY BENEFITS</div>
                       <ul className="text-sm text-zinc-300 space-y-1 text-xs">
                         <li>✓ Employee engagement</li>
@@ -733,7 +733,7 @@ export default function Venture() {
                   <div className="grid md:grid-cols-2 gap-4 mb-4">
                     <div className="bg-amber-900/30 rounded-lg p-4 border border-amber-500/30">
                       <div className="text-xs text-amber-400 font-bold mb-2">ECOSYSTEM VALUE</div>
-                      <ul className="text-sm text-zinc-300 space-y-1">
+                      <ul className="text-sm text-white/70 space-y-1">
                         <li>✓ Tangible shared impact (500-tree conference forest)</li>
                         <li>✓ Network strengthening (shared climate action)</li>
                         <li>✓ Post-event engagement (track forest growth)</li>
@@ -743,7 +743,7 @@ export default function Venture() {
                     
                     <div className="bg-orange-900/30 rounded-lg p-4 border border-orange-500/30">
                       <div className="text-xs text-orange-400 font-bold mb-2">SCALE POTENTIAL</div>
-                      <ul className="text-sm text-zinc-300 space-y-1">
+                      <ul className="text-sm text-white/70 space-y-1">
                         <li>→ 500 gifts × $5 = $2,500 order</li>
                         <li>→ Platform revenue: $1,025 (41%)</li>
                         <li>→ Partner revenue: $1,250 (50%)</li>
