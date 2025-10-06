@@ -275,13 +275,13 @@ export default function About() {
             <div className="flex flex-wrap gap-4 justify-center">
               <button
                 onClick={() => navigate('/compose')}
-                className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors shadow-lg"
+                className="bg-blue-600 text-white px-4 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition-colors shadow-lg"
               >
                 Send a Gift →
               </button>
               <button
                 onClick={() => navigate('/gallery')}
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-slate-50 transition-colors border-2 border-blue-600"
+                className="bg-white text-blue-600 px-4 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-slate-50 transition-colors border-2 border-blue-600"
               >
                 See All Gifts
               </button>

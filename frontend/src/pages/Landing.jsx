@@ -19,8 +19,8 @@ export default function Landing() {
         >
         </button>
         <div className="star-text">
-          <div className="text-xl font-bold text-slate-900 mb-1">📊</div>
-          <div className="text-xs font-bold text-slate-900 leading-tight">Lean<br/>Canvas</div>
+          <div className="text-base sm:text-xl font-bold text-slate-900 mb-1">📊</div>
+          <div className="text-[10px] sm:text-xs font-bold text-slate-900 leading-tight">Lean<br/>Canvas</div>
         </div>
       </div>
       
@@ -42,8 +42,8 @@ export default function Landing() {
         
         .michelin-star {
           position: relative;
-          width: 140px;
-          height: 140px;
+          width: 80px;
+          height: 80px;
           clip-path: polygon(
             50% 0%, 
             61% 35%, 
@@ -64,14 +64,28 @@ export default function Landing() {
         
         .michelin-star:hover {
           animation: star-glow 0.8s ease-in-out infinite;
-          transform: scale(1.25) rotate(360deg);
+          transform: scale(1.15) rotate(360deg);
         }
         
         .michelin-star-container {
           position: fixed;
-          top: 100px;
-          right: 20px;
+          top: 80px;
+          right: 12px;
           z-index: 40;
+        }
+        
+        @media (min-width: 640px) {
+          .michelin-star {
+            width: 120px;
+            height: 120px;
+          }
+          .michelin-star:hover {
+            transform: scale(1.25) rotate(360deg);
+          }
+          .michelin-star-container {
+            top: 100px;
+            right: 20px;
+          }
         }
         
         .star-text {

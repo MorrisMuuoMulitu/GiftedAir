@@ -314,7 +314,7 @@ export default function Venture() {
                     href="https://gifted-air.vercel.app/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white text-[#8A2BE2] px-6 py-3 rounded-xl font-bold hover:bg-[#D8BFD8]/20 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="inline-flex items-center gap-2 bg-white text-[#8A2BE2] px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-sm sm:text-base hover:bg-[#D8BFD8]/20 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
                     <span>🚀</span>
                     <span>View Live Site</span>
@@ -323,14 +323,14 @@ export default function Venture() {
                     href={partnerLinks.doSchool}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-6 py-3 rounded-xl font-bold hover:bg-white/20 transition-all border border-white/20"
+                    className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-sm sm:text-base hover:bg-white/20 transition-all border border-white/20"
                   >
                     <span>🎓</span>
                     <span>Do School</span>
                   </a>
                   <button
                     onClick={() => navigate('/feedback')}
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-bold hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-sm sm:text-base hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
                   >
                     <span>💭</span>
                     <span>Share Feedback</span>
@@ -1282,7 +1282,7 @@ export default function Venture() {
             <div className="text-center">
               <button
                 onClick={() => navigate('/')}
-                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+                className="px-4 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-base sm:text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
               >
                 🏠 Back to Home
               </button>
@@ -1625,7 +1625,7 @@ export default function Venture() {
             <div className="text-center">
               <button
                 onClick={() => navigate('/')}
-                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+                className="px-4 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-base sm:text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
               >
                 🏠 Back to Home
               </button>
@@ -1772,7 +1772,7 @@ export default function Venture() {
             <div className="text-center">
               <button
                 onClick={() => navigate('/')}
-                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+                className="px-4 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-base sm:text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
               >
                 🏠 Back to Home
               </button>
