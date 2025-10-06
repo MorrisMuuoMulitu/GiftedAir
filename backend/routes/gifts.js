@@ -64,13 +64,13 @@ router.get('/:id', async (req, res) => {
 
 router.patch('/:id', async (req, res) => {
   try {
-    const { message } = req.body;
+    const updates = req.body;
 
-    if (!message) {
-      return res.status(400).json({ error: 'Message is required' });
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({ error: 'No updates provided' });
     }
 
-    const gift = await updateGift(req.params.id, { message });
+    const gift = await updateGift(req.params.id, updates);
 
     if (!gift) {
       return res.status(404).json({ error: 'Gift not found' });
@@ -83,6 +83,80 @@ router.patch('/:id', async (req, res) => {
   } catch (error) {
     console.error('Error updating gift:', error);
     res.status(500).json({ error: 'Failed to update gift' });
+  }
+});
+
+// Delete gift endpoint
+router.delete('/:id', async (req, res) => {
+  try {
+    const Gift = (await import('../models/Gift.js')).default;
+    const gift = await Gift.findByIdAndDelete(req.params.id);
+
+    if (!gift) {
+      return res.status(404).json({ error: 'Gift not found' });
+    }
+
+    res.json({ 
+      success: true,
+      message: 'Gift deleted successfully',
+      deletedGift: gift
+    });
+  } catch (error) {
+    console.error('Error deleting gift:', error);
+    res.status(500).json({ error: 'Failed to delete gift' });
+  }
+});
+
+// Bulk operations endpoint
+router.post('/bulk/update', async (req, res) => {
+  try {
+    const { ids, updates } = req.body;
+
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({ error: 'Gift IDs array is required' });
+    }
+
+    if (!updates || Object.keys(updates).length === 0) {
+      return res.status(400).json({ error: 'Updates object is required' });
+    }
+
+    const Gift = (await import('../models/Gift.js')).default;
+    const result = await Gift.updateMany(
+      { _id: { $in: ids } },
+      { $set: updates }
+    );
+
+    res.json({ 
+      success: true,
+      modifiedCount: result.modifiedCount,
+      message: `Updated ${result.modifiedCount} gifts`
+    });
+  } catch (error) {
+    console.error('Error bulk updating gifts:', error);
+    res.status(500).json({ error: 'Failed to bulk update gifts' });
+  }
+});
+
+// Bulk delete endpoint
+router.post('/bulk/delete', async (req, res) => {
+  try {
+    const { ids } = req.body;
+
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({ error: 'Gift IDs array is required' });
+    }
+
+    const Gift = (await import('../models/Gift.js')).default;
+    const result = await Gift.deleteMany({ _id: { $in: ids } });
+
+    res.json({ 
+      success: true,
+      deletedCount: result.deletedCount,
+      message: `Deleted ${result.deletedCount} gifts`
+    });
+  } catch (error) {
+    console.error('Error bulk deleting gifts:', error);
+    res.status(500).json({ error: 'Failed to bulk delete gifts' });
   }
 });
 

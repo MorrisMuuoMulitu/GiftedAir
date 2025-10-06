@@ -13,7 +13,7 @@ const Leaderboard = lazy(() => import('./pages/Leaderboard'));
 const Impact = lazy(() => import('./pages/Impact'));
 const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'));
 const Transparency = lazy(() => import('./pages/Transparency'));
-const Admin = lazy(() => import('./pages/Admin'));
+const Admin = lazy(() => import('./pages/AdminV2'));
 const Certificate = lazy(() => import('./pages/Certificate'));
 const BulkGift = lazy(() => import('./pages/BulkGift'));
 const BulkSuccess = lazy(() => import('./pages/BulkSuccess'));
