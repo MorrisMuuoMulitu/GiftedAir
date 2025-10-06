@@ -1784,53 +1784,53 @@ export default function Venture() {
         )}
 
           {/* The Ask Section - For Aneri */}
-          <div className="mt-12 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-pink-900/30 dark:via-purple-900/30 dark:to-blue-900/30 rounded-3xl shadow-2xl p-12 border-4 border-purple-300 dark:border-purple-700">
-            <h2 className="text-4xl font-black text-gray-900 dark:text-white mb-6 text-center flex items-center justify-center gap-3">
-              <span className="text-5xl">🙏</span>
-              Next Steps & The Ask
+          <div className="mt-8 sm:mt-12 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-pink-900/30 dark:via-purple-900/30 dark:to-blue-900/30 rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-8 md:p-12 border-2 sm:border-4 border-purple-300 dark:border-purple-700">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-4 sm:mb-6 text-center flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+              <span className="text-4xl sm:text-5xl">🙏</span>
+              <span>Next Steps & The Ask</span>
             </h2>
             
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 mb-8">
-              <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 md:mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4 sm:mb-6">
                 We have a powerful vision, a validated market, tangible progress with a <span className="font-bold text-emerald-600 dark:text-emerald-400">live prototype</span>, and a clear, actionable plan.
               </p>
               
-              <p className="text-2xl font-bold text-purple-700 dark:text-purple-400 mb-6 text-center">
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-purple-700 dark:text-purple-400 mb-4 sm:mb-6 text-center">
                 We are seeking your guidance on:
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-t-4 border-emerald-500">
-                <div className="text-4xl mb-4 text-center">🤝</div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Strategic Introductions</h3>
-                <p className="text-gray-700 dark:text-gray-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+              <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border-t-4 border-emerald-500">
+                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4 text-center">🤝</div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">Strategic Introductions</h3>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
                   Connections to legal counsel for structuring our social enterprise and to key players in the Kenyan climate/non-profit space (e.g., Green Belt Movement).
                 </p>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-t-4 border-blue-500">
-                <div className="text-4xl mb-4 text-center">🗺️</div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Roadmap Validation</h3>
-                <p className="text-gray-700 dark:text-gray-300">
+              <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border-t-4 border-blue-500">
+                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4 text-center">🗺️</div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">Roadmap Validation</h3>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
                   Feedback on our phased launch plan and feature prioritization to ensure we're building the right things in the right order.
                 </p>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-t-4 border-purple-500">
-                <div className="text-4xl mb-4 text-center">💰</div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Funding Strategy</h3>
-                <p className="text-gray-700 dark:text-gray-300">
+              <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border-t-4 border-purple-500">
+                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4 text-center">💰</div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">Funding Strategy</h3>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
                   Advice on whether to bootstrap this initial phase or seek pre-seed funding to accelerate development and market entry.
                 </p>
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-emerald-700 via-teal-700 to-cyan-700 rounded-2xl p-8 text-white text-center">
-              <p className="text-2xl font-bold mb-4">
+            <div className="bg-gradient-to-r from-emerald-700 via-teal-700 to-cyan-700 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-white text-center">
+              <p className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">
                 💚 Thank you for your time and consideration.
               </p>
-              <p className="text-lg leading-relaxed max-w-3xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
                 We are excited to build a platform that doesn't just offset carbon, but creates <span className="font-black text-cyan-300">connection</span>, <span className="font-black text-pink-300">hope</span>, and a new <span className="font-black text-yellow-300">ritual of climate love</span>.
               </p>
             </div>
