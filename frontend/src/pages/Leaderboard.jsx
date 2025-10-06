@@ -35,6 +35,7 @@ const badgeInfo = {
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,6 +54,13 @@ export default function Leaderboard() {
     fetchLeaderboard();
   }, []);
 
+  // Filter leaderboard by search query
+  const filteredLeaderboard = leaderboard.filter(person =>
+    searchQuery === '' ||
+    person.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    person.location?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 flex items-center justify-center">
@@ -65,20 +73,49 @@ export default function Leaderboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 py-12 px-4">
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block bg-forest text-white px-6 py-2 rounded-full text-sm font-bold mb-4 shadow-lg">
-            🏆 CLIMATE CHAMPIONS
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 py-12 px-4">
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="inline-block bg-forest text-white px-6 py-2 rounded-full text-sm font-bold mb-4 shadow-lg">
+              🏆 CLIMATE CHAMPIONS
+            </div>
+            <h1 className="text-5xl font-black text-gray-900 mb-4">
+              Leaderboard
+            </h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+              Celebrating the most generous climate champions making real impact!
+            </p>
+
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="🔍 Search by name or location..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full px-6 py-4 pr-12 border-2 border-gray-200 rounded-xl text-lg focus:border-yellow-500 focus:outline-none shadow-sm hover:shadow-md transition-shadow"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                    title="Clear search"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+              {filteredLeaderboard.length > 0 && leaderboard.length > 0 && (
+                <p className="text-sm text-gray-600 mt-2">
+                  Showing {filteredLeaderboard.length} of {leaderboard.length} heroes
+                </p>
+              )}
+            </div>
           </div>
-          <h1 className="text-5xl font-black text-gray-900 mb-4">
-            Leaderboard
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Celebrating the most generous climate champions making real impact!
-          </p>
-        </div>
 
         {/* Podium - Top 3 */}
         {leaderboard.length >= 3 && (
@@ -99,15 +136,40 @@ export default function Leaderboard() {
         {/* Full Leaderboard */}
         <div className="bg-white rounded-3xl shadow-2xl p-8">
           <h2 className="text-3xl font-bold text-forest mb-6 text-center">
-            🌟 All Champions
+            {searchQuery ? '🔍 Search Results' : '🌟 All Champions'}
           </h2>
           
+          {loading ? (
+            <div className="space-y-4">
+              {[...Array(5)].map((_, i) => (
+                <LoadingSkeleton key={i} type="list" />
+              ))}
+            </div>
+          ) : leaderboard.length === 0 ? (
+            <EmptyState
+              icon="🏆"
+              title="No leaderboard yet"
+              description="Be the first climate hero! Send a gift to claim the top spot."
+              actionLabel="Send Your First Gift"
+              actionPath="/compose"
+            />
+          ) : filteredLeaderboard.length === 0 ? (
+            <EmptyState
+              icon="🔍"
+              title="No heroes found"
+              description={`No results for "${searchQuery}"`}
+              actionLabel="Send Your First Gift"
+              actionPath="/compose"
+            />
+          ) : (
           <div className="space-y-4">
-            {leaderboard.map((person) => (
+            {filteredLeaderboard.map((person) => (
               <LeaderboardRow key={person.name} person={person} />
             ))}
+          </div>
+          )}
             
-            {leaderboard.length === 0 && (
+            {/* {leaderboard.length === 0 && (
               <div className="text-center py-12">
                 <p className="text-2xl text-gray-500 mb-4">🌱</p>
                 <p className="text-gray-600">No gifts yet. Be the first champion!</p>
@@ -118,8 +180,7 @@ export default function Leaderboard() {
                   Create Your First Gift
                 </button>
               </div>
-            )}
-          </div>
+            )} */}
         </div>
 
         {/* Call to Action */}
