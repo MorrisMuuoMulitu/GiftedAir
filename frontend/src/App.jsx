@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useState, useEffect } from 'react';
 import LoadingScreen from './components/LoadingScreen';
+import ThemeToggle from './components/ThemeToggle';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 
 // Lazy load pages for better performance
@@ -16,14 +17,17 @@ const Admin = lazy(() => import('./pages/Admin'));
 const Certificate = lazy(() => import('./pages/Certificate'));
 const BulkGift = lazy(() => import('./pages/BulkGift'));
 const BulkSuccess = lazy(() => import('./pages/BulkSuccess'));
+const Referral = lazy(() => import('./pages/Referral'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function AppContent() {
   useKeyboardShortcuts();
   
   return (
-    <Suspense fallback={<LoadingScreen />}>
-      <Routes>
+    <>
+      <ThemeToggle />
+      <Suspense fallback={<LoadingScreen />}>
+        <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/compose" element={<Compose />} />
         <Route path="/gallery" element={<Gallery />} />
@@ -34,12 +38,14 @@ function AppContent() {
         <Route path="/transparency" element={<Transparency />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/bulk" element={<BulkGift />} />
+        <Route path="/referral" element={<Referral />} />
         <Route path="/certificate/:giftId" element={<Certificate />} />
         <Route path="/gift/:giftId" element={<GiftView />} />
         {/* 404 catch-all */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </Suspense>
+      </Suspense>
+    </>
   );
 }
 
