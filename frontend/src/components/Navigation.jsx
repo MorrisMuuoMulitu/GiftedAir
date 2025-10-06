@@ -7,10 +7,10 @@ function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
+    { path: '/about', label: 'About', icon: '💡' },
     { path: '/compose', label: 'Create Gift', icon: '🎁' },
     { path: '/bulk', label: 'Bulk Orders', icon: '💰' },
     { path: '/gallery', label: 'Gallery', icon: '🎨' },
-    { path: '/about', label: 'About', icon: '💡' },
     { path: '/leaderboard', label: 'Leaderboard', icon: '🏆' },
     { path: '/referral', label: 'Refer & Earn', icon: '🎯' },
     { path: '/impact', label: 'My Impact', icon: '📊' },

@@ -14,17 +14,18 @@ export function useKeyboardShortcuts() {
       // Cmd/Ctrl + K for quick navigation
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        const destination = prompt('Quick navigate to:\n\n1. Home\n2. Create Gift\n3. Gallery\n4. Leaderboard\n5. My Impact\n6. Transparency\n7. Bulk Orders\n8. Refer & Earn\n\nEnter number:');
+        const destination = prompt('Quick navigate to:\n\n1. Home\n2. About\n3. Create Gift\n4. Gallery\n5. Leaderboard\n6. My Impact\n7. Transparency\n8. Bulk Orders\n9. Refer & Earn\n\nEnter number:');
         
         const routes = {
           '1': '/',
-          '2': '/compose',
-          '3': '/gallery',
-          '4': '/leaderboard',
-          '5': '/impact',
-          '6': '/transparency',
-          '7': '/bulk',
-          '8': '/referral'
+          '2': '/about',
+          '3': '/compose',
+          '4': '/gallery',
+          '5': '/leaderboard',
+          '6': '/impact',
+          '7': '/transparency',
+          '8': '/bulk',
+          '9': '/referral'
         };
         
         if (routes[destination]) {
@@ -39,6 +40,9 @@ export function useKeyboardShortcuts() {
           case 'h':
             navigate('/');
             break;
+          case 'a':
+            navigate('/about');
+            break;
           case 'c':
             navigate('/compose');
             break;
@@ -47,6 +51,9 @@ export function useKeyboardShortcuts() {
             break;
           case 'l':
             navigate('/leaderboard');
+            break;
+          case 'i':
+            navigate('/impact');
             break;
           case 'r':
             navigate('/referral');
@@ -70,9 +77,11 @@ export function useKeyboardShortcuts() {
       alert(`⌨️ Keyboard Shortcuts:
 
 H - Home
+A - About
 C - Create Gift  
 G - Gallery
 L - Leaderboard
+I - My Impact
 R - Refer & Earn
 T - Transparency
 B - Bulk Orders

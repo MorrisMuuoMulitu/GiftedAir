@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Navigation from '../components/Navigation';
 
 export default function About() {
   const navigate = useNavigate();
@@ -13,16 +14,89 @@ export default function About() {
         path="/about"
       />
       
+      <Navigation />
+      
       <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-20">
-          <div className="max-w-4xl mx-auto px-4 text-center">
+        <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-20 relative overflow-hidden">
+          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Climate Action as a Love Language
             </h1>
-            <p className="text-xl md:text-2xl text-blue-50 leading-relaxed">
+            <p className="text-xl md:text-2xl text-blue-50 leading-relaxed mb-8">
               What if the best gift you could give someone was a healthier planet in their name?
             </p>
+            
+            {/* DOPE Lean Canvas Button */}
+            <style>{`
+              @keyframes star-pulse {
+                0%, 100% {
+                  transform: scale(1) rotate(0deg);
+                  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2);
+                }
+                50% {
+                  transform: scale(1.05) rotate(2deg);
+                  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.6), 0 0 90px rgba(255, 215, 0, 0.4);
+                }
+              }
+              
+              @keyframes shimmer {
+                0% {
+                  background-position: -200% center;
+                }
+                100% {
+                  background-position: 200% center;
+                }
+              }
+              
+              .star-button {
+                animation: star-pulse 2s ease-in-out infinite;
+                background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+                background-size: 200% auto;
+                transition: all 0.3s ease;
+              }
+              
+              .star-button:hover {
+                animation: star-pulse 1s ease-in-out infinite, shimmer 1.5s linear infinite;
+                transform: scale(1.1) rotate(-2deg) !important;
+              }
+              
+              .star-button::before {
+                content: '⭐';
+                position: absolute;
+                left: -30px;
+                animation: spin 3s linear infinite;
+              }
+              
+              .star-button::after {
+                content: '⭐';
+                position: absolute;
+                right: -30px;
+                animation: spin 3s linear infinite reverse;
+              }
+              
+              @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
+            
+            <button
+              onClick={() => navigate('/venture')}
+              className="star-button relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg text-slate-900 hover:text-black shadow-2xl border-4 border-yellow-300"
+            >
+              <span className="text-2xl">📊</span>
+              <span>View My Lean Canvas</span>
+              <span className="text-2xl">✨</span>
+            </button>
+          </div>
+          
+          {/* Animated background particles */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-10 left-10 text-4xl animate-bounce">⭐</div>
+            <div className="absolute top-20 right-20 text-3xl animate-pulse">✨</div>
+            <div className="absolute bottom-10 left-1/4 text-5xl animate-bounce" style={{animationDelay: '0.5s'}}>💫</div>
+            <div className="absolute bottom-20 right-1/3 text-4xl animate-pulse" style={{animationDelay: '1s'}}>⭐</div>
           </div>
         </div>
 
@@ -176,9 +250,9 @@ export default function About() {
             </p>
           </section>
 
-          {/* Our Partners */}
+          {/* Our Potential Partners */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Partners</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Potential Partners</h2>
             <p className="text-slate-700 mb-6">
               We work with verified environmental organizations to ensure your gifts create real impact:
             </p>
