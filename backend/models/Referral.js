@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const referralSchema = new mongoose.Schema({
   // Who referred
@@ -62,4 +62,4 @@ referralSchema.index({ referrerId: 1 });
 referralSchema.index({ refereeEmail: 1 });
 referralSchema.index({ referralCode: 1 });
 
-module.exports = mongoose.model('Referral', referralSchema);
+export default mongoose.model('Referral', referralSchema);

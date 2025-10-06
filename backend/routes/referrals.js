@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+import ReferralCode from '../models/ReferralCode.js';
+import Referral from '../models/Referral.js';
+
 const router = express.Router();
-const ReferralCode = require('../models/ReferralCode');
-const Referral = require('../models/Referral');
 
 // Generate a unique referral code
 function generateCode(name) {
@@ -215,4 +216,4 @@ router.get('/leaderboard', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

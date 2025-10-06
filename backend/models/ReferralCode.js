@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const referralCodeSchema = new mongoose.Schema({
   code: {
@@ -56,4 +56,4 @@ const referralCodeSchema = new mongoose.Schema({
 referralCodeSchema.index({ code: 1 });
 referralCodeSchema.index({ userId: 1 });
 
-module.exports = mongoose.model('ReferralCode', referralCodeSchema);
+export default mongoose.model('ReferralCode', referralCodeSchema);

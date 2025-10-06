@@ -6,6 +6,7 @@ import giftRoutes from './routes/gifts.js';
 import paymentRoutes from './routes/payments.js';
 import thankYouRoutes from './routes/thankYou.js';
 import bulkOrderHelper from './routes/bulkOrderHelper.js';
+import referralRoutes from './routes/referrals.js';
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use('/api/gifts', giftRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api', thankYouRoutes);
 app.use('/api/bulk-helper', bulkOrderHelper);
+app.use('/api/referrals', referralRoutes);
 
 async function startServer() {
   try {
