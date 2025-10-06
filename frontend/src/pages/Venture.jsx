@@ -73,67 +73,128 @@ export default function Venture() {
     }
   ];
 
-  // Lean Canvas sections
+  // beVisioneers Lean Canvas Framework
   const leanCanvas = {
+    // 1. Problem (top 1-3 problems)
     problem: [
-      'People want to give meaningful gifts but struggle with physical items',
-      'Environmental causes lack emotional gifting opportunities',
-      'Traditional charity feels impersonal and transactional',
-      'No easy way to share environmental impact with loved ones'
+      'Meaningful gifting is hard: People want to give impactful gifts but physical items feel wasteful or impersonal',
+      'Climate action feels disconnected: No emotional way to involve loved ones in environmental causes',
+      'Traditional charity is transactional: Donations lack shareable celebration and social recognition'
     ],
+    
+    // 2. Existing solutions & alternatives
+    existingAlternatives: [
+      'Physical gift cards (Starbucks, Amazon) - impersonal, no impact, end up unused',
+      'Direct charity donations - not giftable, no recipient experience, feels like homework',
+      'Tree planting apps (Ecosia) - not designed for gifting, no personalization',
+      'Experience gifts (concert tickets) - logistically complex, not always feasible',
+      'DIY donations in someone\'s name - manually create certificates, no tracking'
+    ],
+    
+    // 3. Solution (your idea)
     solution: [
-      'Digital gifts that fund real environmental projects',
-      'Personalized gift pages with messages and certificates',
-      'Shareable impact stories and visuals',
-      'Transparent tracking of where money goes',
-      'Gallery of public environmental contributions'
+      'One-click environmental gifts: Choose from 8 causes, add message, send instantly',
+      'Beautiful gift experience: Recipient gets personalized page with certificate and impact details',
+      'Built-in sharing: Every gift becomes shareable content (Instagram, gallery, referrals)',
+      'Transparent impact: See exactly where money goes (50% to partners, tracked publicly)',
+      'Gamified giving: Leaderboards, referral rewards, public gallery for social recognition'
     ],
-    uniqueValueProposition: 'Give the gift of environmental impact - plant trees, clean oceans, or protect wildlife in someone\'s name with a beautiful, shareable experience.',
-    unfairAdvantage: [
-      'Direct partnerships with verified environmental organizations',
-      'Beautiful, emotional user experience',
-      'Built-in virality through gift sharing',
-      'First-to-market in environmental gifting space'
+    
+    // 4. Target audience & Early adopters
+    targetAudience: {
+      broad: [
+        'Millennials & Gen Z (25-40 years old, eco-conscious, digitally native)',
+        'Corporate HR/CSR departments (need employee gifts, sustainability focus)',
+        'Event planners (weddings, birthdays wanting unique favors)',
+        'Non-profit fundraisers (need easy peer-to-peer campaign tools)'
+      ],
+      earlyAdopters: [
+        'Climate activists already donating monthly (want to spread impact socially)',
+        'Remote workers with global friends (need digital gifts that work anywhere)',
+        'Eco-influencers (want shareable climate content with credibility)',
+        'Corporate sustainability teams (piloting green employee recognition programs)'
+      ]
+    },
+    
+    // 5. Your why (founder motivation)
+    yourWhy: [
+      'Personal connection: Growing up in Kenya, witnessed firsthand how environmental degradation impacts communities—from water scarcity to deforestation affecting livelihoods',
+      'Gap recognition: Saw friends struggle to give meaningful gifts remotely during COVID, while environmental causes desperately needed funding',
+      'Systems thinking: Realized gifting is an untapped emotional gateway to climate action—people who wouldn\'t donate directly will fund impact when celebrating loved ones',
+      'Founder-problem fit: Combined background in community organizing (grassroots trust-building) with tech skills to create an enabling environment where everyone wins: givers feel generous, receivers feel celebrated, planet gets funded'
     ],
-    customerSegments: [
-      'Millennials & Gen Z (eco-conscious)',
-      'Corporate gifting departments',
-      'Event planners (weddings, birthdays)',
-      'Non-profit fundraisers',
-      'Remote workers looking for meaningful gifts'
+    
+    // 6. Your speed bumps (limitations & how to overcome)
+    speedBumps: [
+      {
+        limitation: 'Trust barrier: New platform, users hesitant to send money',
+        mitigation: 'Stripe for secure payments, transparent 50/50 split displayed publicly, partner logos (WWF, One Tree Planted), public gallery showing real gifts'
+      },
+      {
+        limitation: 'Partner verification: Need formal partnerships with environmental orgs',
+        mitigation: 'Start with established platforms that aggregate verified projects (One Tree Planted, Charity Water), build case studies, then approach larger orgs with traction data'
+      },
+      {
+        limitation: 'Skill gap: Solo founder, no marketing/growth expertise',
+        mitigation: 'Lean on advisors (Aneri for strategy), use existing community networks (BeVisioneers, climate tech groups), bootstrap with organic social sharing built into product'
+      },
+      {
+        limitation: 'Time commitment: Balancing full-time work initially',
+        mitigation: 'MVP already built and live, automate operations (Stripe, Resend), focus weekends on marketing experiments, seek pre-seed funding to go full-time'
+      }
     ],
-    keyMetrics: [
-      'Monthly Active Users',
-      'Gifts sent per month',
-      'Average gift value',
-      'Referral conversion rate',
-      'Partner donation amounts',
-      'Gallery engagement',
-      'Social shares per gift'
+    
+    // 7. Prototype (what needs testing)
+    prototype: [
+      '✅ TESTED: Core gift flow (8 gift types, payment, email, viewing) - LIVE on giftedair.vercel.app',
+      '✅ TESTED: Viral mechanics (public gallery, referral program, social sharing)',
+      '🧪 TESTING: B2B corporate bulk orders - feature built, need pilot customers',
+      '🧪 TESTING: Pricing elasticity - currently $10-$500 per gift, will test $5 entry point',
+      '❓ TO TEST: Subscription model - monthly recurring gifts (30% of Netflix users would gift subscriptions)',
+      '❓ TO TEST: Event partnerships - wedding/conference packages need validation with planners',
+      '❓ TO TEST: Mobile app - web works well, but does native app increase gifting frequency?'
     ],
+    
+    // 8. Channels & partnerships
     channels: [
-      'Social media (Instagram, TikTok)',
-      'Content marketing (environmental blogs)',
-      'Influencer partnerships',
-      'Referral program',
-      'Corporate partnerships',
-      'SEO (environmental gift keywords)',
-      'Email marketing'
+      'Product-led: Built-in virality (recipients become senders via gallery + referrals)',
+      'Social media: Instagram/TikTok organic (beautiful gift pages are shareable content)',
+      'Influencer partnerships: Eco-influencers get affiliate links, showcase gifts',
+      'SEO: "Sustainable gifts", "eco-friendly birthday ideas" (low competition, high intent)',
+      'Corporate outreach: LinkedIn cold outreach to HR/CSR teams with case studies',
+      'Event partnerships: Wedding planner networks, conference organizers (bulk orders)',
+      'Climate community: BeVisioneers, Do School, climate tech Slack groups (warm intros)'
     ],
+    
+    // 9. Key metrics (numbers that show success)
+    keyMetrics: [
+      'Gifts sent per month (currently ~50, target 1,000 by month 6)',
+      'Referral rate (% of recipients who send gifts - target 15-20%)',
+      'Average gift value ($50 current, optimize for frequency vs. value)',
+      'K-Factor (viral coefficient - each gift creates how many new gifts?)',
+      'Corporate deal size ($500-$5,000 bulk orders)',
+      'Gallery engagement (views per gift, shares)',
+      'CAC vs. LTV (aim for <$20 CAC, $200+ LTV over 3 years)'
+    ],
+    
+    // 10. Cost structure
     costStructure: [
-      'Partner donations (50% of revenue)',
-      'Stripe payment processing (2.9% + $0.30)',
-      'Hosting & infrastructure (Vercel, MongoDB)',
-      'Email service (Resend)',
-      'Marketing & advertising',
-      'Development & maintenance'
+      'Partner donations: 50% of every gift goes directly to environmental orgs',
+      'Stripe fees: 2.9% + $0.30 per transaction (~3% of revenue)',
+      'Platform infrastructure: ~$50/month (Vercel hosting, MongoDB, Resend emails)',
+      'Marketing: Bootstrap phase (<$500/month on Instagram ads, influencer gifting)',
+      'Development: Solo founder time (currently evenings/weekends)',
+      'Future costs: Full-time salary, contractor help, premium partnerships'
     ],
-    revenueStreams: [
-      'Transaction fees (~47% of gift value)',
-      'Corporate bulk orders',
-      'Premium features (future)',
-      'Subscription model (future)',
-      'API licensing (future)'
+    
+    // 11. Income streams
+    incomeStreams: [
+      'Transaction fees: ~47% of gift value (after partner donation + Stripe)',
+      'Corporate bulk orders: 20-500 gifts per order ($1,000-$25,000 deals)',
+      'Premium features (future): Custom branding for companies, advanced analytics',
+      'Subscription model (future): Monthly recurring gifts at discounted rates',
+      'API licensing (future): Other platforms integrate gifting (wedding sites, fundraising tools)',
+      'Event partnerships: Commission on wedding/conference packages'
     ]
   };
 
@@ -1115,154 +1176,199 @@ export default function Venture() {
           </div>
         )}
 
-        {/* Lean Canvas Section */}
+        {/* beVisioneers Lean Canvas Section */}
         {activeSection === 'canvas' && (
           <div className="space-y-8 animate-fade-in">
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10">
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
-                📊 Lean Canvas Business Model
+            <div className="bg-[#1A1A1A] rounded-3xl shadow-xl p-10 border border-[#D8BFD8]/30">
+              <h2 className="text-3xl font-bold text-white mb-4 text-center">
+                📊 beVisioneers Lean Canvas
               </h2>
+              <p className="text-center text-white/70 mb-8">Complete business model framework following the beVisioneers Fellowship approach</p>
               
-              {/* UVP - Full Width */}
-              <div className="mb-8 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-2xl p-8">
-                <h3 className="font-bold text-2xl mb-4 flex items-center gap-2">
-                  <span>💎</span> Unique Value Proposition
-                </h3>
-                <p className="text-xl leading-relaxed">
-                  {leanCanvas.uniqueValueProposition}
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Problem */}
-                <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-red-800 dark:text-red-300 mb-4 flex items-center gap-2">
-                    <span>⚠️</span> Problem
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* 1. Problem */}
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-red-900/20 border-2 border-red-500/30 rounded-2xl p-6">
+                  <h3 className="font-bold text-xl text-red-400 mb-4 flex items-center gap-2">
+                    <span>⚠️</span> 1. Problem
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {leanCanvas.problem.map((p, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                        <span className="text-red-600 dark:text-red-400">•</span>
+                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                        <span className="text-red-400 font-bold">{idx + 1}.</span>
                         <span>{p}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Solution */}
-                <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-green-800 dark:text-green-300 mb-4 flex items-center gap-2">
-                    <span>✅</span> Solution
+                {/* 2. Existing Alternatives */}
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-orange-900/20 border-2 border-orange-500/30 rounded-2xl p-6">
+                  <h3 className="font-bold text-xl text-orange-400 mb-4 flex items-center gap-2">
+                    <span>🔄</span> 2. Existing Alternatives
+                  </h3>
+                  <ul className="space-y-2">
+                    {leanCanvas.existingAlternatives.map((alt, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                        <span className="text-orange-400">•</span>
+                        <span>{alt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* 3. Solution */}
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-green-900/20 border-2 border-green-500/30 rounded-2xl p-6">
+                  <h3 className="font-bold text-xl text-green-400 mb-4 flex items-center gap-2">
+                    <span>✅</span> 3. Solution
                   </h3>
                   <ul className="space-y-2">
                     {leanCanvas.solution.map((s, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                        <span className="text-green-600 dark:text-green-400">•</span>
+                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                        <span className="text-green-400">•</span>
                         <span>{s}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Key Metrics */}
-                <div className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-blue-800 dark:text-blue-300 mb-4 flex items-center gap-2">
-                    <span>📊</span> Key Metrics
+                {/* 4. Target Audience & Early Adopters */}
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-amber-900/20 border-2 border-amber-500/30 rounded-2xl p-6">
+                  <h3 className="font-bold text-xl text-amber-400 mb-4 flex items-center gap-2">
+                    <span>👥</span> 4. Target Audience
                   </h3>
-                  <ul className="space-y-2">
-                    {leanCanvas.keyMetrics.map((m, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                        <span className="text-blue-600 dark:text-blue-400">•</span>
-                        <span>{m}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-amber-300 mb-2 text-sm">Broad Audience:</h4>
+                    <ul className="space-y-1">
+                      {leanCanvas.targetAudience.broad.map((t, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-white/70 text-xs">
+                          <span className="text-amber-400">•</span>
+                          <span>{t}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-amber-300 mb-2 text-sm">🎯 Early Adopters:</h4>
+                    <ul className="space-y-1">
+                      {leanCanvas.targetAudience.earlyAdopters.map((ea, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-white/80 text-xs font-medium">
+                          <span className="text-amber-400">★</span>
+                          <span>{ea}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                {/* Unfair Advantage */}
-                <div className="bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-purple-800 dark:text-purple-300 mb-4 flex items-center gap-2">
-                    <span>🚀</span> Unfair Advantage
-                  </h3>
-                  <ul className="space-y-2">
-                    {leanCanvas.unfairAdvantage.map((a, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                        <span className="text-purple-600 dark:text-purple-400">•</span>
-                        <span>{a}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {/* 5. Your Why - Full Width */}
+              </div>
 
-                {/* Customer Segments */}
-                <div className="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-amber-800 dark:text-amber-300 mb-4 flex items-center gap-2">
-                    <span>👥</span> Customer Segments
-                  </h3>
-                  <ul className="space-y-2">
-                    {leanCanvas.customerSegments.map((c, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                        <span className="text-amber-600 dark:text-amber-400">•</span>
-                        <span>{c}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* Full Width Sections */}
+              <div className="mt-6 bg-gradient-to-br from-[#8A2BE2]/20 to-[#D8BFD8]/20 border-2 border-[#8A2BE2]/40 rounded-2xl p-6">
+                <h3 className="font-bold text-2xl text-[#D8BFD8] mb-4 flex items-center gap-2">
+                  <span>💜</span> 5. Your Why (Founder Motivation)
+                </h3>
+                <ul className="space-y-3">
+                  {leanCanvas.yourWhy.map((why, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-white/90">
+                      <span className="text-[#D8BFD8] font-bold text-lg">{idx + 1}.</span>
+                      <span className="leading-relaxed">{why}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                {/* Channels */}
-                <div className="bg-cyan-50 dark:bg-cyan-900/20 border-2 border-cyan-200 dark:border-cyan-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-cyan-800 dark:text-cyan-300 mb-4 flex items-center gap-2">
-                    <span>📢</span> Channels
+              {/* 6. Speed Bumps - Full Width */}
+              <div className="mt-6 bg-gradient-to-br from-[#C38B4A]/20 to-[#C38B4A]/10 border-2 border-[#C38B4A]/40 rounded-2xl p-6">
+                <h3 className="font-bold text-2xl text-[#C38B4A] mb-4 flex items-center gap-2">
+                  <span>🚧</span> 6. Speed Bumps (Limitations & Mitigation)
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {leanCanvas.speedBumps.map((bump, idx) => (
+                    <div key={idx} className="bg-[#1A1A1A]/50 rounded-lg p-4 border border-[#C38B4A]/20">
+                      <h4 className="font-semibold text-red-400 mb-2 text-sm">⚠️ {bump.limitation}</h4>
+                      <p className="text-green-400 text-sm"><span className="font-semibold">✓ Mitigation:</span> {bump.mitigation}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 7. Prototype - Full Width */}
+              <div className="mt-6 bg-gradient-to-br from-[#00CED1]/20 to-[#ADD8E6]/20 border-2 border-[#00CED1]/40 rounded-2xl p-6">
+                <h3 className="font-bold text-2xl text-[#ADD8E6] mb-4 flex items-center gap-2">
+                  <span>🔬</span> 7. Prototype (What Needs Testing)
+                </h3>
+                <ul className="space-y-2">
+                  {leanCanvas.prototype.map((proto, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-white/90">
+                      <span>{proto}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Grid Sections */}
+              <div className="grid md:grid-cols-2 gap-6 mt-6">
+                {/* 8. Channels */}
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-cyan-900/20 border-2 border-cyan-500/30 rounded-2xl p-6">
+                  <h3 className="font-bold text-xl text-cyan-400 mb-4 flex items-center gap-2">
+                    <span>📢</span> 8. Channels & Partnerships
                   </h3>
                   <ul className="space-y-2">
                     {leanCanvas.channels.map((ch, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                        <span className="text-cyan-600 dark:text-cyan-400">•</span>
+                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                        <span className="text-cyan-400">•</span>
                         <span>{ch}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Cost Structure */}
-                <div className="bg-rose-50 dark:bg-rose-900/20 border-2 border-rose-200 dark:border-rose-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-rose-800 dark:text-rose-300 mb-4 flex items-center gap-2">
-                    <span>💸</span> Cost Structure
+                {/* 9. Key Metrics */}
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-blue-900/20 border-2 border-blue-500/30 rounded-2xl p-6">
+                  <h3 className="font-bold text-xl text-blue-400 mb-4 flex items-center gap-2">
+                    <span>📊</span> 9. Key Metrics
+                  </h3>
+                  <ul className="space-y-2">
+                    {leanCanvas.keyMetrics.map((m, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                        <span className="text-blue-400">•</span>
+                        <span>{m}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* 10. Cost Structure */}
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-rose-900/20 border-2 border-rose-500/30 rounded-2xl p-6">
+                  <h3 className="font-bold text-xl text-rose-400 mb-4 flex items-center gap-2">
+                    <span>💸</span> 10. Cost Structure
                   </h3>
                   <ul className="space-y-2">
                     {leanCanvas.costStructure.map((cost, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                        <span className="text-rose-600 dark:text-rose-400">•</span>
+                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                        <span className="text-rose-400">•</span>
                         <span>{cost}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Revenue Streams */}
-                <div className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-emerald-800 dark:text-emerald-300 mb-4 flex items-center gap-2">
-                    <span>💰</span> Revenue Streams
+                {/* 11. Income Streams */}
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-emerald-900/20 border-2 border-emerald-500/30 rounded-2xl p-6">
+                  <h3 className="font-bold text-xl text-emerald-400 mb-4 flex items-center gap-2">
+                    <span>💰</span> 11. Income Streams
                   </h3>
                   <ul className="space-y-2">
-                    {leanCanvas.revenueStreams.map((rev, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                        <span className="text-emerald-600 dark:text-emerald-400">•</span>
+                    {leanCanvas.incomeStreams.map((rev, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                        <span className="text-emerald-400">•</span>
                         <span>{rev}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
-            </div>
-
-            <div className="text-center">
-              <button
-                onClick={() => navigate('/')}
-                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
-              >
-                🏠 Back to Home
-              </button>
             </div>
           </div>
         )}
