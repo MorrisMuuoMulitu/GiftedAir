@@ -392,7 +392,7 @@ export default function Venture() {
               <button
                 key={tab.id}
                 onClick={() => setActiveSection(tab.id)}
-                className={`flex-1 min-w-[140px] px-6 py-3 rounded-xl font-bold text-sm transition-all ${
+                className={`flex-1 min-w-[80px] sm:min-w-[140px] px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all ${
                   activeSection === tab.id
                     ? 'bg-gradient-to-r from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] text-white shadow-lg shadow-[#00CED1]/40'
                     : 'text-zinc-400 hover:text-white hover:bg-[#1A1A1A]'
