@@ -34,20 +34,41 @@ export default function Admin() {
 
     const fetchData = async () => {
       try {
-        const [statsRes, giftsRes] = await Promise.all([
-          fetch(`${API_URL}/api/gifts/stats/summary`),
-          fetch(`${API_URL}/api/gifts`)
-        ]);
+        console.log('Fetching admin data from:', `${API_URL}/api/gifts`);
+        
+        const giftsRes = await fetch(`${API_URL}/api/gifts`);
+        console.log('Response status:', giftsRes.status);
+        
+        if (!giftsRes.ok) {
+          throw new Error(`Failed to fetch: ${giftsRes.status}`);
+        }
 
-        const statsData = await statsRes.json();
         const giftsData = await giftsRes.json();
+        console.log('Fetched gifts data:', giftsData);
+        console.log('Is array?', Array.isArray(giftsData));
+        console.log('Length:', giftsData?.length);
 
-        setStats(statsData);
         // Ensure giftsData is an array
-        setGifts(Array.isArray(giftsData) ? giftsData : []);
+        const giftsArray = Array.isArray(giftsData) ? giftsData : [];
+        setGifts(giftsArray);
+        console.log('Set gifts state to:', giftsArray.length, 'gifts');
+        
+        // Try to fetch stats too
+        try {
+          const statsRes = await fetch(`${API_URL}/api/gifts/stats/summary`);
+          if (statsRes.ok) {
+            const statsData = await statsRes.json();
+            setStats(statsData);
+            console.log('Stats loaded:', statsData);
+          }
+        } catch (err) {
+          console.log('Stats not available:', err);
+        }
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching admin data:', error);
+        alert(`❌ Failed to load gifts: ${error.message}`);
         setGifts([]); // Set empty array on error
         setLoading(false);
       }
