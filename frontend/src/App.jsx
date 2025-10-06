@@ -18,6 +18,7 @@ const Certificate = lazy(() => import('./pages/Certificate'));
 const BulkGift = lazy(() => import('./pages/BulkGift'));
 const BulkSuccess = lazy(() => import('./pages/BulkSuccess'));
 const Referral = lazy(() => import('./pages/Referral'));
+const Aneri = lazy(() => import('./pages/Aneri'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function AppContent() {
@@ -39,6 +40,7 @@ function AppContent() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/bulk" element={<BulkGift />} />
         <Route path="/referral" element={<Referral />} />
+        <Route path="/aneri" element={<Aneri />} />
         <Route path="/certificate/:giftId" element={<Certificate />} />
         <Route path="/gift/:giftId" element={<GiftView />} />
         {/* 404 catch-all */}

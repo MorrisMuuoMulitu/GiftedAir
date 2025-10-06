@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
+import SEO, { SEOConfig } from '../components/SEO';
 
 export default function Landing() {
   const navigate = useNavigate();
 
   return (
     <>
+      <SEO {...SEOConfig.home} />
       <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-sky via-white to-green-50">
       {/* Hero Section */}

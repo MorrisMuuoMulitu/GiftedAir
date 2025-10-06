@@ -14,7 +14,7 @@ export default function AdminV2() {
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const ADMIN_PASSWORD = 'giftedair2025';
+  const ADMIN_PASSWORD = '12April@Muuo';
 
   const handleLogin = (e) => {
     e.preventDefault();

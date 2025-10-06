@@ -4,6 +4,7 @@ import { API_URL } from '../config';
 import Navigation from '../components/Navigation';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 import EmptyState from '../components/EmptyState';
+import SEO, { SEOConfig } from '../components/SEO';
 
 const giftTypeDetails = {
   tree: { 
@@ -126,8 +127,10 @@ export default function Gallery() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12">
-      <div className="container mx-auto px-4 max-w-7xl">
+    <>
+      <SEO {...SEOConfig.gallery} />
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12">
+        <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-forest mb-4">Gift Gallery</h1>
@@ -320,8 +323,9 @@ export default function Gallery() {
             ← Back to Home
           </button>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
