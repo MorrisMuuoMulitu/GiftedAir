@@ -301,78 +301,78 @@ export default function Venture() {
                   <span className="text-sm font-semibold">LIVE PROTOTYPE</span>
                 </div>
                 
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-4 tracking-tighter">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-4 tracking-tighter">
                   GIFTED<br />AIR
                 </h1>
                 
-                <p className="text-2xl md:text-3xl font-light italic mb-8 text-white/90">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light italic mb-8 text-white/90">
                   A Ritual of Climate Love
                 </p>
                 
-                <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                <div className="flex flex-wrap gap-2 sm:gap-3 justify-center md:justify-start">
                   <a 
                     href="https://gifted-air.vercel.app/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white text-[#8A2BE2] px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-sm sm:text-base hover:bg-[#D8BFD8]/20 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="inline-flex items-center gap-1 sm:gap-2 bg-white text-[#8A2BE2] px-3 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-base hover:bg-[#D8BFD8]/20 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
-                    <span>🚀</span>
+                    <span className="text-sm sm:text-base">🚀</span>
                     <span>View Live Site</span>
                   </a>
                   <a 
                     href={partnerLinks.doSchool}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-sm sm:text-base hover:bg-white/20 transition-all border border-white/20"
+                    className="inline-flex items-center gap-1 sm:gap-2 bg-white/10 backdrop-blur-md text-white px-3 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-base hover:bg-white/20 transition-all border border-white/20"
                   >
-                    <span>🎓</span>
+                    <span className="text-sm sm:text-base">🎓</span>
                     <span>Do School</span>
                   </a>
                   <button
                     onClick={() => navigate('/feedback')}
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-sm sm:text-base hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
+                    className="inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-base hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
                   >
-                    <span>💭</span>
+                    <span className="text-sm sm:text-base">💭</span>
                     <span>Share Feedback</span>
                   </button>
                 </div>
               </div>
               
               {/* Right: Quick Stats */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
-                  <div className="text-4xl font-black mb-1">66%</div>
-                  <div className="text-sm font-semibold opacity-90">Platform Complete</div>
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black mb-1">66%</div>
+                  <div className="text-xs sm:text-sm font-semibold opacity-90">Platform Complete</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
-                  <div className="text-4xl font-black mb-1">$2-5B</div>
-                  <div className="text-sm font-semibold opacity-90">Market Opportunity</div>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black mb-1">$2-5B</div>
+                  <div className="text-xs sm:text-sm font-semibold opacity-90">Market Opportunity</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
-                  <div className="text-4xl font-black mb-1">8</div>
-                  <div className="text-sm font-semibold opacity-90">Impact Categories</div>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black mb-1">8</div>
+                  <div className="text-xs sm:text-sm font-semibold opacity-90">Impact Categories</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
-                  <div className="text-4xl font-black mb-1">$1-10</div>
-                  <div className="text-sm font-semibold opacity-90">Gift Price Range</div>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-white/20 text-center hover:bg-white/20 transition-all">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black mb-1">$1-10</div>
+                  <div className="text-xs sm:text-sm font-semibold opacity-90">Gift Price Range</div>
                 </div>
               </div>
             </div>
             
             {/* For Aneri - Sleek Badge */}
-            <div className="mt-12 pt-8 border-t border-white/20">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div>
-                  <p className="text-lg font-semibold mb-1">
+            <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/20">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+                <div className="text-center md:text-left">
+                  <p className="text-sm sm:text-base md:text-lg font-semibold mb-1">
                     Prepared by <a href="https://www.linkedin.com/in/morrismuuo/" target="_blank" rel="noopener noreferrer" className="text-[#00CED1] hover:text-[#ADD8E6] transition-colors underline">Morris Mulitu</a>
                   </p>
-                  <p className="text-white/70">
+                  <p className="text-sm sm:text-base text-white/70">
                     BeVisioneers Fellow, Climate Tech Ecosystem Builder
                   </p>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-white/70 mb-1">Document Date & Time (Nairobi)</p>
-                  <p className="font-semibold">{currentDate} at {currentTimeInNairobi}</p>
+                <div className="text-center md:text-right">
+                  <p className="text-xs sm:text-sm text-white/70 mb-1">Document Date & Time (Nairobi)</p>
+                  <p className="text-sm sm:text-base font-semibold">{currentDate} at {currentTimeInNairobi}</p>
                 </div>
               </div>
             </div>
@@ -380,8 +380,8 @@ export default function Venture() {
         </div>
 
         {/* Navigation Tabs - Ultra Sleek */}
-        <div className="bg-[#1A1A1A] rounded-2xl p-2 mb-12 border border-[#D8BFD8]/30 overflow-x-auto">
-          <div className="flex gap-2">
+        <div className="bg-[#1A1A1A] rounded-xl sm:rounded-2xl p-1 sm:p-2 mb-8 sm:mb-12 border border-[#D8BFD8]/30 overflow-x-auto">
+          <div className="flex gap-1 sm:gap-2">
             {[
               { id: 'overview', label: 'Overview', icon: '⚡' },
               { id: 'idea', label: 'Vision', icon: '💡' },
@@ -392,14 +392,15 @@ export default function Venture() {
               <button
                 key={tab.id}
                 onClick={() => setActiveSection(tab.id)}
-                className={`flex-1 min-w-[80px] sm:min-w-[140px] px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all ${
+                className={`flex-1 min-w-[70px] sm:min-w-[100px] md:min-w-[140px] px-2 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-bold text-[10px] sm:text-xs md:text-sm transition-all whitespace-nowrap ${
                   activeSection === tab.id
                     ? 'bg-gradient-to-r from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] text-white shadow-lg shadow-[#00CED1]/40'
                     : 'text-zinc-400 hover:text-white hover:bg-[#1A1A1A]'
                 }`}
               >
-                <span className="mr-2">{tab.icon}</span>
-                <span>{tab.label}</span>
+                <span className="mr-1 sm:mr-2">{tab.icon}</span>
+                <span className="hidden sm:inline">{tab.label}</span>
+                <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
               </button>
             ))}
           </div>
@@ -409,20 +410,20 @@ export default function Venture() {
         {activeSection === 'overview' && (
           <div className="space-y-8 animate-fade-in">
             {/* Executive Summary */}
-            <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-3xl p-12 border border-[#D8BFD8]/30">
-              <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] bg-clip-text text-transparent">
+            <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12 border border-[#D8BFD8]/30">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 md:mb-8 bg-gradient-to-r from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] bg-clip-text text-transparent">
                 Executive Summary
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">The Concept</h3>
-                  <p className="text-zinc-300 leading-relaxed text-lg">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">The Concept</h3>
+                  <p className="text-zinc-300 leading-relaxed text-sm sm:text-base md:text-lg">
                     Gifted Air transforms <span className="text-[#00CED1] font-semibold">climate action into a love language</span>. We're building a poetic web platform where users gift verified environmental actions—plant trees, clean oceans, provide clean water—with personalized messages and beautiful, shareable pages.
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">The Opportunity</h3>
-                  <p className="text-zinc-300 leading-relaxed text-lg">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">The Opportunity</h3>
+                  <p className="text-zinc-300 leading-relaxed text-sm sm:text-base md:text-lg">
                     We exist at the intersection of three massive markets: the <span className="text-[#ADD8E6] font-semibold">$10-40B voluntary carbon market</span>, the <span className="text-[#D8BFD8] font-semibold">$300B+ digital gifting</span> industry, and the growing conscious consumer movement where <span className="text-[#00CED1] font-semibold">60%+ prefer sustainable brands</span>.
                   </p>
                 </div>
@@ -430,12 +431,12 @@ export default function Venture() {
             </div>
 
             {/* Key Highlights Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-              <div className="bg-[#1A1A1A] rounded-2xl p-8 border border-[#D8BFD8]/20 hover:border-[#8A2BE2]/50 transition-all">
-                <div className="text-5xl mb-4">🎯</div>
-                <h3 className="text-xl font-bold mb-3 text-white">Target Market</h3>
-                <p className="text-zinc-300 mb-4">$2-5B eco-gifting opportunity within larger markets</p>
-                <ul className="space-y-2 text-sm text-zinc-500">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+              <div className="bg-[#1A1A1A] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-[#D8BFD8]/20 hover:border-[#8A2BE2]/50 transition-all">
+                <div className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">🎯</div>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-white">Target Market</h3>
+                <p className="text-zinc-300 mb-3 sm:mb-4 text-sm sm:text-base">$2-5B eco-gifting opportunity within larger markets</p>
+                <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-zinc-500">
                   <li className="flex items-start gap-2">
                     <span className="text-[#00CED1]">→</span>
                     <span>Climate-conscious Millennials & Gen Z</span>
@@ -451,11 +452,11 @@ export default function Venture() {
                 </ul>
               </div>
 
-              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:border-cyan-500/50 transition-all">
-                <div className="text-5xl mb-4">🚀</div>
-                <h3 className="text-xl font-bold mb-3 text-white">Current Progress</h3>
-                <p className="text-zinc-400 mb-4">Platform 66% complete with live prototype</p>
-                <ul className="space-y-2 text-sm text-zinc-500">
+              <div className="bg-zinc-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-zinc-800 hover:border-cyan-500/50 transition-all">
+                <div className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">🚀</div>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-white">Current Progress</h3>
+                <p className="text-zinc-400 mb-3 sm:mb-4 text-sm sm:text-base">Platform 66% complete with live prototype</p>
+                <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-zinc-500">
                   <li className="flex items-start gap-2">
                     <span className="text-green-500">✓</span>
                     <span>8 gift types (Trees, Ocean, Water, Solar, etc.)</span>
@@ -471,11 +472,11 @@ export default function Venture() {
                 </ul>
               </div>
 
-              <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:border-pink-500/50 transition-all">
-                <div className="text-5xl mb-4">💰</div>
-                <h3 className="text-xl font-bold mb-3 text-white">Revenue Model</h3>
-                <p className="text-zinc-400 mb-4">Multiple revenue streams, immediate profitability</p>
-                <ul className="space-y-2 text-sm text-zinc-500">
+              <div className="bg-zinc-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-zinc-800 hover:border-pink-500/50 transition-all">
+                <div className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">💰</div>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-white">Revenue Model</h3>
+                <p className="text-zinc-400 mb-3 sm:mb-4 text-sm sm:text-base">Multiple revenue streams, immediate profitability</p>
+                <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-zinc-500">
                   <li className="flex items-start gap-2">
                     <span className="text-green-500">✓</span>
                     <span><span className="text-green-400 font-bold">41% margin</span> on every transaction</span>
@@ -497,27 +498,27 @@ export default function Venture() {
             </div>
 
             {/* Our Potential Partners in Kenya */}
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-8 border border-zinc-700 shadow-xl">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gradient-to-br from-[#8A2BE2] to-[#00CED1] rounded-xl">
-                    <h3 className="text-2xl font-black text-white">Our Potential Partners in Kenya</h3>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-zinc-700 shadow-xl">
+              <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-6">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                  <div className="p-2 sm:p-3 bg-gradient-to-br from-[#8A2BE2] to-[#00CED1] rounded-lg sm:rounded-xl">
+                    <h3 className="text-base sm:text-lg md:text-2xl font-black text-white">Our Potential Partners in Kenya</h3>
                   </div>
-                  <div className="flex items-center gap-2 text-[#00CED1] font-black text-lg animate-pulse">
-                    <span className="text-3xl">→</span>
+                  <div className="flex items-center gap-1 sm:gap-2 text-[#00CED1] font-black text-sm sm:text-base md:text-lg animate-pulse">
+                    <span className="text-xl sm:text-2xl md:text-3xl">→</span>
                     <span>You could be Next</span>
                   </div>
                 </div>
-                <span className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full text-sm font-bold shadow-lg">
+                <span className="inline-flex self-start px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full text-xs sm:text-sm font-bold shadow-lg">
                   Building Partnerships
                 </span>
               </div>
-              <p className="text-zinc-300 mb-8 text-lg">
+              <p className="text-zinc-300 mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg">
                 We're building partnerships with verified Kenyan environmental organizations to create real local impact:
               </p>
               
               {/* Enhanced Partner Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
                 {[
                   { name: 'Green Belt Movement', description: 'Tree planting & conservation', icon: '🌳', url: 'https://www.greenbeltmovement.org/', color: 'emerald' },
                   { name: 'Eden Reforestation Projects', description: 'Forest restoration', icon: '🌲', url: 'https://www.edenprojects.org/', color: 'green' },
@@ -534,18 +535,18 @@ export default function Venture() {
                     href={partner.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl border border-zinc-700 p-6 hover:shadow-[0_0_30px_-10px_rgba(0,205,209,0.3)] transition-all duration-300 hover:scale-[1.02] group`}
+                    className={`bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl border border-zinc-700 p-3 sm:p-4 md:p-6 hover:shadow-[0_0_30px_-10px_rgba(0,205,209,0.3)] transition-all duration-300 hover:scale-[1.02] group`}
                   >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#8A2BE2] to-[#00CED1] flex items-center justify-center text-3xl shadow-lg group-hover:shadow-[0_0_20px_-5px_rgba(0,205,209,0.5)] transition-all">
+                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-2 sm:mb-3 md:mb-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br from-[#8A2BE2] to-[#00CED1] flex items-center justify-center text-xl sm:text-2xl md:text-3xl shadow-lg group-hover:shadow-[0_0_20px_-5px_rgba(0,205,209,0.5)] transition-all">
                         {partner.icon}
                       </div>
                       <div>
-                        <div className="font-bold text-white text-base group-hover:text-[#00CED1] transition-colors">{partner.name}</div>
-                        <div className="text-sm text-zinc-400 mt-1">{partner.description}</div>
+                        <div className="font-bold text-white text-xs sm:text-sm md:text-base group-hover:text-[#00CED1] transition-colors">{partner.name}</div>
+                        <div className="text-[10px] sm:text-xs md:text-sm text-zinc-400 mt-0.5 sm:mt-1">{partner.description}</div>
                       </div>
                     </div>
-                    <div className="text-xs text-zinc-500 border-t border-zinc-700 pt-3">
+                    <div className="text-[10px] sm:text-xs text-zinc-500 border-t border-zinc-700 pt-2 sm:pt-3">
                       Learn more →
                     </div>
                   </a>
@@ -553,51 +554,51 @@ export default function Venture() {
               </div>
               
               {/* Partner Benefits Section */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div className="bg-gradient-to-br from-emerald-900/30 to-teal-900/30 p-4 rounded-xl border border-emerald-500/30">
-                  <div className="text-2xl mb-2">💰</div>
-                  <h4 className="font-bold text-white mb-1">50% Revenue Share</h4>
-                  <p className="text-xs text-emerald-300">Direct funding to environmental impact</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6 md:mb-8">
+                <div className="bg-gradient-to-br from-emerald-900/30 to-teal-900/30 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-emerald-500/30">
+                  <div className="text-xl sm:text-2xl mb-1 sm:mb-2">💰</div>
+                  <h4 className="font-bold text-white mb-1 text-xs sm:text-sm">50% Revenue Share</h4>
+                  <p className="text-[10px] sm:text-xs text-emerald-300">Direct funding to environmental impact</p>
                 </div>
-                <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 p-4 rounded-xl border border-blue-500/30">
-                  <div className="text-2xl mb-2">📱</div>
-                  <h4 className="font-bold text-white mb-1">Tech & Marketing</h4>
-                  <p className="text-xs text-blue-300">We handle everything, you focus on impact</p>
+                <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-blue-500/30">
+                  <div className="text-xl sm:text-2xl mb-1 sm:mb-2">📱</div>
+                  <h4 className="font-bold text-white mb-1 text-xs sm:text-sm">Tech & Marketing</h4>
+                  <p className="text-[10px] sm:text-xs text-blue-300">We handle everything, you focus on impact</p>
                 </div>
-                <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 p-4 rounded-xl border border-purple-500/30">
-                  <div className="text-2xl mb-2">📊</div>
-                  <h4 className="font-bold text-white mb-1">Transparent Tracking</h4>
-                  <p className="text-xs text-purple-300">Real-time impact metrics & reporting</p>
+                <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-purple-500/30">
+                  <div className="text-xl sm:text-2xl mb-1 sm:mb-2">📊</div>
+                  <h4 className="font-bold text-white mb-1 text-xs sm:text-sm">Transparent Tracking</h4>
+                  <p className="text-[10px] sm:text-xs text-purple-300">Real-time impact metrics & reporting</p>
                 </div>
               </div>
               
               {/* Partnership Model & CTA */}
-              <div className="bg-gradient-to-r from-[#8A2BE2]/20 to-[#00CED1]/20 rounded-2xl p-6 border border-[#8A2BE2]/40">
-                <div className="flex flex-col md:flex-row md:items-start gap-6">
+              <div className="bg-gradient-to-r from-[#8A2BE2]/20 to-[#00CED1]/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-[#8A2BE2]/40">
+                <div className="flex flex-col gap-4 sm:gap-6">
                   <div className="flex-1">
-                    <h4 className="font-bold text-white text-lg mb-3 flex items-center gap-2">
-                      <span className="text-2xl">🤝</span> 
+                    <h4 className="font-bold text-white text-sm sm:text-base md:text-lg mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+                      <span className="text-lg sm:text-xl md:text-2xl">🤝</span> 
                       Partnership Model
                     </h4>
-                    <p className="text-sm text-zinc-300 mb-4">
+                    <p className="text-xs sm:text-sm text-zinc-300 mb-3 sm:mb-4">
                       We share 50% of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. 
                       Win-win for Kenyan organizations seeking new funding streams.
                     </p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs">No Upfront Costs</span>
-                      <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs">No Tech Requirements</span>
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">Transparent Reporting</span>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-[10px] sm:text-xs">No Upfront Costs</span>
+                      <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-[10px] sm:text-xs">No Tech Requirements</span>
+                      <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-purple-500/20 text-purple-300 rounded-full text-[10px] sm:text-xs">Transparent Reporting</span>
                     </div>
                   </div>
                   
                   {/* Call to Action */}
-                  <div className="bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl p-6 min-w-[250px] flex flex-col justify-center items-center text-center hover:shadow-[0_0_30px_-5px_rgba(0,205,209,0.5)] transition-all duration-300">
-                    <div className="text-4xl mb-3">🚀</div>
-                    <h4 className="font-black text-white text-lg mb-2">Become a Partner</h4>
-                    <p className="text-xs text-white/90 mb-4">Join our network of verified environmental partners</p>
+                  <div className="bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col justify-center items-center text-center hover:shadow-[0_0_30px_-5px_rgba(0,205,209,0.5)] transition-all duration-300">
+                    <div className="text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3">🚀</div>
+                    <h4 className="font-black text-white text-base sm:text-lg mb-1 sm:mb-2">Become a Partner</h4>
+                    <p className="text-[10px] sm:text-xs text-white/90 mb-3 sm:mb-4">Join our network of verified environmental partners</p>
                     <button
                       onClick={() => navigate('/partner-application')}
-                      className="w-full bg-white text-[#8A2BE2] font-bold py-3 px-6 rounded-lg text-center hover:bg-zinc-100 transition-colors shadow-lg"
+                      className="w-full bg-white text-[#8A2BE2] font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg text-xs sm:text-sm md:text-base text-center hover:bg-zinc-100 transition-colors shadow-lg"
                     >
                       Apply Now
                     </button>
@@ -607,16 +608,16 @@ export default function Venture() {
             </div>
 
             {/* Unit Economics - NEW */}
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-8 border border-zinc-700 shadow-xl">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl">
-                  <span className="text-3xl">💵</span>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-zinc-700 shadow-xl">
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <div className="p-2 sm:p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg sm:rounded-xl">
+                  <span className="text-2xl sm:text-3xl">💵</span>
                 </div>
-                <h3 className="text-2xl font-black text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white">
                   Unit Economics: The Money Machine
                 </h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-8">
                 <div className="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 p-6 rounded-2xl border border-zinc-700">
                   <h4 className="text-xl font-black mb-4 text-[#00CED1] flex items-center gap-2">
                     <span>🧮</span>
@@ -694,7 +695,7 @@ export default function Venture() {
             </div>
 
             {/* Growth Engine */}
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-8 border border-zinc-700 shadow-xl">
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-zinc-700 shadow-xl">
                 <div className="flex items-center gap-3 mb-6">
                 <div className="p-3 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl">
                   <span className="text-3xl">📈</span>
@@ -704,25 +705,25 @@ export default function Venture() {
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(255,20,147,0.3)] transition-all duration-300">
-                  <div className="text-4xl mb-3 bg-gradient-to-br from-pink-400 to-rose-500 text-transparent bg-clip-text">💝</div>
-                  <h4 className="font-black text-white mb-2 text-lg">Gift Sharing</h4>
-                  <p className="text-sm text-zinc-400 mb-3">Every gift has a unique shareable URL. Recipients post their environmental gifts on social media.</p>
-                  <div className="text-xs text-pink-400 font-bold">K-Factor: 1.5-2.0 (viral loop)</div>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(255,20,147,0.3)] transition-all duration-300">
+                  <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 bg-gradient-to-br from-pink-400 to-rose-500 text-transparent bg-clip-text">💝</div>
+                  <h4 className="font-black text-white mb-1 sm:mb-2 text-base sm:text-lg">Gift Sharing</h4>
+                  <p className="text-xs sm:text-sm text-zinc-400 mb-2 sm:mb-3">Every gift has a unique shareable URL. Recipients post their environmental gifts on social media.</p>
+                  <div className="text-[10px] sm:text-xs text-pink-400 font-bold">K-Factor: 1.5-2.0 (viral loop)</div>
                 </div>
                 
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(153,102,255,0.3)] transition-all duration-300">
-                  <div className="text-4xl mb-3 bg-gradient-to-br from-purple-400 to-indigo-500 text-transparent bg-clip-text">🎯</div>
-                  <h4 className="font-black text-white mb-2 text-lg">Referral Program</h4>
-                  <p className="text-sm text-zinc-400 mb-3">Launching Q2 2025. Built-in incentive for organic growth and community expansion.</p>
-                  <div className="text-xs text-purple-400 font-bold">Target: 30% of users refer 2+ friends</div>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(153,102,255,0.3)] transition-all duration-300">
+                  <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 bg-gradient-to-br from-purple-400 to-indigo-500 text-transparent bg-clip-text">🎯</div>
+                  <h4 className="font-black text-white mb-1 sm:mb-2 text-base sm:text-lg">Referral Program</h4>
+                  <p className="text-xs sm:text-sm text-zinc-400 mb-2 sm:mb-3">Launching Q2 2025. Built-in incentive for organic growth and community expansion.</p>
+                  <div className="text-[10px] sm:text-xs text-purple-400 font-bold">Target: 30% of users refer 2+ friends</div>
                 </div>
                 
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
-                  <div className="text-4xl mb-3 bg-gradient-to-br from-cyan-400 to-blue-500 text-transparent bg-clip-text">🔥</div>
-                  <h4 className="font-black text-white mb-2 text-lg">Emotional Resonance</h4>
-                  <p className="text-sm text-zinc-400 mb-3">Gifts for birthdays, anniversaries, holidays create recurring usage patterns.</p>
-                  <div className="text-xs text-cyan-400 font-bold">LTV: 5-7 gifts per user lifetime</div>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
+                  <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 bg-gradient-to-br from-cyan-400 to-blue-500 text-transparent bg-clip-text">🔥</div>
+                  <h4 className="font-black text-white mb-1 sm:mb-2 text-base sm:text-lg">Emotional Resonance</h4>
+                  <p className="text-xs sm:text-sm text-zinc-400 mb-2 sm:mb-3">Gifts for birthdays, anniversaries, holidays create recurring usage patterns.</p>
+                  <div className="text-[10px] sm:text-xs text-cyan-400 font-bold">LTV: 5-7 gifts per user lifetime</div>
                 </div>
               </div>
             </div>
@@ -778,10 +779,10 @@ export default function Venture() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="px-3 py-1 bg-[#00CED1]/20 text-[#00CED1] rounded-full font-semibold">CAC: $0</span>
-                    <span className="px-3 py-1 bg-[#8A2BE2]/20 text-[#8A2BE2] rounded-full font-semibold">K-Factor: 1.5-2.0</span>
-                    <span className="px-3 py-1 bg-[#ADD8E6]/20 text-[#ADD8E6] rounded-full font-semibold">Repeat Usage: 5-7x/lifetime</span>
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
+                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-[#00CED1]/20 text-[#00CED1] rounded-full font-semibold text-[10px] sm:text-xs md:text-sm">CAC: $0</span>
+                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-[#8A2BE2]/20 text-[#8A2BE2] rounded-full font-semibold text-[10px] sm:text-xs md:text-sm">K-Factor: 1.5-2.0</span>
+                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-[#ADD8E6]/20 text-[#ADD8E6] rounded-full font-semibold text-[10px] sm:text-xs md:text-sm">Repeat Usage: 5-7x/lifetime</span>
                   </div>
                 </div>
 
@@ -878,10 +879,10 @@ export default function Venture() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full font-semibold">$258B Corporate Market</span>
-                    <span className="px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full font-semibold">Recurring Annual</span>
-                    <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full font-semibold">Scalable via API</span>
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
+                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-purple-500/20 text-purple-400 rounded-full font-semibold text-[10px] sm:text-xs md:text-sm">$258B Corporate Market</span>
+                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-pink-500/20 text-pink-400 rounded-full font-semibold text-[10px] sm:text-xs md:text-sm">Recurring Annual</span>
+                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-cyan-500/20 text-cyan-400 rounded-full font-semibold text-[10px] sm:text-xs md:text-sm">Scalable via API</span>
                   </div>
                 </div>
 
