@@ -6,10 +6,18 @@ export default function Venture() {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('overview');
   
+  // Format date and time for Nairobi/EAT timezone
   const currentDate = new Date().toLocaleDateString('en-US', { 
     year: 'numeric', 
     month: 'long', 
     day: 'numeric' 
+  });
+  
+  const currentTimeInNairobi = new Date().toLocaleTimeString('en-US', {
+    timeZone: 'Africa/Nairobi',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
   });
 
   // Timeline with completion status
@@ -347,15 +355,15 @@ export default function Venture() {
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
                   <p className="text-lg font-semibold mb-1">
-                    Prepared for <span className="text-[#ADD8E6]">Aneri Pradhan</span>
+                    Prepared by <span className="text-[#00CED1]">Morris Mulitu</span>
                   </p>
                   <p className="text-white/70">
-                    Venture Coach, Climate Tech Ecosystem Builder
+                    BeVisioneers Fellow, Climate Tech Ecosystem Builder
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-white/70 mb-1">Document Date</p>
-                  <p className="font-semibold">{currentDate}</p>
+                  <p className="text-sm text-white/70 mb-1">Document Date & Time (Nairobi)</p>
+                  <p className="font-semibold">{currentDate} at {currentTimeInNairobi}</p>
                 </div>
               </div>
             </div>
@@ -480,17 +488,27 @@ export default function Venture() {
             </div>
 
             {/* Our Potential Partners in Kenya */}
-            <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-white">Our Potential Partners in Kenya</h3>
-                <span className="px-4 py-2 bg-amber-500/20 text-amber-400 rounded-full text-sm font-semibold border border-amber-500/30">
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-8 border border-zinc-700 shadow-xl">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-gradient-to-br from-[#8A2BE2] to-[#00CED1] rounded-xl">
+                    <h3 className="text-2xl font-black text-white">Our Potential Partners in Kenya</h3>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#00CED1] font-black text-lg animate-pulse">
+                    <span className="text-3xl">→</span>
+                    <span>You could be Next</span>
+                  </div>
+                </div>
+                <span className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full text-sm font-bold shadow-lg">
                   Building Partnerships
                 </span>
               </div>
-              <p className="text-zinc-400 mb-6">
+              <p className="text-zinc-300 mb-8 text-lg">
                 We're building partnerships with verified Kenyan environmental organizations to create real local impact:
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              
+              {/* Enhanced Partner Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 {[
                   { name: 'Green Belt Movement', description: 'Tree planting & conservation', icon: '🌳', url: 'https://www.greenbeltmovement.org/', color: 'emerald' },
                   { name: 'Eden Reforestation Projects', description: 'Forest restoration', icon: '🌲', url: 'https://www.edenprojects.org/', color: 'green' },
@@ -507,95 +525,158 @@ export default function Venture() {
                     href={partner.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-4 bg-zinc-800 rounded-xl border border-zinc-700 hover:border-${partner.color}-500/50 hover:shadow-lg transition-all group`}
+                    className={`bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl border border-zinc-700 p-6 hover:shadow-[0_0_30px_-10px_rgba(0,205,209,0.3)] transition-all duration-300 hover:scale-[1.02] group`}
                   >
-                    <div className="flex items-start gap-3 mb-2">
-                      <span className="text-3xl group-hover:scale-110 transition-transform">{partner.icon}</span>
-                      <div className="flex-1">
-                        <div className="font-bold text-white text-sm mb-1">{partner.name}</div>
-                        <div className="text-xs text-zinc-400 leading-tight">{partner.description}</div>
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#8A2BE2] to-[#00CED1] flex items-center justify-center text-3xl shadow-lg group-hover:shadow-[0_0_20px_-5px_rgba(0,205,209,0.5)] transition-all">
+                        {partner.icon}
                       </div>
+                      <div>
+                        <div className="font-bold text-white text-base group-hover:text-[#00CED1] transition-colors">{partner.name}</div>
+                        <div className="text-sm text-zinc-400 mt-1">{partner.description}</div>
+                      </div>
+                    </div>
+                    <div className="text-xs text-zinc-500 border-t border-zinc-700 pt-3">
+                      Learn more →
                     </div>
                   </a>
                 ))}
               </div>
-              <div className="mt-6 p-4 bg-emerald-900/30 rounded-xl border border-emerald-500/30">
-                <p className="text-sm text-emerald-300">
-                  <span className="font-bold">Partnership Model:</span> We share 50% of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. Win-win for Kenyan organizations seeking new funding streams.
-                </p>
+              
+              {/* Partner Benefits Section */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div className="bg-gradient-to-br from-emerald-900/30 to-teal-900/30 p-4 rounded-xl border border-emerald-500/30">
+                  <div className="text-2xl mb-2">💰</div>
+                  <h4 className="font-bold text-white mb-1">50% Revenue Share</h4>
+                  <p className="text-xs text-emerald-300">Direct funding to environmental impact</p>
+                </div>
+                <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 p-4 rounded-xl border border-blue-500/30">
+                  <div className="text-2xl mb-2">📱</div>
+                  <h4 className="font-bold text-white mb-1">Tech & Marketing</h4>
+                  <p className="text-xs text-blue-300">We handle everything, you focus on impact</p>
+                </div>
+                <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 p-4 rounded-xl border border-purple-500/30">
+                  <div className="text-2xl mb-2">📊</div>
+                  <h4 className="font-bold text-white mb-1">Transparent Tracking</h4>
+                  <p className="text-xs text-purple-300">Real-time impact metrics & reporting</p>
+                </div>
+              </div>
+              
+              {/* Partnership Model & CTA */}
+              <div className="bg-gradient-to-r from-[#8A2BE2]/20 to-[#00CED1]/20 rounded-2xl p-6 border border-[#8A2BE2]/40">
+                <div className="flex flex-col md:flex-row md:items-start gap-6">
+                  <div className="flex-1">
+                    <h4 className="font-bold text-white text-lg mb-3 flex items-center gap-2">
+                      <span className="text-2xl">🤝</span> 
+                      Partnership Model
+                    </h4>
+                    <p className="text-sm text-zinc-300 mb-4">
+                      We share 50% of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. 
+                      Win-win for Kenyan organizations seeking new funding streams.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs">No Upfront Costs</span>
+                      <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs">No Tech Requirements</span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">Transparent Reporting</span>
+                    </div>
+                  </div>
+                  
+                  {/* Call to Action */}
+                  <div className="bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl p-6 min-w-[250px] flex flex-col justify-center items-center text-center hover:shadow-[0_0_30px_-5px_rgba(0,205,209,0.5)] transition-all duration-300">
+                    <div className="text-4xl mb-3">🚀</div>
+                    <h4 className="font-black text-white text-lg mb-2">Become a Partner</h4>
+                    <p className="text-xs text-white/90 mb-4">Join our network of verified environmental partners</p>
+                    <a 
+                      href="mailto:contact@giftedair.com?subject=Partnership Inquiry&body=I'm interested in becoming a Gifted Air partner to receive 50% of gift revenue for environmental impact in Kenya." 
+                      className="w-full bg-white text-[#8A2BE2] font-bold py-3 px-6 rounded-lg text-center hover:bg-zinc-100 transition-colors shadow-lg"
+                    >
+                      Apply Now
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Unit Economics - NEW */}
-            <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 rounded-2xl p-8 border border-green-500/30">
-              <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
-                <span className="text-3xl">💵</span>
-                Unit Economics: The Money Machine
-              </h3>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-8 border border-zinc-700 shadow-xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl">
+                  <span className="text-3xl">💵</span>
+                </div>
+                <h3 className="text-2xl font-black text-white">
+                  Unit Economics: The Money Machine
+                </h3>
+              </div>
               <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="text-xl font-bold text-green-400 mb-4">Per Gift Breakdown ($5 example)</h4>
+                <div className="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 p-6 rounded-2xl border border-zinc-700">
+                  <h4 className="text-xl font-black mb-4 text-[#00CED1] flex items-center gap-2">
+                    <span>🧮</span>
+                    Per Gift Breakdown ($5 example)
+                  </h4>
                   <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-zinc-900/50 rounded-lg">
+                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-zinc-700/50 to-zinc-800/50 rounded-xl border border-zinc-600">
                       <span className="text-zinc-300">Customer Pays</span>
-                      <span className="text-2xl font-bold text-white">$5.00</span>
+                      <span className="text-2xl font-black text-white">$5.00</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-red-900/30 rounded-lg border-l-4 border-red-500">
+                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-red-900/30 to-red-800/30 rounded-xl border-l-4 border-red-500 border-opacity-50">
                       <span className="text-zinc-300">Stripe Fee (2.9% + $0.30)</span>
                       <span className="font-bold text-red-400">-$0.45</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-blue-900/30 rounded-lg border-l-4 border-blue-500">
+                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-900/30 to-blue-800/30 rounded-xl border-l-4 border-blue-500 border-opacity-50">
                       <span className="text-zinc-300">To Partner (50%)</span>
                       <span className="font-bold text-blue-400">-$2.50</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-green-900/50 rounded-lg border-2 border-green-500">
-                      <span className="text-green-300 font-bold">Platform Revenue</span>
-                      <span className="text-3xl font-black text-green-400">$2.05</span>
+                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-green-900/50 to-emerald-900/50 rounded-xl border-2 border-green-500 border-opacity-50">
+                      <span className="text-emerald-300 font-bold">Platform Revenue</span>
+                      <span className="text-3xl font-black text-emerald-400">$2.05</span>
                     </div>
                   </div>
-                  <div className="mt-4 p-4 bg-emerald-500/20 rounded-lg border border-emerald-500/50">
-                    <p className="text-sm text-emerald-300 font-semibold">
+                  <div className="mt-4 p-4 bg-gradient-to-r from-emerald-900/20 to-teal-900/20 rounded-xl border border-emerald-500/30">
+                    <p className="text-sm text-emerald-300 font-bold">
                       ✨ 41% margin per transaction | Pure profit after infrastructure costs
                     </p>
                   </div>
                 </div>
                 
-                <div>
-                  <h4 className="text-xl font-bold text-cyan-400 mb-4">Scale Projection</h4>
+                <div className="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 p-6 rounded-2xl border border-zinc-700">
+                  <h4 className="text-xl font-black mb-4 text-[#ADD8E6] flex items-center gap-2">
+                    <span>📊</span>
+                    Scale Projection
+                  </h4>
                   <div className="space-y-4">
-                    <div className="p-4 bg-zinc-900/50 rounded-xl">
+                    <div className="p-5 bg-gradient-to-r from-zinc-700/50 to-zinc-800/50 rounded-2xl border border-zinc-600">
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-zinc-400">1,000 gifts/month @ $5 avg</span>
-                        <span className="text-xl font-bold text-white">$5K</span>
+                        <span className="text-xl font-black text-white">$5K</span>
                       </div>
-                      <div className="text-sm text-emerald-400 font-semibold">
+                      <div className="text-sm text-emerald-400 font-bold">
                         Monthly Revenue: $2,050
                       </div>
                     </div>
                     
-                    <div className="p-4 bg-zinc-900/50 rounded-xl border-l-4 border-cyan-500">
+                    <div className="p-5 bg-gradient-to-r from-zinc-700/50 to-zinc-800/50 rounded-2xl border-l-4 border-cyan-500 border-opacity-50">
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-zinc-400">10,000 gifts/month @ $5 avg</span>
-                        <span className="text-xl font-bold text-white">$50K</span>
+                        <span className="text-xl font-black text-white">$50K</span>
                       </div>
-                      <div className="text-sm text-cyan-400 font-semibold">
+                      <div className="text-sm text-cyan-400 font-bold">
                         Monthly Revenue: $20,500 | $246K/year
                       </div>
                     </div>
                     
-                    <div className="p-4 bg-zinc-900/50 rounded-xl border-l-4 border-purple-500">
+                    <div className="p-5 bg-gradient-to-r from-zinc-700/50 to-zinc-800/50 rounded-2xl border-l-4 border-purple-500 border-opacity-50">
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-zinc-400">100,000 gifts/month @ $5 avg</span>
-                        <span className="text-xl font-bold text-white">$500K</span>
+                        <span className="text-xl font-black text-white">$500K</span>
                       </div>
-                      <div className="text-sm text-purple-400 font-semibold">
+                      <div className="text-sm text-purple-400 font-bold">
                         Monthly Revenue: $205K | $2.46M/year
                       </div>
                     </div>
                   </div>
                   
-                  <div className="mt-4 p-4 bg-purple-500/20 rounded-lg border border-purple-500/50">
-                    <p className="text-sm text-purple-300 font-semibold">
+                  <div className="mt-4 p-4 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-xl border border-purple-500/30">
+                    <p className="text-sm text-purple-300 font-bold">
                       🚀 With just 0.02% of $300B digital gifting market = $60M/year
                     </p>
                   </div>
@@ -604,31 +685,35 @@ export default function Venture() {
             </div>
 
             {/* Growth Engine */}
-            <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
-              <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
-                <span className="text-3xl">📈</span>
-                Viral Growth Engine
-              </h3>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-8 border border-zinc-700 shadow-xl">
+                <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl">
+                  <span className="text-3xl">📈</span>
+                </div>
+                <h3 className="text-2xl font-black text-white">
+                  Viral Growth Engine
+                </h3>
+              </div>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="p-6 bg-gradient-to-br from-pink-900/30 to-rose-900/30 rounded-xl border border-pink-500/30">
-                  <div className="text-4xl mb-3">💝</div>
-                  <h4 className="font-bold text-white mb-2">Gift Sharing</h4>
-                  <p className="text-sm text-zinc-300 mb-3">Every gift has a unique shareable URL. Recipients post their environmental gifts on social media.</p>
-                  <div className="text-xs text-pink-400 font-semibold">K-Factor: 1.5-2.0 (viral loop)</div>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(255,20,147,0.3)] transition-all duration-300">
+                  <div className="text-4xl mb-3 bg-gradient-to-br from-pink-400 to-rose-500 text-transparent bg-clip-text">💝</div>
+                  <h4 className="font-black text-white mb-2 text-lg">Gift Sharing</h4>
+                  <p className="text-sm text-zinc-400 mb-3">Every gift has a unique shareable URL. Recipients post their environmental gifts on social media.</p>
+                  <div className="text-xs text-pink-400 font-bold">K-Factor: 1.5-2.0 (viral loop)</div>
                 </div>
                 
-                <div className="p-6 bg-gradient-to-br from-purple-900/30 to-indigo-900/30 rounded-xl border border-purple-500/30">
-                  <div className="text-4xl mb-3">🎯</div>
-                  <h4 className="font-bold text-white mb-2">Referral Program</h4>
-                  <p className="text-sm text-zinc-300 mb-3">Users earn rewards for referring friends. Built-in incentive for organic growth.</p>
-                  <div className="text-xs text-purple-400 font-semibold">Target: 30% of users refer 2+ friends</div>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(153,102,255,0.3)] transition-all duration-300">
+                  <div className="text-4xl mb-3 bg-gradient-to-br from-purple-400 to-indigo-500 text-transparent bg-clip-text">🎯</div>
+                  <h4 className="font-black text-white mb-2 text-lg">Referral Program</h4>
+                  <p className="text-sm text-zinc-400 mb-3">Users earn rewards for referring friends. Built-in incentive for organic growth.</p>
+                  <div className="text-xs text-purple-400 font-bold">Target: 30% of users refer 2+ friends</div>
                 </div>
                 
-                <div className="p-6 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-xl border border-cyan-500/30">
-                  <div className="text-4xl mb-3">🔥</div>
-                  <h4 className="font-bold text-white mb-2">Emotional Resonance</h4>
-                  <p className="text-sm text-zinc-300 mb-3">Gifts for birthdays, anniversaries, holidays create recurring usage patterns.</p>
-                  <div className="text-xs text-cyan-400 font-semibold">LTV: 5-7 gifts per user lifetime</div>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
+                  <div className="text-4xl mb-3 bg-gradient-to-br from-cyan-400 to-blue-500 text-transparent bg-clip-text">🔥</div>
+                  <h4 className="font-black text-white mb-2 text-lg">Emotional Resonance</h4>
+                  <p className="text-sm text-zinc-400 mb-3">Gifts for birthdays, anniversaries, holidays create recurring usage patterns.</p>
+                  <div className="text-xs text-cyan-400 font-bold">LTV: 5-7 gifts per user lifetime</div>
                 </div>
               </div>
             </div>
@@ -1014,15 +1099,19 @@ export default function Venture() {
         {activeSection === 'idea' && (
           <div className="space-y-8 animate-fade-in">
             {/* Vision Statement */}
-            <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl shadow-2xl p-12 text-white">
-              <h2 className="text-4xl font-black mb-6 flex items-center gap-3">
-                <span className="text-5xl">🌍</span>
-                Our Vision
-              </h2>
-              <p className="text-2xl font-medium leading-relaxed mb-6">
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-2xl p-8 md:p-12 border border-zinc-700">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl">
+                  <span className="text-4xl">🌍</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-black text-white">
+                  Our Vision
+                </h2>
+              </div>
+              <p className="text-xl md:text-2xl font-black leading-relaxed mb-6 text-[#00CED1]">
                 To make environmental impact the world's most popular gift.
               </p>
-              <p className="text-lg leading-relaxed opacity-90">
+              <p className="text-base md:text-lg leading-relaxed text-zinc-300">
                 Gifted Air transforms how people express love and appreciation by connecting 
                 personal celebrations with planetary healing. Every gift plants a tree, cleans 
                 the ocean, protects wildlife, or supports clean energy - creating a ripple effect 
@@ -1031,44 +1120,52 @@ export default function Venture() {
             </div>
 
             {/* The Problem */}
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10">
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-3">
-                <span className="text-4xl">⚠️</span>
-                The Problem We're Solving
-              </h2>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-gradient-to-br from-red-600 to-orange-600 rounded-xl">
+                  <span className="text-3xl">⚠️</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white">
+                  The Problem We're Solving
+                </h2>
+              </div>
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-lg text-red-800 dark:text-red-300 mb-3">
-                    🎁 Gift Fatigue
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-2xl">🎁</span>
+                    <h3 className="font-black text-red-400 text-lg">Gift Fatigue</h3>
+                  </div>
+                  <p className="text-zinc-400">
                     People are tired of meaningless physical gifts that end up in landfills. 
                     73% of millennials prefer experiences over things.
                   </p>
                 </div>
-                <div className="bg-orange-50 dark:bg-orange-900/20 border-2 border-orange-200 dark:border-orange-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-lg text-orange-800 dark:text-orange-300 mb-3">
-                    🌳 Disconnected Charity
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-2xl">🌳</span>
+                    <h3 className="font-black text-amber-400 text-lg">Disconnected Charity</h3>
+                  </div>
+                  <p className="text-zinc-400">
                     Traditional environmental donations feel impersonal and transactional. 
                     No emotional connection, no sharing, no celebration.
                   </p>
                 </div>
-                <div className="bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-200 dark:border-yellow-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-lg text-yellow-800 dark:text-yellow-300 mb-3">
-                    💚 Purpose Seeking
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-2xl">💚</span>
+                    <h3 className="font-black text-emerald-400 text-lg">Purpose Seeking</h3>
+                  </div>
+                  <p className="text-zinc-400">
                     89% of Gen Z wants to support environmental causes, but existing platforms 
                     don't make it easy, beautiful, or shareable.
                   </p>
                 </div>
-                <div className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-lg text-blue-800 dark:text-blue-300 mb-3">
-                    📱 Missing Virality
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-2xl">📱</span>
+                    <h3 className="font-black text-cyan-400 text-lg">Missing Virality</h3>
+                  </div>
+                  <p className="text-zinc-400">
                     Environmental actions are rarely shared socially. We miss the opportunity 
                     for impact to inspire more impact.
                   </p>
@@ -1077,58 +1174,62 @@ export default function Venture() {
             </div>
 
             {/* The Solution */}
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10">
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-3">
-                <span className="text-4xl">✨</span>
-                Our Solution
-              </h2>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl">
+                  <span className="text-3xl">✨</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white">
+                  Our Solution
+                </h2>
+              </div>
               <div className="space-y-6">
-                <div className="flex items-start gap-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-6 border-2 border-green-200 dark:border-green-800">
-                  <span className="text-4xl">🎁</span>
+                <div className="flex items-start gap-4 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <div className="text-4xl bg-gradient-to-br from-emerald-400 to-teal-500 text-transparent bg-clip-text">🎁</div>
                   <div>
-                    <h3 className="font-bold text-xl text-green-800 dark:text-green-300 mb-2">
+                    <h3 className="font-black text-lg md:text-xl text-emerald-400 mb-2">
                       Beautiful Environmental Gifts
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-zinc-400">
                       Plant trees, clean oceans, protect wildlife, or install solar panels in someone's name. 
                       Each gift comes with a stunning personalized page, custom message, and downloadable certificate.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
-                  <span className="text-4xl">💎</span>
+                <div className="flex items-start gap-4 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <div className="text-4xl bg-gradient-to-br from-cyan-400 to-blue-500 text-transparent bg-clip-text">💎</div>
                   <div>
-                    <h3 className="font-bold text-xl text-blue-800 dark:text-blue-300 mb-2">
+                    <h3 className="font-black text-lg md:text-xl text-cyan-400 mb-2">
                       Shareable Impact Stories
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-zinc-400">
                       Every gift has a unique URL that recipients can share on social media, 
                       spreading environmental awareness while celebrating their special moment.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
-                  <span className="text-4xl">🔍</span>
+                <div className="flex items-start gap-4 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <div className="text-4xl bg-gradient-to-br from-purple-400 to-pink-500 text-transparent bg-clip-text">🔍</div>
                   <div>
-                    <h3 className="font-bold text-xl text-purple-800 dark:text-purple-300 mb-2">
+                    <h3 className="font-black text-lg md:text-xl text-purple-400 mb-2">
                       Complete Transparency
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-zinc-400">
                       Track exactly where your money goes. We show partner organizations, donation amounts, 
                       and real environmental impact with receipts and proof.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-6 border-2 border-amber-200 dark:border-amber-800">
-                  <span className="text-4xl">🏆</span>
+                <div className="flex items-start gap-4 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <div className="text-4xl bg-gradient-to-br from-amber-400 to-orange-500 text-transparent bg-clip-text">🏆</div>
                   <div>
-                    <h3 className="font-bold text-xl text-amber-800 dark:text-amber-300 mb-2">
+                    <h3 className="font-black text-lg md:text-xl text-amber-400 mb-2">
                       Gamification & Community
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-zinc-400">
                       Leaderboards, public gallery, referral rewards, and impact tracking turn 
                       environmental giving into an engaging, social experience.
                     </p>
@@ -1138,11 +1239,15 @@ export default function Venture() {
             </div>
 
             {/* Key Features */}
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10">
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 flex items-center gap-3">
-                <span className="text-4xl">⚡</span>
-                Platform Features
-              </h2>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-gradient-to-br from-yellow-600 to-amber-600 rounded-xl">
+                  <span className="text-3xl">⚡</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white">
+                  Platform Features
+                </h2>
+              </div>
               <div className="grid md:grid-cols-3 gap-6">
                 {[
                   { icon: '🌳', title: '8 Gift Types', desc: 'Trees, Ocean, Water, Solar, Cookstoves, Coral, Wildlife, Rainforest' },
@@ -1155,10 +1260,10 @@ export default function Venture() {
                   { icon: '📊', title: 'Admin Dashboard', desc: 'Complete analytics & financial tracking' },
                   { icon: '🌙', title: 'Dark Mode', desc: 'Beautiful experience day or night' }
                 ].map((feature, idx) => (
-                  <div key={idx} className="border-2 border-gray-200 dark:border-gray-700 rounded-xl p-5 hover:border-emerald-400 dark:hover:border-emerald-600 transition-all hover:shadow-lg">
-                    <div className="text-4xl mb-3">{feature.icon}</div>
-                    <h3 className="font-bold text-lg text-gray-800 dark:text-white mb-2">{feature.title}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{feature.desc}</p>
+                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-5 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
+                    <div className="text-4xl mb-3 bg-gradient-to-br from-[#00CED1] to-[#ADD8E6] text-transparent bg-clip-text">{feature.icon}</div>
+                    <h3 className="font-black text-white mb-2 text-base md:text-lg">{feature.title}</h3>
+                    <p className="text-xs md:text-sm text-zinc-400">{feature.desc}</p>
                   </div>
                 ))}
               </div>
@@ -1168,33 +1273,40 @@ export default function Venture() {
             <div className="text-center">
               <button
                 onClick={() => navigate('/')}
-                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
               >
                 🏠 Back to Home
               </button>
             </div>
           </div>
         )}
+          </div>
+        )}
 
         {/* beVisioneers Lean Canvas Section */}
         {activeSection === 'canvas' && (
           <div className="space-y-8 animate-fade-in">
-            <div className="bg-[#1A1A1A] rounded-3xl shadow-xl p-10 border border-[#D8BFD8]/30">
-              <h2 className="text-3xl font-bold text-white mb-4 text-center">
-                📊 beVisioneers Lean Canvas
-              </h2>
-              <p className="text-center text-white/70 mb-8">Complete business model framework following the beVisioneers Fellowship approach</p>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
+              <div className="text-center mb-4">
+                <div className="inline-block p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl mb-2">
+                  <span className="text-3xl">📊</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white mb-2">
+                  beVisioneers Lean Canvas
+                </h2>
+                <p className="text-white/70">Complete business model framework following the beVisioneers Fellowship approach</p>
+              </div>
               
               <div className="grid md:grid-cols-2 gap-6">
                 {/* 1. Problem */}
-                <div className="bg-gradient-to-br from-[#1A1A1A] to-red-900/20 border-2 border-red-500/30 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-red-400 mb-4 flex items-center gap-2">
-                    <span>⚠️</span> 1. Problem
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <h3 className="font-black text-lg text-red-400 mb-4 flex items-center gap-2">
+                    <span className="text-2xl">⚠️</span> 1. Problem
                   </h3>
                   <ul className="space-y-3">
                     {leanCanvas.problem.map((p, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
-                        <span className="text-red-400 font-bold">{idx + 1}.</span>
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
+                        <span className="text-red-400 font-black">{idx + 1}.</span>
                         <span>{p}</span>
                       </li>
                     ))}
@@ -1202,13 +1314,13 @@ export default function Venture() {
                 </div>
 
                 {/* 2. Existing Alternatives */}
-                <div className="bg-gradient-to-br from-[#1A1A1A] to-orange-900/20 border-2 border-orange-500/30 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-orange-400 mb-4 flex items-center gap-2">
-                    <span>🔄</span> 2. Existing Alternatives
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <h3 className="font-black text-lg text-orange-400 mb-4 flex items-center gap-2">
+                    <span className="text-2xl">🔄</span> 2. Existing Alternatives
                   </h3>
                   <ul className="space-y-2">
                     {leanCanvas.existingAlternatives.map((alt, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
                         <span className="text-orange-400">•</span>
                         <span>{alt}</span>
                       </li>
@@ -1217,14 +1329,14 @@ export default function Venture() {
                 </div>
 
                 {/* 3. Solution */}
-                <div className="bg-gradient-to-br from-[#1A1A1A] to-green-900/20 border-2 border-green-500/30 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-green-400 mb-4 flex items-center gap-2">
-                    <span>✅</span> 3. Solution
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <h3 className="font-black text-lg text-emerald-400 mb-4 flex items-center gap-2">
+                    <span className="text-2xl">✅</span> 3. Solution
                   </h3>
                   <ul className="space-y-2">
                     {leanCanvas.solution.map((s, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
-                        <span className="text-green-400">•</span>
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
+                        <span className="text-emerald-400">•</span>
                         <span>{s}</span>
                       </li>
                     ))}
@@ -1232,15 +1344,15 @@ export default function Venture() {
                 </div>
 
                 {/* 4. Target Audience & Early Adopters */}
-                <div className="bg-gradient-to-br from-[#1A1A1A] to-amber-900/20 border-2 border-amber-500/30 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-amber-400 mb-4 flex items-center gap-2">
-                    <span>👥</span> 4. Target Audience
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <h3 className="font-black text-lg text-amber-400 mb-4 flex items-center gap-2">
+                    <span className="text-2xl">👥</span> 4. Target Audience
                   </h3>
                   <div className="mb-4">
-                    <h4 className="font-semibold text-amber-300 mb-2 text-sm">Broad Audience:</h4>
+                    <h4 className="font-bold text-amber-300 mb-2 text-sm">Broad Audience:</h4>
                     <ul className="space-y-1">
                       {leanCanvas.targetAudience.broad.map((t, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-white/70 text-xs">
+                        <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs">
                           <span className="text-amber-400">•</span>
                           <span>{t}</span>
                         </li>
@@ -1248,10 +1360,10 @@ export default function Venture() {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-amber-300 mb-2 text-sm">🎯 Early Adopters:</h4>
+                    <h4 className="font-bold text-amber-300 mb-2 text-sm">🎯 Early Adopters:</h4>
                     <ul className="space-y-1">
                       {leanCanvas.targetAudience.earlyAdopters.map((ea, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-white/80 text-xs font-medium">
+                        <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs font-bold">
                           <span className="text-amber-400">★</span>
                           <span>{ea}</span>
                         </li>
@@ -1264,14 +1376,14 @@ export default function Venture() {
               </div>
 
               {/* Full Width Sections */}
-              <div className="mt-6 bg-gradient-to-br from-[#8A2BE2]/20 to-[#D8BFD8]/20 border-2 border-[#8A2BE2]/40 rounded-2xl p-6">
-                <h3 className="font-bold text-2xl text-[#D8BFD8] mb-4 flex items-center gap-2">
-                  <span>💜</span> 5. Your Why (Founder Motivation)
+              <div className="mt-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                <h3 className="font-black text-xl text-[#00CED1] mb-4 flex items-center gap-2">
+                  <span className="text-2xl">💜</span> 5. Your Why (Founder Motivation)
                 </h3>
                 <ul className="space-y-3">
                   {leanCanvas.yourWhy.map((why, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-white/90">
-                      <span className="text-[#D8BFD8] font-bold text-lg">{idx + 1}.</span>
+                    <li key={idx} className="flex items-start gap-3 text-zinc-300">
+                      <span className="text-[#00CED1] font-black text-lg">{idx + 1}.</span>
                       <span className="leading-relaxed">{why}</span>
                     </li>
                   ))}
@@ -1279,28 +1391,28 @@ export default function Venture() {
               </div>
 
               {/* 6. Speed Bumps - Full Width */}
-              <div className="mt-6 bg-gradient-to-br from-[#C38B4A]/20 to-[#C38B4A]/10 border-2 border-[#C38B4A]/40 rounded-2xl p-6">
-                <h3 className="font-bold text-2xl text-[#C38B4A] mb-4 flex items-center gap-2">
-                  <span>🚧</span> 6. Speed Bumps (Limitations & Mitigation)
+              <div className="mt-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                <h3 className="font-black text-xl text-amber-400 mb-4 flex items-center gap-2">
+                  <span className="text-2xl">🚧</span> 6. Speed Bumps (Limitations & Mitigation)
                 </h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {leanCanvas.speedBumps.map((bump, idx) => (
-                    <div key={idx} className="bg-[#1A1A1A]/50 rounded-lg p-4 border border-[#C38B4A]/20">
-                      <h4 className="font-semibold text-red-400 mb-2 text-sm">⚠️ {bump.limitation}</h4>
-                      <p className="text-green-400 text-sm"><span className="font-semibold">✓ Mitigation:</span> {bump.mitigation}</p>
+                    <div key={idx} className="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 rounded-xl p-4 border border-zinc-700">
+                      <h4 className="font-bold text-red-400 mb-2 text-sm">⚠️ {bump.limitation}</h4>
+                      <p className="text-emerald-400 text-sm"><span className="font-bold">✓ Mitigation:</span> {bump.mitigation}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* 7. Prototype - Full Width */}
-              <div className="mt-6 bg-gradient-to-br from-[#00CED1]/20 to-[#ADD8E6]/20 border-2 border-[#00CED1]/40 rounded-2xl p-6">
-                <h3 className="font-bold text-2xl text-[#ADD8E6] mb-4 flex items-center gap-2">
-                  <span>🔬</span> 7. Prototype (What Needs Testing)
+              <div className="mt-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                <h3 className="font-black text-xl text-cyan-400 mb-4 flex items-center gap-2">
+                  <span className="text-2xl">🔬</span> 7. Prototype (What Needs Testing)
                 </h3>
                 <ul className="space-y-2">
                   {leanCanvas.prototype.map((proto, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-white/90">
+                    <li key={idx} className="flex items-start gap-2 text-zinc-300">
                       <span>{proto}</span>
                     </li>
                   ))}
@@ -1310,13 +1422,13 @@ export default function Venture() {
               {/* Grid Sections */}
               <div className="grid md:grid-cols-2 gap-6 mt-6">
                 {/* 8. Channels */}
-                <div className="bg-gradient-to-br from-[#1A1A1A] to-cyan-900/20 border-2 border-cyan-500/30 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-cyan-400 mb-4 flex items-center gap-2">
-                    <span>📢</span> 8. Channels & Partnerships
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <h3 className="font-black text-lg text-cyan-400 mb-4 flex items-center gap-2">
+                    <span className="text-2xl">📢</span> 8. Channels & Partnerships
                   </h3>
                   <ul className="space-y-2">
                     {leanCanvas.channels.map((ch, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
                         <span className="text-cyan-400">•</span>
                         <span>{ch}</span>
                       </li>
@@ -1325,13 +1437,13 @@ export default function Venture() {
                 </div>
 
                 {/* 9. Key Metrics */}
-                <div className="bg-gradient-to-br from-[#1A1A1A] to-blue-900/20 border-2 border-blue-500/30 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-blue-400 mb-4 flex items-center gap-2">
-                    <span>📊</span> 9. Key Metrics
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <h3 className="font-black text-lg text-blue-400 mb-4 flex items-center gap-2">
+                    <span className="text-2xl">📊</span> 9. Key Metrics
                   </h3>
                   <ul className="space-y-2">
                     {leanCanvas.keyMetrics.map((m, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
                         <span className="text-blue-400">•</span>
                         <span>{m}</span>
                       </li>
@@ -1340,13 +1452,13 @@ export default function Venture() {
                 </div>
 
                 {/* 10. Cost Structure */}
-                <div className="bg-gradient-to-br from-[#1A1A1A] to-rose-900/20 border-2 border-rose-500/30 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-rose-400 mb-4 flex items-center gap-2">
-                    <span>💸</span> 10. Cost Structure
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <h3 className="font-black text-lg text-rose-400 mb-4 flex items-center gap-2">
+                    <span className="text-2xl">💸</span> 10. Cost Structure
                   </h3>
                   <ul className="space-y-2">
                     {leanCanvas.costStructure.map((cost, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
                         <span className="text-rose-400">•</span>
                         <span>{cost}</span>
                       </li>
@@ -1355,13 +1467,13 @@ export default function Venture() {
                 </div>
 
                 {/* 11. Income Streams */}
-                <div className="bg-gradient-to-br from-[#1A1A1A] to-emerald-900/20 border-2 border-emerald-500/30 rounded-2xl p-6">
-                  <h3 className="font-bold text-xl text-emerald-400 mb-4 flex items-center gap-2">
-                    <span>💰</span> 11. Income Streams
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                  <h3 className="font-black text-lg text-emerald-400 mb-4 flex items-center gap-2">
+                    <span className="text-2xl">💰</span> 11. Income Streams
                   </h3>
                   <ul className="space-y-2">
                     {leanCanvas.incomeStreams.map((rev, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-white/80 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
                         <span className="text-emerald-400">•</span>
                         <span>{rev}</span>
                       </li>
@@ -1377,89 +1489,105 @@ export default function Venture() {
         {activeSection === 'market' && (
           <div className="space-y-8 animate-fade-in">
             {/* Market Opportunity - Enhanced */}
-            <div className="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 rounded-3xl shadow-2xl p-10 text-white mb-8">
-              <h2 className="text-4xl font-bold mb-8 text-center flex items-center justify-center gap-3">
-                <span className="text-5xl">💰</span>
-                The Confluence of Billion-Dollar Markets
-              </h2>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-2xl p-8 md:p-10 border border-zinc-700 mb-8">
+              <div className="text-center mb-8">
+                <div className="inline-block p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl mb-4">
+                  <span className="text-3xl">💰</span>
+                </div>
+                <h2 className="text-2xl md:text-4xl font-black text-white mb-2">
+                  The Confluence of Billion-Dollar Markets
+                </h2>
+              </div>
               <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-6 transform hover:scale-105 transition-all">
-                  <div className="text-5xl mb-4 text-center">🌍</div>
-                  <h3 className="text-2xl font-bold mb-3 text-cyan-300">Voluntary Carbon Market</h3>
-                  <p className="text-4xl font-black mb-2">$10-40B</p>
-                  <p className="text-white/80">Projected by 2030</p>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
+                  <div className="text-4xl mb-4 text-center bg-gradient-to-br from-cyan-400 to-blue-500 text-transparent bg-clip-text">🌍</div>
+                  <h3 className="text-lg md:text-xl font-black mb-3 text-cyan-400">Voluntary Carbon Market</h3>
+                  <p className="text-3xl md:text-4xl font-black mb-2 text-white">$10-40B</p>
+                  <p className="text-zinc-400 text-sm md:text-base">Projected by 2030</p>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-6 transform hover:scale-105 transition-all">
-                  <div className="text-5xl mb-4 text-center">💝</div>
-                  <h3 className="text-2xl font-bold mb-3 text-pink-300">Conscious Gifting Economy</h3>
-                  <p className="text-4xl font-black mb-2">60%+</p>
-                  <p className="text-white/80">Consumers prefer sustainable brands</p>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(255,105,180,0.3)] transition-all duration-300">
+                  <div className="text-4xl mb-4 text-center bg-gradient-to-br from-pink-400 to-rose-500 text-transparent bg-clip-text">💝</div>
+                  <h3 className="text-lg md:text-xl font-black mb-3 text-pink-400">Conscious Gifting Economy</h3>
+                  <p className="text-3xl md:text-4xl font-black mb-2 text-white">60%+</p>
+                  <p className="text-zinc-400 text-sm md:text-base">Consumers prefer sustainable brands</p>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-6 transform hover:scale-105 transition-all">
-                  <div className="text-5xl mb-4 text-center">📱</div>
-                  <h3 className="text-2xl font-bold mb-3 text-green-300">Digital Gifting Market</h3>
-                  <p className="text-4xl font-black mb-2">$300B+</p>
-                  <p className="text-white/80">Industry ripe for innovation</p>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
+                  <div className="text-4xl mb-4 text-center bg-gradient-to-br from-emerald-400 to-teal-500 text-transparent bg-clip-text">📱</div>
+                  <h3 className="text-lg md:text-xl font-black mb-3 text-emerald-400">Digital Gifting Market</h3>
+                  <p className="text-3xl md:text-4xl font-black mb-2 text-white">$300B+</p>
+                  <p className="text-zinc-400 text-sm md:text-base">Industry ripe for innovation</p>
                 </div>
               </div>
-              <div className="bg-amber-500/30 backdrop-blur-sm border-2 border-amber-300/50 rounded-2xl p-6">
-                <p className="text-2xl text-center font-bold">
-                  🎯 Our Target: <span className="text-amber-300">$2-5B</span> Eco-Gifting Market Opportunity
+              <div className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 rounded-2xl p-6 border border-amber-500/30">
+                <p className="text-lg md:text-2xl text-center font-black">
+                  🎯 Our Target: <span className="text-amber-400">$2-5B</span> Eco-Gifting Market Opportunity
                 </p>
               </div>
             </div>
 
             {/* Market Size Details */}
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10">
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 flex items-center gap-3">
-                <span className="text-4xl">📈</span>
-                {marketResearch.marketSize.title}
-              </h2>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl">
+                  <span className="text-3xl">📈</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white">
+                  {marketResearch.marketSize.title}
+                </h2>
+              </div>
               <div className="grid md:grid-cols-2 gap-6">
                 {marketResearch.marketSize.data.map((item, idx) => (
-                  <div key={idx} className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-2xl p-6">
-                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">{item.metric}</div>
-                    <div className="text-3xl font-black text-emerald-700 dark:text-emerald-400">{item.value}</div>
+                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
+                    <div className="text-sm text-zinc-400 mb-2">{item.metric}</div>
+                    <div className="text-2xl md:text-3xl font-black text-[#00CED1]">{item.value}</div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Competitive Analysis */}
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10">
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 flex items-center gap-3">
-                <span className="text-4xl">🥊</span>
-                Competitive Landscape
-              </h2>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-red-600 to-orange-600 rounded-xl">
+                  <span className="text-3xl">🥊</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white">
+                  Competitive Landscape
+                </h2>
+              </div>
               <div className="space-y-4">
                 {marketResearch.competitors.map((comp, idx) => (
-                  <div key={idx} className="border-2 border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:border-emerald-400 dark:hover:border-emerald-600 transition-all">
+                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(0,205,209,0.3)] transition-all duration-300">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-xl text-gray-800 dark:text-white">{comp.name}</h3>
-                      <span className="px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-full text-sm font-semibold">
+                      <h3 className="font-black text-lg md:text-xl text-white">{comp.name}</h3>
+                      <span className="px-4 py-2 bg-gradient-to-r from-red-900 to-red-800 text-red-300 rounded-full text-sm font-bold">
                         Their Weakness
                       </span>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 mt-3">{comp.weakness}</p>
+                    <p className="text-zinc-400 mt-3">{comp.weakness}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Market Validation */}
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10">
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 flex items-center gap-3">
-                <span className="text-4xl">✅</span>
-                Market Validation Data
-              </h2>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl">
+                  <span className="text-3xl">✅</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white">
+                  Market Validation Data
+                </h2>
+              </div>
               <div className="space-y-4">
                 {marketResearch.validation.map((val, idx) => (
-                  <div key={idx} className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-2 border-green-200 dark:border-green-800 rounded-xl p-6">
+                  <div key={idx} className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
                     <div className="flex items-start gap-4">
-                      <span className="text-3xl">📊</span>
+                      <span className="text-3xl bg-gradient-to-br from-emerald-400 to-teal-500 text-transparent bg-clip-text">📊</span>
                       <div className="flex-1">
-                        <h3 className="font-bold text-lg text-green-800 dark:text-green-300 mb-2">{val.source}</h3>
-                        <p className="text-gray-700 dark:text-gray-300">{val.finding}</p>
+                        <h3 className="font-black text-base md:text-lg text-emerald-400 mb-2">{val.source}</h3>
+                        <p className="text-zinc-400">{val.finding}</p>
                       </div>
                     </div>
                   </div>
@@ -1468,16 +1596,20 @@ export default function Venture() {
             </div>
 
             {/* Our Differentiators */}
-            <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl shadow-2xl p-10 text-white">
-              <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-                <span className="text-4xl">🌟</span>
-                Why We'll Win
-              </h2>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-2xl p-8 md:p-10 border border-zinc-700">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl">
+                  <span className="text-3xl">🌟</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white">
+                  Why We'll Win
+                </h2>
+              </div>
               <div className="grid md:grid-cols-2 gap-4">
                 {marketResearch.differentiators.map((diff, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                    <span className="text-2xl">✨</span>
-                    <p className="text-lg">{diff}</p>
+                  <div key={idx} className="flex items-start gap-3 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl p-4 border border-zinc-700">
+                    <span className="text-2xl bg-gradient-to-br from-purple-400 to-pink-500 text-transparent bg-clip-text">✨</span>
+                    <p className="text-base md:text-lg text-zinc-300">{diff}</p>
                   </div>
                 ))}
               </div>
@@ -1486,7 +1618,7 @@ export default function Venture() {
             <div className="text-center">
               <button
                 onClick={() => navigate('/')}
-                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
               >
                 🏠 Back to Home
               </button>
@@ -1497,11 +1629,15 @@ export default function Venture() {
         {/* Timeline Section */}
         {activeSection === 'timeline' && (
           <div className="space-y-8 animate-fade-in">
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10">
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center flex items-center justify-center gap-3">
-                <span className="text-4xl">🗓️</span>
-                Execution Timeline
-              </h2>
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
+              <div className="text-center mb-8">
+                <div className="inline-block p-3 bg-gradient-to-br from-amber-600 to-orange-600 rounded-xl mb-4">
+                  <span className="text-3xl">🗓️</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white">
+                  Execution Timeline
+                </h2>
+              </div>
 
               <div className="space-y-8">
                 {timeline.map((phase, idx) => (
@@ -1597,21 +1733,26 @@ export default function Venture() {
               </div>
 
               {/* Overall Progress */}
-              <div className="mt-12 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 text-white">
-                <h3 className="text-2xl font-bold mb-4 text-center">📊 Overall Platform Progress</h3>
+              <div className="mt-12 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-8 border border-zinc-700">
                 <div className="text-center mb-4">
-                  <div className="text-5xl font-black">
+                  <div className="inline-block p-3 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl mb-2">
+                    <span className="text-2xl">📊</span>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-black text-white">Overall Platform Progress</h3>
+                </div>
+                <div className="text-center mb-4">
+                  <div className="text-4xl md:text-5xl font-black text-[#00CED1]">
                     {Math.round((timeline.reduce((sum, phase) => sum + phase.tasks.filter(t => t.done).length, 0) / 
                       timeline.reduce((sum, phase) => sum + phase.tasks.length, 0)) * 100)}%
                   </div>
-                  <div className="text-lg mt-2">
+                  <div className="text-base md:text-lg mt-2 text-zinc-300">
                     {timeline.reduce((sum, phase) => sum + phase.tasks.filter(t => t.done).length, 0)} of{' '}
                     {timeline.reduce((sum, phase) => sum + phase.tasks.length, 0)} tasks completed
                   </div>
                 </div>
-                <div className="w-full bg-white/20 rounded-full h-4">
+                <div className="w-full bg-zinc-700 rounded-full h-4">
                   <div
-                    className="bg-white h-4 rounded-full transition-all"
+                    className="bg-gradient-to-r from-emerald-500 to-teal-500 h-4 rounded-full transition-all"
                     style={{ 
                       width: `${(timeline.reduce((sum, phase) => sum + phase.tasks.filter(t => t.done).length, 0) / 
                         timeline.reduce((sum, phase) => sum + phase.tasks.length, 0)) * 100}%` 
@@ -1624,7 +1765,7 @@ export default function Venture() {
             <div className="text-center">
               <button
                 onClick={() => navigate('/')}
-                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
+                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-black text-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg transform hover:scale-105"
               >
                 🏠 Back to Home
               </button>
@@ -1698,7 +1839,6 @@ export default function Venture() {
             </p>
           </div>
         </div>
-      </div>
     </>
   );
 }
