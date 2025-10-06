@@ -129,7 +129,7 @@ export default function Compose() {
   const [location, setLocation] = useState('');
   const [scheduledDate, setScheduledDate] = useState('');
   const [scheduleEnabled, setScheduleEnabled] = useState(false);
-  const [showInGallery, setShowInGallery] = useState(true);
+  const [showInGallery, setShowInGallery] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
 
   const selectedGift = giftTypes.find(g => g.id === selectedType);
@@ -192,7 +192,9 @@ export default function Compose() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12">
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
@@ -564,6 +566,7 @@ export default function Compose() {
           </button>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

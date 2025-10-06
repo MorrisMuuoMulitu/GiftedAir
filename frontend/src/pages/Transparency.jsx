@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
+import Navigation from '../components/Navigation';
 
 export default function Transparency() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-green-100 py-12 px-4">
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-green-100 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -297,6 +300,7 @@ export default function Transparency() {
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

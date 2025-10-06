@@ -9,12 +9,21 @@ export default function AdminV2() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [selectedGifts, setSelectedGifts] = useState([]);
-  const [activeTab, setActiveTab] = useState('overview'); // overview, gifts, analytics, financials, partners
+  const [activeTab, setActiveTab] = useState('overview'); // overview, gifts, analytics, financials, partners, feedback
   const [filterType, setFilterType] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [partnerApplications, setPartnerApplications] = useState([]);
   const [loadingPartners, setLoadingPartners] = useState(false);
+  const [feedbackList, setFeedbackList] = useState([]);
+  const [loadingFeedback, setLoadingFeedback] = useState(false);
+  const [feedbackFilter, setFeedbackFilter] = useState('all');
+  const [editingNotes, setEditingNotes] = useState({});
+  const [notesContent, setNotesContent] = useState({});
+  const [notesSuccess, setNotesSuccess] = useState({});
+  const [composingEmail, setComposingEmail] = useState({});
+  const [emailContent, setEmailContent] = useState({});
+  const [sendingEmail, setSendingEmail] = useState({});
 
   const ADMIN_PASSWORD = '12April@Muuo';
 
@@ -95,10 +104,114 @@ export default function AdminV2() {
     }
   };
 
+  const fetchFeedback = async () => {
+    setLoadingFeedback(true);
+    try {
+      const res = await fetch(`${API_URL}/api/feedback`);
+      const data = await res.json();
+      if (data.success) {
+        setFeedbackList(data.feedback || []);
+      }
+    } catch (error) {
+      console.error('Error fetching feedback:', error);
+      setFeedbackList([]);
+    } finally {
+      setLoadingFeedback(false);
+    }
+  };
+
+  const updateFeedbackStatus = async (id, status, adminNotes = '') => {
+    try {
+      const res = await fetch(`${API_URL}/api/feedback/${id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status, adminNotes })
+      });
+
+      if (res.ok) {
+        alert(`✅ Feedback marked as ${status}!`);
+        fetchFeedback();
+      } else {
+        alert('❌ Failed to update feedback status');
+      }
+    } catch (error) {
+      console.error('Error updating feedback:', error);
+      alert('❌ Error updating feedback');
+    }
+  };
+
+  const saveAdminNotes = async (id) => {
+    try {
+      const notes = notesContent[id] || '';
+      const res = await fetch(`${API_URL}/api/feedback/${id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          status: feedbackList.find(f => f._id === id)?.status || 'read',
+          adminNotes: notes 
+        })
+      });
+
+      if (res.ok) {
+        // Update the feedback list locally without refetching
+        setFeedbackList(feedbackList.map(f => 
+          f._id === id ? { ...f, adminNotes: notes } : f
+        ));
+        setNotesSuccess({ ...notesSuccess, [id]: true });
+        setEditingNotes({ ...editingNotes, [id]: false });
+        // Auto-hide success message after 3 seconds
+        setTimeout(() => {
+          setNotesSuccess({ ...notesSuccess, [id]: false });
+        }, 3000);
+      }
+    } catch (error) {
+      console.error('Error saving notes:', error);
+    }
+  };
+
+  const sendEmailResponse = async (id) => {
+    setSendingEmail({ ...sendingEmail, [id]: true });
+    try {
+      const feedback = feedbackList.find(f => f._id === id);
+      const email = emailContent[id] || '';
+      
+      const res = await fetch(`${API_URL}/api/feedback/${id}/send-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          emailBody: email,
+          recipientEmail: feedback.email,
+          recipientName: feedback.name,
+          originalMessage: feedback.message
+        })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        // Update the feedback list locally with the new email response
+        setFeedbackList(feedbackList.map(f => 
+          f._id === id ? { 
+            ...f, 
+            status: 'responded',
+            emailResponse: email,
+            emailSentAt: new Date()
+          } : f
+        ));
+        setComposingEmail({ ...composingEmail, [id]: false });
+        setEmailContent({ ...emailContent, [id]: '' });
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+    } finally {
+      setSendingEmail({ ...sendingEmail, [id]: false });
+    }
+  };
+
   useEffect(() => {
     if (!isAuthenticated) return;
     fetchData();
     fetchPartnerApplications();
+    fetchFeedback();
   }, [isAuthenticated]);
 
   // Delete gift
@@ -423,6 +536,16 @@ export default function AdminV2() {
             }`}
           >
             🤝 Partners
+          </button>
+          <button
+            onClick={() => setActiveTab('feedback')}
+            className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
+              activeTab === 'feedback'
+                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                : 'text-gray-600 hover:bg-gray-100'
+            }`}
+          >
+            💭 Feedback
           </button>
         </div>
 
@@ -1140,6 +1263,351 @@ export default function AdminV2() {
                 </div>
               )}
             </div>
+          </>
+        )}
+
+        {/* Feedback Tab */}
+        {activeTab === 'feedback' && (
+          <>
+            {/* Header Section with Stats */}
+            <div className="bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-2xl shadow-2xl p-8 mb-8 text-white">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                  <h2 className="text-4xl font-black mb-2 flex items-center gap-3">
+                    💭 User Feedback
+                  </h2>
+                  <p className="text-purple-100 text-lg">Monitor and respond to community feedback</p>
+                </div>
+                <button
+                  onClick={fetchFeedback}
+                  className="bg-white text-purple-600 px-6 py-3 rounded-xl font-bold hover:bg-purple-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  🔄 Refresh Data
+                </button>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
+                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
+                  <div className="text-3xl font-black">{feedbackList.length}</div>
+                  <div className="text-sm text-purple-100 mt-1">Total</div>
+                </div>
+                <div className="bg-yellow-500/30 backdrop-blur-sm rounded-xl p-4 text-center">
+                  <div className="text-3xl font-black">{feedbackList.filter(f => f.status === 'new').length}</div>
+                  <div className="text-sm text-purple-100 mt-1">New</div>
+                </div>
+                <div className="bg-blue-500/30 backdrop-blur-sm rounded-xl p-4 text-center">
+                  <div className="text-3xl font-black">{feedbackList.filter(f => f.status === 'read').length}</div>
+                  <div className="text-sm text-purple-100 mt-1">Read</div>
+                </div>
+                <div className="bg-green-500/30 backdrop-blur-sm rounded-xl p-4 text-center">
+                  <div className="text-3xl font-black">{feedbackList.filter(f => f.status === 'responded').length}</div>
+                  <div className="text-sm text-purple-100 mt-1">Responded</div>
+                </div>
+                <div className="bg-gray-500/30 backdrop-blur-sm rounded-xl p-4 text-center">
+                  <div className="text-3xl font-black">{feedbackList.filter(f => f.status === 'archived').length}</div>
+                  <div className="text-sm text-purple-100 mt-1">Archived</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Filter Buttons */}
+            <div className="bg-white rounded-xl shadow-md p-4 mb-6">
+              <div className="flex gap-2 flex-wrap">
+                {[
+                  { value: 'all', label: 'All', icon: '📋', count: feedbackList.length },
+                  { value: 'new', label: 'New', icon: '🆕', count: feedbackList.filter(f => f.status === 'new').length },
+                  { value: 'read', label: 'Read', icon: '👁️', count: feedbackList.filter(f => f.status === 'read').length },
+                  { value: 'responded', label: 'Responded', icon: '✅', count: feedbackList.filter(f => f.status === 'responded').length },
+                  { value: 'archived', label: 'Archived', icon: '📦', count: feedbackList.filter(f => f.status === 'archived').length }
+                ].map((filter) => (
+                  <button
+                    key={filter.value}
+                    onClick={() => setFeedbackFilter(filter.value)}
+                    className={`px-5 py-3 rounded-xl font-bold transition-all shadow-sm ${
+                      feedbackFilter === filter.value
+                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg scale-105'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md'
+                    }`}
+                  >
+                    <span className="mr-2">{filter.icon}</span>
+                    {filter.label} ({filter.count})
+                  </button>
+                ))}
+              </div>
+            </div>
+
+              {/* Loading State */}
+              {loadingFeedback && (
+                <div className="text-center py-12">
+                  <div className="text-5xl mb-4 animate-spin">⏳</div>
+                  <p className="text-gray-600">Loading feedback...</p>
+                </div>
+              )}
+
+              {/* Empty State */}
+              {!loadingFeedback && feedbackList.length === 0 && (
+                <div className="text-center py-12 bg-gray-50 rounded-xl">
+                  <div className="text-6xl mb-4">📭</div>
+                  <p className="text-xl text-gray-600 font-semibold">No feedback yet</p>
+                  <p className="text-gray-500">Feedback submissions will appear here</p>
+                </div>
+              )}
+
+              {/* Feedback List */}
+              {!loadingFeedback && feedbackList.length > 0 && (
+                <div className="space-y-6">
+                  {feedbackList
+                    .filter(feedback => feedbackFilter === 'all' || feedback.status === feedbackFilter)
+                    .map((feedback) => (
+                      <div
+                        key={feedback._id}
+                        className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-l-8 ${
+                          feedback.status === 'new' ? 'border-yellow-400' :
+                          feedback.status === 'read' ? 'border-blue-400' :
+                          feedback.status === 'responded' ? 'border-green-400' :
+                          'border-gray-400'
+                        }`}
+                      >
+                        {/* Header */}
+                        <div className="bg-gradient-to-r from-gray-50 to-purple-50 p-6 border-b border-gray-100">
+                          <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-3 mb-3 flex-wrap">
+                                <h3 className="text-2xl font-bold text-gray-900">{feedback.name}</h3>
+                                <span className={`text-xs px-4 py-2 rounded-full font-bold shadow-sm uppercase tracking-wide ${
+                                  feedback.status === 'new' ? 'bg-yellow-500 text-white' :
+                                  feedback.status === 'read' ? 'bg-blue-500 text-white' :
+                                  feedback.status === 'responded' ? 'bg-green-500 text-white' :
+                                  'bg-gray-500 text-white'
+                                }`}>
+                                  {feedback.status === 'new' ? '🆕 NEW' : 
+                                   feedback.status === 'read' ? '👁️ READ' :
+                                   feedback.status === 'responded' ? '✅ RESPONDED' :
+                                   '📦 ARCHIVED'}
+                                </span>
+                              </div>
+                              
+                              <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                                <span className="flex items-center gap-1">
+                                  <span>📧</span>
+                                  {feedback.email}
+                                </span>
+                                <span className="flex items-center gap-1">
+                                  <span>📅</span>
+                                  {new Date(feedback.submittedAt).toLocaleDateString('en-US', { 
+                                    month: 'short', 
+                                    day: 'numeric', 
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                  })}
+                                </span>
+                              </div>
+
+                              <span className="inline-flex items-center gap-2 text-sm px-4 py-1.5 rounded-full bg-purple-100 text-purple-700 font-semibold">
+                                <span>🏷️</span>
+                                {feedback.category.replace('_', ' ').toUpperCase()}
+                              </span>
+                            </div>
+
+                            {/* Rating */}
+                            {feedback.rating && (
+                              <div className="bg-white rounded-xl p-4 shadow-md">
+                                <div className="text-xs text-gray-500 mb-1 text-center">RATING</div>
+                                <div className="flex gap-1">
+                                  {[...Array(5)].map((_, i) => (
+                                    <span key={i} className={`text-2xl ${i < feedback.rating ? 'text-green-500' : 'text-gray-300'}`}>
+                                      ⭐
+                                    </span>
+                                  ))}
+                                </div>
+                                <div className="text-center mt-1">
+                                  <span className="text-sm font-bold text-gray-700">{feedback.rating}/5</span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Message Body */}
+                        <div className="p-6">
+                          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 mb-4 border-2 border-gray-100">
+                            <div className="flex items-start gap-3">
+                              <span className="text-3xl">💬</span>
+                              <div className="flex-1">
+                                <h4 className="font-bold text-gray-700 mb-2">Feedback Message:</h4>
+                                <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">{feedback.message}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Admin Notes Section */}
+                          <div className="bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-300 rounded-xl p-5 mb-4">
+                            <div className="flex items-start gap-3">
+                              <span className="text-2xl">📝</span>
+                              <div className="flex-1">
+                                <div className="flex items-center justify-between mb-2">
+                                  <p className="text-sm font-bold text-purple-700">ADMIN NOTES:</p>
+                                  {!editingNotes[feedback._id] && (
+                                    <button
+                                      onClick={() => {
+                                        setEditingNotes({ ...editingNotes, [feedback._id]: true });
+                                        setNotesContent({ ...notesContent, [feedback._id]: feedback.adminNotes || '' });
+                                      }}
+                                      className="text-xs bg-purple-500 text-white px-3 py-1 rounded-full hover:bg-purple-600 transition"
+                                    >
+                                      {feedback.adminNotes ? '✏️ Edit' : '➕ Add Notes'}
+                                    </button>
+                                  )}
+                                </div>
+                                
+                                {editingNotes[feedback._id] ? (
+                                  <div className="space-y-2">
+                                    <textarea
+                                      value={notesContent[feedback._id] || ''}
+                                      onChange={(e) => setNotesContent({ ...notesContent, [feedback._id]: e.target.value })}
+                                      rows="4"
+                                      placeholder="Add your internal notes here..."
+                                      className="w-full px-4 py-3 border-2 border-purple-300 rounded-xl focus:border-purple-500 focus:outline-none transition-colors resize-none"
+                                    />
+                                    <div className="flex gap-2">
+                                      <button
+                                        onClick={() => saveAdminNotes(feedback._id)}
+                                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold text-sm"
+                                      >
+                                        💾 Save Notes
+                                      </button>
+                                      <button
+                                        onClick={() => setEditingNotes({ ...editingNotes, [feedback._id]: false })}
+                                        className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition font-semibold text-sm"
+                                      >
+                                        Cancel
+                                      </button>
+                                    </div>
+                                    {notesSuccess[feedback._id] && (
+                                      <div className="mt-2 bg-green-50 border-2 border-green-500 text-green-700 px-4 py-2 rounded-lg flex items-center gap-2">
+                                        <span>✅</span>
+                                        <span className="font-semibold">Notes saved successfully!</span>
+                                      </div>
+                                    )}
+                                  </div>
+                                ) : feedback.adminNotes ? (
+                                  <p className="text-purple-900 leading-relaxed">{feedback.adminNotes}</p>
+                                ) : (
+                                  <p className="text-purple-600 italic text-sm">No notes yet. Click "Add Notes" to add internal notes.</p>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Response Section */}
+                          {feedback.email !== 'not-provided@anonymous.user' && (
+                            <div className="bg-gradient-to-r from-blue-50 to-green-50 border-2 border-blue-200 rounded-xl p-5 mb-4">
+                              <div className="flex items-start gap-3">
+                                <span className="text-2xl">✉️</span>
+                                <div className="flex-1">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <p className="text-sm font-bold text-blue-700">RESPOND TO USER:</p>
+                                    {!composingEmail[feedback._id] && !feedback.emailResponse && (
+                                      <button
+                                        onClick={() => {
+                                          setComposingEmail({ ...composingEmail, [feedback._id]: true });
+                                          setEmailContent({ ...emailContent, [feedback._id]: `Hi ${feedback.name},\n\nThank you for your feedback!\n\nRegarding your message:\n"${feedback.message}"\n\n[Your response here]\n\nBest regards,\nGifted Air Team` });
+                                        }}
+                                        className="text-xs bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition"
+                                      >
+                                        ✍️ Compose Email
+                                      </button>
+                                    )}
+                                  </div>
+                                  
+                                  {feedback.emailResponse ? (
+                                    <div className="bg-white rounded-lg p-4 border-2 border-green-300">
+                                      <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-green-600 font-bold text-sm">✅ EMAIL SENT</span>
+                                        {feedback.emailSentAt && (
+                                          <span className="text-xs text-gray-500">
+                                            {new Date(feedback.emailSentAt).toLocaleString()}
+                                          </span>
+                                        )}
+                                      </div>
+                                      <div className="bg-gray-50 rounded p-3 border-l-4 border-blue-500">
+                                        <p className="text-xs text-gray-600 mb-1">To: {feedback.email}</p>
+                                        <p className="text-xs text-gray-600 mb-3">Subject: Re: Your Feedback for Gifted Air</p>
+                                        <div className="text-sm text-gray-800 whitespace-pre-wrap leading-relaxed">
+                                          {feedback.emailResponse}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ) : composingEmail[feedback._id] ? (
+                                    <div className="space-y-3">
+                                      <div>
+                                        <p className="text-xs text-gray-600 mb-1">To: {feedback.email}</p>
+                                        <p className="text-xs text-gray-600 mb-2">Subject: Re: Your Feedback for Gifted Air</p>
+                                      </div>
+                                      <textarea
+                                        value={emailContent[feedback._id] || ''}
+                                        onChange={(e) => setEmailContent({ ...emailContent, [feedback._id]: e.target.value })}
+                                        rows="8"
+                                        placeholder="Write your email response..."
+                                        className="w-full px-4 py-3 border-2 border-blue-300 rounded-xl focus:border-blue-500 focus:outline-none transition-colors resize-none"
+                                      />
+                                      <div className="flex gap-2">
+                                        <button
+                                          onClick={() => sendEmailResponse(feedback._id)}
+                                          disabled={sendingEmail[feedback._id]}
+                                          className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all font-semibold shadow-lg disabled:opacity-50"
+                                        >
+                                          {sendingEmail[feedback._id] ? '📤 Sending...' : '📧 Send Email'}
+                                        </button>
+                                        <button
+                                          onClick={() => setComposingEmail({ ...composingEmail, [feedback._id]: false })}
+                                          disabled={sendingEmail[feedback._id]}
+                                          className="bg-gray-400 text-white px-4 py-3 rounded-xl hover:bg-gray-500 transition font-semibold"
+                                        >
+                                          Cancel
+                                        </button>
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <p className="text-sm text-gray-600">Click "Compose Email" to send a response to {feedback.name}</p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Action Buttons */}
+                          <div className="flex gap-3 flex-wrap">
+                            {feedback.status === 'new' && (
+                              <button
+                                onClick={() => updateFeedbackStatus(feedback._id, 'read')}
+                                className="flex-1 md:flex-none bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all text-sm font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
+                              >
+                                👁️ Mark as Read
+                              </button>
+                            )}
+                            {(feedback.status === 'new' || feedback.status === 'read') && (
+                              <button
+                                onClick={() => updateFeedbackStatus(feedback._id, 'responded')}
+                                className="flex-1 md:flex-none bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl hover:from-green-600 hover:to-green-700 transition-all text-sm font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
+                              >
+                                ✅ Mark as Responded
+                              </button>
+                            )}
+                            <button
+                              onClick={() => updateFeedbackStatus(feedback._id, 'archived')}
+                              className="flex-1 md:flex-none bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-3 rounded-xl hover:from-gray-600 hover:to-gray-700 transition-all text-sm font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
+                            >
+                              📦 Archive
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              )}
           </>
         )}
       </div>

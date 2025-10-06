@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SEO, { SEOConfig } from '../components/SEO';
+import Navigation from '../components/Navigation';
 
 export default function Venture() {
   const navigate = useNavigate();
@@ -255,6 +256,7 @@ export default function Venture() {
 
   return (
     <>
+      <Navigation />
       {/* Inject CSS keyframes for animated gradient */}
       <style>{`
         @keyframes gradient {
@@ -326,6 +328,13 @@ export default function Venture() {
                     <span>🎓</span>
                     <span>Do School</span>
                   </a>
+                  <button
+                    onClick={() => navigate('/feedback')}
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-bold hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
+                  >
+                    <span>💭</span>
+                    <span>Share Feedback</span>
+                  </button>
                 </div>
               </div>
               

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_URL } from '../config';
+import Navigation from '../components/Navigation';
 
 const giftTypeDetails = {
   tree: { icon: '🌳', name: 'Tree Planting', color: '#2D5016' },
@@ -59,6 +60,7 @@ export default function Certificate() {
 
   return (
     <>
+      <Navigation />
       <style>{`
         @media print {
           .no-print { display: none !important; }

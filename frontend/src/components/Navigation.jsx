@@ -7,10 +7,12 @@ function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
+    { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/compose', label: 'Create Gift' },
     { path: '/gallery', label: 'Gallery' },
     { path: '/transparency', label: 'Transparency' },
+    { path: '/feedback', label: '💭 Give Feedback', highlight: true },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -25,10 +27,14 @@ function Navigation() {
               <button
                 key={link.path}
                 onClick={() => navigate(link.path)}
-                className={`flex-1 h-full font-semibold text-sm transition-all duration-200 border-b-2 ${
-                  isActive(link.path)
-                    ? 'bg-green-700 text-white border-green-700'
-                    : 'text-gray-700 hover:bg-gray-50 hover:text-green-700 border-transparent hover:border-green-200'
+                className={`flex-1 h-full font-semibold text-lg transition-all duration-300 border-b-4 ${
+                  link.highlight
+                    ? isActive(link.path)
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white border-purple-600 shadow-lg'
+                      : 'bg-gradient-to-r from-purple-400 to-pink-400 text-white border-transparent hover:from-purple-500 hover:to-pink-500 hover:shadow-lg hover:scale-[1.02] animate-pulse'
+                    : isActive(link.path)
+                    ? 'bg-gray-100 text-green-700 border-green-600 shadow-md'
+                    : 'text-gray-700 hover:bg-green-50 hover:text-green-700 border-transparent hover:border-green-500 hover:shadow-md hover:scale-[1.02]'
                 }`}
               >
                 {link.label}
@@ -66,7 +72,9 @@ function Navigation() {
                     setMobileMenuOpen(false);
                   }}
                   className={`w-full text-left px-5 py-3.5 rounded-xl font-semibold transition-all mb-2 ${
-                    isActive(link.path)
+                    link.highlight
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                      : isActive(link.path)
                       ? 'bg-green-700 text-white shadow-md'
                       : 'text-gray-700 hover:bg-gray-50 hover:text-green-700'
                   }`}
@@ -79,15 +87,6 @@ function Navigation() {
         </div>
       </nav>
 
-      {/* Floating Home Button */}
-      <button
-        onClick={() => navigate('/')}
-        className="fixed bottom-8 right-8 z-50 bg-white shadow-lg hover:shadow-xl p-4 rounded-full border-2 border-green-700 group transition-all duration-200 hover:scale-110"
-        title="Go to Home"
-        aria-label="Home"
-      >
-        <span className="text-3xl group-hover:scale-110 transition-transform duration-200">🌿</span>
-      </button>
     </>
   );
 }

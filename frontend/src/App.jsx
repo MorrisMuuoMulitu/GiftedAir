@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useState, useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import LoadingScreen from './components/LoadingScreen';
-import ThemeToggle from './components/ThemeToggle';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 
 // Lazy load pages for better performance
@@ -22,6 +21,7 @@ const Referral = lazy(() => import('./pages/Referral'));
 const Venture = lazy(() => import('./pages/Venture'));
 const About = lazy(() => import('./pages/About'));
 const PartnerApplication = lazy(() => import('./pages/PartnerApplication'));
+const Feedback = lazy(() => import('./pages/Feedback'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function AppContent() {
@@ -29,7 +29,6 @@ function AppContent() {
   
   return (
     <>
-      <ThemeToggle />
       <Suspense fallback={<LoadingScreen />}>
         <Routes>
         <Route path="/" element={<Landing />} />
@@ -46,6 +45,7 @@ function AppContent() {
         <Route path="/venture" element={<Venture />} />
         <Route path="/about" element={<About />} />
         <Route path="/partner-application" element={<PartnerApplication />} />
+        <Route path="/feedback" element={<Feedback />} />
         <Route path="/certificate/:giftId" element={<Certificate />} />
         <Route path="/gift/:giftId" element={<GiftView />} />
         {/* 404 catch-all */}

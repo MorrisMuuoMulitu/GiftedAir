@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { API_URL } from '../config';
+import Navigation from '../components/Navigation';
 
 export default function PaymentSuccess() {
   const [searchParams] = useSearchParams();
@@ -111,8 +112,10 @@ export default function PaymentSuccess() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 py-12 px-4">
-      <div className="max-w-3xl mx-auto">
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 py-12 px-4">
+        <div className="max-w-3xl mx-auto">
         {/* Success Animation */}
         <div className="text-center mb-8">
           <div className="inline-block animate-grow">
@@ -223,7 +226,8 @@ export default function PaymentSuccess() {
             Thank you for supporting climate action! 🌍💚
           </p>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
