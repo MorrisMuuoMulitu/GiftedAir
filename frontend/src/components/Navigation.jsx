@@ -25,31 +25,33 @@ function Navigation() {
         className="hidden md:block fixed left-0 top-0 h-screen z-50 transition-all duration-300"
         onMouseEnter={() => setSidebarExpanded(true)}
         onMouseLeave={() => setSidebarExpanded(false)}
-        style={{ width: sidebarExpanded ? '220px' : '80px' }}
+        style={{ width: sidebarExpanded ? '240px' : '100px' }}
       >
-        <div className="h-full backdrop-blur-xl bg-white/80 border-r border-gray-200 shadow-sm flex flex-col">
+        <div className="h-full border-r border-gray-200/30 flex flex-col">
           {/* Navigation Links - Centered Vertically */}
-          <div className="flex-1 flex flex-col justify-center space-y-3 px-3">
+          <div className="flex-1 flex flex-col justify-center space-y-8 px-3">
             {navLinks.map((link) => (
               <button
                 key={link.path}
                 onClick={() => navigate(link.path)}
-                className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-200 group ${
+                className={`w-full flex items-center gap-5 px-3 py-5 transition-all duration-300 group relative ${
                   link.highlight
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-xl'
+                    ? 'text-purple-600 hover:text-purple-700'
                     : isActive(link.path)
-                    ? 'bg-green-600 text-white shadow-md'
-                    : 'text-gray-700 hover:bg-gray-100 hover:text-green-600'
+                    ? 'text-green-600'
+                    : 'text-gray-600 hover:text-green-600'
                 }`}
               >
-                <i className={`${link.icon} text-2xl flex-shrink-0 transition-transform duration-200 group-hover:scale-125`}></i>
+                <i className={`${link.icon} text-4xl flex-shrink-0 transition-all duration-300 group-hover:scale-110 ${
+                  isActive(link.path) ? 'drop-shadow-lg' : ''
+                }`}></i>
                 {sidebarExpanded && (
-                  <span className="font-semibold text-sm whitespace-nowrap opacity-0 animate-fadeIn">
+                  <span className="font-bold text-base whitespace-nowrap opacity-0 animate-fadeIn">
                     {link.label}
                   </span>
                 )}
                 {!sidebarExpanded && isActive(link.path) && (
-                  <div className="absolute left-0 w-1 h-10 bg-green-600 rounded-r-full"></div>
+                  <div className="absolute left-0 w-1.5 h-12 bg-green-600 rounded-r-full shadow-lg"></div>
                 )}
               </button>
             ))}
@@ -130,7 +132,7 @@ function Navigation() {
       )}
 
       {/* Spacer for desktop content */}
-      <div className="hidden md:block" style={{ marginLeft: '80px' }}></div>
+      <div className="hidden md:block" style={{ marginLeft: '100px' }}></div>
       
       {/* Spacer for mobile content */}
       <div className="md:hidden h-16"></div>
