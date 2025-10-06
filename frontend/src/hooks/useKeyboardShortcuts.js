@@ -14,7 +14,7 @@ export function useKeyboardShortcuts() {
       // Cmd/Ctrl + K for quick navigation
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        const destination = prompt('Quick navigate to:\n\n1. Home\n2. About\n3. Create Gift\n4. Gallery\n5. Leaderboard\n6. My Impact\n7. Transparency\n8. Bulk Orders\n9. Refer & Earn\n\nEnter number:');
+        const destination = prompt('Quick navigate to:\n\n1. Home\n2. About\n3. Create Gift\n4. Gallery\n5. Leaderboard\n6. My Impact\n7. Transparency\n8. Bulk Orders\n\nEnter number:');
         
         const routes = {
           '1': '/',
@@ -24,8 +24,7 @@ export function useKeyboardShortcuts() {
           '5': '/leaderboard',
           '6': '/impact',
           '7': '/transparency',
-          '8': '/bulk',
-          '9': '/referral'
+          '8': '/bulk'
         };
         
         if (routes[destination]) {
@@ -55,9 +54,6 @@ export function useKeyboardShortcuts() {
           case 'i':
             navigate('/impact');
             break;
-          case 'r':
-            navigate('/referral');
-            break;
           case 't':
             navigate('/transparency');
             break;
@@ -82,7 +78,6 @@ C - Create Gift
 G - Gallery
 L - Leaderboard
 I - My Impact
-R - Refer & Earn
 T - Transparency
 B - Bulk Orders
 ? - Show this help

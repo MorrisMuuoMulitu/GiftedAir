@@ -47,7 +47,7 @@ export default function Venture() {
         { name: 'Financial tracking & analytics', done: true },
         { name: 'Bulk gift orders', done: true },
         { name: 'Leaderboard & gamification', done: true },
-        { name: 'Referral program', done: true },
+        { name: 'Referral program', done: false },
         { name: 'Google Analytics integration', done: true },
         { name: 'Keyboard shortcuts', done: true }
       ]
@@ -104,9 +104,9 @@ export default function Venture() {
     solution: [
       'One-click environmental gifts: Choose from 8 causes, add message, send instantly',
       'Beautiful gift experience: Recipient gets personalized page with certificate and impact details',
-      'Built-in sharing: Every gift becomes shareable content (Instagram, gallery, referrals)',
+      'Built-in sharing: Every gift becomes shareable content (Instagram, gallery, social)',
       'Transparent impact: See exactly where money goes (50% to partners, tracked publicly)',
-      'Gamified giving: Leaderboards, referral rewards, public gallery for social recognition'
+      'Gamified giving: Leaderboards, public gallery for social recognition, referrals coming Q2 2025'
     ],
     
     // 4. Target audience & Early adopters
@@ -156,7 +156,7 @@ export default function Venture() {
     // 7. Prototype (what needs testing)
     prototype: [
       '✅ TESTED: Core gift flow (8 gift types, payment, email, viewing) - LIVE on giftedair.vercel.app',
-      '✅ TESTED: Viral mechanics (public gallery, referral program, social sharing)',
+      '✅ TESTED: Viral mechanics (public gallery, social sharing, referrals launching Q2 2025)',
       '🧪 TESTING: B2B corporate bulk orders - feature built, need pilot customers',
       '🧪 TESTING: Pricing elasticity - currently $10-$500 per gift, will test $5 entry point',
       '❓ TO TEST: Subscription model - monthly recurring gifts (30% of Netflix users would gift subscriptions)',
@@ -166,7 +166,7 @@ export default function Venture() {
     
     // 8. Channels & partnerships
     channels: [
-      'Product-led: Built-in virality (recipients become senders via gallery + referrals)',
+      'Product-led: Built-in virality (recipients become senders via gallery + social sharing)',
       'Social media: Instagram/TikTok organic (beautiful gift pages are shareable content)',
       'Influencer partnerships: Eco-influencers get affiliate links, showcase gifts',
       'SEO: "Sustainable gifts", "eco-friendly birthday ideas" (low competition, high intent)',
@@ -178,7 +178,7 @@ export default function Venture() {
     // 9. Key metrics (numbers that show success)
     keyMetrics: [
       'Gifts sent per month (currently ~50, target 1,000 by month 6)',
-      'Referral rate (% of recipients who send gifts - target 15-20%)',
+      'Conversion rate (% of recipients who send gifts - target 15-20%)',
       'Average gift value ($50 current, optimize for frequency vs. value)',
       'K-Factor (viral coefficient - each gift creates how many new gifts?)',
       'Corporate deal size ($500-$5,000 bulk orders)',
@@ -236,7 +236,7 @@ export default function Venture() {
       'Built-in virality through gift viewing and sharing',
       'Transparency dashboard showing exact impact',
       'Multiple environmental causes in one platform',
-      'Gamification through leaderboards and referrals'
+      'Gamification through leaderboards and social recognition'
     ]
   };
 
@@ -466,7 +466,7 @@ export default function Venture() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-500">✓</span>
-                    <span>Gallery, Leaderboard, Referral program</span>
+                    <span>Gallery, Leaderboard, Feedback system</span>
                   </li>
                 </ul>
               </div>
@@ -490,7 +490,7 @@ export default function Venture() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-pink-500">→</span>
-                    <span>Zero CAC with viral loops & referrals</span>
+                    <span>Zero CAC with viral loops & social sharing</span>
                   </li>
                 </ul>
               </div>
@@ -714,7 +714,7 @@ export default function Venture() {
                 <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-2xl border border-zinc-700 hover:shadow-[0_0_20px_-8px_rgba(153,102,255,0.3)] transition-all duration-300">
                   <div className="text-4xl mb-3 bg-gradient-to-br from-purple-400 to-indigo-500 text-transparent bg-clip-text">🎯</div>
                   <h4 className="font-black text-white mb-2 text-lg">Referral Program</h4>
-                  <p className="text-sm text-zinc-400 mb-3">Users earn rewards for referring friends. Built-in incentive for organic growth.</p>
+                  <p className="text-sm text-zinc-400 mb-3">Launching Q2 2025. Built-in incentive for organic growth and community expansion.</p>
                   <div className="text-xs text-purple-400 font-bold">Target: 30% of users refer 2+ friends</div>
                 </div>
                 
@@ -842,7 +842,7 @@ export default function Venture() {
                   
                   <div className="bg-zinc-900/50 rounded-lg p-4 mb-4">
                     <p className="text-zinc-300 text-sm leading-relaxed">
-                      <span className="font-bold text-white">Scenario:</span> A tech startup (150 employees) wants to demonstrate climate commitment. Instead of generic swag, they give each employee a <span className="text-purple-400 font-semibold">$20 Gifted Air credit</span> to fund environmental projects of their choice.
+                      <span className="font-bold text-white">Scenario:</span> A tech startup (150 employees) wants to demonstrate climate commitment. Instead of generic swag, they give each employee a <span className="text-purple-400 font-semibold">$20 Gifted Air gift</span> to fund environmental projects of their choice.
                     </p>
                   </div>
                   
@@ -1239,7 +1239,7 @@ export default function Venture() {
                       Gamification & Community
                     </h3>
                     <p className="text-zinc-400">
-                      Leaderboards, public gallery, referral rewards, and impact tracking turn 
+                      Leaderboards, public gallery, social sharing, and impact tracking turn 
                       environmental giving into an engaging, social experience.
                     </p>
                   </div>
@@ -1264,7 +1264,7 @@ export default function Venture() {
                   { icon: '📧', title: 'Email Notifications', desc: 'Automated beautiful emails to senders & recipients' },
                   { icon: '🎨', title: 'Public Gallery', desc: 'Showcase gifts and inspire others' },
                   { icon: '🏆', title: 'Leaderboard', desc: 'Gamify giving with top contributors' },
-                  { icon: '🎯', title: 'Referral Program', desc: 'Earn rewards for spreading impact' },
+                  { icon: '🎯', title: 'Referral Program', desc: 'Coming Q2 2025 - Spread impact organically' },
                   { icon: '💰', title: 'Bulk Orders', desc: 'Corporate & event gifting made easy' },
                   { icon: '📊', title: 'Admin Dashboard', desc: 'Complete analytics & financial tracking' },
                   { icon: '🌙', title: 'Dark Mode', desc: 'Beautiful experience day or night' }

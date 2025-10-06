@@ -17,7 +17,6 @@ const Admin = lazy(() => import('./pages/AdminV2'));
 const Certificate = lazy(() => import('./pages/Certificate'));
 const BulkGift = lazy(() => import('./pages/BulkGift'));
 const BulkSuccess = lazy(() => import('./pages/BulkSuccess'));
-const Referral = lazy(() => import('./pages/Referral'));
 const Venture = lazy(() => import('./pages/Venture'));
 const About = lazy(() => import('./pages/About'));
 const PartnerApplication = lazy(() => import('./pages/PartnerApplication'));
@@ -41,7 +40,6 @@ function AppContent() {
         <Route path="/transparency" element={<Transparency />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/bulk" element={<BulkGift />} />
-        <Route path="/referral" element={<Referral />} />
         <Route path="/venture" element={<Venture />} />
         <Route path="/about" element={<About />} />
         <Route path="/partner-application" element={<PartnerApplication />} />
