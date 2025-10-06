@@ -110,79 +110,31 @@ export default function Transparency() {
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <h2 className="text-3xl font-bold text-forest mb-6">🤝 Our Partner Organizations</h2>
           
-          <p className="text-gray-700 mb-8 text-lg">
-            We partner with verified, reputable organizations to ensure real environmental impact:
-          </p>
-
-          <div className="space-y-6">
-            <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-green-400 transition">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">🌳</div>
-                <div>
-                  <h3 className="text-xl font-bold text-forest mb-2">One Tree Planted</h3>
-                  <p className="text-gray-700 mb-2">
-                    Non-profit focused on global reforestation. Plants trees in 43+ countries across 6 continents.
-                  </p>
-                  <a href="https://onetreeplanted.org/" target="_blank" rel="noopener noreferrer" 
-                     className="text-green-600 hover:underline font-semibold">
-                    Learn more →
-                  </a>
-                </div>
-              </div>
+          <div className="text-center py-12">
+            <div className="text-7xl mb-6">🌱</div>
+            <h3 className="text-2xl font-bold text-forest mb-4">Partners Coming Soon</h3>
+            <p className="text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
+              We're currently onboarding verified environmental organizations to join our platform. 
+              Partner organizations will receive 50% of all gift revenue to fund their climate projects.
+            </p>
+            
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 max-w-xl mx-auto mb-6">
+              <h4 className="text-xl font-bold text-forest mb-3">Are you an environmental organization?</h4>
+              <p className="text-gray-700 mb-4">
+                Join our platform and receive direct funding from climate-conscious gift givers worldwide.
+              </p>
+              <Link 
+                to="/partner-application"
+                className="inline-block bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-full font-bold hover:from-green-700 hover:to-emerald-700 transition-all transform hover:scale-105 shadow-lg"
+              >
+                🤝 Register Your Organization
+              </Link>
             </div>
 
-            <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-blue-400 transition">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">🌊</div>
-                <div>
-                  <h3 className="text-xl font-bold text-forest mb-2">The Ocean Cleanup</h3>
-                  <p className="text-gray-700 mb-2">
-                    Developing advanced technologies to rid the oceans of plastic pollution.
-                  </p>
-                  <a href="https://theoceancleanup.com/" target="_blank" rel="noopener noreferrer" 
-                     className="text-blue-600 hover:underline font-semibold">
-                    Learn more →
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-sky-400 transition">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">💧</div>
-                <div>
-                  <h3 className="text-xl font-bold text-forest mb-2">Charity: Water</h3>
-                  <p className="text-gray-700 mb-2">
-                    100% of donations fund clean water projects. Bringing clean water to people in developing nations.
-                  </p>
-                  <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer" 
-                     className="text-sky-600 hover:underline font-semibold">
-                    Learn more →
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-amber-400 transition">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">🦁</div>
-                <div>
-                  <h3 className="text-xl font-bold text-forest mb-2">World Wildlife Fund</h3>
-                  <p className="text-gray-700 mb-2">
-                    Leading conservation organization protecting wildlife and endangered species worldwide.
-                  </p>
-                  <a href="https://www.worldwildlife.org/" target="_blank" rel="noopener noreferrer" 
-                     className="text-amber-600 hover:underline font-semibold">
-                    Learn more →
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 bg-gray-50 rounded-xl">
+            <div className="p-6 bg-gray-50 rounded-xl max-w-2xl mx-auto">
               <p className="text-gray-600 text-sm">
-                <strong className="text-forest">Note:</strong> We're currently establishing formal partnerships with these organizations. 
-                In the meantime, we make monthly bulk donations on behalf of all gifts sent. 
+                <strong className="text-forest">Current Status:</strong> We're in active discussions with leading climate organizations. 
+                In the meantime, we're making monthly bulk donations to established nonprofits on behalf of all gifts sent. 
                 Once partnerships are formalized, you'll receive direct impact certificates from our partners.
               </p>
             </div>
