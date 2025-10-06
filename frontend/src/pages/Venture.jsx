@@ -479,49 +479,49 @@ export default function Venture() {
               </div>
             </div>
 
-            {/* Target Partner Categories */}
+            {/* Our Potential Partners in Kenya */}
             <div className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-white">Target Partner Categories</h3>
+                <h3 className="text-2xl font-bold text-white">Our Potential Partners in Kenya</h3>
                 <span className="px-4 py-2 bg-amber-500/20 text-amber-400 rounded-full text-sm font-semibold border border-amber-500/30">
-                  Seeking Partners
+                  Building Partnerships
                 </span>
               </div>
               <p className="text-zinc-400 mb-6">
-                We're seeking verified organizations in these impact categories to power our gifting platform:
+                We're building partnerships with verified Kenyan environmental organizations to create real local impact:
               </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
-                  { category: 'Tree Planting', description: 'Reforestation & afforestation orgs', icon: '🌳', color: 'emerald' },
-                  { category: 'Ocean Cleanup', description: 'Plastic removal & marine conservation', icon: '🌊', color: 'blue' },
-                  { category: 'Clean Water', description: 'Water access & sanitation projects', icon: '💧', color: 'cyan' },
-                  { category: 'Mangrove Restoration', description: 'Coastal ecosystem protection', icon: '🌿', color: 'green' },
-                  { category: 'Coral Reef Protection', description: 'Marine habitat restoration', icon: '🪸', color: 'pink' },
-                  { category: 'Wildlife Conservation', description: 'Species protection & habitat', icon: '🦁', color: 'amber' },
-                  { category: 'Rainforest Protection', description: 'Tropical forest preservation', icon: '🌴', color: 'emerald' },
-                  { category: 'Solar Energy Access', description: 'Off-grid solar solutions', icon: '☀️', color: 'yellow' },
-                  { category: 'Carbon Credits', description: 'Verified offset programs', icon: '🍃', color: 'green' },
-                  { category: 'Clean Cookstoves', description: 'Household emissions reduction', icon: '🏡', color: 'orange' },
-                  { category: 'Sustainable Agriculture', description: 'Regenerative farming practices', icon: '🌾', color: 'yellow' },
-                  { category: 'Ocean Conservation', description: 'Marine protected areas', icon: '🐋', color: 'blue' }
+                  { name: 'Green Belt Movement', description: 'Tree planting & conservation', icon: '🌳', url: 'https://www.greenbeltmovement.org/', color: 'emerald' },
+                  { name: 'Eden Reforestation Projects', description: 'Forest restoration', icon: '🌲', url: 'https://www.edenprojects.org/', color: 'green' },
+                  { name: 'Sheldrick Wildlife Trust', description: 'Elephant & rhino conservation', icon: '🐘', url: 'https://www.sheldrickwildlifetrust.org/', color: 'amber' },
+                  { name: 'Koko Networks', description: 'Clean cooking solutions', icon: '🔥', url: 'https://kokonetworks.com/', color: 'orange' },
+                  { name: 'One Acre Fund', description: 'Smallholder farmer support', icon: '🌾', url: 'https://oneacrefund.org/', color: 'yellow' },
+                  { name: 'SolarAid', description: 'Solar power access', icon: '☀️', url: 'https://solar-aid.org/', color: 'yellow' },
+                  { name: 'Mara Elephant Project', description: 'Elephant protection', icon: '🐘', url: 'https://maraelephantproject.org/', color: 'amber' },
+                  { name: 'SOKO', description: 'Artisan empowerment', icon: '💎', url: 'https://shopsoko.com/', color: 'cyan' },
+                  { name: 'Giraffe Centre', description: 'Wildlife conservation & education', icon: '🦒', url: 'https://www.giraffecentre.org/', color: 'amber' }
                 ].map((partner, idx) => (
-                  <div
+                  <a
                     key={idx}
-                    className={`p-4 bg-zinc-800 rounded-xl border border-zinc-700 hover:border-${partner.color}-500/50 transition-all`}
+                    href={partner.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`p-4 bg-zinc-800 rounded-xl border border-zinc-700 hover:border-${partner.color}-500/50 hover:shadow-lg transition-all group`}
                   >
                     <div className="flex items-start gap-3 mb-2">
-                      <span className="text-3xl">{partner.icon}</span>
+                      <span className="text-3xl group-hover:scale-110 transition-transform">{partner.icon}</span>
                       <div className="flex-1">
-                        <div className="font-bold text-white text-sm mb-1">{partner.category}</div>
+                        <div className="font-bold text-white text-sm mb-1">{partner.name}</div>
                         <div className="text-xs text-zinc-400 leading-tight">{partner.description}</div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
               <div className="mt-6 p-4 bg-emerald-900/30 rounded-xl border border-emerald-500/30">
                 <p className="text-sm text-emerald-300">
-                  <span className="font-bold">Partnership Model:</span> We share 50% of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. Win-win for organizations seeking new funding streams.
+                  <span className="font-bold">Partnership Model:</span> We share 50% of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. Win-win for Kenyan organizations seeking new funding streams.
                 </p>
               </div>
             </div>

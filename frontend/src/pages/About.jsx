@@ -181,25 +181,33 @@ export default function About() {
 
           {/* Our Potential Partners */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Potential Partners</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Potential Partners in Kenya</h2>
             <p className="text-slate-700 mb-6">
-              We work with verified environmental organizations to ensure your gifts create real impact:
+              We're building partnerships with verified Kenyan environmental organizations to ensure your gifts create real local impact:
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
-                { name: 'One Tree Planted', icon: '🌳' },
-                { name: 'The Ocean Cleanup', icon: '🌊' },
-                { name: 'Charity: Water', icon: '💧' },
-                { name: 'Solar Aid', icon: '☀️' },
-                { name: 'Cookstove Projects', icon: '🔥' },
-                { name: 'Coral Restoration', icon: '🪸' },
-                { name: 'WWF', icon: '🐼' },
-                { name: 'Rainforest Trust', icon: '🌴' }
+                { name: 'Green Belt Movement', icon: '🌳', url: 'https://www.greenbeltmovement.org/', desc: 'Tree planting & conservation' },
+                { name: 'Eden Reforestation Projects', icon: '🌲', url: 'https://www.edenprojects.org/', desc: 'Forest restoration' },
+                { name: 'Sheldrick Wildlife Trust', icon: '🐘', url: 'https://www.sheldrickwildlifetrust.org/', desc: 'Elephant & rhino conservation' },
+                { name: 'Koko Networks', icon: '🔥', url: 'https://kokonetworks.com/', desc: 'Clean cooking solutions' },
+                { name: 'One Acre Fund', icon: '🌾', url: 'https://oneacrefund.org/', desc: 'Smallholder farmer support' },
+                { name: 'SolarAid', icon: '☀️', url: 'https://solar-aid.org/', desc: 'Solar power access' },
+                { name: 'Mara Elephant Project', icon: '🐘', url: 'https://maraelephantproject.org/', desc: 'Elephant protection' },
+                { name: 'SOKO', icon: '💎', url: 'https://shopsoko.com/', desc: 'Artisan empowerment' },
+                { name: 'Giraffe Centre', icon: '🦒', url: 'https://www.giraffecentre.org/', desc: 'Wildlife conservation & education' }
               ].map((partner, idx) => (
-                <div key={idx} className="bg-white rounded-lg border border-slate-200 p-4 text-center">
-                  <div className="text-3xl mb-2">{partner.icon}</div>
-                  <div className="text-sm font-medium text-slate-700">{partner.name}</div>
-                </div>
+                <a 
+                  key={idx} 
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-lg border border-slate-200 p-4 text-center hover:shadow-lg hover:border-blue-300 transition-all group"
+                >
+                  <div className="text-4xl mb-2 group-hover:scale-110 transition-transform">{partner.icon}</div>
+                  <div className="text-sm font-bold text-slate-900 mb-1">{partner.name}</div>
+                  <div className="text-xs text-slate-600">{partner.desc}</div>
+                </a>
               ))}
             </div>
           </section>
