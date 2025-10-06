@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import QRCode from 'qrcode';
 import { API_URL } from '../config';
 
 const giftTypes = [
@@ -128,6 +129,7 @@ export default function Compose() {
   const [scheduledDate, setScheduledDate] = useState('');
   const [scheduleEnabled, setScheduleEnabled] = useState(false);
   const [showInGallery, setShowInGallery] = useState(true);
+  const [showPreview, setShowPreview] = useState(false);
 
   const selectedGift = giftTypes.find(g => g.id === selectedType);
   
@@ -401,6 +403,110 @@ export default function Compose() {
               </label>
             </div>
           </div>
+        )}
+
+        {/* Preview & Payment Section */}
+        {selectedType && recipientName && senderName && message && (
+          <>
+            {/* Preview Button */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 text-center">
+              <button
+                onClick={() => setShowPreview(!showPreview)}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg transform hover:scale-105"
+              >
+                {showPreview ? '✕ Close Preview' : '👁️ Preview Gift Card'}
+              </button>
+            </div>
+
+            {/* Preview Modal */}
+            {showPreview && (
+              <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowPreview(false)}>
+                <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+                  {/* Preview Header */}
+                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-6 text-center rounded-t-3xl">
+                    <h2 className="text-3xl font-bold text-white mb-2">✨ Gift Card Preview</h2>
+                    <p className="text-white/90">This is how your recipient will see it</p>
+                  </div>
+
+                  {/* Gift Card Content */}
+                  <div className={`p-8 bg-gradient-to-br ${
+                    selectedType === 'tree' ? 'from-green-50 to-emerald-50' :
+                    selectedType === 'ocean' ? 'from-blue-50 to-cyan-50' :
+                    selectedType === 'water' ? 'from-blue-50 to-indigo-50' :
+                    selectedType === 'cookstove' ? 'from-orange-50 to-red-50' :
+                    selectedType === 'coral' ? 'from-pink-50 to-rose-50' :
+                    selectedType === 'rainforest' ? 'from-green-50 to-teal-50' :
+                    selectedType === 'wildlife' ? 'from-yellow-50 to-amber-50' :
+                    'from-yellow-50 to-orange-50'
+                  }`}>
+                    {/* Icon */}
+                    <div className="text-center mb-6">
+                      <div className="text-9xl mb-4 animate-grow">
+                        {selectedType === 'tree' ? '🌳' :
+                         selectedType === 'ocean' ? '🌊' :
+                         selectedType === 'water' ? '💧' :
+                         selectedType === 'cookstove' ? '🏡' :
+                         selectedType === 'coral' ? '🪸' :
+                         selectedType === 'rainforest' ? '🌴' :
+                         selectedType === 'wildlife' ? '🦁' : '☀️'}
+                      </div>
+                      <h3 className="text-4xl font-bold text-forest mb-2">A Gift of Climate Love</h3>
+                      <p className="text-xl text-gray-700">
+                        {giftTypes.find(g => g.id === selectedType)?.name}
+                      </p>
+                    </div>
+
+                    {/* Names */}
+                    <div className="text-center mb-6">
+                      <p className="text-2xl text-gray-700 mb-2">
+                        <span className="font-bold">To:</span> {recipientName}
+                      </p>
+                      <p className="text-2xl text-gray-700">
+                        <span className="font-bold">From:</span> {senderName}
+                      </p>
+                      {location && (
+                        <p className="text-lg text-gray-600 mt-2">
+                          📍 {location}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Message */}
+                    <div className="bg-white/80 backdrop-blur p-6 rounded-xl shadow-lg mb-6">
+                      <p className="text-lg text-gray-800 italic leading-relaxed">
+                        "{message}"
+                      </p>
+                    </div>
+
+                    {/* Impact */}
+                    <div className="bg-forest/10 p-4 rounded-xl text-center">
+                      <p className="text-lg font-bold text-forest">
+                        Climate Impact: {quantity} {giftTypes.find(g => g.id === selectedType)?.unit}(s)
+                      </p>
+                      <p className="text-sm text-gray-600 mt-2">
+                        Total Value: ${totalCost}
+                      </p>
+                      {scheduleEnabled && scheduledDate && (
+                        <p className="text-sm text-amber-700 font-semibold mt-2">
+                          ⏰ Scheduled for: {new Date(scheduledDate).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Preview Footer */}
+                  <div className="p-6 bg-gray-50 rounded-b-3xl text-center">
+                    <button
+                      onClick={() => setShowPreview(false)}
+                      className="bg-gray-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-700 transition-all"
+                    >
+                      ← Back to Editing
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
         )}
 
         {/* Payment Summary & Checkout Button */}

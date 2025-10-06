@@ -25,55 +25,68 @@ export default function Landing() {
             offset a flight, support clean energy—in honor of someone you care about.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {/* Primary CTA */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
             <button
               onClick={() => navigate('/compose')}
-              className="bg-forest text-white px-12 py-4 rounded-full text-xl font-semibold 
-                         hover:bg-green-800 transition-all duration-300 transform hover:scale-105 
-                         shadow-lg hover:shadow-xl"
+              className="group relative px-10 py-5 bg-forest text-white rounded-2xl text-lg font-bold 
+                         hover:bg-green-800 transition-all duration-300 shadow-2xl hover:shadow-forest/50
+                         border-b-4 border-green-900 hover:border-green-950 transform hover:scale-105"
             >
-              Create a Gift
+              <span className="flex items-center gap-2">
+                <span className="text-2xl">🎁</span>
+                <span>Send a Climate Gift</span>
+              </span>
             </button>
+            
             <button
               onClick={() => navigate('/bulk')}
-              className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-12 py-4 rounded-full text-xl font-semibold 
-                         hover:from-amber-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 
-                         shadow-lg hover:shadow-xl"
+              className="group relative px-10 py-5 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 
+                         text-white rounded-2xl text-lg font-bold hover:from-amber-600 hover:via-orange-600 
+                         hover:to-red-600 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50
+                         border-b-4 border-orange-700 hover:border-orange-800 transform hover:scale-105"
             >
-              💰 Bulk Orders
+              <span className="flex items-center gap-2">
+                <span className="text-2xl">💰</span>
+                <span>Bulk Orders</span>
+                <span className="text-xs bg-white/20 px-2 py-1 rounded-full">Save 25%</span>
+              </span>
             </button>
+          </div>
+
+          {/* Secondary Navigation */}
+          <div className="flex flex-wrap gap-3 justify-center items-center text-sm">
             <button
               onClick={() => navigate('/gallery')}
-              className="bg-white text-forest border-2 border-forest px-12 py-4 rounded-full text-xl font-semibold 
-                         hover:bg-green-50 transition-all duration-300 transform hover:scale-105 
-                         shadow-lg hover:shadow-xl"
+              className="px-6 py-2.5 bg-white/90 backdrop-blur text-forest rounded-full font-semibold 
+                         hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg
+                         border border-green-200"
             >
-              View Gallery 🎁
+              🎨 Gallery
             </button>
             <button
               onClick={() => navigate('/leaderboard')}
-              className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-12 py-4 rounded-full text-xl font-semibold 
-                         hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 
-                         shadow-lg hover:shadow-xl"
+              className="px-6 py-2.5 bg-white/90 backdrop-blur text-forest rounded-full font-semibold 
+                         hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg
+                         border border-green-200"
             >
               🏆 Leaderboard
             </button>
             <button
               onClick={() => navigate('/impact')}
-              className="bg-gradient-to-r from-blue-400 to-purple-500 text-white px-12 py-4 rounded-full text-xl font-semibold 
-                         hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 
-                         shadow-lg hover:shadow-xl"
+              className="px-6 py-2.5 bg-white/90 backdrop-blur text-forest rounded-full font-semibold 
+                         hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg
+                         border border-green-200"
             >
               📊 My Impact
             </button>
             <button
               onClick={() => navigate('/transparency')}
-              className="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-12 py-4 rounded-full text-xl font-semibold 
-                         hover:from-green-500 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 
-                         shadow-lg hover:shadow-xl"
+              className="px-6 py-2.5 bg-white/90 backdrop-blur text-forest rounded-full font-semibold 
+                         hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg
+                         border border-green-200"
             >
-              💚 How It Works
+              💚 Transparency
             </button>
           </div>
         </div>

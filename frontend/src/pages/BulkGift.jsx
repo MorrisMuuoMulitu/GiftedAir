@@ -19,7 +19,7 @@ function BulkGift() {
   
   // Step 1: Gift Selection
   const [selectedType, setSelectedType] = useState('');
-  const [quantity, setQuantity] = useState(10);
+  const [quantity, setQuantity] = useState(3);
   
   // Step 2: Recipient Mode
   const [recipientMode, setRecipientMode] = useState('csv'); // 'csv', 'manual', 'same'
@@ -141,7 +141,7 @@ function BulkGift() {
   };
   
   // Validation
-  const canProceedStep1 = selectedType && quantity >= 10;
+  const canProceedStep1 = selectedType && quantity >= 3;
   const canProceedStep2 = recipientMode === 'same' || 
                           (recipientMode === 'csv' && recipients.length > 0) || 
                           (recipientMode === 'manual' && recipients.length > 0);
@@ -159,9 +159,9 @@ function BulkGift() {
           <p className="text-xl text-gray-600">
             Perfect for weddings, corporate events, and team appreciation
           </p>
-          <div className="mt-6 inline-block bg-amber-100 px-6 py-3 rounded-full border-2 border-amber-400">
+          <div className="mt-6 inline-block bg-gradient-to-r from-amber-100 to-orange-100 px-6 py-3 rounded-full border-2 border-amber-400">
             <p className="text-amber-900 font-bold">
-              💰 Volume Discounts: Save up to 25% on bulk orders!
+              💰 Volume Discounts: 10-24 (10% off) • 25-49 (15% off) • 50-99 (20% off) • 100+ (25% off)
             </p>
           </div>
         </div>
@@ -207,15 +207,18 @@ function BulkGift() {
             
             <div className="mb-8">
               <label className="block text-lg font-bold text-gray-700 mb-3">
-                How many gifts? (Minimum 10)
+                How many gifts? (Minimum 3)
               </label>
               <input
                 type="number"
                 value={quantity}
-                onChange={(e) => setQuantity(Math.max(10, parseInt(e.target.value) || 10))}
-                min="10"
+                onChange={(e) => setQuantity(Math.max(3, parseInt(e.target.value) || 3))}
+                min="3"
                 className="w-full p-4 border-2 border-gray-200 rounded-lg text-2xl font-bold text-center focus:border-forest focus:outline-none"
               />
+              <p className="text-sm text-gray-500 mt-2">
+                💡 Discounts start at 10 gifts (10% off), up to 25% off for 100+
+              </p>
             </div>
             
             {selectedGift && (
