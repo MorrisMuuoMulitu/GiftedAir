@@ -1022,28 +1022,28 @@ export default function Venture() {
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 p-3 bg-[#C38B4A]/10 rounded-lg border border-[#C38B4A]/20 hover:border-[#C38B4A]/40 transition-all">
-                    <span className="text-2xl">📱</span>
+                    <span className="text-xl sm:text-2xl">📱</span>
                     <div>
                       <div className="font-semibold text-white text-sm">Social Media</div>
                       <div className="text-xs text-zinc-400">TikTok, Instagram Reels (organic viral content)</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-3 bg-[#C38B4A]/10 rounded-lg border border-[#C38B4A]/20 hover:border-[#C38B4A]/40 transition-all">
-                    <span className="text-2xl">🎯</span>
+                    <span className="text-xl sm:text-2xl">🎯</span>
                     <div>
                       <div className="font-semibold text-white text-sm">Influencer Partnerships</div>
                       <div className="text-xs text-zinc-400">Eco-influencers, lifestyle creators (affiliate model)</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-3 bg-[#C38B4A]/10 rounded-lg border border-[#C38B4A]/20 hover:border-[#C38B4A]/40 transition-all">
-                    <span className="text-2xl">💝</span>
+                    <span className="text-xl sm:text-2xl">💝</span>
                     <div>
                       <div className="font-semibold text-white text-sm">Gift-Based Virality</div>
                       <div className="text-xs text-zinc-400">Every gift creates 2-3 new potential users</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-3 bg-[#C38B4A]/10 rounded-lg border border-[#C38B4A]/20 hover:border-[#C38B4A]/40 transition-all">
-                    <span className="text-2xl">🔍</span>
+                    <span className="text-xl sm:text-2xl">🔍</span>
                     <div>
                       <div className="font-semibold text-white text-sm">SEO & Content</div>
                       <div className="text-xs text-zinc-400">"Eco-friendly gifts", "sustainable presents"</div>
@@ -1144,7 +1144,7 @@ export default function Venture() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-4 md:p-6 border border-zinc-700">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">🎁</span>
+                    <span className="text-xl sm:text-2xl">🎁</span>
                     <h3 className="font-black text-red-400 text-lg">Gift Fatigue</h3>
                   </div>
                   <p className="text-zinc-400">
@@ -1154,7 +1154,7 @@ export default function Venture() {
                 </div>
                 <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">🌳</span>
+                    <span className="text-xl sm:text-2xl">🌳</span>
                     <h3 className="font-black text-amber-400 text-lg">Disconnected Charity</h3>
                   </div>
                   <p className="text-zinc-400">
@@ -1164,7 +1164,7 @@ export default function Venture() {
                 </div>
                 <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">💚</span>
+                    <span className="text-xl sm:text-2xl">💚</span>
                     <h3 className="font-black text-emerald-400 text-lg">Purpose Seeking</h3>
                   </div>
                   <p className="text-zinc-400">
@@ -1174,7 +1174,7 @@ export default function Venture() {
                 </div>
                 <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">📱</span>
+                    <span className="text-xl sm:text-2xl">📱</span>
                     <h3 className="font-black text-cyan-400 text-lg">Missing Virality</h3>
                   </div>
                   <p className="text-zinc-400">
@@ -1295,27 +1295,27 @@ export default function Venture() {
 
         {/* beVisioneers Lean Canvas Section */}
         {activeSection === 'canvas' && (
-          <div className="space-y-8 animate-fade-in">
-            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-xl p-8 md:p-10 border border-zinc-700">
-              <div className="text-center mb-4">
-                <div className="inline-block p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl mb-2">
-                  <span className="text-3xl">📊</span>
+          <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
+            <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-10 border border-zinc-700">
+              <div className="text-center mb-4 sm:mb-6">
+                <div className="inline-block p-2 sm:p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg sm:rounded-xl mb-2 sm:mb-3">
+                  <span className="text-2xl sm:text-3xl">📊</span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black text-white mb-2">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-2">
                   beVisioneers Lean Canvas
                 </h2>
-                <p className="text-white/70">Complete business model framework following the beVisioneers Fellowship approach</p>
+                <p className="text-white/70 text-sm sm:text-base">Complete business model framework following the beVisioneers Fellowship approach</p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                 {/* 1. Problem */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-4 md:p-6 border border-zinc-700">
-                  <h3 className="font-black text-lg text-red-400 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">⚠️</span> 1. Problem
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                  <h3 className="font-black text-base sm:text-lg text-red-400 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="text-xl sm:text-2xl">⚠️</span> 1. Problem
                   </h3>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2 sm:space-y-3">
                     {leanCanvas.problem.map((p, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs sm:text-sm">
                         <span className="text-red-400 font-black">{idx + 1}.</span>
                         <span>{p}</span>
                       </li>
@@ -1324,13 +1324,13 @@ export default function Venture() {
                 </div>
 
                 {/* 2. Existing Alternatives */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                  <h3 className="font-black text-lg text-orange-400 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">🔄</span> 2. Existing Alternatives
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                  <h3 className="font-black text-base sm:text-lg text-orange-400 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="text-xl sm:text-2xl">🔄</span> 2. Existing Alternatives
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5 sm:space-y-2">
                     {leanCanvas.existingAlternatives.map((alt, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs sm:text-sm">
                         <span className="text-orange-400">•</span>
                         <span>{alt}</span>
                       </li>
@@ -1339,13 +1339,13 @@ export default function Venture() {
                 </div>
 
                 {/* 3. Solution */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                  <h3 className="font-black text-lg text-emerald-400 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">✅</span> 3. Solution
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                  <h3 className="font-black text-base sm:text-lg text-emerald-400 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="text-xl sm:text-2xl">✅</span> 3. Solution
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5 sm:space-y-2">
                     {leanCanvas.solution.map((s, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs sm:text-sm">
                         <span className="text-emerald-400">•</span>
                         <span>{s}</span>
                       </li>
@@ -1354,9 +1354,9 @@ export default function Venture() {
                 </div>
 
                 {/* 4. Target Audience & Early Adopters */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                  <h3 className="font-black text-lg text-amber-400 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">👥</span> 4. Target Audience
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                  <h3 className="font-black text-base sm:text-lg text-amber-400 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="text-xl sm:text-2xl">👥</span> 4. Target Audience
                   </h3>
                   <div className="mb-4">
                     <h4 className="font-bold text-amber-300 mb-2 text-sm">Broad Audience:</h4>
@@ -1386,14 +1386,14 @@ export default function Venture() {
               </div>
 
               {/* Full Width Sections */}
-              <div className="mt-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                <h3 className="font-black text-xl text-[#00CED1] mb-4 flex items-center gap-2">
-                  <span className="text-2xl">💜</span> 5. Your Why (Founder Motivation)
+              <div className="mt-3 sm:mt-4 md:mt-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                <h3 className="font-black text-base sm:text-lg md:text-xl text-[#00CED1] mb-3 sm:mb-4 flex items-center gap-2">
+                  <span className="text-xl sm:text-2xl">💜</span> 5. Your Why (Founder Motivation)
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2 sm:space-y-3">
                   {leanCanvas.yourWhy.map((why, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-zinc-300">
-                      <span className="text-[#00CED1] font-black text-lg">{idx + 1}.</span>
+                    <li key={idx} className="flex items-start gap-2 sm:gap-3 text-zinc-300 text-xs sm:text-sm md:text-base">
+                      <span className="text-[#00CED1] font-black text-base sm:text-lg">{idx + 1}.</span>
                       <span className="leading-relaxed">{why}</span>
                     </li>
                   ))}
@@ -1401,28 +1401,28 @@ export default function Venture() {
               </div>
 
               {/* 6. Speed Bumps - Full Width */}
-              <div className="mt-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                <h3 className="font-black text-xl text-amber-400 mb-4 flex items-center gap-2">
-                  <span className="text-2xl">🚧</span> 6. Speed Bumps (Limitations & Mitigation)
+              <div className="mt-3 sm:mt-4 md:mt-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                <h3 className="font-black text-base sm:text-lg md:text-xl text-amber-400 mb-3 sm:mb-4 flex items-center gap-2">
+                  <span className="text-xl sm:text-2xl">🚧</span> 6. Speed Bumps (Limitations & Mitigation)
                 </h3>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   {leanCanvas.speedBumps.map((bump, idx) => (
-                    <div key={idx} className="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 rounded-xl p-4 border border-zinc-700">
-                      <h4 className="font-bold text-red-400 mb-2 text-sm">⚠️ {bump.limitation}</h4>
-                      <p className="text-emerald-400 text-sm"><span className="font-bold">✓ Mitigation:</span> {bump.mitigation}</p>
+                    <div key={idx} className="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-zinc-700">
+                      <h4 className="font-bold text-red-400 mb-1.5 sm:mb-2 text-xs sm:text-sm">⚠️ {bump.limitation}</h4>
+                      <p className="text-emerald-400 text-xs sm:text-sm"><span className="font-bold">✓ Mitigation:</span> {bump.mitigation}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* 7. Prototype - Full Width */}
-              <div className="mt-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                <h3 className="font-black text-xl text-cyan-400 mb-4 flex items-center gap-2">
-                  <span className="text-2xl">🔬</span> 7. Prototype (What Needs Testing)
+              <div className="mt-3 sm:mt-4 md:mt-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                <h3 className="font-black text-base sm:text-lg md:text-xl text-cyan-400 mb-3 sm:mb-4 flex items-center gap-2">
+                  <span className="text-xl sm:text-2xl">🔬</span> 7. Prototype (What Needs Testing)
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-1.5 sm:space-y-2">
                   {leanCanvas.prototype.map((proto, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-zinc-300">
+                    <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs sm:text-sm md:text-base">
                       <span>{proto}</span>
                     </li>
                   ))}
@@ -1430,15 +1430,15 @@ export default function Venture() {
               </div>
 
               {/* Grid Sections */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mt-3 sm:mt-4 md:mt-6">
                 {/* 8. Channels */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                  <h3 className="font-black text-lg text-cyan-400 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">📢</span> 8. Channels & Partnerships
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                  <h3 className="font-black text-base sm:text-lg text-cyan-400 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="text-xl sm:text-2xl">📢</span> 8. Channels & Partnerships
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5 sm:space-y-2">
                     {leanCanvas.channels.map((ch, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs sm:text-sm">
                         <span className="text-cyan-400">•</span>
                         <span>{ch}</span>
                       </li>
@@ -1447,13 +1447,13 @@ export default function Venture() {
                 </div>
 
                 {/* 9. Key Metrics */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                  <h3 className="font-black text-lg text-blue-400 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">📊</span> 9. Key Metrics
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                  <h3 className="font-black text-base sm:text-lg text-blue-400 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="text-xl sm:text-2xl">📊</span> 9. Key Metrics
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5 sm:space-y-2">
                     {leanCanvas.keyMetrics.map((m, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs sm:text-sm">
                         <span className="text-blue-400">•</span>
                         <span>{m}</span>
                       </li>
@@ -1462,13 +1462,13 @@ export default function Venture() {
                 </div>
 
                 {/* 10. Cost Structure */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                  <h3 className="font-black text-lg text-rose-400 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">💸</span> 10. Cost Structure
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                  <h3 className="font-black text-base sm:text-lg text-rose-400 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="text-xl sm:text-2xl">💸</span> 10. Cost Structure
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5 sm:space-y-2">
                     {leanCanvas.costStructure.map((cost, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs sm:text-sm">
                         <span className="text-rose-400">•</span>
                         <span>{cost}</span>
                       </li>
@@ -1477,13 +1477,13 @@ export default function Venture() {
                 </div>
 
                 {/* 11. Income Streams */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-6 border border-zinc-700">
-                  <h3 className="font-black text-lg text-emerald-400 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">💰</span> 11. Income Streams
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-zinc-700">
+                  <h3 className="font-black text-base sm:text-lg text-emerald-400 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="text-xl sm:text-2xl">💰</span> 11. Income Streams
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5 sm:space-y-2">
                     {leanCanvas.incomeStreams.map((rev, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-sm">
+                      <li key={idx} className="flex items-start gap-2 text-zinc-300 text-xs sm:text-sm">
                         <span className="text-emerald-400">•</span>
                         <span>{rev}</span>
                       </li>
@@ -1746,7 +1746,7 @@ export default function Venture() {
               <div className="mt-12 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-8 border border-zinc-700">
                 <div className="text-center mb-4">
                   <div className="inline-block p-3 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl mb-2">
-                    <span className="text-2xl">📊</span>
+                    <span className="text-xl sm:text-2xl">📊</span>
                   </div>
                   <h3 className="text-xl md:text-2xl font-black text-white">Overall Platform Progress</h3>
                 </div>
