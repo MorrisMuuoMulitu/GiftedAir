@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import Navigation from '../components/Navigation';
+import { celebrate } from '../components/Confetti';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
@@ -11,6 +13,11 @@ function BulkSuccess() {
   const [loading, setLoading] = useState(true);
   
   const bulkOrderId = searchParams.get('bulk_order_id');
+  
+  useEffect(() => {
+    // Celebrate bulk order success! 🎉
+    celebrate();
+  }, []);
   
   useEffect(() => {
     const fetchBulkOrder = async () => {
@@ -94,7 +101,9 @@ function BulkSuccess() {
   }
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12 px-4">
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12 px-4">
       <div className="container mx-auto max-w-4xl">
         
         {/* Success Header */}
@@ -206,6 +215,7 @@ function BulkSuccess() {
         
       </div>
     </div>
+    </>
   );
 }
 

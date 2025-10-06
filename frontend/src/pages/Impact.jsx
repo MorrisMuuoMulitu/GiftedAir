@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navigation from '../components/Navigation';
+import EmptyState from '../components/EmptyState';
 import { API_URL } from '../config';
 
 export default function Impact() {

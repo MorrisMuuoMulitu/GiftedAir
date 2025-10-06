@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navigation from '../components/Navigation';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
@@ -148,7 +149,9 @@ function BulkGift() {
   const canProceedStep3 = senderName && globalMessage;
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12 px-4">
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12 px-4">
       <div className="container mx-auto max-w-5xl">
         
         {/* Header */}
@@ -515,6 +518,7 @@ function BulkGift() {
         
       </div>
     </div>
+    </>
   );
 }
 
