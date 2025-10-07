@@ -486,67 +486,73 @@ export default function AdminV2() {
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-lg p-2 mb-4 sm:mb-6 md:mb-8 overflow-x-auto">
-          <div className="flex gap-2 min-w-max md:min-w-0">
+        <div className="bg-white rounded-xl shadow-lg p-2 mb-4 sm:mb-6 md:mb-8">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
+            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
               activeTab === 'overview'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
-            📊 Overview
+            <span className="block sm:inline">📊</span> <span className="hidden sm:inline">Overview</span>
+            <span className="block sm:hidden text-[10px] mt-0.5">Overview</span>
           </button>
           <button
             onClick={() => setActiveTab('gifts')}
-            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
+            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
               activeTab === 'gifts'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
-            🎁 Gift Management
+            <span className="block sm:inline">🎁</span> <span className="hidden sm:inline">Gift Management</span>
+            <span className="block sm:hidden text-[10px] mt-0.5">Gifts</span>
           </button>
           <button
             onClick={() => setActiveTab('analytics')}
-            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
+            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
               activeTab === 'analytics'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
-            📈 Analytics
+            <span className="block sm:inline">📈</span> <span className="hidden sm:inline">Analytics</span>
+            <span className="block sm:hidden text-[10px] mt-0.5">Analytics</span>
           </button>
           <button
             onClick={() => setActiveTab('financials')}
-            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
+            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
               activeTab === 'financials'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
-            💰 Financials
+            <span className="block sm:inline">💰</span> <span className="hidden sm:inline">Financials</span>
+            <span className="block sm:hidden text-[10px] mt-0.5">Financials</span>
           </button>
           <button
             onClick={() => setActiveTab('partners')}
-            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
+            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
               activeTab === 'partners'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
-            🤝 Partners
+            <span className="block sm:inline">🤝</span> <span className="hidden sm:inline">Partners</span>
+            <span className="block sm:hidden text-[10px] mt-0.5">Partners</span>
           </button>
           <button
             onClick={() => setActiveTab('feedback')}
-            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
+            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
               activeTab === 'feedback'
                 ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
-            💭 Feedback
+            <span className="block sm:inline">💭</span> <span className="hidden sm:inline">Feedback</span>
+            <span className="block sm:hidden text-[10px] mt-0.5">Feedback</span>
           </button>
           </div>
         </div>
