@@ -455,20 +455,20 @@ export default function AdminV2() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div className="min-h-screen bg-gray-50 py-4 sm:py-6 md:py-8 px-3 sm:px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-forest to-green-700 rounded-2xl shadow-xl p-8 mb-8 text-white">
+        <div className="bg-gradient-to-r from-forest to-green-700 rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 md:mb-8 text-white">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <h1 className="text-4xl font-bold mb-2">🚀 Gifted Air Admin Dashboard</h1>
-              <p className="text-green-100 text-lg">Analytics & Gift Management</p>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">🚀 Gifted Air Admin Dashboard</h1>
+              <p className="text-green-100 text-sm sm:text-base md:text-lg">Analytics & Gift Management</p>
             </div>
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap w-full lg:w-auto">
               <button
                 onClick={exportToCSV}
                 disabled={exporting || gifts.length === 0}
-                className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition disabled:opacity-50"
+                className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-green-600 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-green-700 transition disabled:opacity-50"
               >
                 📊 Export CSV
               </button>
@@ -477,7 +477,7 @@ export default function AdminV2() {
                   localStorage.removeItem('admin_auth');
                   setIsAuthenticated(false);
                 }}
-                className="px-4 py-2 bg-white text-forest font-semibold rounded-lg hover:bg-green-50 transition"
+                className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-white text-forest text-sm sm:text-base font-semibold rounded-lg hover:bg-green-50 transition"
               >
                 🔐 Logout
               </button>
@@ -486,10 +486,11 @@ export default function AdminV2() {
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-lg p-2 mb-8 flex gap-2">
+        <div className="bg-white rounded-xl shadow-lg p-2 mb-4 sm:mb-6 md:mb-8 overflow-x-auto">
+          <div className="flex gap-2 min-w-max md:min-w-0">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
+            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
               activeTab === 'overview'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
@@ -499,7 +500,7 @@ export default function AdminV2() {
           </button>
           <button
             onClick={() => setActiveTab('gifts')}
-            className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
+            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
               activeTab === 'gifts'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
@@ -509,7 +510,7 @@ export default function AdminV2() {
           </button>
           <button
             onClick={() => setActiveTab('analytics')}
-            className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
+            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
               activeTab === 'analytics'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
@@ -519,7 +520,7 @@ export default function AdminV2() {
           </button>
           <button
             onClick={() => setActiveTab('financials')}
-            className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
+            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
               activeTab === 'financials'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
@@ -529,7 +530,7 @@ export default function AdminV2() {
           </button>
           <button
             onClick={() => setActiveTab('partners')}
-            className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
+            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
               activeTab === 'partners'
                 ? 'bg-forest text-white'
                 : 'text-gray-600 hover:bg-gray-100'
@@ -539,7 +540,7 @@ export default function AdminV2() {
           </button>
           <button
             onClick={() => setActiveTab('feedback')}
-            className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
+            className={`flex-1 md:flex-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition whitespace-nowrap ${
               activeTab === 'feedback'
                 ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
                 : 'text-gray-600 hover:bg-gray-100'
@@ -547,6 +548,7 @@ export default function AdminV2() {
           >
             💭 Feedback
           </button>
+          </div>
         </div>
 
         {/* Overview Tab */}
