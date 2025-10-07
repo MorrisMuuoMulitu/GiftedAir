@@ -555,37 +555,37 @@ export default function AdminV2() {
         {activeTab === 'overview' && (
           <>
             {/* Stats Cards */}
-            <div className="grid md:grid-cols-4 gap-6 mb-8">
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <div className="text-3xl mb-2">🎁</div>
-                <div className="text-2xl font-bold text-forest">{gifts.length}</div>
-                <div className="text-gray-600">Total Gifts</div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
+              <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-4 md:p-6">
+                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">🎁</div>
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-forest">{gifts.length}</div>
+                <div className="text-xs sm:text-sm md:text-base text-gray-600">Total Gifts</div>
               </div>
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <div className="text-3xl mb-2">💰</div>
-                <div className="text-2xl font-bold text-green-600">
+              <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-4 md:p-6">
+                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">💰</div>
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600">
                   ${analytics.totalRevenue.toFixed(2)}
                 </div>
-                <div className="text-gray-600">Total Revenue</div>
+                <div className="text-xs sm:text-sm md:text-base text-gray-600">Total Revenue</div>
               </div>
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <div className="text-3xl mb-2">📌</div>
-                <div className="text-2xl font-bold text-blue-600">{analytics.galleryCount}</div>
-                <div className="text-gray-600">In Gallery</div>
+              <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-4 md:p-6">
+                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">📌</div>
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600">{analytics.galleryCount}</div>
+                <div className="text-xs sm:text-sm md:text-base text-gray-600">In Gallery</div>
               </div>
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <div className="text-3xl mb-2">💵</div>
-                <div className="text-2xl font-bold text-purple-600">
+              <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-4 md:p-6">
+                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">💵</div>
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-purple-600">
                   ${analytics.averageGiftValue.toFixed(2)}
                 </div>
-                <div className="text-gray-600">Avg Gift Value</div>
+                <div className="text-xs sm:text-sm md:text-base text-gray-600">Avg Gift Value</div>
               </div>
             </div>
 
             {/* Gift Type Breakdown */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-              <h2 className="text-2xl font-bold text-forest mb-6">🎯 Gift Type Distribution</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 md:mb-8">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-forest mb-4 sm:mb-6">🎯 Gift Type Distribution</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                 {Object.entries(analytics.byType).map(([type, count]) => {
                   const info = giftTypeInfo[type];
                   const percentage = ((count / gifts.length) * 100).toFixed(1);
@@ -593,7 +593,7 @@ export default function AdminV2() {
                     <div key={type} className="border-2 border-gray-200 rounded-xl p-4 hover:border-green-400 transition">
                       <div className="text-4xl mb-2 text-center">{info.icon}</div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-forest">{count}</div>
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-forest">{count}</div>
                         <div className="text-sm text-gray-600">{info.name}</div>
                         <div className="text-xs text-gray-500 mt-1">{percentage}%</div>
                       </div>
@@ -609,8 +609,8 @@ export default function AdminV2() {
         {activeTab === 'gifts' && (
           <>
             {/* Filters & Bulk Actions */}
-            <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6 md:mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
                 <input
                   type="text"
                   placeholder="Search gifts..."
@@ -773,7 +773,7 @@ export default function AdminV2() {
         {/* Analytics Tab */}
         {activeTab === 'analytics' && (
           <>
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6 md:mb-8">
               {/* Monthly Trend */}
               <div className="bg-white rounded-2xl shadow-xl p-8">
                 <h2 className="text-2xl font-bold text-forest mb-6">📅 Gifts Over Time</h2>
@@ -824,7 +824,7 @@ export default function AdminV2() {
                               </div>
                             </div>
                             <div className="text-right">
-                              <div className="text-2xl font-bold text-green-600">
+                              <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600">
                                 ${giftTypeRevenue.toFixed(2)}
                               </div>
                               <div className="text-xs text-gray-500">
@@ -842,27 +842,27 @@ export default function AdminV2() {
             {/* Additional Stats */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
               <h2 className="text-2xl font-bold text-forest mb-6">📊 Additional Insights</h2>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                 <div className="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl">
                   <div className="text-4xl mb-2">👥</div>
                   <div className="text-3xl font-bold text-forest">
                     {new Set(gifts.map(g => g.senderName)).size}
                   </div>
-                  <div className="text-gray-600">Unique Senders</div>
+                  <div className="text-xs sm:text-sm md:text-base text-gray-600">Unique Senders</div>
                 </div>
                 <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl">
                   <div className="text-4xl mb-2">🎯</div>
                   <div className="text-3xl font-bold text-blue-600">
                     {new Set(gifts.map(g => g.recipientName)).size}
                   </div>
-                  <div className="text-gray-600">Unique Recipients</div>
+                  <div className="text-xs sm:text-sm md:text-base text-gray-600">Unique Recipients</div>
                 </div>
                 <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl">
                   <div className="text-4xl mb-2">🌍</div>
                   <div className="text-3xl font-bold text-purple-600">
                     {new Set(gifts.map(g => g.location).filter(Boolean)).size}
                   </div>
-                  <div className="text-gray-600">Locations</div>
+                  <div className="text-xs sm:text-sm md:text-base text-gray-600">Locations</div>
                 </div>
               </div>
             </div>
@@ -873,7 +873,7 @@ export default function AdminV2() {
         {activeTab === 'financials' && (
           <>
             {/* Financial Breakdown by Gift Type */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 md:mb-8">
               <h2 className="text-2xl font-bold text-forest mb-6">💰 Financial Breakdown by Gift Type</h2>
               <div className="space-y-4">
                 {Object.entries(giftTypeInfo).map(([type, info]) => {
@@ -950,7 +950,7 @@ export default function AdminV2() {
               {/* Total Summary */}
               <div className="mt-8 pt-8 border-t-4 border-green-200">
                 <h3 className="text-xl font-bold text-forest mb-4">📊 Total Summary</h3>
-                <div className="grid md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                   <div className="bg-green-50 p-6 rounded-xl">
                     <div className="text-sm text-gray-600 mb-1">Total Revenue</div>
                     <div className="text-3xl font-bold text-green-600">
@@ -995,7 +995,7 @@ export default function AdminV2() {
                   <div className="text-2xl">💸</div>
                   <div>
                     <div className="font-bold text-gray-800">Make Partner Donations</div>
-                    <div className="text-gray-600">
+                    <div className="text-xs sm:text-sm md:text-base text-gray-600">
                       Total to donate this month: <span className="font-bold text-green-600">
                         ${(gifts.reduce((sum, g) => sum + g.totalCost, 0) * 0.50).toFixed(2)}
                       </span>
@@ -1006,21 +1006,21 @@ export default function AdminV2() {
                   <div className="text-2xl">📧</div>
                   <div>
                     <div className="font-bold text-gray-800">Email Partner Organizations</div>
-                    <div className="text-gray-600">Notify partners of donation amounts and gift counts</div>
+                    <div className="text-xs sm:text-sm md:text-base text-gray-600">Notify partners of donation amounts and gift counts</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="text-2xl">📊</div>
                   <div>
                     <div className="font-bold text-gray-800">Update Public Report</div>
-                    <div className="text-gray-600">Publish monthly impact report with donation receipts</div>
+                    <div className="text-xs sm:text-sm md:text-base text-gray-600">Publish monthly impact report with donation receipts</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="text-2xl">🧾</div>
                   <div>
                     <div className="font-bold text-gray-800">Save Receipts</div>
-                    <div className="text-gray-600">Keep all donation receipts for transparency and taxes</div>
+                    <div className="text-xs sm:text-sm md:text-base text-gray-600">Keep all donation receipts for transparency and taxes</div>
                   </div>
                 </div>
               </div>
@@ -1124,7 +1124,7 @@ export default function AdminV2() {
         {/* Partner Applications Tab */}
         {activeTab === 'partners' && (
           <>
-            <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6 md:mb-8">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-forest">Partner Applications</h2>
                 <div className="flex items-center gap-4">
@@ -1289,7 +1289,7 @@ export default function AdminV2() {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 mt-4 sm:mt-6">
                 <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
                   <div className="text-3xl font-black">{feedbackList.length}</div>
                   <div className="text-sm text-purple-100 mt-1">Total</div>
