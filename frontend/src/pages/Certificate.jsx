@@ -152,9 +152,9 @@ export default function Certificate() {
               </p>
             )}
 
-            <div className="mt-8 pt-8 border-t-2 border-gray-200">
-              <p className="text-lg text-gray-600 italic mb-4">
-                "{gift.message.substring(0, 150)}{gift.message.length > 150 ? '...' : ''}"
+            <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t-2 border-gray-200">
+              <p className="text-base sm:text-lg text-gray-600 italic mb-3 sm:mb-4">
+                "{gift.message.substring(0, 200)}{gift.message.length > 200 ? '...' : ''}"
               </p>
             </div>
 

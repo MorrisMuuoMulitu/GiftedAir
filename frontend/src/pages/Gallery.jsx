@@ -391,7 +391,7 @@ function FilterButton({ children, active, onClick, icon, count, gradient }) {
 
 function GiftCard({ gift, onClick, index }) {
   const details = giftTypeDetails[gift.type];
-  const truncateMessage = (text, maxLength = 120) => {
+  const truncateMessage = (text, maxLength = 100) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
   };
@@ -439,9 +439,9 @@ function GiftCard({ gift, onClick, index }) {
       </div>
 
       {/* Message Preview */}
-      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 mb-4 min-h-[100px] border border-amber-200">
-        <p className="text-gray-700 text-sm leading-relaxed line-clamp-4 italic">
-          "{truncateMessage(gift.message)}"
+      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-3 sm:p-4 mb-4 min-h-[90px] sm:min-h-[100px] border border-amber-200">
+        <p className="text-gray-700 text-xs sm:text-sm leading-relaxed line-clamp-3 sm:line-clamp-4 italic">
+          "{truncateMessage(gift.message, 100)}"
         </p>
       </div>
 

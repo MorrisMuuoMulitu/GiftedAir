@@ -380,9 +380,9 @@ export default function Compose() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Dear earth guardian, this gift is a symbol of my love for you and our planet..."
-              rows={8}
-              className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-forest 
-                       focus:outline-none resize-none font-poetic text-lg"
+              rows={6}
+              className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-lg focus:border-forest 
+                       focus:outline-none resize-none font-poetic text-base sm:text-lg"
             />
             
             {/* Privacy Toggle */}
@@ -475,8 +475,8 @@ export default function Compose() {
                     </div>
 
                     {/* Message */}
-                    <div className="bg-white/80 backdrop-blur p-6 rounded-xl shadow-lg mb-6">
-                      <p className="text-lg text-gray-800 italic leading-relaxed">
+                    <div className="bg-white/80 backdrop-blur p-4 sm:p-6 rounded-xl shadow-lg mb-6">
+                      <p className="text-base sm:text-lg text-gray-800 italic leading-relaxed">
                         "{message}"
                       </p>
                     </div>

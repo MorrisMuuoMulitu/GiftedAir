@@ -302,13 +302,13 @@ export default function GiftView() {
             </div>
 
             {/* Personal Message */}
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-10 mb-8 border-2 border-amber-200 shadow-sm">
-              <div className="flex justify-between items-center mb-6">
-                <div className="text-6xl">💌</div>
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 sm:p-8 md:p-10 mb-8 border-2 border-amber-200 shadow-sm">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 sm:mb-6">
+                <div className="text-5xl sm:text-6xl">💌</div>
                 {!isEditing && (
                   <button
                     onClick={handleEditClick}
-                    className="text-sm bg-white text-forest px-4 py-2 rounded-lg border-2 border-forest hover:bg-green-50 transition-all"
+                    className="text-xs sm:text-sm bg-white text-forest px-3 sm:px-4 py-2 rounded-lg border-2 border-forest hover:bg-green-50 transition-all self-start sm:self-auto"
                   >
                     ✏️ Edit Message
                   </button>
@@ -332,8 +332,8 @@ export default function GiftView() {
                     <textarea
                       value={editedMessage}
                       onChange={(e) => setEditedMessage(e.target.value)}
-                      rows={8}
-                      className="w-full p-4 border-2 border-amber-300 rounded-lg focus:border-forest focus:outline-none resize-none font-poetic text-xl leading-relaxed"
+                      rows={6}
+                      className="w-full p-3 sm:p-4 border-2 border-amber-300 rounded-lg focus:border-forest focus:outline-none resize-none font-poetic text-base sm:text-lg leading-relaxed"
                       placeholder="Write your heartfelt message..."
                     />
                     <div className="flex gap-4 mt-6 justify-end">
@@ -355,16 +355,16 @@ export default function GiftView() {
                   </>
                 ) : (
                   <>
-                    <div className="text-left mb-6">
-                      <p className="text-xl text-gray-800 font-poetic leading-relaxed whitespace-pre-wrap">
+                    <div className="text-left mb-4 sm:mb-6">
+                      <p className="text-base sm:text-lg text-gray-800 font-poetic leading-relaxed whitespace-pre-wrap">
                         {gift.message}
                       </p>
                     </div>
-                    <div className="text-right mt-8 pt-4 border-t border-amber-300">
-                      <p className="text-lg text-gray-600 font-poetic italic">
+                    <div className="text-right mt-4 sm:mt-8 pt-3 sm:pt-4 border-t border-amber-300">
+                      <p className="text-sm sm:text-lg text-gray-600 font-poetic italic">
                         With love,
                       </p>
-                      <p className="text-xl text-forest font-bold mt-1">
+                      <p className="text-base sm:text-xl text-forest font-bold mt-1">
                         {gift.senderName}
                       </p>
                     </div>

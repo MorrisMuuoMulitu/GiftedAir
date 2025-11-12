@@ -15,6 +15,14 @@ function getStripe() {
   return stripe;
 }
 
+// Helper function to truncate metadata values to 500 characters maximum
+const truncateMetadataValue = (value) => {
+  if (!value || typeof value !== 'string') {
+    return value?.toString() || '';
+  }
+  return value.length > 500 ? value.substring(0, 500) : value;
+};
+
 // Create checkout session
 router.post('/create-checkout-session', async (req, res) => {
   const stripeClient = getStripe();
@@ -74,14 +82,14 @@ router.post('/create-checkout-session', async (req, res) => {
       success_url: `${frontendUrl}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${frontendUrl}/compose?canceled=true`,
       metadata: {
-        giftType: giftData.type,
-        quantity: giftData.quantity.toString(),
-        message: giftData.message,
-        recipientName: giftData.recipientName,
-        recipientEmail: giftData.recipientEmail || '',
-        senderName: giftData.senderName,
-        location: giftData.location || '',
-        totalCost: giftData.totalCost.toString()
+        giftType: truncateMetadataValue(giftData.type),
+        quantity: truncateMetadataValue(giftData.quantity.toString()),
+        message: truncateMetadataValue(giftData.message),
+        recipientName: truncateMetadataValue(giftData.recipientName),
+        recipientEmail: truncateMetadataValue(giftData.recipientEmail || ''),
+        senderName: truncateMetadataValue(giftData.senderName),
+        location: truncateMetadataValue(giftData.location || ''),
+        totalCost: truncateMetadataValue(giftData.totalCost.toString())
       }
     });
 
@@ -301,10 +309,10 @@ router.post('/bulk-checkout', async (req, res) => {
       success_url: `${process.env.FRONTEND_URL || 'http://localhost:5174'}/payment/bulk-success?session_id={CHECKOUT_SESSION_ID}&bulk_order_id=${bulkOrder._id}`,
       cancel_url: `${process.env.FRONTEND_URL || 'http://localhost:5174'}/bulk`,
       metadata: {
-        bulkOrderId: bulkOrder._id.toString(),
-        giftType,
-        quantity: quantity.toString(),
-        type: 'bulk_order'
+        bulkOrderId: truncateMetadataValue(bulkOrder._id.toString()),
+        giftType: truncateMetadataValue(giftType),
+        quantity: truncateMetadataValue(quantity.toString()),
+        type: truncateMetadataValue('bulk_order')
       }
     });
 
