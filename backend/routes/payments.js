@@ -25,8 +25,43 @@ const truncateMetadataValue = (value) => {
 
 // Create checkout session
 router.post('/create-checkout-session', async (req, res) => {
+  // Check if we're in test mode (no payment required)
+  if (process.env.SKIP_PAYMENT === 'true') {
+    console.log('⚠️ Payment skipped in test mode. Creating gift directly...');
+
+    const { giftData } = req.body;
+
+    if (!giftData || !giftData.type || !giftData.totalCost) {
+      return res.status(400).json({ error: 'Invalid gift data' });
+    }
+
+    // Create the gift directly without payment
+    const Gift = (await import('../models/Gift.js')).default;
+    const gift = new Gift({
+      type: giftData.type,
+      quantity: giftData.quantity,
+      message: giftData.message,
+      recipientName: giftData.recipientName,
+      recipientEmail: giftData.recipientEmail || '',
+      senderName: giftData.senderName,
+      totalCost: giftData.totalCost,
+      location: giftData.location || '',
+      status: 'sent',
+      showInGallery: giftData.showInGallery || false
+    });
+
+    await gift.save();
+
+    return res.json({
+      success: true,
+      giftId: gift._id,
+      testMode: true,
+      message: 'Gift created successfully without payment (test mode)'
+    });
+  }
+
   const stripeClient = getStripe();
-  
+
   if (!stripeClient) {
     console.log('⚠️  Stripe not configured. STRIPE_SECRET_KEY:', process.env.STRIPE_SECRET_KEY ? 'PRESENT' : 'MISSING');
     return res.status(500).json({ error: 'Stripe not configured' });
@@ -34,7 +69,7 @@ router.post('/create-checkout-session', async (req, res) => {
 
   try {
     const { giftData } = req.body;
-    
+
     if (!giftData || !giftData.type || !giftData.totalCost) {
       return res.status(400).json({ error: 'Invalid gift data' });
     }
@@ -238,15 +273,115 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
 
 // Bulk checkout session
 router.post('/bulk-checkout', async (req, res) => {
+  // Check if we're in test mode (no payment required)
+  if (process.env.SKIP_PAYMENT === 'true') {
+    console.log('⚠️ Bulk payment skipped in test mode. Creating gifts directly...');
+
+    const { giftType, quantity, senderName, recipientMode, recipients, message, basePrice, discount, totalPrice } = req.body;
+
+    if (!giftType || !quantity || quantity < 1) {
+      return res.status(400).json({ error: 'Invalid bulk order data' });
+    }
+
+    const Gift = (await import('../models/Gift.js')).default;
+    const giftTypePrices = {
+      tree: 1,
+      ocean: 2,
+      water: 3,
+      cookstove: 5,
+      coral: 5,
+      rainforest: 7,
+      wildlife: 8,
+      solar: 10
+    };
+
+    // Create bulk order record
+    const bulkOrder = new BulkOrder({
+      giftType,
+      quantity,
+      senderName,
+      message,
+      recipientMode,
+      recipients: recipients || [],
+      basePrice,
+      discount,
+      totalPrice,
+      paymentStatus: 'paid', // Mark as paid in test mode
+      testMode: true
+    });
+
+    await bulkOrder.save();
+
+    // Create individual gifts
+    const giftIds = [];
+    const pricePerGift = giftTypePrices[giftType] || 1;
+
+    if (recipientMode === 'same') {
+      // Create identical gifts
+      for (let i = 0; i < quantity; i++) {
+        const gift = new Gift({
+          type: giftType,
+          quantity: 1,
+          message: message,
+          recipientName: `Recipient ${i + 1}`,
+          recipientEmail: '',
+          senderName: senderName,
+          totalCost: pricePerGift,
+          status: 'sent',
+          showInGallery: false // Bulk gifts private by default
+        });
+        await gift.save();
+        giftIds.push(gift._id);
+      }
+    } else {
+      // Create personalized gifts
+      for (let i = 0; i < quantity; i++) {
+        const recipient = recipients[i] || { name: `Recipient ${i + 1}`, email: '' };
+        const gift = new Gift({
+          type: giftType,
+          quantity: 1,
+          message: message,
+          recipientName: recipient.name || 'Guest',
+          recipientEmail: recipient.email || '',
+          senderName: senderName,
+          totalCost: pricePerGift,
+          status: 'sent',
+          showInGallery: false
+        });
+        await gift.save();
+        giftIds.push(gift._id);
+
+        // Send email if recipient has email
+        if (recipient.email) {
+          const giftUrl = `${process.env.FRONTEND_URL || 'http://localhost:5174'}/gift/${gift._id}`;
+          // Note: In test mode, we're not sending emails to avoid test emails going out
+          // But the gift is still created
+        }
+      }
+    }
+
+    bulkOrder.giftIds = giftIds;
+    bulkOrder.paymentStatus = 'paid';
+    await bulkOrder.save();
+
+    return res.json({
+      success: true,
+      bulkOrderId: bulkOrder._id,
+      giftIds: giftIds,
+      testMode: true,
+      message: 'Bulk gifts created successfully without payment (test mode)'
+    });
+  }
+
   const stripeClient = getStripe();
-  
+
   if (!stripeClient) {
     return res.status(500).json({ error: 'Stripe not configured' });
   }
 
   try {
     const { giftType, quantity, senderName, recipientMode, recipients, message, basePrice, discount, totalPrice } = req.body;
-    
+
     if (!giftType || !quantity || quantity < 10) {
       return res.status(400).json({ error: 'Invalid bulk order data' });
     }
@@ -286,7 +421,7 @@ router.post('/bulk-checkout', async (req, res) => {
       totalPrice,
       paymentStatus: 'pending'
     });
-    
+
     await bulkOrder.save();
 
     // Create Stripe session

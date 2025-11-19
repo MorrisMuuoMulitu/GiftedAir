@@ -105,7 +105,7 @@ function BulkGift() {
   // Checkout
   const handleCheckout = async () => {
     setIsProcessing(true);
-    
+
     try {
       const orderData = {
         giftType: selectedType,
@@ -119,19 +119,24 @@ function BulkGift() {
         discount: discount * 100,
         totalPrice
       };
-      
+
       const response = await fetch(`${API_URL}/api/payments/bulk-checkout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
       });
-      
+
       const data = await response.json();
-      
-      if (data.url) {
+
+      if (data.testMode && data.bulkOrderId) {
+        // In test mode, redirect directly to bulk success page
+        window.location.href = `/payment/bulk-success?bulk_order_id=${data.bulkOrderId}`;
+        alert('Bulk gifts created successfully without payment (test mode)');
+      } else if (data.url) {
+        // In normal mode, redirect to Stripe Checkout
         window.location.href = data.url;
       } else {
-        alert('Failed to create checkout session');
+        alert('Failed to process order. Please try again.');
         setIsProcessing(false);
       }
     } catch (err) {

@@ -12,7 +12,32 @@ export default function PaymentSuccess() {
 
   useEffect(() => {
     const sessionId = searchParams.get('session_id');
-    
+    const giftId = searchParams.get('gift_id'); // In test mode, we might be redirected with gift_id
+
+    // If we have a gift_id in the URL (test mode), no need to process Stripe session
+    if (giftId) {
+      const fetchGift = async () => {
+        try {
+          const response = await fetch(`${API_URL}/api/gifts/${giftId}`);
+          const giftData = await response.json();
+
+          if (giftData.success) {
+            setGift(giftData.gift);
+          } else {
+            setError(true);
+          }
+        } catch (err) {
+          console.error('Error fetching gift:', err);
+          setError(true);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchGift();
+      return;
+    }
+
     if (!sessionId) {
       setError(true);
       setLoading(false);

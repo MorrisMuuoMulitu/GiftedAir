@@ -168,7 +168,7 @@ export default function Compose() {
     };
 
     try {
-      // Create Stripe checkout session
+      // Create gift (with or without payment based on server config)
       const response = await fetch(`${API_URL}/api/payments/create-checkout-session`, {
         method: 'POST',
         headers: {
@@ -179,15 +179,19 @@ export default function Compose() {
 
       const data = await response.json();
 
-      if (data.url) {
-        // Redirect to Stripe Checkout
+      if (data.testMode && data.giftId) {
+        // In test mode, redirect directly to gift success page
+        navigate(`/gift/${data.giftId}`);
+        alert('Gift created successfully without payment (test mode)');
+      } else if (data.url) {
+        // In normal mode, redirect to Stripe Checkout
         window.location.href = data.url;
       } else {
-        alert('Failed to start payment process. Please try again.');
+        alert('Failed to create gift. Please try again.');
       }
     } catch (error) {
-      console.error('Error creating checkout session:', error);
-      alert('Failed to start payment. Please try again.');
+      console.error('Error creating gift:', error);
+      alert('Failed to create gift. Please try again.');
     }
   };
 

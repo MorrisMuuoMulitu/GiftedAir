@@ -386,6 +386,8 @@ STRIPE_SECRET_KEY=sk_test_...
 STRIPE_PUBLISHABLE_KEY=pk_test_...
 RESEND_API_KEY=re_...
 PORT=3000
+# Set SKIP_PAYMENT=true to run without requiring payment (for testing)
+SKIP_PAYMENT=false
 ```
 
 ### Frontend (.env)
@@ -393,6 +395,13 @@ PORT=3000
 VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
 VITE_API_URL=http://localhost:3000
 ```
+
+### Testing Without Payment
+To run the application without requiring payment (for testing purposes):
+
+1. Set `SKIP_PAYMENT=true` in your backend `.env` file
+2. When enabled, gifts will be created directly without payment processing
+3. The application will skip Stripe checkout and create gifts immediately
 
 ---
 
