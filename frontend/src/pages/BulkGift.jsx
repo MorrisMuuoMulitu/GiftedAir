@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -16,19 +15,18 @@ const giftTypes = [
 ];
 
 function BulkGift() {
-  const navigate = useNavigate();
-  
+
   // Step 1: Gift Selection
   const [selectedType, setSelectedType] = useState('');
   const [quantity, setQuantity] = useState(3);
-  
+
   // Step 2: Recipient Mode
   const [recipientMode, setRecipientMode] = useState('csv'); // 'csv', 'manual', 'same'
   const [recipients, setRecipients] = useState([]);
   const [csvError, setCsvError] = useState('');
-  
+
   // Step 3: Message
-  const [messageMode, setMessageMode] = useState('same'); // 'same' or 'custom'
+  const [messageMode] = useState('same'); // 'same' or 'custom'
   const [globalMessage, setGlobalMessage] = useState('');
   const [senderName, setSenderName] = useState('');
   
@@ -80,7 +78,8 @@ function BulkGift() {
           setRecipients(parsed);
           setCsvError('');
         }
-      } catch (err) {
+      } catch (error) {
+        console.error('CSV parsing error:', error);
         setCsvError('Error parsing CSV. Please use format: Name, Email');
       }
     };
@@ -139,8 +138,8 @@ function BulkGift() {
         alert('Failed to process order. Please try again.');
         setIsProcessing(false);
       }
-    } catch (err) {
-      console.error('Checkout error:', err);
+    } catch (error) {
+      console.error('Checkout error:', error);
       alert('Failed to process order. Please try again.');
       setIsProcessing(false);
     }
