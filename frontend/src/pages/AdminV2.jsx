@@ -57,7 +57,7 @@ export default function AdminV2() {
           setStats(statsData);
         }
       } catch (err) {
-        console.log('Stats not available:', err);
+        // Stats endpoint not available
       }
 
       setLoading(false);
@@ -146,15 +146,15 @@ export default function AdminV2() {
       const res = await fetch(`${API_URL}/api/feedback/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           status: feedbackList.find(f => f._id === id)?.status || 'read',
-          adminNotes: notes 
+          adminNotes: notes
         })
       });
 
       if (res.ok) {
         // Update the feedback list locally without refetching
-        setFeedbackList(feedbackList.map(f => 
+        setFeedbackList(feedbackList.map(f =>
           f._id === id ? { ...f, adminNotes: notes } : f
         ));
         setNotesSuccess({ ...notesSuccess, [id]: true });
@@ -174,11 +174,11 @@ export default function AdminV2() {
     try {
       const feedback = feedbackList.find(f => f._id === id);
       const email = emailContent[id] || '';
-      
+
       const res = await fetch(`${API_URL}/api/feedback/${id}/send-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           emailBody: email,
           recipientEmail: feedback.email,
           recipientName: feedback.name,
@@ -189,9 +189,9 @@ export default function AdminV2() {
       if (res.ok) {
         const data = await res.json();
         // Update the feedback list locally with the new email response
-        setFeedbackList(feedbackList.map(f => 
-          f._id === id ? { 
-            ...f, 
+        setFeedbackList(feedbackList.map(f =>
+          f._id === id ? {
+            ...f,
             status: 'responded',
             emailResponse: email,
             emailSentAt: new Date()
@@ -301,7 +301,7 @@ export default function AdminV2() {
       const res = await fetch(`${API_URL}/api/gifts/bulk/update`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           ids: selectedGifts,
           updates: { showInGallery: show }
         })
@@ -488,72 +488,66 @@ export default function AdminV2() {
         {/* Tabs */}
         <div className="bg-white rounded-xl shadow-lg p-2 mb-4 sm:mb-6 md:mb-8">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-          <button
-            onClick={() => setActiveTab('overview')}
-            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
-              activeTab === 'overview'
-                ? 'bg-forest text-white'
-                : 'text-gray-600 hover:bg-gray-100'
-            }`}
-          >
-            <span className="block sm:inline">📊</span> <span className="hidden sm:inline">Overview</span>
-            <span className="block sm:hidden text-[10px] mt-0.5">Overview</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('gifts')}
-            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
-              activeTab === 'gifts'
-                ? 'bg-forest text-white'
-                : 'text-gray-600 hover:bg-gray-100'
-            }`}
-          >
-            <span className="block sm:inline">🎁</span> <span className="hidden sm:inline">Gift Management</span>
-            <span className="block sm:hidden text-[10px] mt-0.5">Gifts</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('analytics')}
-            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
-              activeTab === 'analytics'
-                ? 'bg-forest text-white'
-                : 'text-gray-600 hover:bg-gray-100'
-            }`}
-          >
-            <span className="block sm:inline">📈</span> <span className="hidden sm:inline">Analytics</span>
-            <span className="block sm:hidden text-[10px] mt-0.5">Analytics</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('financials')}
-            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
-              activeTab === 'financials'
-                ? 'bg-forest text-white'
-                : 'text-gray-600 hover:bg-gray-100'
-            }`}
-          >
-            <span className="block sm:inline">💰</span> <span className="hidden sm:inline">Financials</span>
-            <span className="block sm:hidden text-[10px] mt-0.5">Financials</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('partners')}
-            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
-              activeTab === 'partners'
-                ? 'bg-forest text-white'
-                : 'text-gray-600 hover:bg-gray-100'
-            }`}
-          >
-            <span className="block sm:inline">🤝</span> <span className="hidden sm:inline">Partners</span>
-            <span className="block sm:hidden text-[10px] mt-0.5">Partners</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('feedback')}
-            className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${
-              activeTab === 'feedback'
-                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                : 'text-gray-600 hover:bg-gray-100'
-            }`}
-          >
-            <span className="block sm:inline">💭</span> <span className="hidden sm:inline">Feedback</span>
-            <span className="block sm:hidden text-[10px] mt-0.5">Feedback</span>
-          </button>
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${activeTab === 'overview'
+                  ? 'bg-forest text-white'
+                  : 'text-gray-600 hover:bg-gray-100'
+                }`}
+            >
+              <span className="block sm:inline">📊</span> <span className="hidden sm:inline">Overview</span>
+              <span className="block sm:hidden text-[10px] mt-0.5">Overview</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('gifts')}
+              className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${activeTab === 'gifts'
+                  ? 'bg-forest text-white'
+                  : 'text-gray-600 hover:bg-gray-100'
+                }`}
+            >
+              <span className="block sm:inline">🎁</span> <span className="hidden sm:inline">Gift Management</span>
+              <span className="block sm:hidden text-[10px] mt-0.5">Gifts</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('analytics')}
+              className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${activeTab === 'analytics'
+                  ? 'bg-forest text-white'
+                  : 'text-gray-600 hover:bg-gray-100'
+                }`}
+            >
+              <span className="block sm:inline">📈</span> <span className="hidden sm:inline">Analytics</span>
+              <span className="block sm:hidden text-[10px] mt-0.5">Analytics</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('financials')}
+              className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${activeTab === 'financials'
+                  ? 'bg-forest text-white'
+                  : 'text-gray-600 hover:bg-gray-100'
+                }`}
+            >
+              <span className="block sm:inline">💰</span> <span className="hidden sm:inline">Financials</span>
+              <span className="block sm:hidden text-[10px] mt-0.5">Financials</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('partners')}
+              className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${activeTab === 'partners'
+                  ? 'bg-forest text-white'
+                  : 'text-gray-600 hover:bg-gray-100'
+                }`}
+            >
+              <span className="block sm:inline">🤝</span> <span className="hidden sm:inline">Partners</span>
+              <span className="block sm:hidden text-[10px] mt-0.5">Partners</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('feedback')}
+              className={`px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold transition ${activeTab === 'feedback'
+                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                  : 'text-gray-600 hover:bg-gray-100'
+                }`}
+            >
+              <span className="block sm:inline">💭</span> <span className="hidden sm:inline">Feedback</span>
+              <span className="block sm:hidden text-[10px] mt-0.5">Feedback</span>
+            </button>
           </div>
         </div>
 
@@ -912,7 +906,7 @@ export default function AdminV2() {
                           <div className="flex-1">
                             <h3 className="text-xl font-bold text-forest mb-1">{info.name}</h3>
                             <p className="text-sm text-gray-600 mb-3">Partner: {partnerNames[type]}</p>
-                            
+
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm mb-4">
                               <div>
                                 <div className="text-gray-500">Gifts Sent</div>
@@ -1152,11 +1146,10 @@ export default function AdminV2() {
                   <button
                     key={status}
                     onClick={() => setFilterStatus(status)}
-                    className={`px-4 py-2 rounded-lg font-semibold transition ${
-                      filterStatus === status
+                    className={`px-4 py-2 rounded-lg font-semibold transition ${filterStatus === status
                         ? 'bg-forest text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
+                      }`}
                   >
                     {status.replace('_', ' ').toUpperCase()}
                   </button>
@@ -1178,96 +1171,95 @@ export default function AdminV2() {
                   {partnerApplications
                     .filter(app => filterStatus === 'all' || app.status === filterStatus)
                     .map(app => (
-                    <div 
-                      key={app._id} 
-                      className="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition"
-                    >
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h3 className="text-xl font-bold text-forest">{app.organizationName}</h3>
-                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                              app.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                              app.status === 'under_review' ? 'bg-blue-100 text-blue-800' :
-                              app.status === 'approved' ? 'bg-green-100 text-green-800' :
-                              'bg-red-100 text-red-800'
-                            }`}>
-                              {app.status.replace('_', ' ').toUpperCase()}
-                            </span>
+                      <div
+                        key={app._id}
+                        className="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition"
+                      >
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <h3 className="text-xl font-bold text-forest">{app.organizationName}</h3>
+                              <span className={`px-3 py-1 rounded-full text-xs font-semibold ${app.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                                  app.status === 'under_review' ? 'bg-blue-100 text-blue-800' :
+                                    app.status === 'approved' ? 'bg-green-100 text-green-800' :
+                                      'bg-red-100 text-red-800'
+                                }`}>
+                                {app.status.replace('_', ' ').toUpperCase()}
+                              </span>
+                            </div>
+                            <p className="text-sm text-gray-600 mb-1">
+                              <span className="font-semibold">Contact:</span> {app.contactPerson} • {app.email}
+                            </p>
+                            <p className="text-sm text-gray-600 mb-1">
+                              <span className="font-semibold">Type:</span> {app.organizationType} • {app.location}
+                            </p>
+                            <p className="text-sm text-gray-600 mb-1">
+                              <span className="font-semibold">Focus Area:</span> {app.focusArea}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              <span className="font-semibold">Submitted:</span> {new Date(app.submittedAt).toLocaleDateString()}
+                            </p>
                           </div>
-                          <p className="text-sm text-gray-600 mb-1">
-                            <span className="font-semibold">Contact:</span> {app.contactPerson} • {app.email}
-                          </p>
-                          <p className="text-sm text-gray-600 mb-1">
-                            <span className="font-semibold">Type:</span> {app.organizationType} • {app.location}
-                          </p>
-                          <p className="text-sm text-gray-600 mb-1">
-                            <span className="font-semibold">Focus Area:</span> {app.focusArea}
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            <span className="font-semibold">Submitted:</span> {new Date(app.submittedAt).toLocaleDateString()}
-                          </p>
-                        </div>
-                        
-                        {/* Action Buttons */}
-                        <div className="flex flex-col gap-2">
-                          {app.status !== 'approved' && (
-                            <button
-                              onClick={() => updateApplicationStatus(app._id, 'approved')}
-                              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-sm font-semibold"
-                            >
-                              ✅ Approve
-                            </button>
-                          )}
-                          {app.status !== 'under_review' && (
-                            <button
-                              onClick={() => updateApplicationStatus(app._id, 'under_review')}
-                              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-semibold"
-                            >
-                              👀 Review
-                            </button>
-                          )}
-                          {app.status !== 'rejected' && (
-                            <button
-                              onClick={() => updateApplicationStatus(app._id, 'rejected')}
-                              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm font-semibold"
-                            >
-                              ❌ Reject
-                            </button>
-                          )}
-                        </div>
-                      </div>
 
-                      {/* Expandable Details */}
-                      <details className="mt-4">
-                        <summary className="cursor-pointer text-sm font-semibold text-forest hover:text-green-800">
-                          View Full Details
-                        </summary>
-                        <div className="mt-4 grid md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
-                          <div>
-                            <p className="text-sm mb-2"><span className="font-semibold">Phone:</span> {app.phone}</p>
-                            {app.website && <p className="text-sm mb-2"><span className="font-semibold">Website:</span> <a href={app.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{app.website}</a></p>}
-                            {app.registrationNumber && <p className="text-sm mb-2"><span className="font-semibold">Reg Number:</span> {app.registrationNumber}</p>}
-                            {app.yearsOfOperation && <p className="text-sm mb-2"><span className="font-semibold">Years Operating:</span> {app.yearsOfOperation}</p>}
-                            {app.teamSize && <p className="text-sm mb-2"><span className="font-semibold">Team Size:</span> {app.teamSize}</p>}
-                            {app.currentFunding && <p className="text-sm mb-2"><span className="font-semibold">Annual Budget:</span> {app.currentFunding}</p>}
-                          </div>
-                          <div>
-                            <p className="text-sm mb-2"><span className="font-semibold">Description:</span></p>
-                            <p className="text-sm text-gray-700 mb-3">{app.description}</p>
-                            <p className="text-sm mb-2"><span className="font-semibold">Why Partner:</span></p>
-                            <p className="text-sm text-gray-700">{app.whyPartner}</p>
-                            {app.socialMediaLinks && (
-                              <>
-                                <p className="text-sm mt-3 mb-1"><span className="font-semibold">Social Media:</span></p>
-                                <p className="text-xs text-gray-600">{app.socialMediaLinks}</p>
-                              </>
+                          {/* Action Buttons */}
+                          <div className="flex flex-col gap-2">
+                            {app.status !== 'approved' && (
+                              <button
+                                onClick={() => updateApplicationStatus(app._id, 'approved')}
+                                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-sm font-semibold"
+                              >
+                                ✅ Approve
+                              </button>
+                            )}
+                            {app.status !== 'under_review' && (
+                              <button
+                                onClick={() => updateApplicationStatus(app._id, 'under_review')}
+                                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-semibold"
+                              >
+                                👀 Review
+                              </button>
+                            )}
+                            {app.status !== 'rejected' && (
+                              <button
+                                onClick={() => updateApplicationStatus(app._id, 'rejected')}
+                                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm font-semibold"
+                              >
+                                ❌ Reject
+                              </button>
                             )}
                           </div>
                         </div>
-                      </details>
-                    </div>
-                  ))}
+
+                        {/* Expandable Details */}
+                        <details className="mt-4">
+                          <summary className="cursor-pointer text-sm font-semibold text-forest hover:text-green-800">
+                            View Full Details
+                          </summary>
+                          <div className="mt-4 grid md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
+                            <div>
+                              <p className="text-sm mb-2"><span className="font-semibold">Phone:</span> {app.phone}</p>
+                              {app.website && <p className="text-sm mb-2"><span className="font-semibold">Website:</span> <a href={app.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{app.website}</a></p>}
+                              {app.registrationNumber && <p className="text-sm mb-2"><span className="font-semibold">Reg Number:</span> {app.registrationNumber}</p>}
+                              {app.yearsOfOperation && <p className="text-sm mb-2"><span className="font-semibold">Years Operating:</span> {app.yearsOfOperation}</p>}
+                              {app.teamSize && <p className="text-sm mb-2"><span className="font-semibold">Team Size:</span> {app.teamSize}</p>}
+                              {app.currentFunding && <p className="text-sm mb-2"><span className="font-semibold">Annual Budget:</span> {app.currentFunding}</p>}
+                            </div>
+                            <div>
+                              <p className="text-sm mb-2"><span className="font-semibold">Description:</span></p>
+                              <p className="text-sm text-gray-700 mb-3">{app.description}</p>
+                              <p className="text-sm mb-2"><span className="font-semibold">Why Partner:</span></p>
+                              <p className="text-sm text-gray-700">{app.whyPartner}</p>
+                              {app.socialMediaLinks && (
+                                <>
+                                  <p className="text-sm mt-3 mb-1"><span className="font-semibold">Social Media:</span></p>
+                                  <p className="text-xs text-gray-600">{app.socialMediaLinks}</p>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </details>
+                      </div>
+                    ))}
                 </div>
               )}
             </div>
@@ -1332,11 +1324,10 @@ export default function AdminV2() {
                   <button
                     key={filter.value}
                     onClick={() => setFeedbackFilter(filter.value)}
-                    className={`px-5 py-3 rounded-xl font-bold transition-all shadow-sm ${
-                      feedbackFilter === filter.value
+                    className={`px-5 py-3 rounded-xl font-bold transition-all shadow-sm ${feedbackFilter === filter.value
                         ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg scale-105'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md'
-                    }`}
+                      }`}
                   >
                     <span className="mr-2">{filter.icon}</span>
                     {filter.label} ({filter.count})
@@ -1345,277 +1336,275 @@ export default function AdminV2() {
               </div>
             </div>
 
-              {/* Loading State */}
-              {loadingFeedback && (
-                <div className="text-center py-12">
-                  <div className="text-5xl mb-4 animate-spin">⏳</div>
-                  <p className="text-gray-600">Loading feedback...</p>
-                </div>
-              )}
+            {/* Loading State */}
+            {loadingFeedback && (
+              <div className="text-center py-12">
+                <div className="text-5xl mb-4 animate-spin">⏳</div>
+                <p className="text-gray-600">Loading feedback...</p>
+              </div>
+            )}
 
-              {/* Empty State */}
-              {!loadingFeedback && feedbackList.length === 0 && (
-                <div className="text-center py-12 bg-gray-50 rounded-xl">
-                  <div className="text-6xl mb-4">📭</div>
-                  <p className="text-xl text-gray-600 font-semibold">No feedback yet</p>
-                  <p className="text-gray-500">Feedback submissions will appear here</p>
-                </div>
-              )}
+            {/* Empty State */}
+            {!loadingFeedback && feedbackList.length === 0 && (
+              <div className="text-center py-12 bg-gray-50 rounded-xl">
+                <div className="text-6xl mb-4">📭</div>
+                <p className="text-xl text-gray-600 font-semibold">No feedback yet</p>
+                <p className="text-gray-500">Feedback submissions will appear here</p>
+              </div>
+            )}
 
-              {/* Feedback List */}
-              {!loadingFeedback && feedbackList.length > 0 && (
-                <div className="space-y-6">
-                  {feedbackList
-                    .filter(feedback => feedbackFilter === 'all' || feedback.status === feedbackFilter)
-                    .map((feedback) => (
-                      <div
-                        key={feedback._id}
-                        className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-l-8 ${
-                          feedback.status === 'new' ? 'border-yellow-400' :
+            {/* Feedback List */}
+            {!loadingFeedback && feedbackList.length > 0 && (
+              <div className="space-y-6">
+                {feedbackList
+                  .filter(feedback => feedbackFilter === 'all' || feedback.status === feedbackFilter)
+                  .map((feedback) => (
+                    <div
+                      key={feedback._id}
+                      className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-l-8 ${feedback.status === 'new' ? 'border-yellow-400' :
                           feedback.status === 'read' ? 'border-blue-400' :
-                          feedback.status === 'responded' ? 'border-green-400' :
-                          'border-gray-400'
+                            feedback.status === 'responded' ? 'border-green-400' :
+                              'border-gray-400'
                         }`}
-                      >
-                        {/* Header */}
-                        <div className="bg-gradient-to-r from-gray-50 to-purple-50 p-6 border-b border-gray-100">
-                          <div className="flex flex-col md:flex-row justify-between items-start gap-4">
-                            <div className="flex-1">
-                              <div className="flex items-center gap-3 mb-3 flex-wrap">
-                                <h3 className="text-2xl font-bold text-gray-900">{feedback.name}</h3>
-                                <span className={`text-xs px-4 py-2 rounded-full font-bold shadow-sm uppercase tracking-wide ${
-                                  feedback.status === 'new' ? 'bg-yellow-500 text-white' :
+                    >
+                      {/* Header */}
+                      <div className="bg-gradient-to-r from-gray-50 to-purple-50 p-6 border-b border-gray-100">
+                        <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-3 flex-wrap">
+                              <h3 className="text-2xl font-bold text-gray-900">{feedback.name}</h3>
+                              <span className={`text-xs px-4 py-2 rounded-full font-bold shadow-sm uppercase tracking-wide ${feedback.status === 'new' ? 'bg-yellow-500 text-white' :
                                   feedback.status === 'read' ? 'bg-blue-500 text-white' :
-                                  feedback.status === 'responded' ? 'bg-green-500 text-white' :
-                                  'bg-gray-500 text-white'
+                                    feedback.status === 'responded' ? 'bg-green-500 text-white' :
+                                      'bg-gray-500 text-white'
                                 }`}>
-                                  {feedback.status === 'new' ? '🆕 NEW' : 
-                                   feedback.status === 'read' ? '👁️ READ' :
-                                   feedback.status === 'responded' ? '✅ RESPONDED' :
-                                   '📦 ARCHIVED'}
-                                </span>
-                              </div>
-                              
-                              <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
-                                <span className="flex items-center gap-1">
-                                  <span>📧</span>
-                                  {feedback.email}
-                                </span>
-                                <span className="flex items-center gap-1">
-                                  <span>📅</span>
-                                  {new Date(feedback.submittedAt).toLocaleDateString('en-US', { 
-                                    month: 'short', 
-                                    day: 'numeric', 
-                                    year: 'numeric',
-                                    hour: '2-digit',
-                                    minute: '2-digit'
-                                  })}
-                                </span>
-                              </div>
-
-                              <span className="inline-flex items-center gap-2 text-sm px-4 py-1.5 rounded-full bg-purple-100 text-purple-700 font-semibold">
-                                <span>🏷️</span>
-                                {feedback.category.replace('_', ' ').toUpperCase()}
+                                {feedback.status === 'new' ? '🆕 NEW' :
+                                  feedback.status === 'read' ? '👁️ READ' :
+                                    feedback.status === 'responded' ? '✅ RESPONDED' :
+                                      '📦 ARCHIVED'}
                               </span>
                             </div>
 
-                            {/* Rating */}
-                            {feedback.rating && (
-                              <div className="bg-white rounded-xl p-4 shadow-md">
-                                <div className="text-xs text-gray-500 mb-1 text-center">RATING</div>
-                                <div className="flex gap-1">
-                                  {[...Array(5)].map((_, i) => (
-                                    <span key={i} className={`text-2xl ${i < feedback.rating ? 'text-green-500' : 'text-gray-300'}`}>
-                                      ⭐
-                                    </span>
-                                  ))}
-                                </div>
-                                <div className="text-center mt-1">
-                                  <span className="text-sm font-bold text-gray-700">{feedback.rating}/5</span>
-                                </div>
+                            <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                              <span className="flex items-center gap-1">
+                                <span>📧</span>
+                                {feedback.email}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <span>📅</span>
+                                {new Date(feedback.submittedAt).toLocaleDateString('en-US', {
+                                  month: 'short',
+                                  day: 'numeric',
+                                  year: 'numeric',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })}
+                              </span>
+                            </div>
+
+                            <span className="inline-flex items-center gap-2 text-sm px-4 py-1.5 rounded-full bg-purple-100 text-purple-700 font-semibold">
+                              <span>🏷️</span>
+                              {feedback.category.replace('_', ' ').toUpperCase()}
+                            </span>
+                          </div>
+
+                          {/* Rating */}
+                          {feedback.rating && (
+                            <div className="bg-white rounded-xl p-4 shadow-md">
+                              <div className="text-xs text-gray-500 mb-1 text-center">RATING</div>
+                              <div className="flex gap-1">
+                                {[...Array(5)].map((_, i) => (
+                                  <span key={i} className={`text-2xl ${i < feedback.rating ? 'text-green-500' : 'text-gray-300'}`}>
+                                    ⭐
+                                  </span>
+                                ))}
                               </div>
-                            )}
+                              <div className="text-center mt-1">
+                                <span className="text-sm font-bold text-gray-700">{feedback.rating}/5</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Message Body */}
+                      <div className="p-6">
+                        <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 mb-4 border-2 border-gray-100">
+                          <div className="flex items-start gap-3">
+                            <span className="text-3xl">💬</span>
+                            <div className="flex-1">
+                              <h4 className="font-bold text-gray-700 mb-2">Feedback Message:</h4>
+                              <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">{feedback.message}</p>
+                            </div>
                           </div>
                         </div>
 
-                        {/* Message Body */}
-                        <div className="p-6">
-                          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 mb-4 border-2 border-gray-100">
-                            <div className="flex items-start gap-3">
-                              <span className="text-3xl">💬</span>
-                              <div className="flex-1">
-                                <h4 className="font-bold text-gray-700 mb-2">Feedback Message:</h4>
-                                <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">{feedback.message}</p>
+                        {/* Admin Notes Section */}
+                        <div className="bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-300 rounded-xl p-5 mb-4">
+                          <div className="flex items-start gap-3">
+                            <span className="text-2xl">📝</span>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-2">
+                                <p className="text-sm font-bold text-purple-700">ADMIN NOTES:</p>
+                                {!editingNotes[feedback._id] && (
+                                  <button
+                                    onClick={() => {
+                                      setEditingNotes({ ...editingNotes, [feedback._id]: true });
+                                      setNotesContent({ ...notesContent, [feedback._id]: feedback.adminNotes || '' });
+                                    }}
+                                    className="text-xs bg-purple-500 text-white px-3 py-1 rounded-full hover:bg-purple-600 transition"
+                                  >
+                                    {feedback.adminNotes ? '✏️ Edit' : '➕ Add Notes'}
+                                  </button>
+                                )}
                               </div>
+
+                              {editingNotes[feedback._id] ? (
+                                <div className="space-y-2">
+                                  <textarea
+                                    value={notesContent[feedback._id] || ''}
+                                    onChange={(e) => setNotesContent({ ...notesContent, [feedback._id]: e.target.value })}
+                                    rows="4"
+                                    placeholder="Add your internal notes here..."
+                                    className="w-full px-4 py-3 border-2 border-purple-300 rounded-xl focus:border-purple-500 focus:outline-none transition-colors resize-none"
+                                  />
+                                  <div className="flex gap-2">
+                                    <button
+                                      onClick={() => saveAdminNotes(feedback._id)}
+                                      className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold text-sm"
+                                    >
+                                      💾 Save Notes
+                                    </button>
+                                    <button
+                                      onClick={() => setEditingNotes({ ...editingNotes, [feedback._id]: false })}
+                                      className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition font-semibold text-sm"
+                                    >
+                                      Cancel
+                                    </button>
+                                  </div>
+                                  {notesSuccess[feedback._id] && (
+                                    <div className="mt-2 bg-green-50 border-2 border-green-500 text-green-700 px-4 py-2 rounded-lg flex items-center gap-2">
+                                      <span>✅</span>
+                                      <span className="font-semibold">Notes saved successfully!</span>
+                                    </div>
+                                  )}
+                                </div>
+                              ) : feedback.adminNotes ? (
+                                <p className="text-purple-900 leading-relaxed">{feedback.adminNotes}</p>
+                              ) : (
+                                <p className="text-purple-600 italic text-sm">No notes yet. Click "Add Notes" to add internal notes.</p>
+                              )}
                             </div>
                           </div>
+                        </div>
 
-                          {/* Admin Notes Section */}
-                          <div className="bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-300 rounded-xl p-5 mb-4">
+                        {/* Response Section */}
+                        {feedback.email !== 'not-provided@anonymous.user' && (
+                          <div className="bg-gradient-to-r from-blue-50 to-green-50 border-2 border-blue-200 rounded-xl p-5 mb-4">
                             <div className="flex items-start gap-3">
-                              <span className="text-2xl">📝</span>
+                              <span className="text-2xl">✉️</span>
                               <div className="flex-1">
                                 <div className="flex items-center justify-between mb-2">
-                                  <p className="text-sm font-bold text-purple-700">ADMIN NOTES:</p>
-                                  {!editingNotes[feedback._id] && (
+                                  <p className="text-sm font-bold text-blue-700">RESPOND TO USER:</p>
+                                  {!composingEmail[feedback._id] && !feedback.emailResponse && (
                                     <button
                                       onClick={() => {
-                                        setEditingNotes({ ...editingNotes, [feedback._id]: true });
-                                        setNotesContent({ ...notesContent, [feedback._id]: feedback.adminNotes || '' });
+                                        setComposingEmail({ ...composingEmail, [feedback._id]: true });
+                                        setEmailContent({ ...emailContent, [feedback._id]: `Hi ${feedback.name},\n\nThank you for your feedback!\n\nRegarding your message:\n"${feedback.message}"\n\n[Your response here]\n\nBest regards,\nGifted Air Team` });
                                       }}
-                                      className="text-xs bg-purple-500 text-white px-3 py-1 rounded-full hover:bg-purple-600 transition"
+                                      className="text-xs bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition"
                                     >
-                                      {feedback.adminNotes ? '✏️ Edit' : '➕ Add Notes'}
+                                      ✍️ Compose Email
                                     </button>
                                   )}
                                 </div>
-                                
-                                {editingNotes[feedback._id] ? (
-                                  <div className="space-y-2">
+
+                                {feedback.emailResponse ? (
+                                  <div className="bg-white rounded-lg p-4 border-2 border-green-300">
+                                    <div className="flex items-center gap-2 mb-2">
+                                      <span className="text-green-600 font-bold text-sm">✅ EMAIL SENT</span>
+                                      {feedback.emailSentAt && (
+                                        <span className="text-xs text-gray-500">
+                                          {new Date(feedback.emailSentAt).toLocaleString()}
+                                        </span>
+                                      )}
+                                    </div>
+                                    <div className="bg-gray-50 rounded p-3 border-l-4 border-blue-500">
+                                      <p className="text-xs text-gray-600 mb-1">To: {feedback.email}</p>
+                                      <p className="text-xs text-gray-600 mb-3">Subject: Re: Your Feedback for Gifted Air</p>
+                                      <div className="text-sm text-gray-800 whitespace-pre-wrap leading-relaxed">
+                                        {feedback.emailResponse}
+                                      </div>
+                                    </div>
+                                  </div>
+                                ) : composingEmail[feedback._id] ? (
+                                  <div className="space-y-3">
+                                    <div>
+                                      <p className="text-xs text-gray-600 mb-1">To: {feedback.email}</p>
+                                      <p className="text-xs text-gray-600 mb-2">Subject: Re: Your Feedback for Gifted Air</p>
+                                    </div>
                                     <textarea
-                                      value={notesContent[feedback._id] || ''}
-                                      onChange={(e) => setNotesContent({ ...notesContent, [feedback._id]: e.target.value })}
-                                      rows="4"
-                                      placeholder="Add your internal notes here..."
-                                      className="w-full px-4 py-3 border-2 border-purple-300 rounded-xl focus:border-purple-500 focus:outline-none transition-colors resize-none"
+                                      value={emailContent[feedback._id] || ''}
+                                      onChange={(e) => setEmailContent({ ...emailContent, [feedback._id]: e.target.value })}
+                                      rows="8"
+                                      placeholder="Write your email response..."
+                                      className="w-full px-4 py-3 border-2 border-blue-300 rounded-xl focus:border-blue-500 focus:outline-none transition-colors resize-none"
                                     />
                                     <div className="flex gap-2">
                                       <button
-                                        onClick={() => saveAdminNotes(feedback._id)}
-                                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold text-sm"
+                                        onClick={() => sendEmailResponse(feedback._id)}
+                                        disabled={sendingEmail[feedback._id]}
+                                        className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all font-semibold shadow-lg disabled:opacity-50"
                                       >
-                                        💾 Save Notes
+                                        {sendingEmail[feedback._id] ? '📤 Sending...' : '📧 Send Email'}
                                       </button>
                                       <button
-                                        onClick={() => setEditingNotes({ ...editingNotes, [feedback._id]: false })}
-                                        className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition font-semibold text-sm"
+                                        onClick={() => setComposingEmail({ ...composingEmail, [feedback._id]: false })}
+                                        disabled={sendingEmail[feedback._id]}
+                                        className="bg-gray-400 text-white px-4 py-3 rounded-xl hover:bg-gray-500 transition font-semibold"
                                       >
                                         Cancel
                                       </button>
                                     </div>
-                                    {notesSuccess[feedback._id] && (
-                                      <div className="mt-2 bg-green-50 border-2 border-green-500 text-green-700 px-4 py-2 rounded-lg flex items-center gap-2">
-                                        <span>✅</span>
-                                        <span className="font-semibold">Notes saved successfully!</span>
-                                      </div>
-                                    )}
                                   </div>
-                                ) : feedback.adminNotes ? (
-                                  <p className="text-purple-900 leading-relaxed">{feedback.adminNotes}</p>
                                 ) : (
-                                  <p className="text-purple-600 italic text-sm">No notes yet. Click "Add Notes" to add internal notes.</p>
+                                  <p className="text-sm text-gray-600">Click "Compose Email" to send a response to {feedback.name}</p>
                                 )}
                               </div>
                             </div>
                           </div>
+                        )}
 
-                          {/* Response Section */}
-                          {feedback.email !== 'not-provided@anonymous.user' && (
-                            <div className="bg-gradient-to-r from-blue-50 to-green-50 border-2 border-blue-200 rounded-xl p-5 mb-4">
-                              <div className="flex items-start gap-3">
-                                <span className="text-2xl">✉️</span>
-                                <div className="flex-1">
-                                  <div className="flex items-center justify-between mb-2">
-                                    <p className="text-sm font-bold text-blue-700">RESPOND TO USER:</p>
-                                    {!composingEmail[feedback._id] && !feedback.emailResponse && (
-                                      <button
-                                        onClick={() => {
-                                          setComposingEmail({ ...composingEmail, [feedback._id]: true });
-                                          setEmailContent({ ...emailContent, [feedback._id]: `Hi ${feedback.name},\n\nThank you for your feedback!\n\nRegarding your message:\n"${feedback.message}"\n\n[Your response here]\n\nBest regards,\nGifted Air Team` });
-                                        }}
-                                        className="text-xs bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition"
-                                      >
-                                        ✍️ Compose Email
-                                      </button>
-                                    )}
-                                  </div>
-                                  
-                                  {feedback.emailResponse ? (
-                                    <div className="bg-white rounded-lg p-4 border-2 border-green-300">
-                                      <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-green-600 font-bold text-sm">✅ EMAIL SENT</span>
-                                        {feedback.emailSentAt && (
-                                          <span className="text-xs text-gray-500">
-                                            {new Date(feedback.emailSentAt).toLocaleString()}
-                                          </span>
-                                        )}
-                                      </div>
-                                      <div className="bg-gray-50 rounded p-3 border-l-4 border-blue-500">
-                                        <p className="text-xs text-gray-600 mb-1">To: {feedback.email}</p>
-                                        <p className="text-xs text-gray-600 mb-3">Subject: Re: Your Feedback for Gifted Air</p>
-                                        <div className="text-sm text-gray-800 whitespace-pre-wrap leading-relaxed">
-                                          {feedback.emailResponse}
-                                        </div>
-                                      </div>
-                                    </div>
-                                  ) : composingEmail[feedback._id] ? (
-                                    <div className="space-y-3">
-                                      <div>
-                                        <p className="text-xs text-gray-600 mb-1">To: {feedback.email}</p>
-                                        <p className="text-xs text-gray-600 mb-2">Subject: Re: Your Feedback for Gifted Air</p>
-                                      </div>
-                                      <textarea
-                                        value={emailContent[feedback._id] || ''}
-                                        onChange={(e) => setEmailContent({ ...emailContent, [feedback._id]: e.target.value })}
-                                        rows="8"
-                                        placeholder="Write your email response..."
-                                        className="w-full px-4 py-3 border-2 border-blue-300 rounded-xl focus:border-blue-500 focus:outline-none transition-colors resize-none"
-                                      />
-                                      <div className="flex gap-2">
-                                        <button
-                                          onClick={() => sendEmailResponse(feedback._id)}
-                                          disabled={sendingEmail[feedback._id]}
-                                          className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all font-semibold shadow-lg disabled:opacity-50"
-                                        >
-                                          {sendingEmail[feedback._id] ? '📤 Sending...' : '📧 Send Email'}
-                                        </button>
-                                        <button
-                                          onClick={() => setComposingEmail({ ...composingEmail, [feedback._id]: false })}
-                                          disabled={sendingEmail[feedback._id]}
-                                          className="bg-gray-400 text-white px-4 py-3 rounded-xl hover:bg-gray-500 transition font-semibold"
-                                        >
-                                          Cancel
-                                        </button>
-                                      </div>
-                                    </div>
-                                  ) : (
-                                    <p className="text-sm text-gray-600">Click "Compose Email" to send a response to {feedback.name}</p>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* Action Buttons */}
-                          <div className="flex gap-3 flex-wrap">
-                            {feedback.status === 'new' && (
-                              <button
-                                onClick={() => updateFeedbackStatus(feedback._id, 'read')}
-                                className="flex-1 md:flex-none bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all text-sm font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
-                              >
-                                👁️ Mark as Read
-                              </button>
-                            )}
-                            {(feedback.status === 'new' || feedback.status === 'read') && (
-                              <button
-                                onClick={() => updateFeedbackStatus(feedback._id, 'responded')}
-                                className="flex-1 md:flex-none bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl hover:from-green-600 hover:to-green-700 transition-all text-sm font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
-                              >
-                                ✅ Mark as Responded
-                              </button>
-                            )}
+                        {/* Action Buttons */}
+                        <div className="flex gap-3 flex-wrap">
+                          {feedback.status === 'new' && (
                             <button
-                              onClick={() => updateFeedbackStatus(feedback._id, 'archived')}
-                              className="flex-1 md:flex-none bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-3 rounded-xl hover:from-gray-600 hover:to-gray-700 transition-all text-sm font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
+                              onClick={() => updateFeedbackStatus(feedback._id, 'read')}
+                              className="flex-1 md:flex-none bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all text-sm font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
                             >
-                              📦 Archive
+                              👁️ Mark as Read
                             </button>
-                          </div>
+                          )}
+                          {(feedback.status === 'new' || feedback.status === 'read') && (
+                            <button
+                              onClick={() => updateFeedbackStatus(feedback._id, 'responded')}
+                              className="flex-1 md:flex-none bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl hover:from-green-600 hover:to-green-700 transition-all text-sm font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
+                            >
+                              ✅ Mark as Responded
+                            </button>
+                          )}
+                          <button
+                            onClick={() => updateFeedbackStatus(feedback._id, 'archived')}
+                            className="flex-1 md:flex-none bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-3 rounded-xl hover:from-gray-600 hover:to-gray-700 transition-all text-sm font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
+                          >
+                            📦 Archive
+                          </button>
                         </div>
                       </div>
-                    ))}
-                </div>
-              )}
+                    </div>
+                  ))}
+              </div>
+            )}
           </>
         )}
       </div>

@@ -34,37 +34,30 @@ export default function Admin() {
 
     const fetchData = async () => {
       try {
-        console.log('Fetching admin data from:', `${API_URL}/api/gifts`);
-        
         const giftsRes = await fetch(`${API_URL}/api/gifts`);
-        console.log('Response status:', giftsRes.status);
-        
+
         if (!giftsRes.ok) {
           throw new Error(`Failed to fetch: ${giftsRes.status}`);
         }
 
         const giftsData = await giftsRes.json();
-        console.log('Raw API response:', giftsData);
-        
+
         // API returns {gifts: [...], count: X}, extract the gifts array
         const giftsArray = giftsData.gifts || (Array.isArray(giftsData) ? giftsData : []);
-        console.log('Extracted gifts array:', giftsArray.length, 'gifts');
 
         setGifts(giftsArray);
-        console.log('✅ Loaded', giftsArray.length, 'gifts into admin');
-        
+
         // Try to fetch stats too
         try {
           const statsRes = await fetch(`${API_URL}/api/gifts/stats/summary`);
           if (statsRes.ok) {
             const statsData = await statsRes.json();
             setStats(statsData);
-            console.log('Stats loaded:', statsData);
           }
         } catch (err) {
-          console.log('Stats not available:', err);
+          // Stats endpoint not available
         }
-        
+
         setLoading(false);
       } catch (error) {
         console.error('Error fetching admin data:', error);
@@ -81,8 +74,6 @@ export default function Admin() {
   const exportToCSV = () => {
     try {
       setExporting(true);
-      
-      console.log('Exporting gifts:', gifts);
 
       if (!gifts || gifts.length === 0) {
         alert('⚠️ No gifts to export yet!');
@@ -105,7 +96,7 @@ export default function Admin() {
         headers.join(','),
         ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
       ].join('\n');
-      
+
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -115,7 +106,7 @@ export default function Admin() {
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
-      
+
       alert(`✅ Exported ${gifts.length} gifts to CSV!`);
       setExporting(false);
     } catch (error) {
@@ -128,8 +119,6 @@ export default function Admin() {
   const exportReport = () => {
     try {
       setExporting(true);
-      
-      console.log('Creating report from gifts:', gifts);
 
       if (!gifts || gifts.length === 0) {
         alert('⚠️ No gifts to report yet!');
@@ -194,7 +183,7 @@ Report End
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
-      
+
       alert(`✅ Report generated with ${totalGifts} gifts!`);
       setExporting(false);
     } catch (error) {
@@ -206,7 +195,6 @@ Report End
 
   const copyStats = async () => {
     try {
-      console.log('Copying stats from gifts:', gifts);
 
       if (!gifts || gifts.length === 0) {
         alert('⚠️ No data to copy yet!');
@@ -221,9 +209,9 @@ Report End
         acc[type] = (acc[type] || 0) + 1;
         return acc;
       }, {});
-      
+
       const topType = Object.entries(giftsByType).sort((a, b) => b[1] - a[1])[0];
-      
+
       const text = `📊 Gifted Air Stats (${new Date().toLocaleDateString()})
 
 Total Gifts: ${totalGifts}
@@ -231,7 +219,7 @@ Total Revenue: $${totalRevenue.toFixed(2)}
 Most Popular: ${topType ? `${topType[0]} (${topType[1]} gifts)` : 'N/A'}
 
 Generated from Admin Dashboard`;
-      
+
       await navigator.clipboard.writeText(text);
       alert('✅ Stats copied to clipboard!');
     } catch (error) {
@@ -411,7 +399,7 @@ Generated from Admin Dashboard`;
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-forest mb-1">{info.name}</h3>
                         <p className="text-sm text-gray-600 mb-3">Partner: {info.partner}</p>
-                        
+
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                           <div>
                             <div className="text-gray-500">Gifts Sent</div>

@@ -1,0 +1,40 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  pr-validation:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Check frontend
+        working-directory: ./frontend
+        run: |
+          npm ci
+          npm run lint || echo "⚠️ Linting issues found"
+          npm run build
+      
+      - name: Check backend
+        working-directory: ./backend
+        run: |
+          npm ci
+          node -c server.js
+      
+      - name: PR Summary
+        run: |
+          echo "## ✅ Pull Request Validation Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Frontend build: ✅ Success" >> $GITHUB_STEP_SUMMARY
+          echo "- Backend validation: ✅ Success" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Ready for review!" >> $GITHUB_STEP_SUMMARY

@@ -5,7 +5,9 @@ export const trackEvent = (eventName, eventParams = {}) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, eventParams);
   }
-  console.log('📊 Event:', eventName, eventParams);
+  if (import.meta.env.DEV) {
+    console.log('📊 Event:', eventName, eventParams);
+  }
 };
 
 // Track page views
@@ -15,7 +17,9 @@ export const trackPageView = (path) => {
       page_path: path,
     });
   }
-  console.log('📄 Page View:', path);
+  if (import.meta.env.DEV) {
+    console.log('📄 Page View:', path);
+  }
 };
 
 // E-commerce tracking
