@@ -31,7 +31,7 @@ function BulkSuccess() {
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         // Then fetch the order details
-        const response = await fetch(`${API_URL}/api/payments/bulk-order/${bulkOrderId}`);
+        const response = await fetch(`${API_URL}/api/bulk-gifts/${bulkOrderId}`);
         const data = await response.json();
 
         if (data.bulkOrder) {

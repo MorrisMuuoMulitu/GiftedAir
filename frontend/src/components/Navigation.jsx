@@ -13,6 +13,8 @@ function Navigation() {
     { path: '/compose', label: 'Create Gift', icon: 'fa-solid fa-gift' },
     { path: '/gallery', label: 'Gallery', icon: 'fa-solid fa-images' },
     { path: '/transparency', label: 'Transparency', icon: 'fa-solid fa-chart-line' },
+    { path: '/fundraising', label: 'Support Fellows', icon: 'fa-solid fa-hand-holding-heart' },
+    { path: '/impact', label: 'Impact', icon: 'fa-solid fa-leaf' },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -33,32 +35,32 @@ function Navigation() {
               <button
                 key={link.path}
                 onClick={() => navigate(link.path)}
-                className={`w-full flex items-center gap-5 px-4 py-6 transition-all duration-300 group relative overflow-hidden ${
+                className={`w-full flex items-center gap-5 px-4 py-5 transition-all duration-300 group relative overflow-hidden rounded-xl ${
                   isActive(link.path)
-                    ? 'text-green-600'
-                    : 'text-gray-600 hover:text-green-600'
+                    ? 'text-forest bg-forest/10'
+                    : 'text-gray-600 hover:text-forest hover:bg-forest/5'
                 }`}
               >
                 {/* Animated background on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-green-400/0 via-green-400/10 to-green-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-                
+                <div className="absolute inset-0 bg-gradient-to-r from-forest/0 via-forest/5 to-forest/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
+
                 {/* Icon with enhanced effects */}
-                <i className={`${link.icon} text-4xl flex-shrink-0 transition-all duration-300 relative z-10 ${
-                  isActive(link.path) 
-                    ? 'drop-shadow-lg scale-110 animate-pulse' 
-                    : 'group-hover:scale-125 group-hover:rotate-6 group-hover:drop-shadow-md'
+                <i className={`${link.icon} text-3xl flex-shrink-0 transition-all duration-300 relative z-10 ${
+                  isActive(link.path)
+                    ? 'text-forest drop-shadow-lg scale-110'
+                    : 'text-gray-600 group-hover:text-forest group-hover:scale-125 group-hover:drop-shadow-md'
                 }`}></i>
-                
+
                 {/* Label with slide-in effect */}
                 {sidebarExpanded && (
-                  <span className="font-bold text-base whitespace-nowrap opacity-0 animate-fadeIn relative z-10">
+                  <span className="font-semibold text-sm whitespace-nowrap relative z-10">
                     {link.label}
                   </span>
                 )}
-                
+
                 {/* Active indicator bar */}
                 {!sidebarExpanded && isActive(link.path) && (
-                  <div className="absolute left-0 w-2 h-14 bg-gradient-to-b from-green-400 via-green-600 to-green-400 rounded-r-full shadow-lg animate-pulse"></div>
+                  <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-forest to-green-700 rounded-r-full"></div>
                 )}
               </button>
             ))}
@@ -120,10 +122,10 @@ function Navigation() {
                       navigate(link.path);
                       setMobileMenuOpen(false);
                     }}
-                    className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all ${
+                    className={`w-full flex items-center gap-4 px-5 py-4 rounded-xl transition-all ${
                       isActive(link.path)
-                        ? 'bg-green-600 text-white shadow-md'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-green-600'
+                        ? 'bg-forest text-white'
+                        : 'text-gray-700 hover:bg-gray-100 hover:text-forest'
                     }`}
                   >
                     <i className={`${link.icon} text-2xl`}></i>

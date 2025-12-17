@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import SEO, { SEOConfig } from '../components/SEO';
+import FundraisingTracker from '../components/FundraisingTracker';
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -113,6 +114,11 @@ export default function Landing() {
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-20">
         <div className="text-center max-w-4xl mx-auto">
+          {/* BeVisioneers Highlight */}
+          <div className="mb-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full px-6 py-3 inline-block text-sm font-bold">
+            🎓 FUNDING BEVISIONEERS FELLOWS
+          </div>
+
           {/* Animated Icon */}
           <div className="mb-8 flex justify-center">
             <div className="text-9xl animate-float">🌿</div>
@@ -123,18 +129,19 @@ export default function Landing() {
             Gifted Air
           </h1>
           <p className="text-2xl md:text-3xl text-gray-700 mb-4 italic">
-            A ritual of climate love
+            Where Climate Action Meets Fellowship Funding
           </p>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 leading-relaxed">
-            Transform climate action into a love language. Send symbolic gifts—plant a tree, 
-            offset a flight, support clean energy—in honor of someone you care about.
+            Transform climate action into a love language. Send symbolic gifts—plant a tree,
+            offset a flight, support clean energy—in honor of someone you care about while supporting
+            BeVisioneers Fellows in their mission.
           </p>
 
           {/* Primary CTA */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
             <button
               onClick={() => navigate('/compose')}
-              className="group relative px-10 py-5 bg-forest text-white rounded-2xl text-lg font-bold 
+              className="group relative px-10 py-5 bg-forest text-white rounded-2xl text-lg font-bold
                          hover:bg-green-800 transition-all duration-300 shadow-2xl hover:shadow-forest/50
                          border-b-4 border-green-900 hover:border-green-950 transform hover:scale-105"
             >
@@ -143,11 +150,11 @@ export default function Landing() {
                 <span>Send a Climate Gift</span>
               </span>
             </button>
-            
+
             <button
               onClick={() => navigate('/bulk')}
-              className="group relative px-10 py-5 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 
-                         text-white rounded-2xl text-lg font-bold hover:from-amber-600 hover:via-orange-600 
+              className="group relative px-10 py-5 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500
+                         text-white rounded-2xl text-lg font-bold hover:from-amber-600 hover:via-orange-600
                          hover:to-red-600 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50
                          border-b-4 border-orange-700 hover:border-orange-800 transform hover:scale-105"
             >
@@ -157,6 +164,21 @@ export default function Landing() {
                 <span className="text-xs bg-white/20 px-2 py-1 rounded-full">Save 25%</span>
               </span>
             </button>
+          </div>
+
+          {/* BeVisioneers Fundraising Highlight */}
+          <div className="mb-12 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-200 max-w-3xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <div className="text-5xl">🎓</div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-xl font-bold text-forest mb-2">Supporting BeVisioneers Fellows</h3>
+                <p className="text-gray-700">
+                  30% of all proceeds go directly to funding the BeVisioneers Fellowship program,
+                  empowering changemakers to create positive impact in climate and social innovation.
+                </p>
+              </div>
+              <div className="text-3xl font-bold text-blue-700">30% to Fellowship</div>
+            </div>
           </div>
 
           {/* Secondary Navigation */}
@@ -220,6 +242,29 @@ export default function Landing() {
           <blockquote className="text-2xl text-gray-600 italic max-w-2xl mx-auto">
             "To love is to act. To gift is to care. To heal the earth is to honor those we hold dear."
           </blockquote>
+        </div>
+
+        {/* BeVisioneers Partnership */}
+        <div className="mt-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-8 text-white text-center">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-2xl font-bold mb-4">🎓 Proudly Supporting BeVisioneers Fellows</h3>
+            <p className="text-lg mb-4">
+              30% of all proceeds fund the BeVisioneers Fellowship, empowering changemakers in climate innovation.
+            </p>
+            <a
+              href="https://bevisioneers.world"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg"
+            >
+              Learn About BeVisioneers
+            </a>
+          </div>
+        </div>
+
+        {/* Fundraising Tracker */}
+        <div className="mt-12">
+          <FundraisingTracker className="max-w-3xl mx-auto" />
         </div>
       </div>
     </div>

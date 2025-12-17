@@ -1,10 +1,10 @@
 # 🌿✨ Gifted Air - Full Stack Platform
 
-**Give the gift of environmental impact** 🌍
+**Fundraise for BeVisioneers Fellows through environmental impact gifts** 🌍
 
-Transform climate action into emotional connection. Send symbolic gifts that combine personal messages with real-world environmental impact. Plant trees, clean oceans, protect wildlife—all in someone's name.
+Transform climate action into emotional connection and fundraising. Send symbolic gifts that combine personal messages with real-world environmental impact while supporting BeVisioneers Fellows. Plant trees, clean oceans, protect wildlife—all in someone's name while contributing to the fellowship's mission.
 
-**Live Demo:** [gifted-air.vercel.app](https://gifted-air.vercel.app)  
+**Live Demo:** [gifted-air.vercel.app](https://gifted-air.vercel.app)
 **Venture Page:** [gifted-air.vercel.app/venture](https://gifted-air.vercel.app/venture)
 
 ---
@@ -125,7 +125,7 @@ App runs at `http://localhost:5174`
 
 #### 8. **Transparency Page** (`/transparency`)
 - Financial breakdown (revenue split)
-- Where money goes: 50% to partners, 41% platform, 9% fees
+- Where money goes: 40% to environmental partners, 30% to BeVisioneers Fellowship fund, 21% platform, 9% fees
 - Partner verification process
 - Impact tracking methodology
 - FAQ section
@@ -195,14 +195,15 @@ App runs at `http://localhost:5174`
   - Event & Conference Ecosystem Building
 
 - **Financial Highlights:**
-  - Unit Economics: 41% margin per transaction
-  - Scale Projections: $2K → $246K → $2.46M/year
+  - Unit Economics: 41% margin per transaction (30% goes to BeVisioneers Fellowship fund)
+  - Scale Projections: $2K → $246K → $2.46M/year (with fellowship funding growth)
   - Target Partner Categories (12 fields)
   - Viral Growth Engine (K-Factor 1.5-2.0)
 
 - **Tailored for Aneri Pradhan** (BeVisioneers Fellowship venture coach)
 - Systems thinking language throughout
 - Focus on win-win partnerships and inclusive access
+- Fundraising mechanism for BeVisioneers Fellows
 - Dark theme, ultra-modern design
 
 ### 🌙 Quality of Life
@@ -600,15 +601,16 @@ GiftedAir2/
 
 ## 👥 Team & Advisors
 
-**Founder:** Morris Muuο Mulitu  
-**Venture Coach:** Aneri Pradhan ([BeVisioneers Fellowship](https://bevisioneers.world))  
+**Founder:** Morris Muuο Mulitu
+**Venture Coach:** Aneri Pradhan ([BeVisioneers Fellowship](https://bevisioneers.world))
+**Mission:** Fundraising platform for BeVisioneers Fellows and environmental impact
 **Program:** [Do School](https://thedoschool.org)
 
 ---
 
 ## 📄 License
 
-MIT License - Built with 💚 for the planet
+MIT License - Built with 💚 for the planet and BeVisioneers Fellows
 
 ---
 
@@ -624,6 +626,6 @@ Interested in contributing? We're looking for:
 
 ---
 
-**🌿 Gifted Air - Where profitability meets planetary healing**
+**🌿 Gifted Air - Where profitability meets planetary healing and fellowship fundraising**
 
-*Making climate action personal, emotional, and viral. One gift at a time.* 🌍✨
+*Making climate action personal, emotional, and viral. Supporting BeVisioneers Fellows one gift at a time.* 🌍✨

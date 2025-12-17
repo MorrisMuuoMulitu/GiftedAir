@@ -231,6 +231,42 @@ export default function Impact() {
               </div>
             </div>
 
+            {/* BeVisioneers Impact */}
+            <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl p-8 text-white">
+              <h3 className="text-2xl font-bold text-center mb-6">
+                🎓 BeVisioneers Fellowship Impact
+              </h3>
+              <div className="text-center mb-6">
+                <p className="text-lg mb-4">
+                  Your gifts contribute 30% of proceeds to fund changemakers in climate innovation
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                  <div className="bg-white/20 backdrop-blur rounded-xl p-4">
+                    <div className="text-4xl font-black mb-2">$4,500</div>
+                    <div className="text-sm">Fellows Funded</div>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur rounded-xl p-4">
+                    <div className="text-4xl font-black mb-2">12</div>
+                    <div className="text-sm">Projects Launched</div>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur rounded-xl p-4">
+                    <div className="text-4xl font-black mb-2">8</div>
+                    <div className="text-sm">Countries Reached</div>
+                  </div>
+                </div>
+              </div>
+              <div className="text-center">
+                <a
+                  href="https://bevisioneers.world"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-50 transition-all transform hover:scale-105"
+                >
+                  Learn About BeVisioneers
+                </a>
+              </div>
+            </div>
+
             {/* Share Section */}
             <div className="bg-white rounded-2xl p-8 text-center border-2 border-forest">
               <h3 className="text-2xl font-bold text-forest mb-4">

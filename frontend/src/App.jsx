@@ -23,35 +23,38 @@ const About = lazy(() => import('./pages/About'));
 const PartnerApplication = lazy(() => import('./pages/PartnerApplication'));
 const Feedback = lazy(() => import('./pages/Feedback'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const BeVisioneersFundraising = lazy(() => import('./pages/BeVisioneersFundraising'));
 
 function AppContent() {
   useKeyboardShortcuts();
-  
+
   return (
     <>
       <Suspense fallback={<LoadingScreen />}>
         <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/compose" element={<Compose />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/impact" element={<Impact />} />
-        <Route path="/payment/success" element={<PaymentSuccess />} />
-        <Route path="/payment/bulk-success" element={<BulkSuccess />} />
-        <Route path="/transparency" element={<Transparency />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/bulk" element={<BulkGift />} />
-        <Route path="/venture" element={<Venture />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/partner-application" element={<PartnerApplication />} />
-        <Route path="/feedback" element={<Feedback />} />
-        <Route path="/certificate/:giftId" element={<Certificate />} />
-        <Route path="/gift/:giftId" element={<GiftView />} />
-        {/* 404 catch-all */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/compose" element={<Compose />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/impact" element={<Impact />} />
+
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/bulk-success" element={<BulkSuccess />} />
+          <Route path="/transparency" element={<Transparency />} />
+          <Route path="/fundraising" element={<BeVisioneersFundraising />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/bulk" element={<BulkGift />} />
+          <Route path="/venture" element={<Venture />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/partner-application" element={<PartnerApplication />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/certificate/:giftId" element={<Certificate />} />
+          <Route path="/gift/:giftId" element={<GiftView />} />
+          {/* 404 catch-all */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Suspense>
-      
+
       {/* Floating Feedback Button - Available on all pages */}
       <FloatingFeedbackButton />
     </>
