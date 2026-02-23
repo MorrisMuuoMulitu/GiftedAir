@@ -23,7 +23,6 @@ const About = lazy(() => import('./pages/About'));
 const PartnerApplication = lazy(() => import('./pages/PartnerApplication'));
 const Feedback = lazy(() => import('./pages/Feedback'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-const BeVisioneersFundraising = lazy(() => import('./pages/BeVisioneersFundraising'));
 
 function AppContent() {
   useKeyboardShortcuts();
@@ -41,7 +40,6 @@ function AppContent() {
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/bulk-success" element={<BulkSuccess />} />
           <Route path="/transparency" element={<Transparency />} />
-          <Route path="/fundraising" element={<BeVisioneersFundraising />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/bulk" element={<BulkGift />} />
           <Route path="/venture" element={<Venture />} />

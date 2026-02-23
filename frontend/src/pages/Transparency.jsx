@@ -26,61 +26,32 @@ export default function Transparency() {
           </p>
 
           <div className="space-y-4 sm:space-y-6">
-            {/* BeVisioneers Fellowship */}
-            <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-blue-50 rounded-xl border-2 border-blue-200">
-              <div className="text-2xl sm:text-3xl md:text-4xl">🎓</div>
-              <div className="flex-1">
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-forest">BeVisioneers Fellowship</h3>
-                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600">30%</span>
-                </div>
-                <p className="text-sm sm:text-base text-gray-700">
-                  Funds the BeVisioneers Fellowship program, supporting changemakers in climate and social innovation.
-                  This empowers the next generation of environmental leaders and entrepreneurs.
-                </p>
-              </div>
-            </div>
-
             {/* Climate Action */}
             <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-green-50 rounded-xl border-2 border-green-200">
               <div className="text-2xl sm:text-3xl md:text-4xl">🌍</div>
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-forest">Climate Action Partners</h3>
-                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-green-600">~40%</span>
+                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-green-600">~70%</span>
                 </div>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Funds actual environmental projects through verified partner organizations.
+                  The vast majority of your funds go directly to environmental projects through verified partner organizations.
                   This plants the trees, removes the plastic, provides clean water, and protects wildlife.
                 </p>
               </div>
             </div>
 
-            {/* Payment Processing */}
+            {/* Platform & Fees */}
             <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-blue-50 rounded-xl border-2 border-blue-200">
-              <div className="text-2xl sm:text-3xl md:text-4xl">💳</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl">🖥️</div>
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-forest">Payment Processing (Stripe)</h3>
-                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600">~21%</span>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-forest">Platform & Processing</h3>
+                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600">~30%</span>
                 </div>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Credit card processing fees ($0.30 + 2.9% per transaction).
-                  This is industry standard and goes directly to Stripe, not us.
-                </p>
-              </div>
-            </div>
-
-            {/* Platform Operations */}
-            <div className="flex items-start gap-4 p-6 bg-purple-50 rounded-xl border-2 border-purple-200">
-              <div className="text-4xl">🖥️</div>
-              <div className="flex-1">
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-xl font-bold text-forest">Platform Operations</h3>
-                  <span className="text-2xl font-bold text-purple-600">~9%</span>
-                </div>
-                <p className="text-gray-700">
-                  Hosting, email services, database, and technical maintenance to keep the platform running.
+                  Covers credit card processing fees (Stripe) and platform operations (hosting, database, maintenance).
+                  We work hard to keep these costs low to maximize the impact of every gift.
                 </p>
               </div>
             </div>
@@ -88,20 +59,18 @@ export default function Transparency() {
 
           {/* Example Breakdown */}
           <div className="mt-8 p-6 bg-gradient-to-r from-green-100 to-blue-100 rounded-xl">
-            <h3 className="text-xl font-bold text-forest mb-4">📊 Example: $1 Tree Gift</h3>
+            <h3 className="text-xl font-bold text-forest mb-4">📊 Example: $10 Gift Breakdown</h3>
             <div className="grid md:grid-cols-2 gap-4 text-sm">
               <div className="bg-white p-4 rounded-lg">
-                <p className="font-semibold text-gray-700">You Pay: <span className="text-green-600 text-lg">$1.00</span></p>
+                <p className="font-semibold text-gray-700">You Pay: <span className="text-green-600 text-lg">$10.00</span></p>
               </div>
               <div className="bg-white p-4 rounded-lg space-y-2">
-                <p className="text-gray-700">• To BeVisioneers Fellowship: <span className="font-semibold">$0.30</span></p>
-                <p className="text-gray-700">• Stripe Fee: <span className="font-semibold">$0.21</span></p>
-                <p className="text-gray-700">• To Tree Planting: <span className="font-semibold text-green-600">$0.40</span></p>
-                <p className="text-gray-700">• Platform Costs: <span className="font-semibold">$0.09</span></p>
+                <p className="text-gray-700">• To Environmental Action: <span className="font-semibold text-green-600">$7.00</span></p>
+                <p className="text-gray-700">• Platform & Processing: <span className="font-semibold">$3.00</span></p>
               </div>
             </div>
             <p className="mt-4 text-sm text-gray-600 italic">
-              * Your $1 gift funds approximately 0.4 trees and supports the BeVisioneers Fellowship through our partnerships
+              * Your gift funds measurable environmental impact through our verified global partnerships.
             </p>
           </div>
         </div>
@@ -186,23 +155,6 @@ export default function Transparency() {
           
           <div className="space-y-6">
             <div className="border-b pb-4">
-              <h3 className="text-lg font-bold text-forest mb-2">How does the BeVisioneers Fellowship funding work?</h3>
-              <p className="text-gray-700">
-                30% of each gift goes directly to funding the BeVisioneers Fellowship program.
-                This supports changemakers in climate and social innovation, creating a multiplier effect
-                for positive environmental and social impact.
-              </p>
-            </div>
-
-            <div className="border-b pb-4">
-              <h3 className="text-lg font-bold text-forest mb-2">Why are Stripe fees so high?</h3>
-              <p className="text-gray-700">
-                Stripe charges 2.9% + $0.30 per transaction. For a $1 gift, the $0.30 flat fee is 30% of the total.
-                As we grow and average order values increase, this percentage will decrease significantly.
-              </p>
-            </div>
-
-            <div className="border-b pb-4">
               <h3 className="text-lg font-bold text-forest mb-2">How do I know the impact is real?</h3>
               <p className="text-gray-700">
                 We provide monthly impact reports with donation receipts from partner organizations.
@@ -213,15 +165,15 @@ export default function Transparency() {
             <div className="border-b pb-4">
               <h3 className="text-lg font-bold text-forest mb-2">Can I get a tax deduction?</h3>
               <p className="text-gray-700">
-                Currently, no. Gifted Air is a for-profit platform that funds both environmental impact and the BeVisioneers Fellowship.
-                We're exploring nonprofit status for the future, which would enable tax-deductible giving.
+                Currently, no. Gifted Air is a for-profit platform that funds environmental impact.
+                We're exploring partnership models that may enable tax-deductible giving in the future.
               </p>
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-forest mb-2">How can I verify your claims?</h3>
               <p className="text-gray-700">
-                We publish monthly reports with donation receipts for both environmental partners and BeVisioneers Fellowship funding.
+                We publish monthly reports with donation receipts for our environmental partners.
                 You can also email us at hello@giftedair.com for detailed breakdowns or specific impact questions.
                 Full transparency is our commitment to you.
               </p>

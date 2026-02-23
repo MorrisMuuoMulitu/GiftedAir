@@ -13,7 +13,6 @@ function Navigation() {
     { path: '/compose', label: 'Create Gift', icon: 'fa-solid fa-gift' },
     { path: '/gallery', label: 'Gallery', icon: 'fa-solid fa-images' },
     { path: '/transparency', label: 'Transparency', icon: 'fa-solid fa-chart-line' },
-    { path: '/fundraising', label: 'Support Fellows', icon: 'fa-solid fa-hand-holding-heart' },
     { path: '/impact', label: 'Impact', icon: 'fa-solid fa-leaf' },
   ];
 

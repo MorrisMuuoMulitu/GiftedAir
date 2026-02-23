@@ -250,8 +250,7 @@ export default function Venture() {
     wwf: 'https://www.worldwildlife.org/',
     rainforestTrust: 'https://www.rainforesttrust.org/',
     solarAid: 'https://solar-aid.org/',
-    doSchool: 'https://www.do-school.org/',
-    beVisioneers: 'https://www.do-school.org/programs/bevisioneers'
+    doSchool: 'https://www.do-school.org/'
   };
 
   return (
@@ -319,15 +318,6 @@ export default function Venture() {
                     <span className="text-sm sm:text-base">🚀</span>
                     <span>View Live Site</span>
                   </a>
-                  <a 
-                    href={partnerLinks.doSchool}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 sm:gap-2 bg-white/10 backdrop-blur-md text-white px-3 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-base hover:bg-white/20 transition-all border border-white/20"
-                  >
-                    <span className="text-sm sm:text-base">🎓</span>
-                    <span>Do School</span>
-                  </a>
                   <button
                     onClick={() => navigate('/feedback')}
                     className="inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-base hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
@@ -367,13 +357,12 @@ export default function Venture() {
                     Prepared by <a href="https://www.linkedin.com/in/morrismuuo/" target="_blank" rel="noopener noreferrer" className="text-[#00CED1] hover:text-[#ADD8E6] transition-colors underline">Morris Mulitu</a>
                   </p>
                   <p className="text-sm sm:text-base text-white/70">
-                    BeVisioneers Fellow, Climate Tech Ecosystem Builder
-                  </p>
-                </div>
-                <div className="text-center md:text-right">
-                  <p className="text-xs sm:text-sm text-white/70 mb-1">Document Date & Time (Nairobi)</p>
-                  <p className="text-sm sm:text-base font-semibold">{currentDate} at {currentTimeInNairobi}</p>
-                </div>
+                  Environmental Entrepreneur, Climate Tech Ecosystem Builder
+                </p>
+              </div>
+              <div className="text-center md:text-right">
+                <p className="text-xs sm:text-sm text-white/70 mb-1">Document Date & Time (Nairobi)</p>
+                <p className="text-sm sm:text-base font-semibold">{currentDate} at {currentTimeInNairobi}</p>
               </div>
             </div>
           </div>
@@ -481,7 +470,7 @@ export default function Venture() {
                 <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-zinc-500">
                   <li className="flex items-start gap-2">
                     <span className="text-green-500">✓</span>
-                    <span><span className="text-green-400 font-bold">41% margin</span> on every transaction</span>
+                    <span><span className="text-green-400 font-bold">~41% margin</span> on every transaction</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-purple-500">→</span>
@@ -559,7 +548,7 @@ export default function Venture() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6 md:mb-8">
                 <div className="bg-gradient-to-br from-emerald-900/30 to-teal-900/30 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-emerald-500/30">
                   <div className="text-xl sm:text-2xl mb-1 sm:mb-2">💰</div>
-                  <h4 className="font-bold text-white mb-1 text-xs sm:text-sm">50% Revenue Share</h4>
+                  <h4 className="font-bold text-white mb-1 text-xs sm:text-sm">70% Revenue Share</h4>
                   <p className="text-[10px] sm:text-xs text-emerald-300">Direct funding to environmental impact</p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-blue-500/30">
@@ -583,7 +572,7 @@ export default function Venture() {
                       Partnership Model
                     </h4>
                     <p className="text-xs sm:text-sm text-zinc-300 mb-3 sm:mb-4">
-                      We share 50% of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. 
+                      We share 70% of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. 
                       Win-win for Kenyan organizations seeking new funding streams.
                     </p>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
@@ -623,29 +612,29 @@ export default function Venture() {
                 <div className="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 p-6 rounded-2xl border border-zinc-700">
                   <h4 className="text-xl font-black mb-4 text-[#00CED1] flex items-center gap-2">
                     <span>🧮</span>
-                    Per Gift Breakdown ($5 example)
+                    Per Gift Breakdown ($10 example)
                   </h4>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-zinc-700/50 to-zinc-800/50 rounded-xl border border-zinc-600">
                       <span className="text-zinc-300">Customer Pays</span>
-                      <span className="text-2xl font-black text-white">$5.00</span>
+                      <span className="text-2xl font-black text-white">$10.00</span>
                     </div>
                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-red-900/30 to-red-800/30 rounded-xl border-l-4 border-red-500 border-opacity-50">
-                      <span className="text-zinc-300">Stripe Fee (2.9% + $0.30)</span>
-                      <span className="font-bold text-red-400">-$0.45</span>
+                      <span className="text-zinc-300">Platform & Fees (30%)</span>
+                      <span className="font-bold text-red-400">-$3.00</span>
                     </div>
                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-900/30 to-blue-800/30 rounded-xl border-l-4 border-blue-500 border-opacity-50">
-                      <span className="text-zinc-300">To Partner (50%)</span>
-                      <span className="font-bold text-blue-400">-$2.50</span>
+                      <span className="text-zinc-300">To Partner (70%)</span>
+                      <span className="font-bold text-blue-400">-$7.00</span>
                     </div>
                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-green-900/50 to-emerald-900/50 rounded-xl border-2 border-green-500 border-opacity-50">
-                      <span className="text-emerald-300 font-bold">Platform Revenue</span>
-                      <span className="text-3xl font-black text-emerald-400">$2.05</span>
+                      <span className="text-emerald-300 font-bold">Platform Margin</span>
+                      <span className="text-3xl font-black text-emerald-400">~21%</span>
                     </div>
                   </div>
                   <div className="mt-4 p-4 bg-gradient-to-r from-emerald-900/20 to-teal-900/20 rounded-xl border border-emerald-500/30">
                     <p className="text-sm text-emerald-300 font-bold">
-                      ✨ 41% margin per transaction | Pure profit after infrastructure costs
+                      ✨ Healthy margins | Scalable via automation and digital delivery
                     </p>
                   </div>
                 </div>
@@ -1293,7 +1282,7 @@ export default function Venture() {
           </div>
         )}
 
-        {/* beVisioneers Lean Canvas Section */}
+        {/* Lean Canvas Section */}
         {activeSection === 'canvas' && (
           <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
             <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-10 border border-zinc-700">
@@ -1302,9 +1291,9 @@ export default function Venture() {
                   <span className="text-2xl sm:text-3xl">📊</span>
                 </div>
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-2">
-                  beVisioneers Lean Canvas
+                  Lean Canvas
                 </h2>
-                <p className="text-white/70 text-sm sm:text-base">Complete business model framework following the beVisioneers Fellowship approach</p>
+                <p className="text-white/70 text-sm sm:text-base">Complete business model framework for Gifted Air</p>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
@@ -1844,9 +1833,6 @@ export default function Venture() {
             >
               ← Back to Home
             </button>
-            <p className="mt-6 text-gray-600 dark:text-gray-400 text-sm">
-              Document prepared for <a href="https://www.aneripradhan.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Aneri Pradhan</a>, Venture Coach | BeVisioneers Fellowship @ Do School
-            </p>
           </div>
         </div>
       </div>
