@@ -7,7 +7,6 @@ import { API_URL } from '../config';
 export default function Impact() {
   const [senderName, setSenderName] = useState('');
   const [stats, setStats] = useState(null);
-  const [gifts, setGifts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const navigate = useNavigate();
@@ -25,7 +24,6 @@ export default function Impact() {
       if (response.ok) {
         const data = await response.json();
         setStats(data.stats);
-        setGifts(data.gifts);
       } else {
         setNotFound(true);
         setStats(null);

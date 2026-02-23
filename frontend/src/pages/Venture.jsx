@@ -357,9 +357,9 @@ export default function Venture() {
                     Prepared by <a href="https://www.linkedin.com/in/morrismuuo/" target="_blank" rel="noopener noreferrer" className="text-[#00CED1] hover:text-[#ADD8E6] transition-colors underline">Morris Mulitu</a>
                   </p>
                   <p className="text-sm sm:text-base text-white/70">
-                  Environmental Entrepreneur, Climate Tech Ecosystem Builder
-                </p>
-              </div>
+                    Environmental Entrepreneur, Climate Tech Ecosystem Builder
+                  </p>
+                </div>
               <div className="text-center md:text-right">
                 <p className="text-xs sm:text-sm text-white/70 mb-1">Document Date & Time (Nairobi)</p>
                 <p className="text-sm sm:text-base font-semibold">{currentDate} at {currentTimeInNairobi}</p>

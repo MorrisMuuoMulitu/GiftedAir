@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { API_URL } from '../config';
 
 export default function AdminV2() {
-  const [stats, setStats] = useState(null);
   const [gifts, setGifts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState('');
@@ -53,10 +52,9 @@ export default function AdminV2() {
       try {
         const statsRes = await fetch(`${API_URL}/api/gifts/stats/summary`);
         if (statsRes.ok) {
-          const statsData = await statsRes.json();
-          setStats(statsData);
+          // Stats fetched but state was removed
         }
-      } catch (err) {
+      } catch {
         // Stats endpoint not available
       }
 
@@ -187,7 +185,6 @@ export default function AdminV2() {
       });
 
       if (res.ok) {
-        const data = await res.json();
         // Update the feedback list locally with the new email response
         setFeedbackList(feedbackList.map(f =>
           f._id === id ? {

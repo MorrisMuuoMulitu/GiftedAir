@@ -6,7 +6,7 @@ import giftRoutes from './routes/gifts.js';
 import paymentRoutes from './routes/payments.js';
 import thankYouRoutes from './routes/thankYou.js';
 import bulkOrderHelper from './routes/bulkOrderHelper.js';
-import bevisioneersRoutes from './routes/bevisioneers.js';
+import impactRoutes from './routes/impact.js';
 // import referralRoutes from './routes/referrals.js'; // Disabled - launching Q2 2025
 import partnerApplicationRoutes from './routes/partnerApplications.js';
 import feedbackRoutes from './routes/feedback.js';
@@ -38,7 +38,7 @@ app.use('/api/gifts', giftRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api', thankYouRoutes);
 app.use('/api/bulk-helper', bulkOrderHelper);
-app.use('/api/bevisioneers', bevisioneersRoutes);
+app.use('/api/impact', impactRoutes);
 // app.use('/api/referrals', referralRoutes); // Disabled - launching Q2 2025
 app.use('/api/partner-applications', partnerApplicationRoutes);
 app.use('/api/feedback', feedbackRoutes);

@@ -54,7 +54,7 @@ export default function Admin() {
             const statsData = await statsRes.json();
             setStats(statsData);
           }
-        } catch (err) {
+        } catch {
           // Stats endpoint not available
         }
 

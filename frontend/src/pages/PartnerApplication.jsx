@@ -58,7 +58,7 @@ export default function PartnerApplication() {
       setTimeout(() => {
         navigate('/venture');
       }, 3000);
-    } catch (err) {
+    } catch {
       setError('Failed to submit application. Please try again or email us directly at contact@giftedair.com');
     } finally {
       setLoading(false);

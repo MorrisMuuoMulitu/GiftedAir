@@ -68,7 +68,6 @@ const giftTypeDetails = {
 export default function Gallery() {
   const navigate = useNavigate();
   const [gifts, setGifts] = useState([]);
-  const [filteredGifts, setFilteredGifts] = useState([]);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('all');
@@ -89,7 +88,6 @@ export default function Gallery() {
         const allGifts = giftsData.gifts || [];
         const galleryGifts = allGifts.filter(gift => gift.showInGallery !== false);
         setGifts(galleryGifts);
-        setFilteredGifts(galleryGifts);
         setStats(statsData.stats);
       } catch (error) {
         console.error('Error fetching gallery data:', error);

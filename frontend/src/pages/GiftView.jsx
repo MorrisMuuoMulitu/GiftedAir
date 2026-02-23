@@ -1,8 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from '../config';
 import QRCode from 'qrcode';
 import Navigation from '../components/Navigation';
+import { quickCelebrate } from '../components/Confetti';
 
 const giftTypeDetails = {
   tree: {
@@ -73,8 +74,6 @@ export default function GiftView() {
   const [editedMessage, setEditedMessage] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [qrCodeUrl, setQrCodeUrl] = useState('');
-  const [showQR, setShowQR] = useState(false);
-  const qrCanvasRef = useRef(null);
   const [showThankYou, setShowThankYou] = useState(false);
   const [thankYouMessage, setThankYouMessage] = useState('');
   const [thankYouName, setThankYouName] = useState('');
