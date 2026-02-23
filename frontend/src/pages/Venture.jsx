@@ -1814,7 +1814,7 @@ export default function Venture() {
                 </p>
               </div>
             </div>
-
+            </div>
             <div className="bg-gradient-to-r from-emerald-700 via-teal-700 to-cyan-700 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-white text-center">
               <p className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">
                 💚 Thank you for your time and consideration.
