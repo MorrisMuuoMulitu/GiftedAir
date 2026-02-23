@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import SEO, { SEOConfig } from '../components/SEO';
-import FundraisingTracker from '../components/FundraisingTracker';
 
 export default function Landing() {
   const navigate = useNavigate();
