@@ -240,19 +240,6 @@ export default function Venture() {
     ]
   };
 
-  // Partner links for easy reference
-  const partnerLinks = {
-    oneTreePlanted: 'https://onetreeplanted.org/',
-    oceanCleanup: 'https://theoceancleanup.com/',
-    charityWater: 'https://www.charitywater.org/',
-    greenBeltMovement: 'https://www.greenbeltmovement.org/',
-    coralRestoration: 'https://www.coralrestoration.org/',
-    wwf: 'https://www.worldwildlife.org/',
-    rainforestTrust: 'https://www.rainforesttrust.org/',
-    solarAid: 'https://solar-aid.org/',
-    doSchool: 'https://www.do-school.org/'
-  };
-
   return (
     <>
       <Navigation />
