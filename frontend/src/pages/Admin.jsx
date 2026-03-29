@@ -281,14 +281,14 @@ Generated from Admin Dashboard`;
   }, {}) : {};
 
   const giftTypeInfo = {
-    tree: { name: 'Trees', icon: '🌳', partnerCut: 0.50, partner: 'One Tree Planted' },
-    ocean: { name: 'Ocean Cleanup', icon: '🌊', partnerCut: 0.50, partner: 'The Ocean Cleanup' },
-    water: { name: 'Clean Water', icon: '💧', partnerCut: 0.50, partner: 'Charity: Water' },
-    cookstove: { name: 'Cookstoves', icon: '🏡', partnerCut: 0.50, partner: 'Carbon offset partners' },
-    solar: { name: 'Solar Panels', icon: '☀️', partnerCut: 0.50, partner: 'Solar Aid' },
-    coral: { name: 'Coral Reefs', icon: '🪸', partnerCut: 0.50, partner: 'Coral Restoration Foundation' },
-    wildlife: { name: 'Wildlife', icon: '🦁', partnerCut: 0.50, partner: 'World Wildlife Fund' },
-    rainforest: { name: 'Rainforest', icon: '🌴', partnerCut: 0.50, partner: 'Rainforest Trust' }
+    tree: { name: 'Trees', icon: '🌳', partnerCut: 0.70, partner: 'One Tree Planted' },
+    ocean: { name: 'Ocean Cleanup', icon: '🌊', partnerCut: 0.70, partner: 'The Ocean Cleanup' },
+    water: { name: 'Clean Water', icon: '💧', partnerCut: 0.70, partner: 'Charity: Water' },
+    cookstove: { name: 'Cookstoves', icon: '🏡', partnerCut: 0.70, partner: 'Carbon offset partners' },
+    solar: { name: 'Solar Panels', icon: '☀️', partnerCut: 0.70, partner: 'Solar Aid' },
+    coral: { name: 'Coral Reefs', icon: '🪸', partnerCut: 0.70, partner: 'Coral Restoration Foundation' },
+    wildlife: { name: 'Wildlife', icon: '🦁', partnerCut: 0.70, partner: 'World Wildlife Fund' },
+    rainforest: { name: 'Rainforest', icon: '🌴', partnerCut: 0.70, partner: 'Rainforest Trust' }
   };
 
   let totalRevenue = 0;
@@ -370,7 +370,7 @@ Generated from Admin Dashboard`;
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="text-3xl mb-2">📈</div>
             <div className="text-2xl font-bold text-purple-600">
-              ${(stats.totalValue * 0.50).toFixed(2)}
+              ${(stats.totalValue * 0.70).toFixed(2)}
             </div>
             <div className="text-gray-600">Owed to Partners</div>
           </div>
@@ -452,7 +452,7 @@ Generated from Admin Dashboard`;
                 <div className="text-3xl font-bold text-blue-600">${totalStripeFees.toFixed(2)}</div>
               </div>
               <div className="bg-purple-50 p-6 rounded-xl">
-                <div className="text-sm text-gray-600 mb-1">Owed to Partners (50%)</div>
+                <div className="text-sm text-gray-600 mb-1">Owed to Partners (70%)</div>
                 <div className="text-3xl font-bold text-purple-600">${totalOwed.toFixed(2)}</div>
               </div>
               <div className="bg-amber-50 p-6 rounded-xl">

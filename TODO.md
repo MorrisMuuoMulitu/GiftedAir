@@ -61,5 +61,9 @@ Version 2 collapses three competing value propositions into one: **High-Aestheti
 - [x] Initial Root Package Setup
 - [x] Removal of Fellowship Layer
 - [x] 70/30 Split Implementation
-- [ ] Proof of Reality Integration
-- [ ] Impact Profile Launch
+- [x] UI Audit & Consistency (70/30, no fellowship)
+- [x] Updated README and Venture Projections
+- [ ] Proof of Reality Integration (GPS/Photos)
+- [ ] Impact Profile Launch (Earth Guardian Dashboard)
+- [ ] Mobile Story View (Aesthetic screenshot mode)
+- [ ] B2B Live-Wall Widget

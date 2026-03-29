@@ -74,7 +74,7 @@ export default function About() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600">✓</span>
-                  <span>Complete transparency on where the money goes (50% to verified partners)</span>
+                  <span>Complete transparency on where the money goes (funding verified partners)</span>
                 </li>
               </ul>
             </div>
@@ -142,7 +142,7 @@ export default function About() {
                   <ul className="space-y-2 text-slate-700">
                     <li className="flex items-start gap-2">
                       <span className="text-green-600">🌳</span>
-                      <span>50% of every gift goes directly to verified environmental organizations</span>
+                      <span>Your gift directly funds verified environmental organizations</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green-600">🔍</span>
@@ -229,15 +229,15 @@ export default function About() {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold">Environmental Partner</span>
-                    <span className="text-green-600 font-bold">50%</span>
+                    <span className="text-green-600 font-bold">Direct Funding</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-semibold">Stripe Payment Processing</span>
-                    <span className="text-slate-600">~3%</span>
+                    <span className="text-slate-600">Transaction Fee</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-semibold">Platform Operations & Growth</span>
-                    <span className="text-slate-600">~47%</span>
+                    <span className="text-slate-600">Sustainable Automation</span>
                   </div>
                 </div>
               </div>

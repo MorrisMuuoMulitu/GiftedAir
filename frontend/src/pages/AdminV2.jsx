@@ -881,7 +881,7 @@ export default function AdminV2() {
                   const count = typeGifts.length;
                   const quantity = typeGifts.reduce((sum, g) => sum + g.quantity, 0);
                   const stripeFee = (revenue * 0.029) + (count * 0.30);
-                  const owedToPartner = revenue * 0.50;
+                  const owedToPartner = revenue * 0.70;
                   const platformCut = revenue - stripeFee - owedToPartner;
 
                   const partnerNames = {
@@ -929,7 +929,7 @@ export default function AdminV2() {
                                   <span className="font-semibold">Stripe Fees (2.9% + $0.30):</span> ${stripeFee.toFixed(2)}
                                 </div>
                                 <div>
-                                  <span className="font-semibold">To Partner (50%):</span> ${owedToPartner.toFixed(2)}
+                                  <span className="font-semibold">To Partner (70%):</span> ${owedToPartner.toFixed(2)}
                                 </div>
                                 <div>
                                   <span className="font-semibold">Platform Revenue:</span> ${platformCut.toFixed(2)}
@@ -964,9 +964,9 @@ export default function AdminV2() {
                   <div className="bg-purple-50 p-6 rounded-xl">
                     <div className="text-sm text-gray-600 mb-1">Owed to Partners</div>
                     <div className="text-3xl font-bold text-purple-600">
-                      ${(gifts.reduce((sum, g) => sum + g.totalCost, 0) * 0.50).toFixed(2)}
+                      ${(gifts.reduce((sum, g) => sum + g.totalCost, 0) * 0.70).toFixed(2)}
                     </div>
-                    <div className="text-xs text-gray-500 mt-1">50% of revenue</div>
+                    <div className="text-xs text-gray-500 mt-1">70% of revenue</div>
                   </div>
                   <div className="bg-amber-50 p-6 rounded-xl">
                     <div className="text-sm text-gray-600 mb-1">Platform Revenue</div>
@@ -974,7 +974,7 @@ export default function AdminV2() {
                       ${(() => {
                         const totalRevenue = gifts.reduce((sum, g) => sum + g.totalCost, 0);
                         const stripeFees = (totalRevenue * 0.029) + (gifts.length * 0.30);
-                        const partnerCut = totalRevenue * 0.50;
+                        const partnerCut = totalRevenue * 0.70;
                         return (totalRevenue - stripeFees - partnerCut).toFixed(2);
                       })()}
                     </div>
@@ -994,7 +994,7 @@ export default function AdminV2() {
                     <div className="font-bold text-gray-800">Make Partner Donations</div>
                     <div className="text-xs sm:text-sm md:text-base text-gray-600">
                       Total to donate this month: <span className="font-bold text-green-600">
-                        ${(gifts.reduce((sum, g) => sum + g.totalCost, 0) * 0.50).toFixed(2)}
+                        ${(gifts.reduce((sum, g) => sum + g.totalCost, 0) * 0.70).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -1030,7 +1030,7 @@ export default function AdminV2() {
                 {(() => {
                   const totalRevenue = gifts.reduce((sum, g) => sum + g.totalCost, 0);
                   const stripeFees = (totalRevenue * 0.029) + (gifts.length * 0.30);
-                  const partnerCut = totalRevenue * 0.50;
+                  const partnerCut = totalRevenue * 0.70;
                   const platformRevenue = totalRevenue - stripeFees - partnerCut;
 
                   const stripePercent = (stripeFees / totalRevenue) * 100;
@@ -1041,7 +1041,7 @@ export default function AdminV2() {
                     <>
                       <div className="mb-6">
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="font-semibold">Partners (50%)</span>
+                          <span className="font-semibold">Partners (70%)</span>
                           <span className="text-purple-600 font-bold">${partnerCut.toFixed(2)}</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-6">

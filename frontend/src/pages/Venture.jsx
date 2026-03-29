@@ -105,7 +105,7 @@ export default function Venture() {
       'One-click environmental gifts: Choose from 8 causes, add message, send instantly',
       'Beautiful gift experience: Recipient gets personalized page with certificate and impact details',
       'Built-in sharing: Every gift becomes shareable content (Instagram, gallery, social)',
-      'Transparent impact: See exactly where money goes (50% to partners, tracked publicly)',
+      'Transparent impact: See exactly where money goes (tracked publicly)',
       'Gamified giving: Leaderboards, public gallery for social recognition, referrals coming Q2 2025'
     ],
     
@@ -137,7 +137,7 @@ export default function Venture() {
     speedBumps: [
       {
         limitation: 'Trust barrier: New platform, users hesitant to send money',
-        mitigation: 'Stripe for secure payments, transparent 50/50 split displayed publicly, partner logos (WWF, One Tree Planted), public gallery showing real gifts'
+        mitigation: 'Stripe for secure payments, transparent funding model displayed publicly, partner logos (WWF, One Tree Planted), public gallery showing real gifts'
       },
       {
         limitation: 'Partner verification: Need formal partnerships with environmental orgs',
@@ -188,8 +188,8 @@ export default function Venture() {
     
     // 10. Cost structure
     costStructure: [
-      'Partner donations: 50% of every gift goes directly to environmental orgs',
-      'Stripe fees: 2.9% + $0.30 per transaction (~3% of revenue)',
+      'Partner donations: Majority of every gift goes directly to environmental orgs',
+      'Stripe fees: Standard processing fees (~3% of revenue)',
       'Platform infrastructure: ~$50/month (Vercel hosting, MongoDB, Resend emails)',
       'Marketing: Bootstrap phase (<$500/month on Instagram ads, influencer gifting)',
       'Development: Solo founder time (currently evenings/weekends)',
@@ -198,7 +198,7 @@ export default function Venture() {
     
     // 11. Income streams
     incomeStreams: [
-      'Transaction fees: ~47% of gift value (after partner donation + Stripe)',
+      'Transaction fees: Sustainable platform margin per gift',
       'Corporate bulk orders: 20-500 gifts per order ($1,000-$25,000 deals)',
       'Premium features (future): Custom branding for companies, advanced analytics',
       'Subscription model (future): Monthly recurring gifts at discounted rates',
@@ -535,7 +535,7 @@ export default function Venture() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6 md:mb-8">
                 <div className="bg-gradient-to-br from-emerald-900/30 to-teal-900/30 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-emerald-500/30">
                   <div className="text-xl sm:text-2xl mb-1 sm:mb-2">💰</div>
-                  <h4 className="font-bold text-white mb-1 text-xs sm:text-sm">70% Revenue Share</h4>
+                  <h4 className="font-bold text-white mb-1 text-xs sm:text-sm">Direct Funding</h4>
                   <p className="text-[10px] sm:text-xs text-emerald-300">Direct funding to environmental impact</p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-blue-500/30">
@@ -559,7 +559,7 @@ export default function Venture() {
                       Partnership Model
                     </h4>
                     <p className="text-xs sm:text-sm text-zinc-300 mb-3 sm:mb-4">
-                      We share 70% of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. 
+                      We share the majority of revenue with partners, handle all tech & marketing, and provide transparent impact tracking. 
                       Win-win for Kenyan organizations seeking new funding streams.
                     </p>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
@@ -607,16 +607,16 @@ export default function Venture() {
                       <span className="text-2xl font-black text-white">$10.00</span>
                     </div>
                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-red-900/30 to-red-800/30 rounded-xl border-l-4 border-red-500 border-opacity-50">
-                      <span className="text-zinc-300">Platform & Fees (30%)</span>
+                      <span className="text-zinc-300">Platform & Fees</span>
                       <span className="font-bold text-red-400">-$3.00</span>
                     </div>
                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-900/30 to-blue-800/30 rounded-xl border-l-4 border-blue-500 border-opacity-50">
-                      <span className="text-zinc-300">To Partner (70%)</span>
+                      <span className="text-zinc-300">To Partner</span>
                       <span className="font-bold text-blue-400">-$7.00</span>
                     </div>
                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-green-900/50 to-emerald-900/50 rounded-xl border-2 border-green-500 border-opacity-50">
-                      <span className="text-emerald-300 font-bold">Platform Margin</span>
-                      <span className="text-3xl font-black text-emerald-400">~21%</span>
+                      <span className="text-emerald-300 font-bold">Platform Revenue</span>
+                      <span className="text-3xl font-black text-emerald-400">Sustainable</span>
                     </div>
                   </div>
                   <div className="mt-4 p-4 bg-gradient-to-r from-emerald-900/20 to-teal-900/20 rounded-xl border border-emerald-500/30">
@@ -638,7 +638,7 @@ export default function Venture() {
                         <span className="text-xl font-black text-white">$5K</span>
                       </div>
                       <div className="text-sm text-emerald-400 font-bold">
-                        Monthly Revenue: $2,050
+                        Monthly Revenue: $1,050
                       </div>
                     </div>
                     
@@ -648,7 +648,7 @@ export default function Venture() {
                         <span className="text-xl font-black text-white">$50K</span>
                       </div>
                       <div className="text-sm text-cyan-400 font-bold">
-                        Monthly Revenue: $20,500 | $246K/year
+                        Monthly Revenue: $10,500 | $126K/year
                       </div>
                     </div>
                     
@@ -658,7 +658,7 @@ export default function Venture() {
                         <span className="text-xl font-black text-white">$500K</span>
                       </div>
                       <div className="text-sm text-purple-400 font-bold">
-                        Monthly Revenue: $205K | $2.46M/year
+                        Monthly Revenue: $105K | $1.26M/year
                       </div>
                     </div>
                   </div>
@@ -840,8 +840,8 @@ export default function Venture() {
                       <div className="text-xs text-pink-400 font-bold mb-2">FINANCIAL MODEL</div>
                       <ul className="text-sm text-zinc-300 space-y-1 text-xs">
                         <li>→ Order: $3,000 (150 × $20)</li>
-                        <li>→ Gifted Air revenue: $1,230 (41%)</li>
-                        <li>→ To partners: $1,500 (50%)</li>
+                        <li>→ Gifted Air revenue: $810 (27%)</li>
+                        <li>→ Direct impact funding</li>
                         <li>→ AOV: 10-20x higher than B2C</li>
                       </ul>
                     </div>
@@ -897,8 +897,8 @@ export default function Venture() {
                       <div className="text-xs text-orange-400 font-bold mb-2">SCALE POTENTIAL</div>
                       <ul className="text-sm text-white/70 space-y-1">
                         <li>→ 500 gifts × $5 = $2,500 order</li>
-                        <li>→ Platform revenue: $1,025 (41%)</li>
-                        <li>→ Partner revenue: $1,250 (50%)</li>
+                        <li>→ Platform revenue: $675 (27%)</li>
+                        <li>→ Direct partner funding</li>
                         <li>→ Template for all climate conferences</li>
                       </ul>
                     </div>

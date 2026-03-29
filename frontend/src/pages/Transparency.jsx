@@ -32,10 +32,9 @@ export default function Transparency() {
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-forest">Climate Action Partners</h3>
-                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-green-600">~70%</span>
                 </div>
                 <p className="text-sm sm:text-base text-gray-700">
-                  The vast majority of your funds go directly to environmental projects through verified partner organizations.
+                  Your funds go directly to environmental projects through verified partner organizations.
                   This plants the trees, removes the plastic, provides clean water, and protects wildlife.
                 </p>
               </div>
@@ -47,7 +46,6 @@ export default function Transparency() {
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-forest">Platform & Processing</h3>
-                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600">~30%</span>
                 </div>
                 <p className="text-sm sm:text-base text-gray-700">
                   Covers credit card processing fees (Stripe) and platform operations (hosting, database, maintenance).
@@ -55,23 +53,6 @@ export default function Transparency() {
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* Example Breakdown */}
-          <div className="mt-8 p-6 bg-gradient-to-r from-green-100 to-blue-100 rounded-xl">
-            <h3 className="text-xl font-bold text-forest mb-4">📊 Example: $10 Gift Breakdown</h3>
-            <div className="grid md:grid-cols-2 gap-4 text-sm">
-              <div className="bg-white p-4 rounded-lg">
-                <p className="font-semibold text-gray-700">You Pay: <span className="text-green-600 text-lg">$10.00</span></p>
-              </div>
-              <div className="bg-white p-4 rounded-lg space-y-2">
-                <p className="text-gray-700">• To Environmental Action: <span className="font-semibold text-green-600">$7.00</span></p>
-                <p className="text-gray-700">• Platform & Processing: <span className="font-semibold">$3.00</span></p>
-              </div>
-            </div>
-            <p className="mt-4 text-sm text-gray-600 italic">
-              * Your gift funds measurable environmental impact through our verified global partnerships.
-            </p>
           </div>
         </div>
 
@@ -84,7 +65,7 @@ export default function Transparency() {
             <h3 className="text-2xl font-bold text-forest mb-4">Partners Coming Soon</h3>
             <p className="text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
               We're currently onboarding verified environmental organizations to join our platform. 
-              Partner organizations will receive 50% of all gift revenue to fund their climate projects.
+              Partner organizations receive direct funding to execute their climate projects.
             </p>
             
             <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 max-w-xl mx-auto mb-6">

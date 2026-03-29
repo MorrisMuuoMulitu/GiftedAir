@@ -323,6 +323,13 @@ export default function GiftView() {
                 >
                   📜 Get Certificate
                 </button>
+                <button
+                  onClick={() => navigate(`/gift/${giftId}/story`)}
+                  className="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-8 py-3 rounded-full font-semibold 
+                           hover:from-pink-600 hover:to-rose-600 transition-all transform hover:scale-105 shadow-lg"
+                >
+                  📸 Share to Story
+                </button>
               </div>
               
               <div className="max-w-2xl mx-auto">

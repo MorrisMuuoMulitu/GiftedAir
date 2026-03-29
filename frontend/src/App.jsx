@@ -22,6 +22,7 @@ const Venture = lazy(() => import('./pages/Venture'));
 const About = lazy(() => import('./pages/About'));
 const PartnerApplication = lazy(() => import('./pages/PartnerApplication'));
 const Feedback = lazy(() => import('./pages/Feedback'));
+const GiftStory = lazy(() => import('./pages/GiftStory'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function AppContent() {
@@ -48,6 +49,7 @@ function AppContent() {
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/certificate/:giftId" element={<Certificate />} />
           <Route path="/gift/:giftId" element={<GiftView />} />
+          <Route path="/gift/:giftId/story" element={<GiftStory />} />
           {/* 404 catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>

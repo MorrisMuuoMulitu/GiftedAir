@@ -113,11 +113,6 @@ export default function Landing() {
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-20">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Impact Highlight */}
-          <div className="mb-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full px-6 py-3 inline-block text-sm font-bold">
-            🌍 70% OF PROCEEDS TO CLIMATE ACTION
-          </div>
-
           {/* Animated Icon */}
           <div className="mb-8 flex justify-center">
             <div className="text-9xl animate-float">🌿</div>
@@ -170,13 +165,12 @@ export default function Landing() {
             <div className="flex flex-col md:flex-row items-center gap-4">
               <div className="text-5xl">🌍</div>
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-bold text-forest mb-2">Maximum Environmental Impact</h3>
+                <h3 className="text-xl font-bold text-forest mb-2">Direct Environmental Impact</h3>
                 <p className="text-gray-700">
-                  70% of every gift goes directly to funding verified environmental projects worldwide,
+                  Every gift directly funds verified environmental projects worldwide,
                   from planting trees to cleaning oceans and protecting endangered habitats.
                 </p>
               </div>
-              <div className="text-3xl font-bold text-green-700">70% Impact</div>
             </div>
           </div>
 

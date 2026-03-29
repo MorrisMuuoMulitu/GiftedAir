@@ -98,7 +98,7 @@ export default function PartnerApplication() {
     <>
       <SEO 
         title="Partner Application - Gifted Air"
-        description="Apply to become a verified partner organization and receive 50% of gift revenue for environmental impact in Kenya"
+        description="Apply to become a verified partner organization and receive direct gift revenue for environmental impact in Kenya"
         path="/partner-application"
       />
       <Navigation />
@@ -111,7 +111,7 @@ export default function PartnerApplication() {
               Partner Application Form
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Join our network of verified environmental organizations in Kenya and receive 50% of all gift revenue directed to your cause.
+              Join our network of verified environmental organizations in Kenya and receive direct gift revenue directed to your cause.
             </p>
           </div>
 
@@ -122,7 +122,7 @@ export default function PartnerApplication() {
               <div className="flex items-start gap-3">
                 <span className="text-2xl">💰</span>
                 <div>
-                  <h3 className="font-bold text-gray-900 dark:text-white">50% Revenue Share</h3>
+                  <h3 className="font-bold text-gray-900 dark:text-white">Direct Impact Funding</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-300">Direct funding for your environmental work</p>
                 </div>
               </div>
