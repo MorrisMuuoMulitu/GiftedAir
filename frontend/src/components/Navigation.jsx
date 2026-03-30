@@ -1,167 +1,132 @@
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Globe, User, Shield, LayoutDashboard, Heart } from 'lucide-react';
 
-function Navigation() {
-  const navigate = useNavigate();
+const navItems = [
+  { label: 'Marketplace', path: '/compose', icon: <Globe className="w-4 h-4" /> },
+  { label: 'Gallery', path: '/gallery', icon: <Heart className="w-4 h-4" /> },
+  { label: 'Impact', path: '/impact', icon: <LayoutDashboard className="w-4 h-4" /> },
+  { label: 'Transparency', path: '/transparency', icon: <Shield className="w-4 h-4" /> },
+];
+
+export default function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
-  const navLinks = [
-    { path: '/', label: 'Home', icon: 'fa-solid fa-house' },
-    { path: '/about', label: 'About', icon: 'fa-solid fa-circle-info' },
-    { path: '/compose', label: 'Create Gift', icon: 'fa-solid fa-gift' },
-    { path: '/gallery', label: 'Gallery', icon: 'fa-solid fa-images' },
-    { path: '/transparency', label: 'Transparency', icon: 'fa-solid fa-chart-line' },
-    { path: '/impact', label: 'Impact', icon: 'fa-solid fa-leaf' },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const isActive = (path) => location.pathname === path;
+  // Close menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   return (
-    <>
-      {/* Desktop Sidebar */}
-      <div 
-        className="hidden md:block fixed left-0 top-0 h-screen z-50 transition-all duration-300"
-        onMouseEnter={() => setSidebarExpanded(true)}
-        onMouseLeave={() => setSidebarExpanded(false)}
-        style={{ width: sidebarExpanded ? '240px' : '100px' }}
-      >
-        <div className="h-full border-r border-gray-200/20 flex flex-col">
-          {/* Navigation Links - Centered Vertically */}
-          <div className="flex-1 flex flex-col justify-center space-y-6 px-3">
-            {navLinks.map((link) => (
-              <button
-                key={link.path}
-                onClick={() => navigate(link.path)}
-                className={`w-full flex items-center gap-5 px-4 py-5 transition-all duration-300 group relative overflow-hidden rounded-xl ${
-                  isActive(link.path)
-                    ? 'text-forest bg-forest/10'
-                    : 'text-gray-600 hover:text-forest hover:bg-forest/5'
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      scrolled ? 'py-4' : 'py-8'
+    }`}>
+      <div className="container mx-auto px-4">
+        <div className={`relative flex items-center justify-between px-6 py-4 rounded-[2rem] transition-all duration-500 border border-white/5 ${
+          scrolled ? 'bg-slate-950/80 backdrop-blur-xl shadow-2xl' : 'bg-transparent'
+        }`}>
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 group">
+            <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-700 rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform duration-500">
+              <span className="text-xl">🌿</span>
+            </div>
+            <span className="text-xl font-black tracking-tighter text-off-white">Gifted Air</span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-1 bg-slate-900/50 p-1.5 rounded-2xl border border-white/5">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${
+                  location.pathname === item.path
+                    ? 'bg-off-white text-slate-950 shadow-lg'
+                    : 'text-slate-400 hover:text-off-white hover:bg-white/5'
                 }`}
               >
-                {/* Animated background on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-forest/0 via-forest/5 to-forest/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-
-                {/* Icon with enhanced effects */}
-                <i className={`${link.icon} text-3xl flex-shrink-0 transition-all duration-300 relative z-10 ${
-                  isActive(link.path)
-                    ? 'text-forest drop-shadow-lg scale-110'
-                    : 'text-gray-600 group-hover:text-forest group-hover:scale-125 group-hover:drop-shadow-md'
-                }`}></i>
-
-                {/* Label with slide-in effect */}
-                {sidebarExpanded && (
-                  <span className="font-semibold text-sm whitespace-nowrap relative z-10">
-                    {link.label}
-                  </span>
-                )}
-
-                {/* Active indicator bar */}
-                {!sidebarExpanded && isActive(link.path) && (
-                  <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-forest to-green-700 rounded-r-full"></div>
-                )}
-              </button>
+                {item.icon}
+                {item.label}
+              </Link>
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* Mobile Header */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-100">
-        <div className="flex items-center justify-end px-4 h-16">
+          {/* User / Action */}
+          <div className="hidden md:flex items-center gap-4">
+            <Link 
+              to="/admin" 
+              className="w-11 h-11 bg-slate-900 border border-white/10 rounded-full flex items-center justify-center text-slate-400 hover:text-bronze transition-colors shadow-inner"
+            >
+              <User className="w-5 h-5" />
+            </Link>
+            <Link
+              to="/compose"
+              className="px-6 py-3 bg-bronze text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-amber-600 transition-all shadow-lg shadow-bronze/20"
+            >
+              Gift Now
+            </Link>
+          </div>
+
+          {/* Mobile Menu Toggle */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 rounded-xl hover:bg-gray-100 transition-colors text-gray-700"
-            aria-label="Toggle menu"
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden w-11 h-11 bg-slate-900 border border-white/10 rounded-xl flex items-center justify-center text-off-white"
           >
-            {mobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Sidebar */}
-      {mobileMenuOpen && (
-        <>
-          {/* Backdrop */}
-          <div 
-            className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 animate-fadeIn"
-            onClick={() => setMobileMenuOpen(false)}
-          ></div>
-          
-          {/* Sliding Menu */}
-          <div className="md:hidden fixed top-0 left-0 h-screen w-72 z-50 bg-white backdrop-blur-xl shadow-2xl animate-slideInLeft border-r border-gray-200">
-            <div className="flex flex-col h-full">
-              {/* Header */}
-              <div className="flex items-center justify-end px-6 h-20 border-b border-gray-100">
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 rounded-xl hover:bg-gray-100 transition-colors text-gray-700"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Navigation */}
-              <div className="flex-1 py-6 px-4 space-y-3">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.path}
-                    onClick={() => {
-                      navigate(link.path);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`w-full flex items-center gap-4 px-5 py-4 rounded-xl transition-all ${
-                      isActive(link.path)
-                        ? 'bg-forest text-white'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-forest'
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 right-0 mt-4 px-4 md:hidden"
+          >
+            <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] p-8 shadow-2xl overflow-hidden relative">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-bronze/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="flex flex-col gap-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`flex items-center gap-4 p-5 rounded-2xl text-base font-black uppercase tracking-[0.2em] transition-all ${
+                      location.pathname === item.path
+                        ? 'bg-off-white text-slate-950'
+                        : 'bg-slate-950/50 text-slate-400 hover:text-off-white border border-white/5'
                     }`}
                   >
-                    <i className={`${link.icon} text-2xl`}></i>
-                    <span className="font-semibold">{link.label}</span>
-                  </button>
+                    <span className="p-2 bg-slate-950 rounded-xl border border-white/5">{item.icon}</span>
+                    {item.label}
+                  </Link>
                 ))}
+                <div className="h-px bg-white/5 my-4" />
+                <Link
+                  to="/compose"
+                  className="w-full py-6 bg-bronze text-white rounded-2xl font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-2xl shadow-bronze/20"
+                >
+                  <span className="text-xl">🎁</span>
+                  Initiate Ritual
+                </Link>
               </div>
             </div>
-          </div>
-        </>
-      )}
-
-      {/* Spacer for desktop content */}
-      <div className="hidden md:block" style={{ marginLeft: '100px' }}></div>
-      
-      {/* Spacer for mobile content */}
-      <div className="md:hidden h-16"></div>
-
-      {/* Animation styles */}
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slideInLeft {
-          from { transform: translateX(-100%); }
-          to { transform: translateX(0); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-in-out forwards;
-        }
-        .animate-slideInLeft {
-          animation: slideInLeft 0.3s ease-out forwards;
-        }
-      `}</style>
-    </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 }
-
-export default Navigation;

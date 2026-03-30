@@ -10,6 +10,7 @@ import impactRoutes from './routes/impact.js';
 // import referralRoutes from './routes/referrals.js'; // Disabled - launching Q2 2025
 import partnerApplicationRoutes from './routes/partnerApplications.js';
 import feedbackRoutes from './routes/feedback.js';
+import mpesaRoutes from './routes/mpesa.js';
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ app.use('/api/impact', impactRoutes);
 // app.use('/api/referrals', referralRoutes); // Disabled - launching Q2 2025
 app.use('/api/partner-applications', partnerApplicationRoutes);
 app.use('/api/feedback', feedbackRoutes);
+app.use('/api/mpesa', mpesaRoutes);
 
 async function startServer() {
   try {

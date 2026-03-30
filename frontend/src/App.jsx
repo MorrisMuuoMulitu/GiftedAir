@@ -1,3 +1,13 @@
+// MOBILE READINESS & FUTURE PORTING (React Native / Expo)
+// ------------------------------------------------------
+// This codebase is built with modularity in mind to support the upcoming transition to a mobile app.
+// Key considerations for the mobile port:
+// 1. Logic Separation: Keep business logic (M-Pesa, Impact calculations) in hooks or services.
+// 2. Styling: Tailwind classes map closely to NativeWind or dedicated React Native StyleSheets.
+// 3. Components: Use primitives that have direct equivalents (e.g., div -> View, span -> Text).
+// 4. Navigation: React Router routes can be mapped to React Navigation stacks.
+// 5. Assets: SVG icons (Lucide) have native support via react-native-svg-lucide.
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useState, useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
@@ -12,6 +22,7 @@ const GiftView = lazy(() => import('./pages/GiftView'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const Leaderboard = lazy(() => import('./pages/Leaderboard'));
 const Impact = lazy(() => import('./pages/Impact'));
+const ImpactWidget = lazy(() => import('./pages/ImpactWidget'));
 const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'));
 const Transparency = lazy(() => import('./pages/Transparency'));
 const Admin = lazy(() => import('./pages/AdminV2'));
@@ -37,7 +48,8 @@ function AppContent() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/impact" element={<Impact />} />
-
+          <Route path="/sender/:name" element={<Impact />} />
+          <Route path="/impact/widget/:partnerName" element={<ImpactWidget />} />
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/bulk-success" element={<BulkSuccess />} />
           <Route path="/transparency" element={<Transparency />} />

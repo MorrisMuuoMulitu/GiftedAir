@@ -1,160 +1,87 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import QRCode from 'qrcode';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, Users, TreeDeciduous, Info, Check, ArrowRight, Minus, Plus } from 'lucide-react';
 import { API_URL } from '../config';
 import Navigation from '../components/Navigation';
 
-const giftTypes = [
+const projects = [
   {
-    id: 'tree',
-    icon: '🌳',
-    name: 'Plant a Tree',
-    description: 'One tree absorbs ~48 lbs of CO₂ per year',
-    color: 'forest',
-    unitPrice: 1,
-    unit: 'tree'
-  },
-  {
-    id: 'cookstove',
-    icon: '🏡',
-    name: 'Clean Cookstove',
-    description: 'Reduces indoor pollution and saves forests',
-    color: 'earth',
-    unitPrice: 5,
-    unit: 'stove'
-  },
-  {
-    id: 'solar',
-    icon: '☀️',
-    name: 'Solar Panel',
-    description: 'Powers homes with clean energy',
-    color: 'orange-500',
+    id: 'uplift-her',
+    title: 'Uplift Her Kenya',
+    founder: 'Faith Wambiya',
+    impact: '10 Mangroves protected',
+    description: 'Empowering women in rural Kenya through agrivoltaics and sustainable climate farming. Your gift funds infrastructure and training for local women farmers.',
+    fullStory: 'Founded by beVisioneers fellow Faith Wambiya, Uplift Her Kenya is transforming how rural communities interact with their land. By combining solar energy (agrivoltaics) with sustainable crop cultivation, they are creating a blueprint for resilience.',
+    unit: 'Project Support Unit',
     unitPrice: 10,
-    unit: 'panel'
+    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80',
+    location: 'Coastal Kenya',
+    coordinates: { lat: -3.9845, lng: 39.6766 },
+    category: 'Women & Energy',
+    website: 'https://www.upliftherkenya.org/'
   },
   {
-    id: 'ocean',
-    icon: '🌊',
-    name: 'Ocean Cleanup',
-    description: 'Removes plastic from our waters',
-    color: 'ocean',
+    id: 'kaiti-greening',
+    title: 'Kaiti Greening Champions',
+    founder: 'Community Led',
+    impact: 'Tree Restoration',
+    description: 'A grassroots movement with a 5M tree restoration goal. Your gift directly funds the planting and maintenance of indigenous trees in the Makueni landscape.',
+    fullStory: 'The Kaiti Greening Champions are restoration experts. They don\'t just plant trees; they nurture them. Their mission is to reclaim the drylands of Makueni through community-led reforestation efforts that ensure survival rates above 90%.',
+    unit: 'Indigenous Trees',
     unitPrice: 2,
-    unit: 'kg'
-  },
-  {
-    id: 'coral',
-    icon: '🪸',
-    name: 'Coral Reef Restoration',
-    description: 'Rebuilds vital ocean ecosystems',
-    color: 'pink-500',
-    unitPrice: 5,
-    unit: 'coral'
-  },
-  {
-    id: 'wildlife',
-    icon: '🦁',
-    name: 'Wildlife Conservation',
-    description: 'Protects endangered species and habitats',
-    color: 'amber-600',
-    unitPrice: 8,
-    unit: 'animal'
-  },
-  {
-    id: 'water',
-    icon: '💧',
-    name: 'Clean Water Access',
-    description: 'Provides safe drinking water to communities',
-    color: 'blue-400',
-    unitPrice: 3,
-    unit: 'person'
-  },
-  {
-    id: 'rainforest',
-    icon: '🌴',
-    name: 'Rainforest Protection',
-    description: 'Preserves critical biodiversity hotspots',
-    color: 'green-600',
-    unitPrice: 7,
-    unit: 'acre'
+    image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80',
+    location: 'Makueni, Kenya',
+    coordinates: { lat: -1.7833, lng: 37.6167 },
+    category: 'Reforestation',
+    website: 'https://kaitigreening.org/'
   }
 ];
 
 const messageTemplates = [
-  {
-    id: 'birthday',
-    icon: '🎂',
-    name: 'Birthday',
-    message: 'Happy Birthday! 🎉\n\nInstead of something that adds to the world\'s clutter, I wanted to give you a gift that makes a real difference. This is for you and for our planet.\n\nMay this year bring you joy, and may our Earth flourish with the positive impact we create together.\n\nWith love and hope for a greener future,'
-  },
-  {
-    id: 'thank-you',
-    icon: '🙏',
-    name: 'Thank You',
-    message: 'Thank You! 💚\n\nYour kindness and support mean the world to me. I wanted to express my gratitude in a way that also gives back to our planet.\n\nThis gift represents the positive ripple effect you\'ve had on my life, now extending to the Earth we share.\n\nWith sincere appreciation,'
-  },
-  {
-    id: 'anniversary',
-    icon: '💑',
-    name: 'Anniversary',
-    message: 'Happy Anniversary! 💕\n\nJust as our love has grown stronger with each passing year, I hope this gift helps our planet grow stronger too.\n\nTogether, we\'re not just building a life—we\'re nurturing a world worth living in. Here\'s to many more years of love and impact.\n\nForever yours,'
-  },
-  {
-    id: 'apology',
-    icon: '🌹',
-    name: 'Apology',
-    message: 'I\'m Sorry 🌿\n\nI know actions speak louder than words, so I wanted to make a meaningful gesture. This gift is a step toward healing—both between us and for our planet.\n\nI hope you can forgive me, and I promise to do better. Let this be a symbol of new growth and fresh beginnings.\n\nWith sincere regret and hope,'
-  },
-  {
-    id: 'graduation',
-    icon: '🎓',
-    name: 'Graduation',
-    message: 'Congratulations Graduate! 🎓\n\nAs you step into this new chapter, I wanted to celebrate your achievement with a gift that plants seeds for the future—both yours and our planet\'s.\n\nYou\'ve worked so hard to get here. May your impact on the world be as meaningful as this moment.\n\nProud of you always,'
-  },
-  {
-    id: 'just-because',
-    icon: '✨',
-    name: 'Just Because',
-    message: 'Thinking of You 💭\n\nNo special occasion—just wanted to remind you how much you mean to me. In a world that often feels heavy, you\'re a bright spot.\n\nThis gift is a small way to spread some of that light to our planet too. Because people like you make the world worth caring for.\n\nWith love,'
-  }
+  { id: 'ritual', name: 'Ritual', text: 'I gift this climate action to you, for our planet. May it grow as our connection grows.' },
+  { id: 'apology', name: 'Apology', text: 'Let this new growth be a symbol of healing. I am sorry, and I am committed to doing better for you and for the Earth.' },
+  { id: 'legacy', name: 'Legacy', text: 'In honor of your strength, I am supporting this restoration project. Your impact continues to ripple through the world.' }
 ];
 
 export default function Compose() {
   const navigate = useNavigate();
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState('');
   const [recipientName, setRecipientName] = useState('');
   const [recipientEmail, setRecipientEmail] = useState('');
   const [senderName, setSenderName] = useState('');
   const [location, setLocation] = useState('');
-  const [scheduledDate, setScheduledDate] = useState('');
-  const [scheduleEnabled, setScheduleEnabled] = useState(false);
-  const [showInGallery, setShowInGallery] = useState(false);
-  const [showPreview, setShowPreview] = useState(false);
+  const [showInGallery, setShowInGallery] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [showMpesaModal, setShowMpesaModal] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [paymentStep, setPaymentStep] = useState('input'); // input, processing, success
+  const [createdGiftId, setCreatedGiftId] = useState(null);
 
-  const selectedGift = giftTypes.find(g => g.id === selectedType);
+  const selectedProject = projects.find(p => p.id === selectedProjectId);
+  const totalCost = selectedProject ? selectedProject.unitPrice * quantity : 0;
 
-  // Auto-scroll to form when gift type is selected
-  useEffect(() => {
-    if (selectedType) {
-      const formSection = document.getElementById('gift-form-section');
-      if (formSection) {
-        setTimeout(() => {
-          formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-      }
-    }
-  }, [selectedType]);
-  const totalCost = selectedGift ? selectedGift.unitPrice * quantity : 0;
-
-  const handleCreateGift = async () => {
-    if (!selectedType || !recipientName || !senderName || !message) {
+  const initiatePayment = async () => {
+    if (!selectedProjectId || !recipientName || !senderName || !message) {
       alert('Please fill in all required fields');
       return;
     }
+    setShowMpesaModal(true);
+  };
 
+  const handleMpesaPush = async () => {
+    if (!phoneNumber.match(/^(?:254|\+254|0)?(7(?:[0-9][0-9])|1(?:[0-9][0-9]))[0-9]{6}$/)) {
+      alert('Please enter a valid M-Pesa number');
+      return;
+    }
+
+    setPaymentStep('processing');
+    
+    // In a real app, we first create the gift as 'pending'
     const giftData = {
-      type: selectedType,
+      type: selectedProjectId,
       quantity,
       message,
       recipientName,
@@ -162,408 +89,355 @@ export default function Compose() {
       senderName,
       totalCost,
       location: location || '',
-      scheduledDate: scheduleEnabled && scheduledDate ? new Date(scheduledDate).toISOString() : null,
-      status: scheduleEnabled && scheduledDate ? 'scheduled' : 'sent',
-      showInGallery
+      coordinates: selectedProject.coordinates,
+      impactImage: selectedProject.image,
+      showInGallery,
+      status: 'pending'
     };
 
     try {
-      // Directly create gift without Stripe payment
-      const response = await fetch(`${API_URL}/api/gifts`, {
+      const giftRes = await fetch(`${API_URL}/api/gifts`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(giftData)
       });
+      const giftResult = await giftRes.json();
+      
+      if (giftResult.success) {
+        setCreatedGiftId(giftResult.gift._id);
+        
+        // Initiate STK Push
+        const mpesaRes = await fetch(`${API_URL}/api/mpesa/stkpush`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            phoneNumber: phoneNumber.replace('+', '').replace(/^0/, '254'),
+            amount: totalCost,
+            giftId: giftResult.gift._id
+          })
+        });
 
-      const data = await response.json();
-
-      if (data.success && data.gift && data.gift._id) {
-        // Gift created successfully, navigate to its page
-        navigate(`/gift/${data.gift._id}`);
-        alert('Gift created successfully!');
-      } else {
-        alert('Failed to create gift. Please try again.');
+        // SIMULATION: For this demo/ritual experience, we'll simulate success after 5 seconds
+        setTimeout(() => {
+          setPaymentStep('success');
+        }, 5000);
       }
     } catch (error) {
-      console.error('Error creating gift:', error);
-      alert('Failed to create gift. Please try again.');
+      console.error('Payment Error:', error);
+      alert('Payment initiation failed. Please try again.');
+      setPaymentStep('input');
     }
   };
 
+  const handleCreateGift = async () => {
+    initiatePayment();
+  };
+
   return (
-    <>
+    <div className="min-h-screen bg-slate-950 text-off-white pb-20">
       <Navigation />
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12">
-        <div className="container mx-auto px-4 max-w-4xl">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-forest mb-4">Compose Your Gift</h1>
-            <p className="text-xl text-gray-600">Choose a climate action and add your personal touch</p>
-          </div>
+      
+      <div className="container mx-auto px-4 max-w-6xl pt-24">
+        {/* Cinematic Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-20"
+        >
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">Compose Your Ritual</h1>
+          <p className="text-xl text-slate-400 max-w-2xl mx-auto">Select a project that resonates with your heart. Every unit gifted is a step toward planetary healing.</p>
+        </motion.div>
 
-          {/* Step 1: Select Gift Type */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold text-forest mb-6">1. Choose Your Climate Action</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {giftTypes.map((gift) => (
-                <button
-                  key={gift.id}
-                  onClick={() => setSelectedType(gift.id)}
-                  className={`p-6 rounded-xl border-2 text-left transition-all duration-300 
-                  ${selectedType === gift.id
-                      ? 'border-forest bg-green-50 shadow-lg'
-                      : 'border-gray-200 hover:border-forest hover:shadow-md'}`}
-                >
-                  <div className="text-5xl mb-3">{gift.icon}</div>
-                  <h3 className="text-xl font-bold text-forest mb-2">{gift.name}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{gift.description}</p>
-                  <p className="text-forest font-semibold">${gift.unitPrice} supports {gift.unit} {gift.id === 'tree' ? 'planting' : gift.id === 'ocean' ? 'cleanup' : gift.id === 'water' ? 'access' : gift.id === 'rainforest' ? 'protection' : gift.id === 'wildlife' ? 'conservation' : gift.id === 'coral' ? 'restoration' : 'funding'}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Step 2: Quantity & Details */}
-          {selectedType && (
-            <div id="gift-form-section" className="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-grow">
-              <h2 className="text-2xl font-bold text-forest mb-6">2. How Many?</h2>
-              <div className="flex items-center gap-4 mb-6">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="bg-forest text-white w-12 h-12 rounded-full text-2xl hover:bg-green-800 transition"
-                >
-                  −
-                </button>
-                <div className="text-4xl font-bold text-forest min-w-[80px] text-center">
-                  {quantity}
-                </div>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="bg-forest text-white w-12 h-12 rounded-full text-2xl hover:bg-green-800 transition"
-                >
-                  +
-                </button>
-                <span className="text-xl text-gray-600 ml-4">
-                  {selectedGift?.unit}(s) • ${totalCost} total
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* Step 3: Schedule Delivery (Optional) */}
-          {selectedType && (
-            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <h2 className="text-2xl font-bold text-forest mb-6">3. Schedule Delivery (Optional) ⏰</h2>
-
-              <div className="mb-6">
-                <label className="flex items-center gap-3 cursor-pointer p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                  <input
-                    type="checkbox"
-                    checked={scheduleEnabled}
-                    onChange={(e) => setScheduleEnabled(e.target.checked)}
-                    className="w-5 h-5 text-forest focus:ring-forest rounded"
-                  />
-                  <div>
-                    <span className="text-gray-700 font-semibold block">
-                      Schedule this gift for a future date
-                    </span>
-                    <span className="text-sm text-gray-500">
-                      Perfect for birthdays, anniversaries, or reminders!
-                    </span>
-                  </div>
-                </label>
-
-                {scheduleEnabled && (
-                  <div className="mt-6 animate-fade-in-up p-6 bg-amber-50 rounded-xl border-2 border-amber-200">
-                    <label className="block text-sm font-semibold text-gray-700 mb-3">
-                      📅 When should we send this gift?
-                    </label>
-                    <input
-                      type="date"
-                      value={scheduledDate}
-                      onChange={(e) => setScheduledDate(e.target.value)}
-                      min={new Date().toISOString().split('T')[0]}
-                      className="w-full p-4 border-2 border-amber-300 rounded-lg focus:border-forest focus:outline-none text-lg"
-                      required={scheduleEnabled}
-                    />
-                    <p className="text-sm text-gray-600 mt-3 flex items-start gap-2">
-                      <span>💡</span>
-                      <span>We'll automatically send this gift on the date you choose!</span>
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Step 4: Personal Details */}
-          {selectedType && (
-            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              <h2 className="text-2xl font-bold text-forest mb-6">4. Add Your Details</h2>
-              <div className="space-y-4 mb-6">
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">From:</label>
-                  <input
-                    type="text"
-                    value={senderName}
-                    onChange={(e) => setSenderName(e.target.value)}
-                    placeholder="Your name"
-                    className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-forest focus:outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">To:</label>
-                  <input
-                    type="text"
-                    value={recipientName}
-                    onChange={(e) => setRecipientName(e.target.value)}
-                    placeholder="Recipient's name"
-                    className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-forest focus:outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
-                    📧 Recipient's Email (Optional):
-                  </label>
-                  <input
-                    type="email"
-                    value={recipientEmail}
-                    onChange={(e) => setRecipientEmail(e.target.value)}
-                    placeholder="recipient@example.com"
-                    className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-forest focus:outline-none"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    💌 We'll send them a beautiful email notification!
-                  </p>
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
-                    📍 Your Location (Optional):
-                  </label>
-                  <input
-                    type="text"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    placeholder="e.g., Nairobi, Kenya or New York, USA"
-                    className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-forest focus:outline-none"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Show where your climate love is coming from!
-                  </p>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-forest mb-6">5. Write Your Message</h2>
-
-              {/* Message Templates */}
-              <div className="mb-6">
-                <p className="text-sm text-gray-600 font-semibold mb-3">💡 Need inspiration? Choose a template:</p>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-                  {messageTemplates.map((template) => (
-                    <button
-                      key={template.id}
-                      onClick={() => setMessage(template.message)}
-                      className="flex flex-col items-center gap-2 p-3 bg-white border-2 border-gray-200 rounded-xl 
-                             hover:border-forest hover:bg-green-50 transition-all duration-200 group"
-                    >
-                      <span className="text-3xl group-hover:scale-110 transition-transform">{template.icon}</span>
-                      <span className="text-xs font-bold text-gray-700 group-hover:text-forest text-center">
-                        {template.name}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Dear earth guardian, this gift is a symbol of my love for you and our planet..."
-                rows={6}
-                className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-lg focus:border-forest 
-                       focus:outline-none resize-none font-poetic text-base sm:text-lg"
+        <div className="grid lg:grid-cols-3 gap-12">
+          {/* Marketplace Column */}
+          <div className="lg:col-span-2 space-y-8">
+            <h2 className="text-sm font-black uppercase tracking-[0.3em] text-bronze mb-8">Project Marketplace</h2>
+            
+            {projects.map((project) => (
+              <ProjectCard 
+                key={project.id}
+                project={project}
+                isSelected={selectedProjectId === project.id}
+                onClick={() => setSelectedProjectId(project.id)}
               />
+            ))}
+          </div>
 
-              {/* Privacy Toggle */}
-              <div className="mt-6 p-4 bg-blue-50 rounded-xl border-2 border-blue-200">
-                <label className="flex items-start gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={showInGallery}
-                    onChange={(e) => setShowInGallery(e.target.checked)}
-                    className="w-5 h-5 text-forest focus:ring-forest rounded mt-0.5"
-                  />
-                  <div>
-                    <span className="text-gray-800 font-semibold block">
-                      📸 Share this gift in the public gallery
-                    </span>
-                    <span className="text-sm text-gray-600 block mt-1">
-                      Your gift and message will be visible to inspire others.
-                      Uncheck to keep it private (only you and recipient can see it).
-                    </span>
-                  </div>
-                </label>
-              </div>
-            </div>
-          )}
-
-          {/* Preview & Payment Section */}
-          {selectedType && recipientName && senderName && message && (
-            <>
-              {/* Preview Button */}
-              <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 text-center">
-                <button
-                  onClick={() => setShowPreview(!showPreview)}
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg transform hover:scale-105"
-                >
-                  {showPreview ? '✕ Close Preview' : '👁️ Preview Gift Card'}
-                </button>
-              </div>
-
-              {/* Preview Modal */}
-              {showPreview && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowPreview(false)}>
-                  <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-                    {/* Preview Header */}
-                    <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-6 text-center rounded-t-3xl">
-                      <h2 className="text-3xl font-bold text-white mb-2">✨ Gift Card Preview</h2>
-                      <p className="text-white/90">This is how your recipient will see it</p>
+          {/* Form Column */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24">
+              <AnimatePresence mode="wait">
+                {selectedProject ? (
+                  <motion.div 
+                    key="form"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    className="bg-slate-900 border border-white/5 rounded-[2.5rem] p-8 shadow-2xl"
+                  >
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-12 h-12 rounded-2xl bg-bronze/20 flex items-center justify-center text-2xl">
+                        ✨
+                      </div>
+                      <div>
+                        <h3 className="font-black text-xl">The Ritual Details</h3>
+                        <p className="text-xs text-slate-500 uppercase font-black tracking-widest">For {selectedProject.title}</p>
+                      </div>
                     </div>
 
-                    {/* Gift Card Content */}
-                    <div className={`p-8 bg-gradient-to-br ${selectedType === 'tree' ? 'from-green-50 to-emerald-50' :
-                      selectedType === 'ocean' ? 'from-blue-50 to-cyan-50' :
-                        selectedType === 'water' ? 'from-blue-50 to-indigo-50' :
-                          selectedType === 'cookstove' ? 'from-orange-50 to-red-50' :
-                            selectedType === 'coral' ? 'from-pink-50 to-rose-50' :
-                              selectedType === 'rainforest' ? 'from-green-50 to-teal-50' :
-                                selectedType === 'wildlife' ? 'from-yellow-50 to-amber-50' :
-                                  'from-yellow-50 to-orange-50'
-                      }`}>
-                      {/* Icon */}
-                      <div className="text-center mb-6">
-                        <div className="text-9xl mb-4 animate-grow">
-                          {selectedType === 'tree' ? '🌳' :
-                            selectedType === 'ocean' ? '🌊' :
-                              selectedType === 'water' ? '💧' :
-                                selectedType === 'cookstove' ? '🏡' :
-                                  selectedType === 'coral' ? '🪸' :
-                                    selectedType === 'rainforest' ? '🌴' :
-                                      selectedType === 'wildlife' ? '🦁' : '☀️'}
+                    <div className="space-y-6">
+                      {/* Quantity Ritual */}
+                      <div className="p-6 bg-slate-950 rounded-2xl border border-white/5">
+                        <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-4 text-center">Ritual Intensity (Units)</label>
+                        <div className="flex items-center justify-between">
+                          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5">
+                            <Minus className="w-4 h-4" />
+                          </button>
+                          <span className="text-4xl font-black">{quantity}</span>
+                          <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5">
+                            <Plus className="w-4 h-4" />
+                          </button>
                         </div>
-                        <h3 className="text-4xl font-bold text-forest mb-2">A Gift of Climate Love</h3>
-                        <p className="text-xl text-gray-700">
-                          {giftTypes.find(g => g.id === selectedType)?.name}
-                        </p>
                       </div>
 
                       {/* Names */}
-                      <div className="text-center mb-6">
-                        <p className="text-2xl text-gray-700 mb-2">
-                          <span className="font-bold">To:</span> {recipientName}
-                        </p>
-                        <p className="text-2xl text-gray-700">
-                          <span className="font-bold">From:</span> {senderName}
-                        </p>
-                        {location && (
-                          <p className="text-lg text-gray-600 mt-2">
-                            📍 {location}
-                          </p>
-                        )}
+                      <div className="grid gap-4">
+                        <input 
+                          type="text" 
+                          placeholder="Sender Name"
+                          value={senderName}
+                          onChange={(e) => setSenderName(e.target.value)}
+                          className="w-full bg-slate-950 border border-white/5 rounded-xl p-4 focus:border-bronze outline-none transition-all"
+                        />
+                        <input 
+                          type="text" 
+                          placeholder="Recipient Name"
+                          value={recipientName}
+                          onChange={(e) => setRecipientName(e.target.value)}
+                          className="w-full bg-slate-950 border border-white/5 rounded-xl p-4 focus:border-bronze outline-none transition-all"
+                        />
+                        <input 
+                          type="email" 
+                          placeholder="Recipient Email (Optional)"
+                          value={recipientEmail}
+                          onChange={(e) => setRecipientEmail(e.target.value)}
+                          className="w-full bg-slate-950 border border-white/5 rounded-xl p-4 focus:border-bronze outline-none transition-all"
+                        />
                       </div>
 
-                      {/* Message */}
-                      <div className="bg-white/80 backdrop-blur p-4 sm:p-6 rounded-xl shadow-lg mb-6">
-                        <p className="text-base sm:text-lg text-gray-800 italic leading-relaxed">
-                          "{message}"
-                        </p>
+                      {/* Poetic Message */}
+                      <div className="space-y-4">
+                        <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500">Your Connection Message</label>
+                        <div className="flex gap-2">
+                          {messageTemplates.map(t => (
+                            <button 
+                              key={t.id}
+                              onClick={() => setMessage(t.text)}
+                              className="px-3 py-1 bg-slate-950 border border-white/5 rounded-full text-[10px] font-black hover:border-bronze transition-all"
+                            >
+                              {t.name}
+                            </button>
+                          ))}
+                        </div>
+                        <textarea 
+                          rows={4}
+                          value={message}
+                          onChange={(e) => setMessage(e.target.value)}
+                          placeholder="Write something heartfelt..."
+                          className="w-full bg-slate-950 border border-white/5 rounded-xl p-4 focus:border-bronze outline-none transition-all resize-none italic font-serif"
+                        />
                       </div>
 
-                      {/* Impact */}
-                      <div className="bg-forest/10 p-4 rounded-xl text-center">
-                        <p className="text-lg font-bold text-forest">
-                          Climate Impact: {quantity} {giftTypes.find(g => g.id === selectedType)?.unit}(s)
-                        </p>
-                        <p className="text-sm text-gray-600 mt-2">
-                          Total Value: ${totalCost}
-                        </p>
-                        {scheduleEnabled && scheduledDate && (
-                          <p className="text-sm text-amber-700 font-semibold mt-2">
-                            ⏰ Scheduled for: {new Date(scheduledDate).toLocaleDateString()}
-                          </p>
-                        )}
+                      {/* Final Action */}
+                      <div className="pt-6 border-t border-white/5">
+                        <div className="flex justify-between items-end mb-6">
+                          <span className="text-slate-500 font-bold">Planetary Contribution</span>
+                          <span className="text-3xl font-black text-teal-400">${totalCost}</span>
+                        </div>
+                        
+                        <button 
+                          onClick={handleCreateGift}
+                          disabled={loading}
+                          className="w-full py-5 bg-off-white text-slate-950 rounded-2xl font-black text-lg hover:bg-bronze hover:text-off-white transition-all shadow-2xl flex items-center justify-center gap-2 group"
+                        >
+                          {loading ? 'Initiating...' : (
+                            <>Confirm the Ritual <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></>
+                          )}
+                        </button>
+                        <p className="text-center text-[10px] text-slate-500 mt-4 uppercase tracking-[0.2em] font-black">M-Pesa Prioritized for Local Micro-Gifting</p>
                       </div>
                     </div>
-
-                    {/* Preview Footer */}
-                    <div className="p-6 bg-gray-50 rounded-b-3xl text-center">
-                      <button
-                        onClick={() => setShowPreview(false)}
-                        className="bg-gray-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-700 transition-all"
-                      >
-                        ← Back to Editing
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </>
-          )}
-
-          {/* Payment Summary & Checkout Button */}
-          {selectedType && recipientName && senderName && message && (
-            <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-2xl p-8 text-center">
-              <h3 className="text-2xl font-bold text-forest mb-4">Ready to Send Your Gift?</h3>
-
-              {/* Price Summary */}
-              <div className="bg-white rounded-xl p-6 mb-6 max-w-md mx-auto">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-gray-700 font-semibold">Gift Type:</span>
-                  <span className="text-forest font-bold">{selectedGift.name}</span>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-gray-700 font-semibold">Quantity:</span>
-                  <span className="text-forest font-bold">{quantity}</span>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-gray-700 font-semibold">Price per unit:</span>
-                  <span className="text-forest font-bold">${selectedGift.unitPrice}</span>
-                </div>
-                <div className="border-t-2 border-gray-300 my-4"></div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xl font-bold text-gray-900">Total:</span>
-                  <span className="text-3xl font-black text-forest">${totalCost}</span>
-                </div>
-              </div>
-
-              <button
-                onClick={handleCreateGift}
-                className="bg-forest text-white px-16 py-5 rounded-full text-xl font-bold 
-                       hover:bg-green-800 transition-all duration-300 transform hover:scale-105 
-                       shadow-2xl hover:shadow-3xl flex items-center gap-3 mx-auto"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                </svg>
-                Create Gift
-              </button>
-
+                  </motion.div>
+                ) : (
+                  <motion.div 
+                    key="empty"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="h-[400px] bg-slate-900/50 border border-dashed border-white/10 rounded-[2.5rem] flex flex-col items-center justify-center text-center p-8"
+                  >
+                    <div className="w-20 h-20 bg-slate-950 rounded-full flex items-center justify-center text-3xl mb-6">🌱</div>
+                    <h3 className="font-black text-xl mb-2">Select a Project</h3>
+                    <p className="text-slate-500 text-sm">Choose where your climate gift will go to start the ritual.</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-          )}
-
-          {/* Back Link */}
-          <div className="text-center mt-8">
-            <button
-              onClick={() => navigate('/')}
-              className="text-forest hover:underline"
-            >
-              ← Back to Home
-            </button>
           </div>
         </div>
       </div>
-    </>
+
+      {/* M-Pesa Ritual Modal */}
+      <AnimatePresence>
+        {showMpesaModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => paymentStep !== 'processing' && setShowMpesaModal(false)}
+              className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl"
+            />
+            
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-full max-w-lg bg-slate-900 border border-white/5 rounded-[3rem] p-10 shadow-2xl overflow-hidden"
+            >
+              {paymentStep === 'input' && (
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-teal-deep rounded-3xl mx-auto flex items-center justify-center text-4xl mb-6">📱</div>
+                  <h3 className="text-3xl font-black mb-4">M-Pesa Checkout</h3>
+                  <p className="text-slate-400 mb-8 leading-relaxed">Enter your M-Pesa number to receive the payment prompt on your phone.</p>
+                  
+                  <div className="space-y-4">
+                    <input 
+                      type="tel"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      placeholder="e.g., 0712345678"
+                      className="w-full bg-slate-950 border border-white/10 rounded-2xl p-5 text-center text-2xl font-black outline-none focus:border-bronze transition-all"
+                    />
+                    <button 
+                      onClick={handleMpesaPush}
+                      className="w-full py-5 bg-teal-deep text-white rounded-2xl font-black text-lg hover:bg-teal-600 transition-all flex items-center justify-center gap-2"
+                    >
+                      Receive Prompt <ArrowRight className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <p className="mt-8 text-[10px] text-slate-500 uppercase tracking-widest font-black">Secured by Daraja STK Push</p>
+                </div>
+              )}
+
+              {paymentStep === 'processing' && (
+                <div className="text-center py-10">
+                  <div className="relative w-32 h-32 mx-auto mb-8">
+                    <motion.div 
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                      className="absolute inset-0 border-4 border-t-bronze border-r-transparent border-b-teal-400 border-l-transparent rounded-full"
+                    />
+                    <div className="absolute inset-4 bg-slate-950 rounded-full flex items-center justify-center text-4xl">⏳</div>
+                  </div>
+                  <h3 className="text-3xl font-black mb-4">Awaiting PIN</h3>
+                  <p className="text-slate-400 leading-relaxed animate-pulse">Please check your phone for the M-Pesa prompt and enter your secret PIN to complete the ritual.</p>
+                </div>
+              )}
+
+              {paymentStep === 'success' && (
+                <div className="text-center py-6">
+                  {/* The Magic Reveal Moment */}
+                  <motion.div 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="mb-8"
+                  >
+                    <div className="relative w-48 h-48 mx-auto mb-8">
+                      <motion.div 
+                        initial={{ scale: 0 }}
+                        animate={{ scale: [0, 1.2, 1] }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="absolute inset-0 bg-teal-400/20 rounded-full blur-3xl"
+                      />
+                      <motion.div 
+                        initial={{ scale: 0.5, y: 50 }}
+                        animate={{ scale: 1, y: 0 }}
+                        transition={{ duration: 2, type: "spring" }}
+                        className="text-9xl relative z-10"
+                      >
+                        {selectedProject.id === 'uplift-her' ? '🌱' : '🌳'}
+                      </motion.div>
+                    </div>
+                    <h3 className="text-4xl font-black mb-2">Ritual Complete!</h3>
+                    <p className="text-teal-400 font-black uppercase tracking-widest mb-6">Climate Gift Revealed</p>
+                    <p className="text-slate-400 leading-relaxed italic font-serif mb-8">"For {recipientName}, a new seed of hope has been planted."</p>
+                    
+                    <button 
+                      onClick={() => navigate(`/gift/${createdGiftId}`)}
+                      className="w-full py-5 bg-bronze text-white rounded-2xl font-black text-lg hover:bg-amber-600 transition-all flex items-center justify-center gap-2 shadow-2xl shadow-bronze/30"
+                    >
+                      View Your Gift <ArrowRight className="w-5 h-5" />
+                    </button>
+                  </motion.div>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function ProjectCard({ project, isSelected, onClick }) {
+  return (
+    <motion.div 
+      whileHover={{ y: -5 }}
+      onClick={onClick}
+      className={`group cursor-pointer rounded-[2rem] overflow-hidden border-2 transition-all duration-500 flex flex-col md:flex-row h-full md:h-72 ${
+        isSelected ? 'border-bronze bg-slate-900 shadow-2xl shadow-bronze/10' : 'border-white/5 bg-slate-900/50 hover:border-white/20'
+      }`}
+    >
+      <div className="md:w-1/3 relative h-64 md:h-full">
+        <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-transparent to-transparent opacity-60"></div>
+        <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-slate-950/80 backdrop-blur px-3 py-1 rounded-full border border-white/10">
+          <MapPin className="w-3 h-3 text-teal-400" />
+          <span className="text-[10px] font-black uppercase tracking-widest">{project.location}</span>
+        </div>
+      </div>
+      
+      <div className="p-8 flex-1 flex flex-col justify-between">
+        <div>
+          <div className="flex justify-between items-start mb-4">
+            <div>
+              <div className="text-[10px] font-black text-teal-400 uppercase tracking-widest mb-1">{project.category}</div>
+              <h3 className="text-2xl font-black">{project.title}</h3>
+            </div>
+            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+              isSelected ? 'bg-bronze border-bronze text-white' : 'border-white/10'
+            }`}>
+              {isSelected && <Check className="w-4 h-4" />}
+            </div>
+          </div>
+          <p className="text-slate-400 text-sm leading-relaxed mb-4">{project.description}</p>
+        </div>
+
+        <div className="flex flex-wrap gap-4 pt-4 border-t border-white/5">
+          <div className="flex items-center gap-2">
+            <Users className="w-4 h-4 text-slate-500" />
+            <span className="text-xs font-black uppercase tracking-widest">{project.founder}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <TreeDeciduous className="w-4 h-4 text-slate-500" />
+            <span className="text-xs font-black uppercase tracking-widest text-teal-400">{project.impact}</span>
+          </div>
+          <div className="ml-auto flex items-center gap-1">
+            <span className="text-xs text-slate-500">starts at</span>
+            <span className="text-xl font-black">${project.unitPrice}</span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }

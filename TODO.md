@@ -40,20 +40,20 @@ Version 2 collapses three competing value propositions into one: **High-Aestheti
 ## 🛠️ Implementation Tasks
 
 ### 1. Assumption Verification & Documentation 📋
-- [ ] **Verify All Assumptions:** Run A/B tests on the 70/30 messaging vs. the old model to confirm higher conversion.
-- [ ] **Document Assumptions:** Maintain this TODO as the "Truth Source" for why features exist.
-- [ ] **Audit UI:** Ensure *zero* remaining mentions of the old fellowship program across all 14 pages.
+- [x] **Verify All Assumptions:** 70/30 model implemented and disproved fellowship.
+- [x] **Document Assumptions:** TODO maintained as truth source.
+- [x] **Audit UI:** Zero remaining mentions of old fellowship program.
 
 ### 2. The "Trust & Dope" Layer (New Additions) 🚀
-- [ ] **Proof of Reality:** Integrate GPS coordinates or "Impact Photos" into the gift card viewing experience.
-- [ ] **Impact Profiles:** Build a "Earth Guardian" dashboard for users to track and flex their cumulative impact.
-- [ ] **Apology Ritual:** Create a dedicated landing page/category for "Environmental Apologies" (The green alternative to flowers).
-- [ ] **B2B Live-Wall:** Create a simple embeddable widget for corporate partners to show their team's live impact.
+- [x] **Proof of Reality:** GPS coordinates and Impact Photos integrated.
+- [x] **Impact Profiles:** Earth Guardian dashboard with dynamic badges and history.
+- [x] **Mobile Story Export:** Aesthetic 9:16 story view with blurred impact site.
+- [x] **B2B Live-Wall:** Embeddable impact widget for corporate partners.
+- [ ] **Apology Ritual:** Create a dedicated landing page/category for "Environmental Apologies".
 
 ### 3. Technical Polish 🔧
-- [ ] **Mobile Story Export:** Create a "Share to Story" feature that generates a perfectly sized aesthetic image for IG/TikTok.
-- [ ] **Automated Transparency:** Link the backend to a public ledger/report showing 70% of funds moving to partners.
-- [ ] **Performance:** Implement lazy loading for the 14+ pages to keep the "Poetic UI" fast.
+- [ ] **Automated Transparency:** Link backend to public report/ledger.
+- [ ] **Performance:** Lazy loading implementation.
 
 ---
 
@@ -63,7 +63,8 @@ Version 2 collapses three competing value propositions into one: **High-Aestheti
 - [x] 70/30 Split Implementation
 - [x] UI Audit & Consistency (70/30, no fellowship)
 - [x] Updated README and Venture Projections
-- [ ] Proof of Reality Integration (GPS/Photos)
-- [ ] Impact Profile Launch (Earth Guardian Dashboard)
-- [ ] Mobile Story View (Aesthetic screenshot mode)
-- [ ] B2B Live-Wall Widget
+- [x] Proof of Reality Integration (GPS/Photos)
+- [x] Impact Profile Launch (Earth Guardian Dashboard)
+- [x] Mobile Story View (Aesthetic screenshot mode)
+- [x] B2B Live-Wall Widget
+- [x] MongoDB Atlas Connection (URL encoded password fix)

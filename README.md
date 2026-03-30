@@ -1,134 +1,83 @@
-# 🌿✨ Gifted Air - Full Stack Platform
+# 🌿 Gifted Air - Ritual-Led Decarbonization
 
-**Transform climate action into emotional connection through high-aesthetic environmental gifts** 🌍
+**Transform climate action into your personal love language.**
 
-Send symbolic gifts that combine personal messages with real-world environmental impact. Plant trees, clean oceans, protect wildlife—all in someone's name while directly funding verified environmental partners.
+Gifted Air is a world-class "Climate Gifting" ritual site designed to transition environmental action from a "data tool" to an emotional experience. We facilitate a poetic connection between people and the planet through symbolic, high-aesthetic gifts that fund verified restoration projects.
 
-**Live Demo:** [gifted-air.vercel.app](https://gifted-air.vercel.app)
-**Venture Page:** [gifted-air.vercel.app/venture](https://gifted-air.vercel.app/venture)
-
----
-
-## 🚀 Quick Start
-
-### Frontend (React + Vite)
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-### Backend (Node.js + Express)
-```bash
-cd backend
-npm install
-npm start
-```
+**Founder:** Morris Mulitu
+**Program:** beVisioneers Fellow
 
 ---
 
-## 🏗️ Project Structure
+## 🏛️ Technical Architecture
 
-### Frontend (`/frontend`)
-- **Framework:** React 18 with Vite
-- **Styling:** Tailwind CSS (Custom "Forest" & "Sky" palette)
-- **State Management:** React Context API (Theme)
-- **Components:** Modular, reusable UI components (Confetti, LoadingScreen, Navigation)
-- **Pages:** 14+ specialized pages including Admin, Venture, Impact, and Gift Types
-
-### Backend (`/backend`)
-- **Framework:** Node.js with Express
-- **Database:** MongoDB Atlas (Mongoose ODM)
-- **Payments:** Stripe API (Checkout & Webhooks)
-- **Email:** Resend API (Automated notifications)
-- **Models:** Gift, BulkOrder, Feedback, PartnerApplication, Referral
-
----
-
-## 🧩 Key Features
-
-#### 1. **Gift Composition** (`/compose`)
-- 8 specialized climate action types
-- Multi-recipient bulk order support
-- Personalized messaging (300 chars max)
-- Secure Stripe integration
-
-#### 2. **Gift View** (`/gift/:id`)
-- Beautifully animated gift reveal
-- Personalized message display
-- Printable impact certificate
-- Integrated thank-you note system
-
-#### 3. **Environmental Impact** (`/impact`)
-- Real-time impact calculations
-- Global ledger of all gifts
-- "Earth Guardian" status tracking
-- Public vs Private gift toggles
-
-#### 4. **Leaderboard** (`/leaderboard`)
-- Top givers and viral referrers
-- Searchable by name or region
-- Competitive giving mechanics
-
-#### 5. **Public Gallery** (`/gallery`)
-- Infinite scroll of global climate gifts
-- Inspiration for new givers
-- Real-time impact visualization
-
-#### 6. **Transparency Page** (`/transparency`)
-- Financial breakdown & transparency
-- Where money goes: Direct partner funding & sustainable platform automation
-- Partner verification process
-- Impact tracking methodology
-- FAQ section
-
-#### 7. **Bulk Gift Orders** (`/bulk`)
-- CSV/Excel support for large corporate orders
-- 25% discount for bulk environmental action
-- Tailored for employee gifting and events
-
-#### 8. **Venture Page** (`/venture`)
-- **Comprehensive business plan page for investors/advisors**
-- **5 Tabs:**
-  1. **Overview** - Executive summary, unit economics, use cases, competitive advantages
-  2. **Vision** - Mission, values, impact goals
-  3. **Business Model** - Revenue streams, financial projections
-  4. **Market** - TAM/SAM/SOM, competition, positioning
-  5. **Roadmap** - Development timeline, milestones
-
-- **Use Cases Section:**
-  - Personal Milestone Gifting (viral mechanics)
-  - Community-Led Climate Action (grassroots model)
-  - Corporate Sustainability Partnerships (B2B)
-  - Event & Conference Ecosystem Building
-
-- Financial Highlights:
-  - Unit Economics: Sustainable platform margin per transaction
-  - Scale Projections: High-volume impact roadmap ($1M+ revenue potential)
-  - Target Partner Categories (12 fields)
-  - Viral Growth Engine (K-Factor 1.5-2.0)
-
----
-
-## 🛠️ Technology Stack
-
-- **Frontend:** React, Tailwind CSS, Framer Motion, React Router
+- **Frontend:** Next.js (Planned/Transitioning), React, Tailwind CSS, Framer Motion
 - **Backend:** Node.js, Express, MongoDB
-- **Infrastructure:** Vercel (Frontend), Render (Backend), MongoDB Atlas
-- **External APIs:**
-  - **Stripe:** Payment processing
-  - **Resend:** Transactional emails
-  - **Google Analytics:** User behavior tracking
+- **Payments:** Daraja API (M-Pesa STK Push prioritized), Stripe (Coming Soon)
+- **Deployment:** Vercel
 
 ---
 
-## 👨‍💻 Founder & Vision
+## 💎 The 70/30 Impact Model
 
-**Founder:** Morris Muo Mulitu
-**Venture Coach:** Aneri Pradhan ([BeVisioneers Fellowship](https://bevisioneers.world))
-**Mission:** Transforming climate action into a love language through symbolic gifting
-**Program:** [Do School](https://thedoschool.org)
+Gifted Air operates on a radical transparency model led by the beVisioneers fellowship:
 
-**🌿 Gifted Air - Where profitability meets planetary healing through emotional gifting**
+- **70% to Partners:** Direct funding for primary partners like **Uplift Her Kenya** (Agrivoltaics & Women Empowerment) and **Kaiti Greening Champions** (5M Tree Restoration).
+- **30% to Platform:** Sustains platform growth, M-Pesa integration, and the development of our "Poetic UI" ecosystem.
 
-*Making climate action personal, emotional, and viral. One gift at a time.* 🌍✨
+---
+
+## 🚀 Key Rituals
+
+### 1. The Personal Gift
+Select a project, compose a heartfelt message, and trigger a "Magic Moment" reveal as your contribution plants a real seed in the world.
+
+### 2. Corporate Bulk Gifting
+A dedicated engine for organizations to send 100+ climate gifts to employees via M-Pesa B2C or Bulk Paybill. Includes automated ESG Impact Reports for compliance.
+
+### 3. Radical Transparency Dashboard
+A live "Impact Ledger" showing real-time fund distribution and project fulfillment.
+
+---
+
+## 🛠️ Installation & Deployment
+
+### Local Development
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/morrismulitu/giftedair.git
+   cd giftedair
+   ```
+
+2. **Setup Backend:**
+   ```bash
+   cd backend
+   npm install
+   # Create .env from .env.example
+   npm start
+   ```
+
+3. **Setup Frontend:**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+### Vercel Deployment
+
+1. Connect your GitHub repository to Vercel.
+2. Set the **Build Command** to `npm run build` for the frontend.
+3. Set the **Output Directory** to `dist` (Vite) or `.next` (Next.js).
+4. Configure environment variables for Daraja API and MongoDB in the Vercel dashboard.
+
+---
+
+## 📱 Future Readiness
+
+The Gifted Air codebase is built with mobile-first Tailwind breakpoints and modular components, ensuring a seamless transition to **React Native / Expo** for our upcoming mobile app launch.
+
+---
+
+*Heal the Earth. Honor Someone Dear. One Ritual at a time.* 🌍✨

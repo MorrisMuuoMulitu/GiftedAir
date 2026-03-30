@@ -38,7 +38,7 @@ export default function About() {
             <div className="prose prose-lg text-slate-700 leading-relaxed space-y-4">
               <p>
                 Meaningful gifting is hard. Traditional gifts often end up unused, physical items create waste, 
-                and gift cards feel impersonal. Meanwhile, climate action desperately needs funding—but donating 
+                and gift cards feel impersonal. Meanwhile, climate action desperately needs funding, but donating 
                 to environmental causes feels like a chore, not a celebration.
               </p>
               <p>
@@ -121,11 +121,11 @@ export default function About() {
               <p>
                 We believe people want to support environmental causes, but the experience is often 
                 transactional, impersonal, and forgettable. By turning climate action into gifts, we're 
-                creating an emotional connection—one that spreads through social networks as recipients 
+                creating an emotional connection, one that spreads through social networks as recipients 
                 share their impact.
               </p>
               <p>
-                Every gift on Gifted Air isn't just funding important environmental work—it's sparking 
+                Every gift on Gifted Air isn't just funding important environmental work, it's sparking 
                 conversations, changing perspectives, and making climate action <strong>something worth 
                 celebrating</strong>.
               </p>
@@ -146,7 +146,7 @@ export default function About() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green-600">🔍</span>
-                      <span>Complete transparency—see exactly where your money goes</span>
+                      <span>Complete transparency: see exactly where your money goes</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green-600">📈</span>
@@ -174,7 +174,7 @@ export default function About() {
               </div>
             </div>
             <p className="text-center text-slate-600 italic">
-              When you give a gift on Gifted Air, you're not just planting trees—you're planting the 
+              When you give a gift on Gifted Air, you're not just planting trees, you're planting the 
               idea that climate action can be joyful, personal, and worth sharing.
             </p>
           </section>
@@ -257,7 +257,7 @@ export default function About() {
                 We envision a world where <strong>climate action is woven into how we celebrate each other</strong>.
               </p>
               <p className="text-blue-50 leading-relaxed">
-                Birthdays, weddings, holidays, achievements—every celebration becomes an opportunity to fund 
+                Birthdays, weddings, holidays, achievements: every celebration becomes an opportunity to fund 
                 environmental solutions. Not as a guilt-driven obligation, but as a joyful expression of love 
                 for the people in our lives and the planet we share.
               </p>

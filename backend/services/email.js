@@ -71,8 +71,7 @@ export async function sendThankYouNotification({ senderEmail, senderName, origin
                   "${thankYouMessage}"
                 </p>
                 <p style="margin: 20px 0 0 0; color: #2D5016; font-weight: bold; font-size: 16px;">
-                  — ${senderName}
-                </p>
+                  - ${senderName}                </p>
               </div>
 
               <div style="text-align: center;">

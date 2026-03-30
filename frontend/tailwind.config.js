@@ -12,6 +12,9 @@ export default {
         'sky': '#87CEEB',
         'earth': '#8B4513',
         'ocean': '#006994',
+        'teal-deep': '#004D40',
+        'bronze': '#CD7F32',
+        'off-white': '#FAF9F6',
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],

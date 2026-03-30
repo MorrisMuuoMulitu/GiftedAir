@@ -106,7 +106,19 @@ export default function GiftStory() {
       />
       
       {/* 9:16 Aspect Ratio Container (Portrait) */}
-      <div className={`min-h-screen bg-gradient-to-br ${giftDetails.bgGradient} flex flex-col items-center justify-center p-6 text-white`}>
+      <div className={`min-h-screen bg-gradient-to-br ${giftDetails.bgGradient} flex flex-col items-center justify-center p-6 text-white relative overflow-hidden`}>
+        
+        {/* Impact Image Background */}
+        {gift.impactImage && (
+          <div className="absolute inset-0 z-0">
+            <img 
+              src={gift.impactImage} 
+              alt="Impact Location" 
+              className="w-full h-full object-cover opacity-30 scale-110 blur-xl"
+            />
+            <div className={`absolute inset-0 bg-gradient-to-br ${giftDetails.bgGradient} mix-blend-multiply opacity-60`}></div>
+          </div>
+        )}
         
         {/* Floating Background Shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -145,7 +157,14 @@ export default function GiftStory() {
             <div className="w-16 h-1 bg-white/30 mx-auto mb-6"></div>
             
             <p className="text-lg opacity-80 mb-2 italic font-poetic">from</p>
-            <p className="text-3xl font-bold text-[#00CED1]">{gift.senderName}</p>
+            <p className="text-3xl font-bold mb-6">{gift.senderName}</p>
+
+            {gift.location && (
+              <div className="flex items-center gap-2 justify-center opacity-80 mt-4 text-sm bg-black/20 px-4 py-2 rounded-full">
+                <span>📍</span>
+                <span>Climate love from {gift.location}</span>
+              </div>
+            )}
           </div>
 
           {/* CTA / Website */}

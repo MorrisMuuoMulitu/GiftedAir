@@ -42,6 +42,15 @@ const giftSchema = new mongoose.Schema({
     trim: true,
     default: ''
   },
+  coordinates: {
+    lat: { type: Number, default: null },
+    lng: { type: Number, default: null }
+  },
+  impactImage: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   scheduledDate: {
     type: Date,
     default: null

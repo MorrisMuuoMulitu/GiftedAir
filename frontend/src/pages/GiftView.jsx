@@ -265,14 +265,21 @@ export default function GiftView() {
         {/* Gift Card */}
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
           {/* Header with animated icon */}
-          <div className={`bg-gradient-to-r ${giftDetails.color} p-12 text-center`}>
-            <div className="text-9xl mb-4 animate-grow">{giftDetails.icon}</div>
-            <h1 className="text-4xl font-bold text-white mb-2">
-              A Gift of Climate Love
-            </h1>
-            <p className="text-xl text-white opacity-90">
-              {giftDetails.name}
-            </p>
+          <div className={`bg-gradient-to-r ${giftDetails.color} p-12 text-center relative overflow-hidden`}>
+            {gift.impactImage && (
+              <div className="absolute inset-0 opacity-20 hover:opacity-40 transition-opacity duration-700">
+                <img src={gift.impactImage} alt="Impact site" className="w-full h-full object-cover" />
+              </div>
+            )}
+            <div className="relative z-10">
+              <div className="text-9xl mb-4 animate-grow">{giftDetails.icon}</div>
+              <h1 className="text-4xl font-bold text-white mb-2">
+                A Gift of Climate Love
+              </h1>
+              <p className="text-xl text-white opacity-90">
+                {giftDetails.name}
+              </p>
+            </div>
           </div>
 
           {/* Content */}
@@ -298,6 +305,18 @@ export default function GiftView() {
               <div className="mt-4 text-sm text-gray-500">
                 Carbon offset value: ${gift.totalCost}
               </div>
+              {gift.coordinates && gift.coordinates.lat && (
+                <div className="mt-4">
+                  <a 
+                    href={`https://www.google.com/maps?q=${gift.coordinates.lat},${gift.coordinates.lng}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-xs bg-white/50 px-3 py-1 rounded-full text-forest hover:bg-white transition-all inline-flex items-center gap-1"
+                  >
+                    📍 Impact Location: {gift.coordinates.lat.toFixed(4)}, {gift.coordinates.lng.toFixed(4)}
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Personal Message */}

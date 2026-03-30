@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { type, quantity, message, recipientName, recipientEmail, senderName, totalCost, location } = req.body;
+    const { type, quantity, message, recipientName, recipientEmail, senderName, totalCost, location, coordinates, impactImage, showInGallery } = req.body;
 
     if (!type || !quantity || !message || !recipientName || !senderName) {
       return res.status(400).json({ 
@@ -23,7 +23,10 @@ router.post('/', async (req, res) => {
       recipientEmail: recipientEmail || '',
       senderName,
       totalCost,
-      location: location || ''
+      location: location || '',
+      coordinates: coordinates || { lat: null, lng: null },
+      impactImage: impactImage || '',
+      showInGallery: showInGallery !== undefined ? showInGallery : true
     });
 
     const giftUrl = process.env.FRONTEND_URL 

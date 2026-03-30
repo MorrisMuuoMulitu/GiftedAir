@@ -148,7 +148,13 @@ export default function Certificate() {
 
             {gift.location && (
               <p className="text-lg text-gray-600">
-                📍 {gift.location}
+                📍 Sent from: {gift.location}
+              </p>
+            )}
+
+            {gift.coordinates && gift.coordinates.lat && (
+              <p className="text-sm text-gray-500 mt-1">
+                🌍 Impact Location: {gift.coordinates.lat.toFixed(4)}, {gift.coordinates.lng.toFixed(4)}
               </p>
             )}
 

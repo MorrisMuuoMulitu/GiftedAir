@@ -127,9 +127,9 @@ export default function Venture() {
     
     // 5. Your why (founder motivation)
     yourWhy: [
-      'Personal connection: Growing up in Kenya, witnessed firsthand how environmental degradation impacts communities—from water scarcity to deforestation affecting livelihoods',
+      'Personal connection: Growing up in Kenya, witnessed firsthand how environmental degradation impacts communities, from water scarcity to deforestation affecting livelihoods',
       'Gap recognition: Saw friends struggle to give meaningful gifts remotely during COVID, while environmental causes desperately needed funding',
-      'Systems thinking: Realized gifting is an untapped emotional gateway to climate action—people who wouldn\'t donate directly will fund impact when celebrating loved ones',
+      'Systems thinking: Realized gifting is an untapped emotional gateway to climate action. People who wouldn\'t donate directly will fund impact when celebrating loved ones',
       'Founder-problem fit: Combined background in community organizing (grassroots trust-building) with tech skills to create an enabling environment where everyone wins: givers feel generous, receivers feel celebrated, planet gets funded'
     ],
     
@@ -396,7 +396,7 @@ export default function Venture() {
                 <div>
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">The Concept</h3>
                   <p className="text-zinc-300 leading-relaxed text-sm sm:text-base md:text-lg">
-                    Gifted Air transforms <span className="text-[#00CED1] font-semibold">climate action into a love language</span>. We're building a poetic web platform where users gift verified environmental actions—plant trees, clean oceans, provide clean water—with personalized messages and beautiful, shareable pages.
+                    Gifted Air transforms <span className="text-[#00CED1] font-semibold">climate action into a love language</span>. We're building a poetic web platform where users gift verified environmental actions (plant trees, clean oceans, provide clean water) with personalized messages and beautiful, shareable pages.
                   </p>
                 </div>
                 <div>
@@ -713,7 +713,7 @@ export default function Venture() {
                 Real-World Use Cases: Inclusive Climate Action at Scale
               </h3>
               <p className="text-white/80 mb-8">
-                A systems approach to climate action—making environmental impact accessible, emotional, and viral across every demographic.
+                A systems approach to climate action, making environmental impact accessible, emotional, and viral across every demographic.
               </p>
               
               <div className="space-y-6">
@@ -878,7 +878,7 @@ export default function Venture() {
                   
                   <div className="bg-zinc-900/50 rounded-lg p-4 mb-4">
                     <p className="text-zinc-300 text-sm leading-relaxed">
-                      <span className="font-bold text-white">Scenario:</span> A climate tech conference (500 attendees) partners with Gifted Air. Each attendee receives a <span className="text-amber-400 font-semibold">"Thank You" gift</span>—a mangrove planted in their name—creating a shared forest and lasting network connection.
+                      <span className="font-bold text-white">Scenario:</span> A climate tech conference (500 attendees) partners with Gifted Air. Each attendee receives a <span className="text-amber-400 font-semibold">"Thank You" gift</span>: a mangrove planted in their name, creating a shared forest and lasting network connection.
                     </p>
                   </div>
                   
@@ -906,7 +906,7 @@ export default function Venture() {
                   
                   <div className="p-3 bg-gradient-to-r from-amber-900/30 to-orange-900/30 rounded-lg border border-amber-500/30">
                     <p className="text-xs text-amber-300">
-                      <span className="font-bold">Target Events:</span> Climate tech accelerators, corporate sustainability summits, environmental conferences, and climate action workshops—turning participants into a connected climate ecosystem.
+                      <span className="font-bold">Target Events:</span> Climate tech accelerators, corporate sustainability summits, environmental conferences, and climate action workshops: turning participants into a connected climate ecosystem.
                     </p>
                   </div>
                 </div>
@@ -919,7 +919,7 @@ export default function Venture() {
                   <div>
                     <h4 className="font-bold text-white mb-2 text-lg">Systems Thinking in Action</h4>
                     <p className="text-white/80 leading-relaxed">
-                      Each use case demonstrates how Gifted Air creates an <span className="font-bold text-white">enabling environment</span> for climate action—removing barriers (cost, complexity, trust), 
+                      Each use case demonstrates how Gifted Air creates an <span className="font-bold text-white">enabling environment</span> for climate action: removing barriers (cost, complexity, trust), 
                       enabling agency (personal choice, community ownership), and building network effects (viral sharing, ecosystem building). 
                       From individuals to communities to corporations, we're creating interconnected loops where <span className="font-bold text-[#C38B4A]">everyone wins: givers, receivers, partners, and the planet.</span>
                     </p>
@@ -940,7 +940,7 @@ export default function Venture() {
                     <div className="w-8 h-8 rounded-full bg-[#00CED1] flex items-center justify-center flex-shrink-0 font-bold text-black">1</div>
                     <div>
                       <h4 className="font-bold text-white mb-1">Emotional Connection</h4>
-                      <p className="text-sm text-zinc-300">We're the ONLY platform combining gifting psychology with climate action. Not a charity, not a gift card—a new category.</p>
+                      <p className="text-sm text-zinc-300">We're the ONLY platform combining gifting psychology with climate action. Not a charity, not a gift card: a new category.</p>
                     </div>
                   </div>
                   

@@ -1,32 +1,36 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import EmptyState from '../components/EmptyState';
 import { API_URL } from '../config';
 
 export default function Impact() {
-  const [senderName, setSenderName] = useState('');
+  const { name } = useParams();
+  const [senderName, setSenderName] = useState(name || '');
   const [stats, setStats] = useState(null);
+  const [gifts, setGifts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const navigate = useNavigate();
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    if (!senderName.trim()) return;
+  const handleSearch = async (targetName) => {
+    const searchName = targetName || senderName;
+    if (!searchName.trim()) return;
 
     setLoading(true);
     setNotFound(false);
     
     try {
-      const response = await fetch(`${API_URL}/api/gifts/impact/${encodeURIComponent(senderName)}`);
+      const response = await fetch(`${API_URL}/api/gifts/impact/${encodeURIComponent(searchName)}`);
       
       if (response.ok) {
         const data = await response.json();
         setStats(data.stats);
+        setGifts(data.gifts || []);
       } else {
         setNotFound(true);
         setStats(null);
+        setGifts([]);
       }
     } catch (error) {
       console.error('Error fetching impact:', error);
@@ -34,6 +38,26 @@ export default function Impact() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Auto-search if name is in URL
+  useEffect(() => {
+    if (name) {
+      handleSearch(name);
+    }
+  }, [name]);
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    handleSearch();
+  };
+
+  const getBadge = (score) => {
+    if (score >= 10000) return { name: 'Climate Hero', icon: '🦸‍♂️', color: 'from-red-600 to-orange-600' };
+    if (score >= 5000) return { name: 'Earth Protector', icon: '🛡️', color: 'from-blue-600 to-indigo-600' };
+    if (score >= 2000) return { name: 'Forest Guardian', icon: '🌲', color: 'from-green-600 to-emerald-600' };
+    if (score >= 500) return { name: 'Sapling', icon: '🌿', color: 'from-teal-500 to-cyan-500' };
+    return { name: 'Seedling', icon: '🌱', color: 'from-yellow-400 to-green-500' };
   };
 
   return (
@@ -54,7 +78,7 @@ export default function Impact() {
 
         {/* Search Box */}
         <div className="max-w-2xl mx-auto mb-12">
-          <form onSubmit={handleSearch} className="bg-white rounded-2xl shadow-xl p-8">
+          <form onSubmit={onFormSubmit} className="bg-white rounded-2xl shadow-xl p-8">
             <label className="block text-xl font-bold text-forest mb-4">
               Enter Your Name
             </label>
@@ -74,6 +98,19 @@ export default function Impact() {
                 {loading ? 'Searching...' : 'View Impact'}
               </button>
             </div>
+            {stats && (
+              <button
+                type="button"
+                onClick={() => {
+                  const url = `${window.location.origin}/sender/${encodeURIComponent(stats.name)}`;
+                  navigator.clipboard.writeText(url);
+                  alert('🔗 Profile link copied!');
+                }}
+                className="mt-4 text-forest font-bold text-sm hover:underline flex items-center gap-1"
+              >
+                📋 Copy My Profile Link
+              </button>
+            )}
             <p className="text-sm text-gray-500 mt-3">
               💡 Enter the exact name you used when creating gifts
             </p>
@@ -95,7 +132,26 @@ export default function Impact() {
 
         {/* Stats Display */}
         {stats && (
-          <div className="space-y-8">
+          <div className="space-y-8 animate-fade-in-up">
+            {/* Earth Guardian Status */}
+            <div className={`bg-gradient-to-r ${getBadge(stats.impact.totalImpactScore).color} rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden`}>
+              <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                <div className="text-9xl bg-white/20 p-6 rounded-full backdrop-blur-md">
+                  {getBadge(stats.impact.totalImpactScore).icon}
+                </div>
+                <div className="text-center md:text-left">
+                  <h2 className="text-2xl font-bold opacity-90 uppercase tracking-widest mb-1">Earth Guardian Status</h2>
+                  <h3 className="text-6xl font-black mb-4">{getBadge(stats.impact.totalImpactScore).name}</h3>
+                  <p className="text-xl opacity-90 max-w-xl">
+                    Thank you, <span className="font-bold underline">{stats.name}</span>! Your climate contributions are making a measurable difference for our planet.
+                  </p>
+                </div>
+              </div>
+              <div className="absolute top-0 right-0 p-4 text-white/10 text-9xl font-black select-none pointer-events-none">
+                {stats.impact.totalImpactScore.toLocaleString()}
+              </div>
+            </div>
+
             {/* Hero Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <StatCard
@@ -221,12 +277,67 @@ export default function Impact() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-gray-600 font-bold mb-2">Locations</div>
+                  <div className="text-gray-600 font-bold mb-2">Unique Recipients</div>
                   <div className="text-xl font-black text-forest">
-                    {stats.locations.length > 0 ? stats.locations.join(', ') : 'Not specified'}
+                    {stats.uniqueRecipients}
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Recent Gifts List */}
+            <div className="bg-white rounded-3xl shadow-xl p-8 overflow-hidden">
+              <h2 className="text-3xl font-bold text-forest mb-6 text-center">
+                📜 Your Recent Gifts
+              </h2>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="border-b-2 border-gray-100 text-gray-500 uppercase text-xs font-bold tracking-wider">
+                      <th className="pb-4">Date</th>
+                      <th className="pb-4">Recipient</th>
+                      <th className="pb-4">Impact</th>
+                      <th className="pb-4">Status</th>
+                      <th className="pb-4">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {gifts.slice(0, 5).map((gift) => (
+                      <tr key={gift._id} className="group hover:bg-gray-50 transition-colors">
+                        <td className="py-4 text-sm text-gray-600">
+                          {new Date(gift.createdAt).toLocaleDateString()}
+                        </td>
+                        <td className="py-4 font-bold text-gray-800">
+                          {gift.recipientName}
+                        </td>
+                        <td className="py-4 text-sm text-gray-700">
+                          {gift.quantity} {gift.type === 'tree' ? 'Trees' : gift.type === 'ocean' ? 'kg Plastic' : gift.type === 'solar' ? 'Panels' : gift.type === 'cookstove' ? 'Stoves' : 'Impact'}
+                        </td>
+                        <td className="py-4">
+                          <span className={`px-2 py-1 rounded-full text-xs font-bold ${
+                            gift.status === 'sent' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                          }`}>
+                            {gift.status}
+                          </span>
+                        </td>
+                        <td className="py-4">
+                          <button
+                            onClick={() => navigate(`/gift/${gift._id}`)}
+                            className="text-forest hover:underline text-sm font-bold"
+                          >
+                            View Card →
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {gifts.length > 5 && (
+                <div className="text-center mt-6">
+                  <p className="text-sm text-gray-500">Showing 5 of {gifts.length} gifts</p>
+                </div>
+              )}
             </div>
 
             {/* Share Section */}

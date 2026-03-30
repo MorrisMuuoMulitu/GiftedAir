@@ -1,269 +1,229 @@
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Leaf, Globe, Zap, ArrowRight, ShieldCheck, Heart } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import SEO, { SEOConfig } from '../components/SEO';
 
 export default function Landing() {
   const navigate = useNavigate();
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.3 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
   return (
-    <>
+    <div className="min-h-screen bg-slate-950 text-off-white overflow-x-hidden">
       <SEO {...SEOConfig.home} />
       <Navigation />
       
-      {/* Michelin Star - Lean Canvas Button (Top Right) */}
-      <div className="michelin-star-container" style={{animation: 'float-up-down 3s ease-in-out infinite'}}>
+      {/* Michelin Star - Venture Button */}
+      <motion.div 
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        className="fixed top-24 right-4 sm:right-8 z-40 group"
+      >
         <button
           onClick={() => navigate('/venture')}
-          className="michelin-star"
-          title="View My Lean Canvas"
+          className="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-bronze to-amber-700 rounded-2xl rotate-12 group-hover:rotate-0 transition-transform duration-500 shadow-2xl flex items-center justify-center border border-white/20"
         >
+          <div className="text-2xl sm:text-3xl -rotate-12 group-hover:rotate-0 transition-transform duration-500">📊</div>
+          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-black uppercase tracking-widest text-bronze whitespace-nowrap">Venture View</div>
         </button>
-        <div className="star-text">
-          <div className="text-base sm:text-xl font-bold text-slate-900 mb-1">📊</div>
-          <div className="text-[10px] sm:text-xs font-bold text-slate-900 leading-tight">Lean<br/>Canvas</div>
-        </div>
-      </div>
-      
-      {/* Michelin Star Button Styles */}
-      <style>{`
-        @keyframes star-glow {
-          0%, 100% {
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
-          }
-          50% {
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.8));
-          }
-        }
-        
-        @keyframes star-rotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .michelin-star {
-          position: relative;
-          width: 80px;
-          height: 80px;
-          clip-path: polygon(
-            50% 0%, 
-            61% 35%, 
-            98% 35%, 
-            68% 57%, 
-            79% 91%, 
-            50% 70%, 
-            21% 91%, 
-            32% 57%, 
-            2% 35%, 
-            39% 35%
-          );
-          background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
-          animation: star-glow 2s ease-in-out infinite;
-          transition: all 0.4s ease;
-          cursor: pointer;
-        }
-        
-        .michelin-star:hover {
-          animation: star-glow 0.8s ease-in-out infinite;
-          transform: scale(1.15) rotate(360deg);
-        }
-        
-        .michelin-star-container {
-          position: fixed;
-          top: 80px;
-          right: 12px;
-          z-index: 40;
-        }
-        
-        @media (min-width: 640px) {
-          .michelin-star {
-            width: 120px;
-            height: 120px;
-          }
-          .michelin-star:hover {
-            transform: scale(1.25) rotate(360deg);
-          }
-          .michelin-star-container {
-            top: 100px;
-            right: 20px;
-          }
-        }
-        
-        .star-text {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          text-align: center;
-          pointer-events: none;
-          z-index: 10;
-          transition: all 0.4s ease;
-        }
-        
-        .michelin-star:hover ~ .star-text {
-          transform: translate(-50%, -50%) scale(1.25) rotate(360deg);
-        }
-        
-        @keyframes float-up-down {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-      `}</style>
-      
-      <div className="min-h-screen bg-gradient-to-br from-sky via-white to-green-50">
+      </motion.div>
+
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Animated Icon */}
-          <div className="mb-8 flex justify-center">
-            <div className="text-9xl animate-float">🌿</div>
-          </div>
+      <div className="relative pt-32 pb-20 px-4 overflow-hidden">
+        {/* Breathing Background Elements */}
+        <motion.div 
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-teal-deep/20 rounded-full blur-[120px] pointer-events-none"
+        />
+        
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="container mx-auto max-w-5xl relative z-10 text-center"
+        >
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 bg-teal-deep/30 border border-teal-deep/50 rounded-full text-teal-400 text-xs font-black uppercase tracking-[0.2em] mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+            </span>
+            Ritual-Led Decarbonization
+          </motion.div>
 
-          {/* Hero Text */}
-          <h1 className="text-6xl md:text-7xl font-bold text-forest mb-6 leading-tight">
-            Gifted Air
-          </h1>
-          <p className="text-2xl md:text-3xl text-gray-700 mb-4 italic">
-            Where Climate Action Meets Emotional Connection
-          </p>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 leading-relaxed">
-            Transform climate action into a love language. Send symbolic gifts—plant a tree,
-            offset a flight, or protect a reef—in honor of someone you care about while directly
-            funding verified environmental projects worldwide.
-          </p>
+          <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-black mb-6 tracking-tight leading-[0.9]">
+            Where Climate Action Meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-bronze to-teal-400 bg-[length:200%_auto] animate-gradient">Emotional Connection.</span>
+          </motion.h1>
 
-          {/* Primary CTA */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
+            Transform planetary healing into your personal love language. Send symbolic climate gifts that fund verified restoration projects worldwide.
+          </motion.p>
+
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={() => navigate('/compose')}
-              className="group relative px-10 py-5 bg-forest text-white rounded-2xl text-lg font-bold
-                         hover:bg-green-800 transition-all duration-300 shadow-2xl hover:shadow-forest/50
-                         border-b-4 border-green-900 hover:border-green-950 transform hover:scale-105"
+              className="group relative px-10 py-5 bg-off-white text-slate-950 rounded-2xl text-lg font-black transition-all duration-500 hover:bg-bronze hover:text-off-white overflow-hidden"
             >
-              <span className="flex items-center gap-2">
-                <span className="text-2xl">🎁</span>
-                <span>Send a Climate Gift</span>
+              <span className="relative z-10 flex items-center gap-3">
+                Start the Ritual <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </span>
             </button>
-
             <button
               onClick={() => navigate('/bulk')}
-              className="group relative px-10 py-5 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500
-                         text-white rounded-2xl text-lg font-bold hover:from-amber-600 hover:via-orange-600
-                         hover:to-red-600 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50
-                         border-b-4 border-orange-700 hover:border-orange-800 transform hover:scale-105"
+              className="px-10 py-5 bg-slate-900 border border-white/10 text-off-white rounded-2xl text-lg font-black hover:bg-slate-800 transition-all"
             >
-              <span className="flex items-center gap-2">
-                <span className="text-2xl">💰</span>
-                <span>Bulk Orders</span>
-                <span className="text-xs bg-white/20 px-2 py-1 rounded-full">Save 25%</span>
-              </span>
+              Corporate Gifting
             </button>
-          </div>
+          </motion.div>
+        </motion.div>
+      </div>
 
-          {/* Impact Highlight */}
-          <div className="mb-12 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-200 max-w-3xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center gap-4">
-              <div className="text-5xl">🌍</div>
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-bold text-forest mb-2">Direct Environmental Impact</h3>
-                <p className="text-gray-700">
-                  Every gift directly funds verified environmental projects worldwide,
-                  from planting trees to cleaning oceans and protecting endangered habitats.
-                </p>
-              </div>
+      {/* Featured Projects / Marketplace Preview */}
+      <div className="py-32 px-4 bg-slate-900/50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-black mb-6">Curated Projects</h2>
+              <p className="text-lg text-slate-400">Directly funding beVisioneers fellows and local climate champions across Kenya and the globe.</p>
             </div>
-          </div>
-
-          {/* Secondary Navigation */}
-          <div className="flex flex-wrap gap-3 justify-center items-center text-sm">
-            <button
-              onClick={() => navigate('/gallery')}
-              className="px-6 py-2.5 bg-white/90 backdrop-blur text-forest rounded-full font-semibold 
-                         hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg
-                         border border-green-200"
-            >
-              🎨 Gallery
-            </button>
-            <button
-              onClick={() => navigate('/leaderboard')}
-              className="px-6 py-2.5 bg-white/90 backdrop-blur text-forest rounded-full font-semibold 
-                         hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg
-                         border border-green-200"
-            >
-              🏆 Leaderboard
-            </button>
-            <button
-              onClick={() => navigate('/impact')}
-              className="px-6 py-2.5 bg-white/90 backdrop-blur text-forest rounded-full font-semibold 
-                         hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg
-                         border border-green-200"
-            >
-              📊 My Impact
-            </button>
-            <button
-              onClick={() => navigate('/transparency')}
-              className="px-6 py-2.5 bg-white/90 backdrop-blur text-forest rounded-full font-semibold 
-                         hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg
-                         border border-green-200"
-            >
-              💚 Transparency
-            </button>
-          </div>
-        </div>
-
-        {/* Features Grid */}
-        <div className="mt-24 grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <FeatureCard
-            icon="🌳"
-            title="Plant Trees"
-            description="Give the gift of forests and fresh air"
-          />
-          <FeatureCard
-            icon="🏡"
-            title="Clean Cookstoves"
-            description="Support communities and reduce emissions"
-          />
-          <FeatureCard
-            icon="☀️"
-            title="Solar Power"
-            description="Bring renewable energy to those who need it"
-          />
-        </div>
-
-        {/* Poetic Quote */}
-        <div className="mt-24 text-center">
-          <blockquote className="text-2xl text-gray-600 italic max-w-2xl mx-auto">
-            "To love is to act. To gift is to care. To heal the earth is to honor those we hold dear."
-          </blockquote>
-        </div>
-
-        {/* Call to Action */}
-        <div className="mt-24 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-8 text-white text-center">
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">🌍 Ready to Make an Impact?</h3>
-            <p className="text-lg mb-6">
-              Join thousands of others in turning symbolic gifts into real-world environmental action.
-            </p>
-            <button
+            <button 
               onClick={() => navigate('/compose')}
-              className="inline-block bg-white text-green-600 px-8 py-4 rounded-full font-bold hover:bg-green-50 transition-all transform hover:scale-105 shadow-lg"
+              className="text-teal-400 font-black uppercase tracking-widest flex items-center gap-2 hover:gap-4 transition-all"
             >
-              Start Your Gift 🎁
+              View Marketplace <ArrowRight className="w-4 h-4" />
             </button>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <ProjectPreviewCard 
+              image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80"
+              title="Uplift Her Kenya"
+              founder="Faith Wambiya"
+              description="Empowering women through agrivoltaics and sustainable farming in rural Kenya."
+              impact="10 Mangroves protected"
+              tag="Primary Partner"
+              website="https://www.upliftherkenya.org/"
+            />
+            <ProjectPreviewCard 
+              image="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80"
+              title="Kaiti Greening Champions"
+              founder="Community Led"
+              description="A massive 5M tree restoration goal to bring back life to the Makueni landscape."
+              impact="5M Tree Goal"
+              tag="Climate Restoration"
+              website="https://kaitigreening.org/"
+            />
           </div>
         </div>
       </div>
+
+      {/* Trust & Transparency */}
+      <div className="py-32 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-3 gap-12">
+            <TrustFeature 
+              icon={<ShieldCheck className="w-8 h-8 text-teal-400" />}
+              title="Radical Transparency"
+              desc="70/30 impact model. 70% goes directly to the field. 30% grows the platform."
+            />
+            <TrustFeature 
+              icon={<Heart className="w-8 h-8 text-bronze" />}
+              title="Emotional Impact"
+              desc="Climate action isn't just about data; it's about the connection between people."
+            />
+            <TrustFeature 
+              icon={<Zap className="w-8 h-8 text-amber-500" />}
+              title="M-Pesa Prioritized"
+              desc="Local micro-gifting made seamless for the Kenyan climate movement."
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Final CTA */}
+      <div className="py-32 px-4 relative">
+        <div className="container mx-auto max-w-4xl text-center bg-gradient-to-br from-teal-deep to-slate-900 rounded-[3rem] p-16 border border-white/5 shadow-2xl overflow-hidden">
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 right-0 w-96 h-96 bg-bronze/10 rounded-full blur-[100px]"
+          />
+          <h2 className="text-4xl md:text-6xl font-black mb-8 relative z-10">Heal the Earth.<br/>Honor Someone Dear.</h2>
+          <button
+            onClick={() => navigate('/compose')}
+            className="relative z-10 px-12 py-6 bg-off-white text-slate-950 rounded-2xl text-xl font-black hover:bg-bronze hover:text-off-white transition-all duration-500"
+          >
+            Send a Climate Gift
+          </button>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient {
+          background-size: 200% auto;
+          animation: gradient 5s linear infinite;
+        }
+      `}</style>
     </div>
-    </>
   );
 }
 
-function FeatureCard({ icon, title, description }) {
+function ProjectPreviewCard({ image, title, founder, description, impact, tag, website }) {
   return (
-    <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow duration-300 text-center">
-      <div className="text-6xl mb-4">{icon}</div>
-      <h3 className="text-xl font-bold text-forest mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+    <a 
+      href={website}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group bg-slate-800/50 rounded-[2rem] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 block"
+    >
+      <div className="relative h-64 overflow-hidden">
+        <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+        <div className="absolute top-6 left-6 px-4 py-1.5 bg-slate-950/80 backdrop-blur text-[10px] font-black uppercase tracking-widest rounded-full border border-white/10">
+          {tag}
+        </div>
+      </div>
+      <div className="p-8">
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <h3 className="text-2xl font-black mb-1">{title}</h3>
+            <p className="text-teal-400 text-sm font-bold uppercase tracking-widest">Founded by {founder}</p>
+          </div>
+          <div className="bg-bronze/20 text-bronze px-4 py-2 rounded-xl text-sm font-black">
+            {impact}
+          </div>
+        </div>
+        <p className="text-slate-400 leading-relaxed">{description}</p>
+      </div>
+    </a>
+  );
+}
+
+function TrustFeature({ icon, title, desc }) {
+  return (
+    <div className="flex flex-col items-center text-center">
+      <div className="w-16 h-16 bg-slate-900 border border-white/10 rounded-2xl flex items-center justify-center mb-6 shadow-xl">
+        {icon}
+      </div>
+      <h3 className="text-xl font-black mb-4">{title}</h3>
+      <p className="text-slate-400 leading-relaxed">{desc}</p>
     </div>
   );
 }
