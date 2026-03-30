@@ -260,49 +260,49 @@ export default function GiftView() {
   return (
     <>
       <Navigation />
-      <div className={`min-h-screen bg-gradient-to-br ${giftDetails.bgGradient} py-12`}>
+      <div className={`min-h-screen bg-gradient-to-br ${giftDetails.bgGradient} py-8 md:py-12`}>
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Gift Card */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <div className="bg-white rounded-[2rem] md:rounded-3xl shadow-2xl overflow-hidden">
           {/* Header with animated icon */}
-          <div className={`bg-gradient-to-r ${giftDetails.color} p-12 text-center relative overflow-hidden`}>
+          <div className={`bg-gradient-to-r ${giftDetails.color} p-8 md:p-12 text-center relative overflow-hidden`}>
             {gift.impactImage && (
               <div className="absolute inset-0 opacity-20 hover:opacity-40 transition-opacity duration-700">
                 <img src={gift.impactImage} alt="Impact site" className="w-full h-full object-cover" />
               </div>
             )}
             <div className="relative z-10">
-              <div className="text-9xl mb-4 animate-grow">{giftDetails.icon}</div>
-              <h1 className="text-4xl font-bold text-white mb-2">
+              <div className="text-7xl md:text-9xl mb-4 animate-grow">{giftDetails.icon}</div>
+              <h1 className="text-2xl md:text-4xl font-bold text-white mb-2">
                 A Gift of Climate Love
               </h1>
-              <p className="text-xl text-white opacity-90">
+              <p className="text-lg md:text-xl text-white opacity-90">
                 {giftDetails.name}
               </p>
             </div>
           </div>
 
           {/* Content */}
-          <div className="p-12">
+          <div className="p-6 md:p-12">
             {/* Recipient Greeting */}
-            <div className="text-center mb-8">
-              <p className="text-3xl text-gray-800 mb-2">
+            <div className="text-center mb-6 md:mb-8">
+              <p className="text-2xl md:text-3xl text-gray-800 mb-2">
                 Dear <span className="font-bold text-forest">{gift.recipientName}</span>,
               </p>
-              <p className="text-lg text-gray-600">
+              <p className="text-base md:text-lg text-gray-600">
                 <span className="font-semibold">{gift.senderName}</span> has gifted you something special
               </p>
             </div>
 
             {/* Impact Display */}
-            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 mb-8 text-center">
-              <div className="text-6xl font-bold text-forest mb-2">
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 md:p-8 mb-6 md:mb-8 text-center">
+              <div className="text-5xl md:text-6xl font-bold text-forest mb-2">
                 {gift.quantity}
               </div>
-              <div className="text-xl text-gray-700">
+              <div className="text-lg md:text-xl text-gray-700">
                 {giftDetails.impact}
               </div>
-              <div className="mt-4 text-sm text-gray-500">
+              <div className="mt-4 text-xs md:text-sm text-gray-500">
                 Carbon offset value: ${gift.totalCost}
               </div>
               {gift.coordinates && gift.coordinates.lat && (
@@ -311,7 +311,7 @@ export default function GiftView() {
                     href={`https://www.google.com/maps?q=${gift.coordinates.lat},${gift.coordinates.lng}`} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-xs bg-white/50 px-3 py-1 rounded-full text-forest hover:bg-white transition-all inline-flex items-center gap-1"
+                    className="text-[10px] md:text-xs bg-white/50 px-3 py-1 rounded-full text-forest hover:bg-white transition-all inline-flex items-center gap-1"
                   >
                     📍 Impact Location: {gift.coordinates.lat.toFixed(4)}, {gift.coordinates.lng.toFixed(4)}
                   </a>
@@ -320,59 +320,42 @@ export default function GiftView() {
             </div>
 
             {/* Personal Message */}
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 sm:p-8 md:p-10 mb-8 border-2 border-amber-200 shadow-sm">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 sm:mb-6">
-                <div className="text-5xl sm:text-6xl">💌</div>
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 md:p-10 mb-6 md:mb-8 border-2 border-amber-200 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-amber-200/20 rounded-full blur-2xl -mr-12 -mt-12" />
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 md:mb-6 relative z-10">
+                <div className="text-4xl md:text-6xl">💌</div>
                 {!isEditing && (
                   <button
                     onClick={handleEditClick}
-                    className="text-xs sm:text-sm bg-white text-forest px-3 sm:px-4 py-2 rounded-lg border-2 border-forest hover:bg-green-50 transition-all self-start sm:self-auto"
+                    className="text-[10px] md:text-sm bg-white text-forest px-3 md:px-4 py-2 rounded-lg border-2 border-forest hover:bg-green-50 transition-all font-bold"
                   >
                     ✏️ Edit Message
                   </button>
                 )}
               </div>
-
-              {/* Action Buttons */}
-              <div className="flex gap-4 justify-center mt-6 flex-wrap">
-                <button
-                  onClick={() => navigate(`/certificate/${giftId}`)}
-                  className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-8 py-3 rounded-full font-semibold 
-                           hover:from-purple-600 hover:to-indigo-600 transition-all transform hover:scale-105 shadow-lg"
-                >
-                  📜 Get Certificate
-                </button>
-                <button
-                  onClick={() => navigate(`/gift/${giftId}/story`)}
-                  className="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-8 py-3 rounded-full font-semibold 
-                           hover:from-pink-600 hover:to-rose-600 transition-all transform hover:scale-105 shadow-lg"
-                >
-                  📸 Share to Story
-                </button>
-              </div>
               
-              <div className="max-w-2xl mx-auto">
+              <div className="max-w-2xl mx-auto relative z-10">
                 {isEditing ? (
                   <>
                     <textarea
                       value={editedMessage}
                       onChange={(e) => setEditedMessage(e.target.value)}
                       rows={6}
-                      className="w-full p-3 sm:p-4 border-2 border-amber-300 rounded-lg focus:border-forest focus:outline-none resize-none font-poetic text-base sm:text-lg leading-relaxed"
+                      className="w-full p-3 md:p-4 border-2 border-amber-300 rounded-lg focus:border-forest focus:outline-none resize-none font-poetic text-base md:text-lg leading-relaxed"
                       placeholder="Write your heartfelt message..."
                     />
-                    <div className="flex gap-4 mt-6 justify-end">
+                    <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-end">
                       <button
                         onClick={handleCancelEdit}
                         disabled={isSaving}
-                        className="px-6 py-2 rounded-lg border-2 border-gray-400 text-gray-700 hover:bg-gray-50 transition-all disabled:opacity-50"
+                        className="w-full sm:w-auto px-6 py-2 rounded-lg border-2 border-gray-400 text-gray-700 hover:bg-gray-50 transition-all disabled:opacity-50"
                       >
                         Cancel
                       </button>
                       <button
                         onClick={handleSaveEdit}
                         disabled={isSaving}
-                        className="px-6 py-2 rounded-lg bg-forest text-white hover:bg-green-800 transition-all disabled:opacity-50"
+                        className="w-full sm:w-auto px-6 py-2 rounded-lg bg-forest text-white hover:bg-green-800 transition-all disabled:opacity-50 font-bold"
                       >
                         {isSaving ? 'Saving...' : 'Save Changes'}
                       </button>
@@ -380,16 +363,16 @@ export default function GiftView() {
                   </>
                 ) : (
                   <>
-                    <div className="text-left mb-4 sm:mb-6">
-                      <p className="text-base sm:text-lg text-gray-800 font-poetic leading-relaxed whitespace-pre-wrap">
-                        {gift.message}
+                    <div className="text-left mb-4 md:mb-6">
+                      <p className="text-base md:text-lg text-gray-800 font-poetic leading-relaxed whitespace-pre-wrap italic">
+                        "{gift.message}"
                       </p>
                     </div>
-                    <div className="text-right mt-4 sm:mt-8 pt-3 sm:pt-4 border-t border-amber-300">
-                      <p className="text-sm sm:text-lg text-gray-600 font-poetic italic">
+                    <div className="text-right mt-6 md:mt-8 pt-4 border-t border-amber-300">
+                      <p className="text-sm md:text-lg text-gray-600 font-poetic italic">
                         With love,
                       </p>
-                      <p className="text-base sm:text-xl text-forest font-bold mt-1">
+                      <p className="text-lg md:text-xl text-forest font-black mt-1 uppercase tracking-widest">
                         {gift.senderName}
                       </p>
                     </div>
@@ -398,12 +381,28 @@ export default function GiftView() {
               </div>
             </div>
 
+            {/* Certificate & Story Actions */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 md:mb-12">
+              <button
+                onClick={() => navigate(`/certificate/${giftId}`)}
+                className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-6 py-4 rounded-xl font-black text-sm md:text-base hover:from-purple-600 hover:to-indigo-600 transition-all transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-2"
+              >
+                📜 Get Certificate
+              </button>
+              <button
+                onClick={() => navigate(`/gift/${giftId}/story`)}
+                className="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-4 rounded-xl font-black text-sm md:text-base hover:from-pink-600 hover:to-rose-600 transition-all transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-2"
+              >
+                📸 Share to Story
+              </button>
+            </div>
+
             {/* Impact Details */}
-            <div className="border-t border-gray-200 pt-8">
-              <h3 className="text-2xl font-bold text-forest mb-4 text-center">
+            <div className="border-t border-gray-200 pt-8 md:pt-12">
+              <h3 className="text-xl md:text-2xl font-black text-forest mb-6 md:mb-8 text-center uppercase tracking-widest">
                 Real-World Impact
               </h3>
-              <div className="space-y-3 text-gray-700">
+              <div className="space-y-4 md:space-y-6 text-gray-700">
                 {gift.type === 'tree' && (
                   <>
                     <ImpactItem icon="🌍" text={`${gift.quantity * 48} lbs of CO₂ absorbed annually`} />

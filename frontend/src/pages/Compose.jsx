@@ -139,16 +139,16 @@ export default function Compose() {
       
       <div className="container mx-auto px-4 max-w-6xl pt-24">
         {/* Cinematic Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
+          className="text-center mb-16 md:mb-20"
         >
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">Compose Your Ritual</h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">Select a project that resonates with your heart. Every unit gifted is a step toward planetary healing.</p>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-4 md:mb-6 tracking-tight px-2">Compose Your Ritual</h1>
+          <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto px-4">Select a project that resonates with your heart. Every unit gifted is a step toward planetary healing.</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        <div className="grid lg:grid-cols-3 gap-8 md:gap-12">
           {/* Marketplace Column */}
           <div className="lg:col-span-2 space-y-8">
             <h2 className="text-sm font-black uppercase tracking-[0.3em] text-bronze mb-8">Project Marketplace</h2>
@@ -168,103 +168,103 @@ export default function Compose() {
             <div className="sticky top-24">
               <AnimatePresence mode="wait">
                 {selectedProject ? (
-                  <motion.div 
+                  <motion.div
                     key="form"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
-                    className="bg-slate-900 border border-white/5 rounded-[2.5rem] p-8 shadow-2xl"
+                    className="bg-slate-900 border border-white/5 rounded-[2rem] p-6 md:p-8 shadow-2xl"
                   >
-                    <div className="flex items-center gap-4 mb-8">
-                      <div className="w-12 h-12 rounded-2xl bg-bronze/20 flex items-center justify-center text-2xl">
+                    <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-bronze/20 flex items-center justify-center text-xl md:text-2xl">
                         ✨
                       </div>
                       <div>
-                        <h3 className="font-black text-xl">The Ritual Details</h3>
-                        <p className="text-xs text-slate-500 uppercase font-black tracking-widest">For {selectedProject.title}</p>
+                        <h3 className="font-black text-base md:text-xl">The Ritual Details</h3>
+                        <p className="text-[9px] md:text-xs text-slate-500 uppercase font-black tracking-widest">For {selectedProject.title}</p>
                       </div>
                     </div>
 
-                    <div className="space-y-6">
+                    <div className="space-y-4 md:space-y-6">
                       {/* Quantity Ritual */}
-                      <div className="p-6 bg-slate-950 rounded-2xl border border-white/5">
-                        <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-4 text-center">Ritual Intensity (Units)</label>
+                      <div className="p-4 md:p-6 bg-slate-950 rounded-xl md:rounded-2xl border border-white/5">
+                        <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3 md:mb-4 text-center">Ritual Intensity (Units)</label>
                         <div className="flex items-center justify-between">
-                          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5">
-                            <Minus className="w-4 h-4" />
+                          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5">
+                            <Minus className="w-3 h-3 md:w-4 md:h-4" />
                           </button>
-                          <span className="text-4xl font-black">{quantity}</span>
-                          <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5">
-                            <Plus className="w-4 h-4" />
+                          <span className="text-3xl md:text-4xl font-black">{quantity}</span>
+                          <button onClick={() => setQuantity(quantity + 1)} className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5">
+                            <Plus className="w-3 h-3 md:w-4 md:h-4" />
                           </button>
                         </div>
                       </div>
 
                       {/* Names */}
-                      <div className="grid gap-4">
-                        <input 
-                          type="text" 
+                      <div className="grid gap-3 md:gap-4">
+                        <input
+                          type="text"
                           placeholder="Sender Name"
                           value={senderName}
                           onChange={(e) => setSenderName(e.target.value)}
-                          className="w-full bg-slate-950 border border-white/5 rounded-xl p-4 focus:border-bronze outline-none transition-all"
+                          className="w-full bg-slate-950 border border-white/5 rounded-lg md:rounded-xl p-3 md:p-4 text-sm md:text-base focus:border-bronze outline-none transition-all"
                         />
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           placeholder="Recipient Name"
                           value={recipientName}
                           onChange={(e) => setRecipientName(e.target.value)}
-                          className="w-full bg-slate-950 border border-white/5 rounded-xl p-4 focus:border-bronze outline-none transition-all"
+                          className="w-full bg-slate-950 border border-white/5 rounded-lg md:rounded-xl p-3 md:p-4 text-sm md:text-base focus:border-bronze outline-none transition-all"
                         />
-                        <input 
-                          type="email" 
+                        <input
+                          type="email"
                           placeholder="Recipient Email (Optional)"
                           value={recipientEmail}
                           onChange={(e) => setRecipientEmail(e.target.value)}
-                          className="w-full bg-slate-950 border border-white/5 rounded-xl p-4 focus:border-bronze outline-none transition-all"
+                          className="w-full bg-slate-950 border border-white/5 rounded-lg md:rounded-xl p-3 md:p-4 text-sm md:text-base focus:border-bronze outline-none transition-all"
                         />
                       </div>
 
                       {/* Poetic Message */}
-                      <div className="space-y-4">
-                        <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500">Your Connection Message</label>
-                        <div className="flex gap-2">
+                      <div className="space-y-3 md:space-y-4">
+                        <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Your Connection Message</label>
+                        <div className="flex gap-2 flex-wrap">
                           {messageTemplates.map(t => (
-                            <button 
+                            <button
                               key={t.id}
                               onClick={() => setMessage(t.text)}
-                              className="px-3 py-1 bg-slate-950 border border-white/5 rounded-full text-[10px] font-black hover:border-bronze transition-all"
+                              className="px-2 md:px-3 py-1 md:py-1.5 bg-slate-950 border border-white/5 rounded-full text-[9px] md:text-[10px] font-black hover:border-bronze transition-all"
                             >
                               {t.name}
                             </button>
                           ))}
                         </div>
-                        <textarea 
+                        <textarea
                           rows={4}
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
                           placeholder="Write something heartfelt..."
-                          className="w-full bg-slate-950 border border-white/5 rounded-xl p-4 focus:border-bronze outline-none transition-all resize-none italic font-serif"
+                          className="w-full bg-slate-950 border border-white/5 rounded-lg md:rounded-xl p-3 md:p-4 text-sm md:text-base focus:border-bronze outline-none transition-all resize-none italic font-serif"
                         />
                       </div>
 
                       {/* Final Action */}
-                      <div className="pt-6 border-t border-white/5">
-                        <div className="flex justify-between items-end mb-6">
-                          <span className="text-slate-500 font-bold">Planetary Contribution</span>
-                          <span className="text-3xl font-black text-teal-400">${totalCost}</span>
+                      <div className="pt-4 md:pt-6 border-t border-white/5">
+                        <div className="flex justify-between items-end mb-4 md:mb-6">
+                          <span className="text-slate-500 font-bold text-sm md:text-base">Planetary Contribution</span>
+                          <span className="text-2xl md:text-3xl font-black text-teal-400">${totalCost}</span>
                         </div>
-                        
-                        <button 
+
+                        <button
                           onClick={handleCreateGift}
                           disabled={loading}
-                          className="w-full py-5 bg-off-white text-slate-950 rounded-2xl font-black text-lg hover:bg-bronze hover:text-off-white transition-all shadow-2xl flex items-center justify-center gap-2 group"
+                          className="w-full py-4 md:py-5 bg-off-white text-slate-950 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-bronze hover:text-off-white transition-all shadow-2xl flex items-center justify-center gap-2 group"
                         >
                           {loading ? 'Initiating...' : (
-                            <>Confirm the Ritual <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></>
+                            <>Confirm the Ritual <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" /></>
                           )}
                         </button>
-                        <p className="text-center text-[10px] text-slate-500 mt-4 uppercase tracking-[0.2em] font-black">M-Pesa Prioritized for Local Micro-Gifting</p>
+                        <p className="text-center text-[9px] md:text-[10px] text-slate-500 mt-3 md:mt-4 uppercase tracking-[0.2em] font-black">M-Pesa Prioritized for Local Micro-Gifting</p>
                       </div>
                     </div>
                   </motion.div>
@@ -289,94 +289,94 @@ export default function Compose() {
       {/* M-Pesa Ritual Modal */}
       <AnimatePresence>
         {showMpesaModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div 
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => paymentStep !== 'processing' && setShowMpesaModal(false)}
               className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl"
             />
-            
-            <motion.div 
+
+            <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-lg bg-slate-900 border border-white/5 rounded-[3rem] p-10 shadow-2xl overflow-hidden"
+              className="relative w-full max-w-lg bg-slate-900 border border-white/5 rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl overflow-hidden my-auto"
             >
               {paymentStep === 'input' && (
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-teal-deep rounded-3xl mx-auto flex items-center justify-center text-4xl mb-6">📱</div>
-                  <h3 className="text-3xl font-black mb-4">M-Pesa Checkout</h3>
-                  <p className="text-slate-400 mb-8 leading-relaxed">Enter your M-Pesa number to receive the payment prompt on your phone.</p>
-                  
-                  <div className="space-y-4">
-                    <input 
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-teal-deep rounded-2xl md:rounded-3xl mx-auto flex items-center justify-center text-3xl md:text-4xl mb-4 md:mb-6">📱</div>
+                  <h3 className="text-2xl md:text-3xl font-black mb-3 md:mb-4">M-Pesa Checkout</h3>
+                  <p className="text-slate-400 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">Enter your M-Pesa number to receive the payment prompt on your phone.</p>
+
+                  <div className="space-y-3 md:space-y-4">
+                    <input
                       type="tel"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       placeholder="e.g., 0712345678"
-                      className="w-full bg-slate-950 border border-white/10 rounded-2xl p-5 text-center text-2xl font-black outline-none focus:border-bronze transition-all"
+                      className="w-full bg-slate-950 border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-5 text-center text-lg md:text-2xl font-black outline-none focus:border-bronze transition-all"
                     />
-                    <button 
+                    <button
                       onClick={handleMpesaPush}
-                      className="w-full py-5 bg-teal-deep text-white rounded-2xl font-black text-lg hover:bg-teal-600 transition-all flex items-center justify-center gap-2"
+                      className="w-full py-4 md:py-5 bg-teal-deep text-white rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-teal-600 transition-all flex items-center justify-center gap-2"
                     >
-                      Receive Prompt <ArrowRight className="w-5 h-5" />
+                      Receive Prompt <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
                     </button>
                   </div>
-                  <p className="mt-8 text-[10px] text-slate-500 uppercase tracking-widest font-black">Secured by Daraja STK Push</p>
+                  <p className="mt-6 md:mt-8 text-[9px] md:text-[10px] text-slate-500 uppercase tracking-widest font-black">Secured by Daraja STK Push</p>
                 </div>
               )}
 
               {paymentStep === 'processing' && (
-                <div className="text-center py-10">
-                  <div className="relative w-32 h-32 mx-auto mb-8">
-                    <motion.div 
+                <div className="text-center py-8 md:py-10">
+                  <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 md:mb-8">
+                    <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-0 border-4 border-t-bronze border-r-transparent border-b-teal-400 border-l-transparent rounded-full"
+                      className="absolute inset-0 border-2 md:border-4 border-t-bronze border-r-transparent border-b-teal-400 border-l-transparent rounded-full"
                     />
-                    <div className="absolute inset-4 bg-slate-950 rounded-full flex items-center justify-center text-4xl">⏳</div>
+                    <div className="absolute inset-3 md:inset-4 bg-slate-950 rounded-full flex items-center justify-center text-2xl md:text-4xl">⏳</div>
                   </div>
-                  <h3 className="text-3xl font-black mb-4">Awaiting PIN</h3>
-                  <p className="text-slate-400 leading-relaxed animate-pulse">Please check your phone for the M-Pesa prompt and enter your secret PIN to complete the ritual.</p>
+                  <h3 className="text-2xl md:text-3xl font-black mb-3 md:mb-4">Awaiting PIN</h3>
+                  <p className="text-slate-400 leading-relaxed animate-pulse text-sm md:text-base">Please check your phone for the M-Pesa prompt and enter your secret PIN to complete the ritual.</p>
                 </div>
               )}
 
               {paymentStep === 'success' && (
-                <div className="text-center py-6">
+                <div className="text-center py-6 md:py-8">
                   {/* The Magic Reveal Moment */}
-                  <motion.div 
+                  <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    className="mb-8"
+                    className="mb-6 md:mb-8"
                   >
-                    <div className="relative w-48 h-48 mx-auto mb-8">
-                      <motion.div 
+                    <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-6 md:mb-8">
+                      <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: [0, 1.2, 1] }}
                         transition={{ duration: 1.5, ease: "easeOut" }}
                         className="absolute inset-0 bg-teal-400/20 rounded-full blur-3xl"
                       />
-                      <motion.div 
+                      <motion.div
                         initial={{ scale: 0.5, y: 50 }}
                         animate={{ scale: 1, y: 0 }}
                         transition={{ duration: 2, type: "spring" }}
-                        className="text-9xl relative z-10"
+                        className="text-7xl md:text-9xl relative z-10"
                       >
                         {selectedProject.id === 'uplift-her' ? '🌱' : '🌳'}
                       </motion.div>
                     </div>
-                    <h3 className="text-4xl font-black mb-2">Ritual Complete!</h3>
-                    <p className="text-teal-400 font-black uppercase tracking-widest mb-6">Climate Gift Revealed</p>
-                    <p className="text-slate-400 leading-relaxed italic font-serif mb-8">"For {recipientName}, a new seed of hope has been planted."</p>
-                    
-                    <button 
+                    <h3 className="text-3xl md:text-4xl font-black mb-2">Ritual Complete!</h3>
+                    <p className="text-teal-400 font-black uppercase tracking-widest mb-4 md:mb-6 text-sm md:text-base">Climate Gift Revealed</p>
+                    <p className="text-slate-400 leading-relaxed italic font-serif mb-6 md:mb-8 text-sm md:text-base">"For {recipientName}, a new seed of hope has been planted."</p>
+
+                    <button
                       onClick={() => navigate(`/gift/${createdGiftId}`)}
-                      className="w-full py-5 bg-bronze text-white rounded-2xl font-black text-lg hover:bg-amber-600 transition-all flex items-center justify-center gap-2 shadow-2xl shadow-bronze/30"
+                      className="w-full py-4 md:py-5 bg-bronze text-white rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-amber-600 transition-all flex items-center justify-center gap-2 shadow-2xl shadow-bronze/30"
                     >
-                      View Your Gift <ArrowRight className="w-5 h-5" />
+                      View Your Gift <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
                     </button>
                   </motion.div>
                 </div>
@@ -391,49 +391,49 @@ export default function Compose() {
 
 function ProjectCard({ project, isSelected, onClick }) {
   return (
-    <motion.div 
+    <motion.div
       whileHover={{ y: -5 }}
       onClick={onClick}
-      className={`group cursor-pointer rounded-[2rem] overflow-hidden border-2 transition-all duration-500 flex flex-col md:flex-row h-full md:h-72 ${
+      className={`group cursor-pointer rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border-2 transition-all duration-500 flex flex-col h-full md:h-72 ${
         isSelected ? 'border-bronze bg-slate-900 shadow-2xl shadow-bronze/10' : 'border-white/5 bg-slate-900/50 hover:border-white/20'
       }`}
     >
-      <div className="md:w-1/3 relative h-64 md:h-full">
+      <div className="md:w-1/3 relative h-56 md:h-full">
         <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-transparent to-transparent opacity-60"></div>
-        <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-slate-950/80 backdrop-blur px-3 py-1 rounded-full border border-white/10">
+        <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 flex items-center gap-2 bg-slate-950/80 backdrop-blur px-2 md:px-3 py-1 rounded-full border border-white/10">
           <MapPin className="w-3 h-3 text-teal-400" />
-          <span className="text-[10px] font-black uppercase tracking-widest">{project.location}</span>
+          <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">{project.location}</span>
         </div>
       </div>
-      
-      <div className="p-8 flex-1 flex flex-col justify-between">
+
+      <div className="p-6 md:p-8 flex-1 flex flex-col justify-between">
         <div>
-          <div className="flex justify-between items-start mb-4">
+          <div className="flex justify-between items-start mb-3 md:mb-4">
             <div>
-              <div className="text-[10px] font-black text-teal-400 uppercase tracking-widest mb-1">{project.category}</div>
-              <h3 className="text-2xl font-black">{project.title}</h3>
+              <div className="text-[9px] md:text-[10px] font-black text-teal-400 uppercase tracking-widest mb-1">{project.category}</div>
+              <h3 className="text-xl md:text-2xl font-black">{project.title}</h3>
             </div>
-            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+            <div className={`w-5 h-5 md:w-6 md:h-6 rounded-full border-2 flex items-center justify-center transition-all ${
               isSelected ? 'bg-bronze border-bronze text-white' : 'border-white/10'
             }`}>
-              {isSelected && <Check className="w-4 h-4" />}
+              {isSelected && <Check className="w-3 h-3 md:w-4 md:h-4" />}
             </div>
           </div>
           <p className="text-slate-400 text-sm leading-relaxed mb-4">{project.description}</p>
         </div>
 
-        <div className="flex flex-wrap gap-4 pt-4 border-t border-white/5">
+        <div className="flex flex-wrap gap-3 md:gap-4 pt-4 border-t border-white/5">
           <div className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-slate-500" />
-            <span className="text-xs font-black uppercase tracking-widest">{project.founder}</span>
+            <Users className="w-3 h-3 md:w-4 md:h-4 text-slate-500" />
+            <span className="text-[9px] md:text-xs font-black uppercase tracking-widest">{project.founder}</span>
           </div>
           <div className="flex items-center gap-2">
-            <TreeDeciduous className="w-4 h-4 text-slate-500" />
-            <span className="text-xs font-black uppercase tracking-widest text-teal-400">{project.impact}</span>
+            <TreeDeciduous className="w-3 h-3 md:w-4 md:h-4 text-slate-500" />
+            <span className="text-[9px] md:text-xs font-black uppercase tracking-widest text-teal-400">{project.impact}</span>
           </div>
           <div className="ml-auto flex items-center gap-1">
-            <span className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Select to start ritual</span>
+            <span className="text-[9px] md:text-[10px] text-slate-500 font-black uppercase tracking-widest">Select to start ritual</span>
           </div>
         </div>
       </div>

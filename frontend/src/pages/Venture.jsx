@@ -278,39 +278,37 @@ export default function Venture() {
           ></div>
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjAgMjBjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNMTYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTIwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
           
-          <div className="relative z-10 px-8 md:px-16 py-16 md:py-24">
+          <div className="relative z-10 px-6 md:px-16 py-12 md:py-24">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               {/* Left: Branding */}
               <div className="flex-1 text-center md:text-left">
-                <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full mb-6 border border-white/20">
+                <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-1.5 md:px-6 md:py-2 rounded-full mb-6 border border-white/20">
                   <span className="w-2 h-2 bg-[#ADD8E6] rounded-full animate-pulse"></span>
-                  <span className="text-sm font-semibold">LIVE PROTOTYPE</span>
+                  <span className="text-xs md:text-sm font-semibold text-white">LIVE PROTOTYPE</span>
                 </div>
                 
-                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-4 tracking-tighter">
+                <h1 className="text-5xl md:text-8xl font-black mb-4 tracking-tighter text-white">
                   GIFTED<br />AIR
                 </h1>
                 
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light italic mb-8 text-white/90">
+                <p className="text-xl md:text-3xl font-light italic mb-8 text-white/90">
                   A Ritual of Climate Love
                 </p>
                 
-                <div className="flex flex-wrap gap-2 sm:gap-3 justify-center md:justify-start">
+                <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                   <a 
                     href="https://gifted-air.vercel.app/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 sm:gap-2 bg-white text-[#8A2BE2] px-3 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-base hover:bg-[#D8BFD8]/20 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="inline-flex items-center gap-2 bg-white text-[#8A2BE2] px-5 py-2.5 md:px-6 md:py-3 rounded-xl font-bold text-sm md:text-base hover:bg-zinc-100 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
-                    <span className="text-sm sm:text-base">🚀</span>
-                    <span>View Live Site</span>
+                    🚀 View Live Site
                   </a>
                   <button
                     onClick={() => navigate('/feedback')}
-                    className="inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-base hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-xl font-bold text-sm md:text-base hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
                   >
-                    <span className="text-sm sm:text-base">💭</span>
-                    <span>Share Feedback</span>
+                    💭 Share Feedback
                   </button>
                 </div>
               </div>
@@ -388,7 +386,7 @@ export default function Venture() {
         {activeSection === 'overview' && (
           <div className="space-y-8 animate-fade-in">
             {/* Executive Summary */}
-            <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12 border border-[#D8BFD8]/30">
+            <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-[#D8BFD8]/30">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 md:mb-8 bg-gradient-to-r from-[#8A2BE2] via-[#00CED1] to-[#ADD8E6] bg-clip-text text-transparent">
                 Executive Summary
               </h2>

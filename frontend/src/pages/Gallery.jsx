@@ -140,32 +140,32 @@ export default function Gallery() {
       
       <div className="container mx-auto px-4 max-w-7xl pt-32">
         {/* Cinematic Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-24"
+          className="text-center mb-16 md:mb-24"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-deep/30 border border-teal-deep/50 rounded-full text-teal-400 text-xs font-black uppercase tracking-[0.2em] mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-deep/30 border border-teal-deep/50 rounded-full text-teal-400 text-xs font-black uppercase tracking-[0.2em] mb-6 md:mb-8">
             <Globe className="w-4 h-4" /> Global Impact Rituals
           </div>
-          <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tight">Gift <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-bronze to-teal-400 bg-[length:200%_auto] animate-gradient">Gallery.</span></h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">Celebrating every act of climate love. A collective ledger of healing and connection.</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tight">Gift <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-bronze to-teal-400 bg-[length:200%_auto] animate-gradient">Gallery.</span></h1>
+          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed px-2">Celebrating every act of climate love. A collective ledger of healing and connection.</p>
         </motion.div>
 
         {/* Impact Stats Dashboard */}
         {stats && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mb-32 relative"
+            className="mb-16 md:mb-32 relative"
           >
             <div className="absolute inset-0 bg-teal-deep/10 rounded-[3rem] blur-3xl" />
-            
-            <div className="relative bg-slate-900/50 border border-white/5 rounded-[3rem] p-12 shadow-2xl overflow-hidden">
+
+            <div className="relative bg-slate-900/50 border border-white/5 rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-2xl overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-bronze/5 rounded-full blur-[100px]" />
-              
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8 md:mb-12">
                 <ImpactCard icon="🎁" value={stats.totalGifts} label="Rituals Sent" color="text-teal-400" />
                 <ImpactCard icon="🌳" value={stats.impact.treesPlanted} label="Seeds Planted" color="text-emerald-400" />
                 <ImpactCard icon="💨" value={stats.impact.co2Absorbed.toLocaleString()} label="lbs CO2 Mitigated" color="text-sky-400" />
@@ -184,23 +184,23 @@ export default function Gallery() {
         )}
 
         {/* Search and Filters */}
-        <div className="mb-24">
-          <div className="max-w-4xl mx-auto mb-16">
+        <div className="mb-16 md:mb-24">
+          <div className="max-w-4xl mx-auto mb-12 md:mb-16 px-2">
             <div className="relative group">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-slate-500 group-hover:text-bronze transition-colors" />
+              <Search className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 text-slate-500 group-hover:text-bronze transition-colors" />
               <input
                 type="text"
                 placeholder="Search rituals by sender, recipient, or message..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-900 border border-white/10 rounded-2xl py-6 pl-16 pr-8 text-lg focus:border-bronze outline-none transition-all shadow-2xl"
+                className="w-full bg-slate-900 border border-white/10 rounded-xl md:rounded-2xl py-4 md:py-6 pl-12 md:pl-16 pr-4 md:pr-8 text-base md:text-lg focus:border-bronze outline-none transition-all shadow-2xl"
               />
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
-            <FilterButton 
-              active={activeFilter === 'all'} 
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12 md:mb-16 px-2">
+            <FilterButton
+              active={activeFilter === 'all'}
               onClick={() => handleFilter('all')}
               label="All Rituals"
               count={gifts.length}
@@ -220,14 +220,15 @@ export default function Gallery() {
               );
             })}
           </div>
-          
+
           <AnimatePresence mode="wait">
             {gifts.length === 0 ? (
-              <motion.div 
+              <motion.div
                 key="empty"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
+                className="px-4"
               >
                 <EmptyState
                   icon="🎁"
@@ -238,11 +239,12 @@ export default function Gallery() {
                 />
               </motion.div>
             ) : displayedGifts.length === 0 ? (
-              <motion.div 
+              <motion.div
                 key="no-results"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
+                className="px-4"
               >
                 <EmptyState
                   icon="🔍"
@@ -254,16 +256,16 @@ export default function Gallery() {
                 />
               </motion.div>
             ) : (
-              <motion.div 
+              <motion.div
                 key="grid"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
               >
                 {displayedGifts.map((gift, index) => (
-                  <GiftCard 
-                    key={gift._id} 
-                    gift={gift} 
+                  <GiftCard
+                    key={gift._id}
+                    gift={gift}
                     onClick={() => navigate(`/gift/${gift._id}`)}
                     index={index}
                   />
@@ -274,20 +276,20 @@ export default function Gallery() {
         </div>
 
         {/* Final CTA */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative group cursor-pointer"
+          className="relative group cursor-pointer px-2"
           onClick={() => navigate('/compose')}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-teal-deep to-slate-900 rounded-[3rem] blur-xl opacity-50 group-hover:opacity-100 transition-opacity" />
-          <div className="relative bg-slate-900 border border-white/5 rounded-[3rem] p-16 text-center shadow-2xl overflow-hidden">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-teal-400/5 rounded-full blur-[100px] -mr-48 -mt-48" />
-            <div className="text-6xl mb-8">✨</div>
-            <h2 className="text-4xl md:text-6xl font-black mb-8">Initiate Your Own<br/>Climate Ritual.</h2>
-            <button className="px-12 py-6 bg-off-white text-slate-950 rounded-2xl text-xl font-black hover:bg-bronze hover:text-off-white transition-all duration-500 shadow-2xl flex items-center gap-3 mx-auto">
-              Send a Gift <ArrowRight className="w-6 h-6" />
+          <div className="absolute inset-0 bg-gradient-to-r from-teal-deep to-slate-900 rounded-[2rem] md:rounded-[3rem] blur-xl opacity-50 group-hover:opacity-100 transition-opacity" />
+          <div className="relative bg-slate-900 border border-white/5 rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 text-center shadow-2xl overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-teal-400/5 rounded-full blur-[100px] -mr-32 md:-mr-48 -mt-32 md:-mt-48" />
+            <div className="text-4xl md:text-6xl mb-6 md:mb-8">✨</div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black mb-6 md:mb-8">Initiate Your Own<br/>Climate Ritual.</h2>
+            <button className="px-8 md:px-12 py-4 md:py-6 bg-off-white text-slate-950 rounded-xl md:rounded-2xl text-base md:text-xl font-black hover:bg-bronze hover:text-off-white transition-all duration-500 shadow-2xl flex items-center gap-2 md:gap-3 mx-auto">
+              Send a Gift <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
             </button>
           </div>
         </motion.div>
@@ -349,67 +351,67 @@ function FilterButton({ icon, label, count, active, onClick }) {
 
 function GiftCard({ gift, onClick, index }) {
   const details = giftTypeDetails[gift.type] || giftTypeDetails.tree;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       onClick={onClick}
-      className="group cursor-pointer bg-slate-900 border border-white/5 rounded-[2.5rem] p-8 hover:border-bronze/30 transition-all duration-500 relative overflow-hidden"
+      className="group cursor-pointer bg-slate-900 border border-white/5 rounded-[2rem] md:rounded-[2.5rem] p-5 md:p-8 hover:border-bronze/30 transition-all duration-500 relative overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-teal-400/5 rounded-full blur-3xl pointer-events-none group-hover:bg-bronze/10 transition-colors" />
-      
-      <div className="flex justify-between items-start mb-8">
-        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl border ${details.color}`}>
+      <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-teal-400/5 rounded-full blur-3xl pointer-events-none group-hover:bg-bronze/10 transition-colors" />
+
+      <div className="flex justify-between items-start mb-6 md:mb-8">
+        <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl border ${details.color}`}>
           {details.icon}
         </div>
         <div className="text-right">
-          <div className="text-3xl font-black text-teal-400">{gift.quantity}</div>
-          <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Impact Units</div>
+          <div className="text-2xl md:text-3xl font-black text-teal-400">{gift.quantity}</div>
+          <div className="text-[9px] md:text-[10px] font-black text-slate-500 uppercase tracking-widest">Impact Units</div>
         </div>
       </div>
 
-      <div className="space-y-4 mb-8">
+      <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
         <div className="flex items-center gap-2">
           <User className="w-3 h-3 text-bronze" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">From</span>
-          <span className="text-sm font-black text-off-white">{gift.senderName}</span>
+          <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">From</span>
+          <span className="text-sm font-black text-off-white truncate">{gift.senderName}</span>
         </div>
         <div className="flex items-center gap-2">
           <Heart className="w-3 h-3 text-teal-400" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">To</span>
-          <span className="text-sm font-black text-off-white">{gift.recipientName}</span>
+          <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">To</span>
+          <span className="text-sm font-black text-off-white truncate">{gift.recipientName}</span>
         </div>
         {gift.location && (
           <div className="flex items-center gap-2">
             <MapPin className="w-3 h-3 text-slate-500" />
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{gift.location}</span>
+            <span className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest truncate">{gift.location}</span>
           </div>
         )}
       </div>
 
-      <div className="bg-slate-950/50 border border-white/5 rounded-2xl p-6 mb-8 min-h-[120px]">
-        <p className="text-slate-400 text-sm italic font-serif leading-relaxed line-clamp-4">
+      <div className="bg-slate-950/50 border border-white/5 rounded-xl md:rounded-2xl p-4 md:p-6 mb-6 md:mb-8 min-h-[80px] md:min-h-[120px]">
+        <p className="text-slate-400 text-xs md:text-sm italic font-serif leading-relaxed line-clamp-3 md:line-clamp-4">
           "{gift.message}"
         </p>
       </div>
 
-      <div className="flex items-center justify-between pt-6 border-t border-white/5">
-        <div className="flex items-center gap-2 text-slate-500">
-          <Calendar className="w-3 h-3" />
-          <span className="text-[10px] font-black uppercase tracking-widest">
+      <div className="flex items-center justify-between pt-4 md:pt-6 border-t border-white/5">
+        <div className="flex items-center gap-1 md:gap-2 text-slate-500">
+          <Calendar className="w-3 h-3 md:w-4 md:h-4" />
+          <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">
             {new Date(gift.createdAt).toLocaleDateString()}
           </span>
         </div>
-        <div className="text-xl font-black text-bronze">
+        <div className="text-lg md:text-xl font-black text-bronze">
           ${gift.totalCost}
         </div>
       </div>
 
-      <div className="mt-6 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-bronze flex items-center gap-2">
-          Reveal Ritual <ArrowRight className="w-3 h-3" />
+      <div className="mt-4 md:mt-6 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-bronze flex items-center gap-2">
+          Reveal Ritual <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
         </div>
       </div>
     </motion.div>

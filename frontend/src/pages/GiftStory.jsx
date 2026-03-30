@@ -106,7 +106,7 @@ export default function GiftStory() {
       />
       
       {/* 9:16 Aspect Ratio Container (Portrait) */}
-      <div className={`min-h-screen bg-gradient-to-br ${giftDetails.bgGradient} flex flex-col items-center justify-center p-6 text-white relative overflow-hidden`}>
+      <div className={`min-h-screen bg-gradient-to-br ${giftDetails.bgGradient} flex flex-col items-center justify-center p-4 md:p-6 text-white relative overflow-hidden`}>
         
         {/* Impact Image Background */}
         {gift.impactImage && (
@@ -126,41 +126,41 @@ export default function GiftStory() {
           <div className="absolute bottom-1/4 -right-12 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-float"></div>
         </div>
 
-        <div className="relative z-10 w-full max-w-md bg-white/10 backdrop-blur-md rounded-[3rem] p-10 border border-white/20 shadow-2xl flex flex-col items-center text-center">
+        <div className="relative z-10 w-full max-w-sm md:max-w-md bg-white/10 backdrop-blur-md rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 border border-white/20 shadow-2xl flex flex-col items-center text-center">
           
           {/* Brand Logo */}
-          <div className="mb-8 flex items-center gap-2">
-            <span className="text-3xl">🌿</span>
-            <span className="text-xl font-bold tracking-tight">Gifted Air</span>
+          <div className="mb-6 md:mb-8 flex items-center gap-2">
+            <span className="text-2xl md:text-3xl">🌿</span>
+            <span className="text-lg md:text-xl font-bold tracking-tight">Gifted Air</span>
           </div>
 
           {/* Animated Icon */}
-          <div className="text-[10rem] mb-10 drop-shadow-2xl animate-grow">
+          <div className="text-8xl md:text-[10rem] mb-8 md:mb-10 drop-shadow-2xl animate-grow">
             {giftDetails.icon}
           </div>
 
           {/* Impact Text */}
-          <div className="mb-10">
-            <h1 className="text-5xl font-black mb-2 tracking-tight">
+          <div className="mb-8 md:mb-10">
+            <h1 className="text-4xl md:text-5xl font-black mb-2 tracking-tight">
               {gift.quantity}
             </h1>
-            <p className="text-xl font-medium opacity-90 uppercase tracking-widest">
+            <p className="text-lg md:text-xl font-medium opacity-90 uppercase tracking-widest">
               {giftDetails.impact}
             </p>
           </div>
 
           {/* Personalization */}
-          <div className="mb-12">
-            <p className="text-lg opacity-80 mb-2 italic font-poetic">Gifted to</p>
-            <p className="text-4xl font-black mb-6">{gift.recipientName}</p>
+          <div className="mb-8 md:mb-12">
+            <p className="text-base md:text-lg opacity-80 mb-1 md:mb-2 italic font-poetic">Gifted to</p>
+            <p className="text-3xl md:text-4xl font-black mb-4 md:mb-6">{gift.recipientName}</p>
             
-            <div className="w-16 h-1 bg-white/30 mx-auto mb-6"></div>
+            <div className="w-12 md:w-16 h-1 bg-white/30 mx-auto mb-4 md:mb-6"></div>
             
-            <p className="text-lg opacity-80 mb-2 italic font-poetic">from</p>
-            <p className="text-3xl font-bold mb-6">{gift.senderName}</p>
+            <p className="text-base md:text-lg opacity-80 mb-1 md:mb-2 italic font-poetic">from</p>
+            <p className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">{gift.senderName}</p>
 
             {gift.location && (
-              <div className="flex items-center gap-2 justify-center opacity-80 mt-4 text-sm bg-black/20 px-4 py-2 rounded-full">
+              <div className="flex items-center gap-2 justify-center opacity-80 mt-4 text-[10px] md:text-sm bg-black/20 px-3 md:px-4 py-1.5 md:py-2 rounded-full">
                 <span>📍</span>
                 <span>Climate love from {gift.location}</span>
               </div>
@@ -169,22 +169,22 @@ export default function GiftStory() {
 
           {/* CTA / Website */}
           <div className="mt-auto">
-            <div className="bg-white/10 px-6 py-3 rounded-2xl border border-white/10 inline-block mb-4">
-              <span className="font-bold tracking-widest text-sm uppercase">Join the Movement</span>
+            <div className="bg-white/10 px-4 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl border border-white/10 inline-block mb-3 md:mb-4">
+              <span className="font-bold tracking-widest text-[10px] md:text-sm uppercase text-white/90">Join the Movement</span>
             </div>
-            <p className="text-base font-medium opacity-60">gifted-air.vercel.app</p>
+            <p className="text-sm md:text-base font-medium opacity-60">gifted-air.vercel.app</p>
           </div>
         </div>
 
         {/* Action Button (Hidden in screenshot) */}
-        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 group-hover:opacity-100 transition-opacity">
+        <div className="fixed bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 md:gap-4 transition-opacity">
           <button
             onClick={() => navigate(`/gift/${giftId}`)}
-            className="px-8 py-4 bg-white text-emerald-900 rounded-full font-black shadow-xl hover:scale-105 active:scale-95 transition-all"
+            className="px-6 md:px-8 py-3 md:py-4 bg-white text-emerald-900 rounded-full font-black shadow-xl hover:scale-105 active:scale-95 transition-all text-sm md:text-base"
           >
             ← Back to Gift
           </button>
-          <p className="text-white/60 text-xs font-bold uppercase tracking-widest">Screenshot to Share 📸</p>
+          <p className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-widest">Screenshot to Share 📸</p>
         </div>
 
         {/* Floating Animation Styles */}
