@@ -14,7 +14,6 @@ const projects = [
     description: 'Empowering women in rural Kenya through agrivoltaics and sustainable climate farming. Your gift funds infrastructure and training for local women farmers.',
     fullStory: 'Founded by beVisioneers fellow Faith Wambiya, Uplift Her Kenya is transforming how rural communities interact with their land. By combining solar energy (agrivoltaics) with sustainable crop cultivation, they are creating a blueprint for resilience.',
     unit: 'Project Support Unit',
-    unitPrice: 10,
     image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80',
     location: 'Coastal Kenya',
     coordinates: { lat: -3.9845, lng: 39.6766 },
@@ -29,7 +28,6 @@ const projects = [
     description: 'A grassroots movement with a 5M tree restoration goal. Your gift directly funds the planting and maintenance of indigenous trees in the Makueni landscape.',
     fullStory: 'The Kaiti Greening Champions are restoration experts. They don\'t just plant trees; they nurture them. Their mission is to reclaim the drylands of Makueni through community-led reforestation efforts that ensure survival rates above 90%.',
     unit: 'Indigenous Trees',
-    unitPrice: 2,
     image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80',
     location: 'Makueni, Kenya',
     coordinates: { lat: -1.7833, lng: 37.6167 },
@@ -37,6 +35,8 @@ const projects = [
     website: 'https://kaitigreening.org/'
   }
 ];
+
+const GIFT_PRICE = 5;
 
 const messageTemplates = [
   { id: 'ritual', name: 'Ritual', text: 'I gift this climate action to you, for our planet. May it grow as our connection grows.' },
@@ -61,7 +61,7 @@ export default function Compose() {
   const [createdGiftId, setCreatedGiftId] = useState(null);
 
   const selectedProject = projects.find(p => p.id === selectedProjectId);
-  const totalCost = selectedProject ? selectedProject.unitPrice * quantity : 0;
+  const totalCost = quantity * GIFT_PRICE;
 
   const initiatePayment = async () => {
     if (!selectedProjectId || !recipientName || !senderName || !message) {
@@ -433,8 +433,7 @@ function ProjectCard({ project, isSelected, onClick }) {
             <span className="text-xs font-black uppercase tracking-widest text-teal-400">{project.impact}</span>
           </div>
           <div className="ml-auto flex items-center gap-1">
-            <span className="text-xs text-slate-500">starts at</span>
-            <span className="text-xl font-black">${project.unitPrice}</span>
+            <span className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Select to start ritual</span>
           </div>
         </div>
       </div>
