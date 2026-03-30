@@ -55,29 +55,29 @@ export default function Impact() {
   };
 
   const getBadge = (score) => {
-    if (score >= 10000) return { name: 'Climate Hero', icon: '🦸‍♂️', color: 'from-red-600 to-orange-600', textColor: 'text-orange-400' };
-    if (score >= 5000) return { name: 'Earth Protector', icon: '🛡️', color: 'from-blue-600 to-indigo-600', textColor: 'text-blue-400' };
-    if (score >= 2000) return { name: 'Forest Guardian', icon: '🌲', color: 'from-green-600 to-emerald-600', textColor: 'text-emerald-400' };
-    if (score >= 500) return { name: 'Sapling', icon: '🌿', color: 'from-teal-500 to-cyan-500', textColor: 'text-teal-400' };
-    return { name: 'Seedling', icon: '🌱', color: 'from-yellow-400 to-green-500', textColor: 'text-yellow-400' };
+    if (score >= 10000) return { name: 'Climate Hero', icon: '🦸‍♂️', color: 'from-rose-600 to-orange-600', textColor: 'text-orange-400' };
+    if (score >= 5000) return { name: 'Earth Protector', icon: '🛡️', color: 'from-accent-emerald to-emerald-600', textColor: 'text-accent-emerald' };
+    if (score >= 2000) return { name: 'Forest Guardian', icon: '🌲', color: 'from-moss to-moss-dark', textColor: 'text-moss-light' };
+    if (score >= 500) return { name: 'Sapling', icon: '🌿', color: 'from-sage-light to-moss', textColor: 'text-sage-light' };
+    return { name: 'Seedling', icon: '🌱', color: 'from-earth-light to-earth', textColor: 'text-earth-light' };
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-off-white pb-32 overflow-x-hidden">
+    <div className="min-h-screen bg-forest-deep text-off-white pb-32 overflow-x-hidden">
       <Navigation />
-      
+
       <div className="container mx-auto px-4 max-w-6xl pt-32">
         {/* Cinematic Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-deep/30 border border-teal-deep/50 rounded-full text-teal-400 text-xs font-black uppercase tracking-[0.2em] mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.04] border border-white/10 rounded-full text-accent-emerald text-xs font-black uppercase tracking-[0.2em] mb-8">
             <LayoutDashboard className="w-4 h-4" /> Personal Impact Rituals
           </div>
-          <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tight">Your <span className="text-bronze">Impact.</span></h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">Visualize the connection between your generosity and planetary healing.</p>
+          <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tight text-display">Your <span className="text-gradient">Impact.</span></h1>
+          <p className="text-xl text-sage-light/70 max-w-2xl mx-auto leading-relaxed">Visualize the connection between your generosity and planetary healing.</p>
         </motion.div>
 
         {/* Search Box Ritual */}
@@ -85,23 +85,23 @@ export default function Impact() {
           <motion.form 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            onSubmit={onFormSubmit} 
-            className="bg-slate-900 border border-white/5 rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl relative overflow-hidden"
+            onSubmit={onFormSubmit}
+            className="glass-card p-6 md:p-10 shadow-2xl relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-bronze/5 rounded-full blur-3xl" />
-            <label className="block text-[9px] md:text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-6 text-center">Enter the Name Used in Your Rituals</label>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-moss/10 rounded-full blur-3xl" />
+            <label className="block text-[9px] md:text-xs font-black uppercase tracking-[0.3em] text-sage-light/50 mb-6 text-center">Enter the Name Used in Your Rituals</label>
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 value={senderName}
                 onChange={(e) => setSenderName(e.target.value)}
                 placeholder="e.g., Morris, Jane Smith..."
-                className="flex-1 bg-slate-950 border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-5 text-lg md:text-xl font-black focus:border-bronze outline-none transition-all"
+                className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-5 text-lg md:text-xl font-black focus:border-accent-emerald outline-none transition-all"
               />
               <button
                 type="submit"
                 disabled={loading || !senderName.trim()}
-                className="bg-off-white text-slate-950 px-8 md:px-10 py-4 md:p-5 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-bronze hover:text-off-white transition-all disabled:opacity-50 flex items-center justify-center gap-2 group"
+                className="bg-gradient-to-br from-off-white to-sage-light text-forest-deep px-8 md:px-10 py-4 md:p-5 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:shadow-2xl hover:shadow-accent-emerald/20 transition-all disabled:opacity-50 flex items-center justify-center gap-2 group"
               >
                 {loading ? 'Searching...' : (
                   <>View Impact <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></>
@@ -116,7 +116,7 @@ export default function Impact() {
                   navigator.clipboard.writeText(url);
                   alert('🔗 Impact profile link copied!');
                 }}
-                className="mt-6 mx-auto text-teal-400 font-black text-[9px] md:text-[10px] uppercase tracking-widest hover:text-teal-300 transition-colors flex items-center gap-2"
+                className="mt-6 mx-auto text-accent-emerald font-black text-[9px] md:text-[10px] uppercase tracking-widest hover:text-moss-light transition-colors flex items-center gap-2"
               >
                 <Zap className="w-3 h-3" /> Share My Impact Profile
               </button>
@@ -124,15 +124,15 @@ export default function Impact() {
           </motion.form>
 
           {notFound && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-8 bg-red-500/10 border border-red-500/20 rounded-xl p-6 text-center"
+              className="mt-8 bg-rose-500/10 border border-rose-500/20 rounded-xl p-6 text-center"
             >
-              <p className="text-red-400 font-black uppercase tracking-widest text-[10px] md:text-xs mb-4">No rituals found for "{senderName}"</p>
+              <p className="text-rose-400 font-black uppercase tracking-widest text-[10px] md:text-xs mb-4">No rituals found for "{senderName}"</p>
               <button
                 onClick={() => navigate('/compose')}
-                className="text-white font-black underline underline-offset-4 hover:text-bronze transition-colors text-sm md:text-base"
+                className="text-off-white font-black underline underline-offset-4 hover:text-accent-emerald transition-colors text-sm md:text-base"
               >
                 Initiate Your First Ritual
               </button>
@@ -153,28 +153,28 @@ export default function Impact() {
               {/* Earth Guardian Status Card */}
               <div className="relative group">
                 <div className={`absolute inset-0 bg-gradient-to-r ${getBadge(stats.impact.totalImpactScore).color} opacity-20 blur-[100px] rounded-full`} />
-                <div className="relative bg-slate-900 border border-white/5 rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-12 overflow-hidden shadow-2xl">
+                <div className="relative glass-card-deluxe rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-12 overflow-hidden shadow-2xl">
                   <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                     <div className="relative">
                       <div className={`absolute inset-0 bg-gradient-to-r ${getBadge(stats.impact.totalImpactScore).color} opacity-50 blur-2xl rounded-full`} />
-                      <div className="w-32 h-32 md:w-48 md:h-48 bg-slate-950 rounded-full flex items-center justify-center text-6xl md:text-8xl relative z-10 border border-white/10 shadow-2xl">
+                      <div className="w-32 h-32 md:w-48 md:h-48 bg-forest-deep rounded-full flex items-center justify-center text-6xl md:text-8xl relative z-10 border border-white/10 shadow-2xl">
                         {getBadge(stats.impact.totalImpactScore).icon}
                       </div>
                     </div>
                     <div className="text-center md:text-left flex-1">
                       <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
                         <Award className={`w-5 h-5 md:w-6 md:h-6 ${getBadge(stats.impact.totalImpactScore).textColor}`} />
-                        <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-slate-500">Guardian Status</span>
+                        <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-sage-light/50">Guardian Status</span>
                       </div>
-                      <h2 className="text-4xl md:text-7xl font-black mb-4 md:mb-6 tracking-tight">
+                      <h2 className="text-4xl md:text-7xl font-black mb-4 md:mb-6 tracking-tight text-display">
                         {getBadge(stats.impact.totalImpactScore).name}
                       </h2>
-                      <p className="text-base md:text-xl text-slate-400 leading-relaxed max-w-2xl italic font-serif">
+                      <p className="text-base md:text-xl text-sage-light/70 leading-relaxed max-w-2xl italic font-serif">
                         "Your rituals have woven a stronger tapestry for our planet, {stats.name}."
                       </p>
                     </div>
                     <div className="text-center md:text-right">
-                      <div className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Impact Score</div>
+                      <div className="text-[10px] md:text-xs font-black uppercase tracking-widest text-sage-light/50 mb-2">Impact Score</div>
                       <div className={`text-4xl md:text-6xl font-black ${getBadge(stats.impact.totalImpactScore).textColor}`}>
                         {stats.impact.totalImpactScore.toLocaleString()}
                       </div>
@@ -185,58 +185,58 @@ export default function Impact() {
 
               {/* Main Stat Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-                <StatCard icon="🎁" value={stats.totalGifts} label="Rituals Sent" color="text-teal-400" />
-                <StatCard icon="💰" value={`$${stats.totalValue}`} label="Ritual Value" color="text-bronze" />
-                <StatCard icon="🌟" value={stats.impact.totalImpactScore.toLocaleString()} label="Impact Units" color="text-sky-400" />
+                <StatCard icon="🎁" value={stats.totalGifts} label="Rituals Sent" color="text-accent-emerald" />
+                <StatCard icon="💰" value={`$${stats.totalValue}`} label="Ritual Value" color="text-moss" />
+                <StatCard icon="🌟" value={stats.impact.totalImpactScore.toLocaleString()} label="Impact Units" color="text-sage-light" />
                 <StatCard icon="❤️" value={stats.uniqueRecipients} label="Circles Joined" color="text-rose-400" />
               </div>
 
               {/* Impact Details Dashboard */}
-              <div className="bg-slate-900 border border-white/5 rounded-[2rem] md:rounded-[3rem] p-8 md:p-12">
+              <div className="glass-card p-8 md:p-12">
                 <h2 className="text-xl md:text-2xl font-black mb-8 md:mb-12 text-center flex items-center justify-center gap-4">
                   <div className="h-px w-8 md:w-12 bg-white/10" />
                   Ritual Manifestations
                   <div className="h-px w-8 md:w-12 bg-white/10" />
                 </h2>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                   {stats.impact.treesPlanted > 0 && (
                     <ImpactDetail
                       icon="🌳"
                       value={stats.impact.treesPlanted}
                       label="Life Seeds Planted"
-                      sublabel={`${stats.impact.co2Absorbed} lbs CO2 mitigated annually`}
-                      color="text-emerald-400"
+                      sublabel={`${stats.impact.co2Absorbed} lbs CO₂ mitigated annually`}
+                      color="text-moss-light"
                     />
                   )}
-                  
+
                   {stats.impact.familiesHelped > 0 && (
                     <ImpactDetail
                       icon="🏠"
                       value={stats.impact.familiesHelped}
                       label="Community Resilience"
                       sublabel="Direct empowerment through climate tools"
-                      color="text-amber-400"
+                      color="text-earth-light"
                     />
                   )}
-                  
+
                   {stats.impact.solarPanels > 0 && (
                     <ImpactDetail
                       icon="☀️"
                       value={stats.impact.solarPanels}
                       label="Clean Energy Units"
                       sublabel={`${stats.impact.solarPanels * 300}W of renewable light`}
-                      color="text-yellow-400"
+                      color="text-moss-light"
                     />
                   )}
-                  
+
                   {stats.impact.plasticRemoved > 0 && (
                     <ImpactDetail
                       icon="🌊"
                       value={`${stats.impact.plasticRemoved}kg`}
                       label="Ocean Restoration"
                       sublabel="Plastic removed from fragile ecosystems"
-                      color="text-sky-400"
+                      color="text-sky"
                     />
                   )}
                 </div>

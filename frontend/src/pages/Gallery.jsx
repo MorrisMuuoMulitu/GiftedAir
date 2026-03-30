@@ -9,51 +9,51 @@ import EmptyState from '../components/EmptyState';
 import SEO, { SEOConfig } from '../components/SEO';
 
 const giftTypeDetails = {
-  tree: { 
-    icon: '🌳', 
-    color: 'bg-teal-900/30 border-teal-500/30', 
-    textColor: 'text-teal-400',
+  tree: {
+    icon: '🌳',
+    color: 'bg-accent-emerald/20 border-accent-emerald/30',
+    textColor: 'text-accent-emerald',
     name: 'Trees',
-    gradient: 'from-teal-400 to-emerald-500'
+    gradient: 'from-accent-emerald to-emerald-600'
   },
-  cookstove: { 
-    icon: '🏡', 
-    color: 'bg-amber-900/30 border-amber-500/30', 
-    textColor: 'text-amber-400',
+  cookstove: {
+    icon: '🏡',
+    color: 'bg-earth/20 border-earth/30',
+    textColor: 'text-earth-light',
     name: 'Cookstoves',
-    gradient: 'from-amber-400 to-red-500'
+    gradient: 'from-earth-light to-earth'
   },
-  solar: { 
-    icon: '☀️', 
-    color: 'bg-yellow-900/30 border-yellow-500/30', 
-    textColor: 'text-yellow-400',
+  solar: {
+    icon: '☀️',
+    color: 'bg-moss/20 border-moss/30',
+    textColor: 'text-moss-light',
     name: 'Solar',
-    gradient: 'from-yellow-400 to-orange-500'
+    gradient: 'from-moss-light to-moss'
   },
-  ocean: { 
-    icon: '🌊', 
-    color: 'bg-blue-900/30 border-blue-500/30', 
-    textColor: 'text-blue-400',
+  ocean: {
+    icon: '🌊',
+    color: 'bg-sky/20 border-sky/30',
+    textColor: 'text-sky',
     name: 'Ocean',
-    gradient: 'from-blue-400 to-cyan-500'
+    gradient: 'from-sky to-ocean'
   },
-  coral: { 
-    icon: '🪸', 
-    color: 'bg-pink-900/30 border-pink-500/30', 
-    textColor: 'text-pink-400',
+  coral: {
+    icon: '🪸',
+    color: 'bg-rose-500/20 border-rose-500/30',
+    textColor: 'text-rose-400',
     name: 'Coral Reef',
-    gradient: 'from-pink-400 to-rose-500'
+    gradient: 'from-rose-400 to-rose-600'
   },
-  wildlife: { 
-    icon: '🦁', 
-    color: 'bg-bronze/20 border-bronze/30', 
-    textColor: 'text-bronze',
+  wildlife: {
+    icon: '🦁',
+    color: 'bg-amber-500/20 border-amber-500/30',
+    textColor: 'text-amber-400',
     name: 'Wildlife',
-    gradient: 'from-bronze to-amber-600'
+    gradient: 'from-amber-400 to-amber-600'
   },
-  water: { 
-    icon: '💧', 
-    color: 'bg-sky-900/30 border-sky-500/30', 
+  water: {
+    icon: '💧',
+    color: 'bg-sky-900/30 border-sky-500/30',
     textColor: 'text-sky-400',
     name: 'Clean Water',
     gradient: 'from-blue-300 to-sky-500'
@@ -120,24 +120,24 @@ export default function Gallery() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 text-off-white">
-        <motion.div 
+      <div className="min-h-screen flex flex-col items-center justify-center bg-forest-deep text-off-white">
+        <motion.div
           animate={{ scale: [1, 1.1, 1], opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="text-6xl mb-8"
         >
           🌿
         </motion.div>
-        <p className="text-xl font-black uppercase tracking-[0.3em] text-teal-400 animate-pulse">Illuminating Gallery</p>
+        <p className="text-xl font-black uppercase tracking-[0.3em] text-accent-emerald animate-pulse">Illuminating Gallery</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-off-white pb-32 overflow-x-hidden">
+    <div className="min-h-screen bg-forest-deep text-off-white pb-32 overflow-x-hidden">
       <Navigation />
       <SEO {...SEOConfig.gallery} />
-      
+
       <div className="container mx-auto px-4 max-w-7xl pt-32">
         {/* Cinematic Header */}
         <motion.div
@@ -145,11 +145,11 @@ export default function Gallery() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16 md:mb-24"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-deep/30 border border-teal-deep/50 rounded-full text-teal-400 text-xs font-black uppercase tracking-[0.2em] mb-6 md:mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.04] border border-white/10 rounded-full text-accent-emerald text-xs font-black uppercase tracking-[0.2em] mb-6 md:mb-8">
             <Globe className="w-4 h-4" /> Global Impact Rituals
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tight">Gift <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-bronze to-teal-400 bg-[length:200%_auto] animate-gradient">Gallery.</span></h1>
-          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed px-2">Celebrating every act of climate love. A collective ledger of healing and connection.</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tight text-display">Gift <span className="text-gradient">Gallery.</span></h1>
+          <p className="text-lg md:text-xl text-sage-light/70 max-w-2xl mx-auto leading-relaxed px-2">Celebrating every act of climate love. A collective ledger of healing and connection.</p>
         </motion.div>
 
         {/* Impact Stats Dashboard */}
@@ -160,20 +160,20 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="mb-16 md:mb-32 relative"
           >
-            <div className="absolute inset-0 bg-teal-deep/10 rounded-[3rem] blur-3xl" />
+            <div className="absolute inset-0 bg-accent-emerald/10 rounded-[3rem] blur-3xl" />
 
-            <div className="relative bg-slate-900/50 border border-white/5 rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-2xl overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-bronze/5 rounded-full blur-[100px]" />
+            <div className="relative glass-card p-6 md:p-12 overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-moss/10 rounded-full blur-[100px]" />
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8 md:mb-12">
-                <ImpactCard icon="🎁" value={stats.totalGifts} label="Rituals Sent" color="text-teal-400" />
-                <ImpactCard icon="🌳" value={stats.impact.treesPlanted} label="Seeds Planted" color="text-emerald-400" />
-                <ImpactCard icon="💨" value={stats.impact.co2Absorbed.toLocaleString()} label="lbs CO2 Mitigated" color="text-sky-400" />
-                <ImpactCard icon="💰" value={`$${stats.totalValue.toLocaleString()}`} label="Climate Value" color="text-bronze" />
+                <ImpactCard icon="🎁" value={stats.totalGifts} label="Rituals Sent" color="text-accent-emerald" />
+                <ImpactCard icon="🌳" value={stats.impact.treesPlanted} label="Seeds Planted" color="text-moss-light" />
+                <ImpactCard icon="💨" value={stats.impact.co2Absorbed.toLocaleString()} label="lbs CO₂ Mitigated" color="text-sage-light" />
+                <ImpactCard icon="💰" value={`$${stats.totalValue.toLocaleString()}`} label="Climate Value" color="text-moss" />
               </div>
 
               {(stats.impact.familiesHelped > 0 || stats.impact.solarPanels > 0 || stats.impact.plasticRemoved > 0) && (
-                <div className="flex flex-wrap justify-center gap-8 pt-12 border-t border-white/5">
+                <div className="flex flex-wrap justify-center gap-8 pt-12 border-t border-white/10">
                   {stats.impact.familiesHelped > 0 && <MiniStat icon="🏠" value={stats.impact.familiesHelped} label="Empowered Families" />}
                   {stats.impact.solarPanels > 0 && <MiniStat icon="☀️" value={stats.impact.solarPanels} label="Clean Energy Units" />}
                   {stats.impact.plasticRemoved > 0 && <MiniStat icon="🌊" value={`${stats.impact.plasticRemoved}kg`} label="Ocean Sanctuary" />}
@@ -187,13 +187,13 @@ export default function Gallery() {
         <div className="mb-16 md:mb-24">
           <div className="max-w-4xl mx-auto mb-12 md:mb-16 px-2">
             <div className="relative group">
-              <Search className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 text-slate-500 group-hover:text-bronze transition-colors" />
+              <Search className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 text-sage-light/50 group-hover:text-accent-emerald transition-colors" />
               <input
                 type="text"
                 placeholder="Search rituals by sender, recipient, or message..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-900 border border-white/10 rounded-xl md:rounded-2xl py-4 md:py-6 pl-12 md:pl-16 pr-4 md:pr-8 text-base md:text-lg focus:border-bronze outline-none transition-all shadow-2xl"
+                className="w-full bg-white/[0.03] border border-white/10 rounded-xl md:rounded-2xl py-4 md:py-6 pl-12 md:pl-16 pr-4 md:pr-8 text-base md:text-lg focus:border-accent-emerald outline-none transition-all shadow-2xl"
               />
             </div>
           </div>
@@ -283,12 +283,12 @@ export default function Gallery() {
           className="relative group cursor-pointer px-2"
           onClick={() => navigate('/compose')}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-teal-deep to-slate-900 rounded-[2rem] md:rounded-[3rem] blur-xl opacity-50 group-hover:opacity-100 transition-opacity" />
-          <div className="relative bg-slate-900 border border-white/5 rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 text-center shadow-2xl overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-teal-400/5 rounded-full blur-[100px] -mr-32 md:-mr-48 -mt-32 md:-mt-48" />
+          <div className="absolute inset-0 bg-gradient-to-r from-accent-emerald/20 to-forest/10 rounded-[2rem] md:rounded-[3rem] blur-xl opacity-50 group-hover:opacity-100 transition-opacity" />
+          <div className="relative glass-card p-8 md:p-16 text-center shadow-2xl overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-accent-emerald/5 rounded-full blur-[100px] -mr-32 md:-mr-48 -mt-32 md:-mt-48" />
             <div className="text-4xl md:text-6xl mb-6 md:mb-8">✨</div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black mb-6 md:mb-8">Initiate Your Own<br/>Climate Ritual.</h2>
-            <button className="px-8 md:px-12 py-4 md:py-6 bg-off-white text-slate-950 rounded-xl md:rounded-2xl text-base md:text-xl font-black hover:bg-bronze hover:text-off-white transition-all duration-500 shadow-2xl flex items-center gap-2 md:gap-3 mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black mb-6 md:mb-8 text-display">Initiate Your Own<br/>Climate Ritual.</h2>
+            <button className="btn-primary px-8 md:px-12 py-4 md:py-6 text-base md:text-xl mx-auto">
               Send a Gift <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
             </button>
           </div>
@@ -337,14 +337,14 @@ function FilterButton({ icon, label, count, active, onClick }) {
     <button
       onClick={onClick}
       className={`px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all flex items-center gap-2 ${
-        active 
-          ? 'bg-off-white text-slate-950 shadow-xl scale-105' 
-          : 'bg-slate-900 text-slate-500 border border-white/5 hover:border-white/20'
+        active
+          ? 'bg-gradient-to-br from-off-white to-sage-light text-forest-deep shadow-xl scale-105'
+          : 'bg-white/[0.03] text-sage-light/60 border border-white/5 hover:border-white/20 hover:text-off-white'
       }`}
     >
       {icon && <span>{icon}</span>}
       {label}
-      <span className={`ml-1 ${active ? 'text-slate-500' : 'text-slate-700'}`}>({count})</span>
+      <span className={`ml-1 ${active ? 'text-forest-deep/60' : 'text-sage-light/40'}`}>({count})</span>
     </button>
   );
 }
@@ -358,24 +358,24 @@ function GiftCard({ gift, onClick, index }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       onClick={onClick}
-      className="group cursor-pointer bg-slate-900 border border-white/5 rounded-[2rem] md:rounded-[2.5rem] p-5 md:p-8 hover:border-bronze/30 transition-all duration-500 relative overflow-hidden"
+      className="group cursor-pointer glass-card p-5 md:p-8 hover:border-accent-emerald/30 transition-all duration-500 relative overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-teal-400/5 rounded-full blur-3xl pointer-events-none group-hover:bg-bronze/10 transition-colors" />
+      <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-accent-emerald/5 rounded-full blur-3xl pointer-events-none group-hover:bg-accent-emerald/10 transition-colors" />
 
       <div className="flex justify-between items-start mb-6 md:mb-8">
         <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl border ${details.color}`}>
           {details.icon}
         </div>
         <div className="text-right">
-          <div className="text-2xl md:text-3xl font-black text-teal-400">{gift.quantity}</div>
-          <div className="text-[9px] md:text-[10px] font-black text-slate-500 uppercase tracking-widest">Impact Units</div>
+          <div className="text-2xl md:text-3xl font-black text-accent-emerald">{gift.quantity}</div>
+          <div className="text-[9px] md:text-[10px] font-black text-sage-light/50 uppercase tracking-widest">Impact Units</div>
         </div>
       </div>
 
       <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
         <div className="flex items-center gap-2">
-          <User className="w-3 h-3 text-bronze" />
-          <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">From</span>
+          <User className="w-3 h-3 text-accent-emerald" />
+          <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">From</span>
           <span className="text-sm font-black text-off-white truncate">{gift.senderName}</span>
         </div>
         <div className="flex items-center gap-2">

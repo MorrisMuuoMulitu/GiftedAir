@@ -48,48 +48,48 @@ export default function Transparency() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-off-white pb-32 overflow-x-hidden">
+    <div className="min-h-screen bg-forest-deep text-off-white pb-32 overflow-x-hidden">
       <Navigation />
-      
+
       <div className="container mx-auto px-4 max-w-5xl pt-32">
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="text-center mb-24"
         >
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 bg-teal-deep/30 border border-teal-deep/50 rounded-full text-teal-400 text-xs font-black uppercase tracking-[0.2em] mb-8">
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.04] border border-white/10 rounded-full text-accent-emerald text-xs font-black uppercase tracking-[0.2em] mb-8">
             <ShieldCheck className="w-4 h-4" /> Radical Transparency
           </motion.div>
-          
-          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-black mb-8 tracking-tight">
-            The Impact <span className="text-bronze">Ledger.</span>
+
+          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-black mb-8 tracking-tight text-display">
+            The Impact <span className="text-gradient">Ledger.</span>
           </motion.h1>
-          
-          <motion.p variants={itemVariants} className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+
+          <motion.p variants={itemVariants} className="text-xl text-sage-light/70 max-w-3xl mx-auto leading-relaxed">
             We believe that climate action requires absolute honesty. Our 70/30 Fellowship-led model ensures that the majority of your gift directly heals the planet while sustaining the platform that makes it possible.
           </motion.p>
         </motion.div>
 
         {/* Impel Web Attribution & Development Notice */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8 md:mb-12 p-6 md:p-8 bg-slate-900 border border-teal-500/20 rounded-[2rem] md:rounded-[2.5rem] relative overflow-hidden group"
+          className="mb-8 md:mb-12 p-6 md:p-8 glass-card rounded-[2rem] md:rounded-[2.5rem] relative overflow-hidden group"
         >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/5 rounded-full blur-3xl group-hover:bg-teal-500/10 transition-colors" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-accent-emerald/5 rounded-full blur-3xl group-hover:bg-accent-emerald/10 transition-colors" />
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
-              <p className="text-teal-400 text-[10px] md:text-xs font-black uppercase tracking-widest mb-2 flex items-center justify-center md:justify-start gap-2">
+              <p className="text-accent-emerald text-[10px] md:text-xs font-black uppercase tracking-widest mb-2 flex items-center justify-center md:justify-start gap-2">
                 <Zap className="w-3 h-3" /> Engineering Update
               </p>
               <h3 className="text-lg md:text-xl font-black mb-2 text-off-white">Live Ledger Development</h3>
-              <p className="text-slate-400 text-xs md:text-sm leading-relaxed max-w-xl">
-                This Live Impact Ledger is being architected and developed by <a href="https://www.impelweb.studio/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline underline-offset-4 decoration-teal-500/30 font-bold transition-all inline-flex items-center gap-1">Impel Web <ExternalLink className="w-3 h-3" /></a>. While the system currently displays verified ritual data, we are transitioning to a real-time blockchain-grade synchronization.
+              <p className="text-sage-light/70 text-xs md:text-sm leading-relaxed max-w-xl">
+                This Live Impact Ledger is being architected and developed by <a href="https://www.impelweb.studio/" target="_blank" rel="noopener noreferrer" className="text-accent-emerald hover:text-moss-light underline underline-offset-4 decoration-accent-emerald/30 font-bold transition-all inline-flex items-center gap-1">Impel Web <ExternalLink className="w-3 h-3" /></a>. While the system currently displays verified ritual data, we are transitioning to a real-time blockchain-grade synchronization.
               </p>
             </div>
             <div className="flex-shrink-0">
-              <div className="px-3 py-1.5 md:px-4 md:py-2 bg-teal-500/10 border border-teal-500/20 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest text-teal-400 animate-pulse">
+              <div className="px-3 py-1.5 md:px-4 md:py-2 bg-accent-emerald/10 border border-accent-emerald/20 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest text-accent-emerald animate-pulse">
                 Status: Beta Sync
               </div>
             </div>
@@ -98,86 +98,86 @@ export default function Transparency() {
 
         {/* 70/30 Split Visualization */}
         <div className="grid md:grid-cols-2 gap-6 md:gap-12 mb-20 md:mb-32">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-slate-900/50 border border-white/5 rounded-[2rem] md:rounded-[3rem] p-8 md:p-10 flex flex-col justify-between"
+            className="glass-card p-8 md:p-10 flex flex-col justify-between"
           >
             <div>
-              <div className="text-5xl md:text-6xl font-black text-teal-400 mb-4">70%</div>
+              <div className="text-5xl md:text-6xl font-black text-accent-emerald mb-4">70%</div>
               <h3 className="text-xl md:text-2xl font-black mb-4">Direct Partner Funding</h3>
-              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-8">
+              <p className="text-sage-light/70 text-sm md:text-base leading-relaxed mb-8">
                 The lion's share of every ritual goes directly to our primary partners like Uplift Her Kenya and Kaiti Greening Champions. This funds the physical seeds, the solar panels, and the community labor.
               </p>
             </div>
-            <div className="flex items-center gap-4 text-teal-400 font-black uppercase tracking-widest text-[10px] md:text-xs">
+            <div className="flex items-center gap-4 text-accent-emerald font-black uppercase tracking-widest text-[10px] md:text-xs">
               <Globe className="w-4 h-4" /> Verified Fellowship Projects
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-slate-900/50 border border-white/5 rounded-[2rem] md:rounded-[3rem] p-8 md:p-10 flex flex-col justify-between"
+            className="glass-card p-8 md:p-10 flex flex-col justify-between"
           >
             <div>
-              <div className="text-5xl md:text-6xl font-black text-bronze mb-4">30%</div>
+              <div className="text-5xl md:text-6xl font-black text-moss mb-4">30%</div>
               <h3 className="text-xl md:text-2xl font-black mb-4">Platform & Poetic UI</h3>
-              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-8">
+              <p className="text-sage-light/70 text-sm md:text-base leading-relaxed mb-8">
                 This portion fuels our growth. It covers high-aesthetic development, M-Pesa integration fees, and the expansion of our ritual-led ecosystem to reach more givers worldwide.
               </p>
             </div>
-            <div className="flex items-center gap-4 text-bronze font-black uppercase tracking-widest text-[10px] md:text-xs">
+            <div className="flex items-center gap-4 text-moss font-black uppercase tracking-widest text-[10px] md:text-xs">
               <Zap className="w-4 h-4" /> Sustainable Growth Engine
             </div>
           </motion.div>
         </div>
 
         {/* Real-time Ledger Table */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-slate-900 border border-white/10 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl"
+          className="glass-card overflow-hidden shadow-2xl"
         >
-          <div className="p-6 md:p-10 border-b border-white/5 flex justify-between items-center">
-            <h2 className="text-xl md:text-2xl font-black">Live Impact Ledger</h2>
-            <div className="flex items-center gap-2 px-2 py-1 md:px-3 md:py-1 bg-teal-400/10 text-teal-400 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest">
+          <div className="p-6 md:p-10 border-b border-white/10 flex justify-between items-center">
+            <h2 className="text-xl md:text-2xl font-black text-display">Live Impact Ledger</h2>
+            <div className="flex items-center gap-2 px-2 py-1 md:px-3 md:py-1 bg-accent-emerald/10 text-accent-emerald rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-emerald opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-emerald"></span>
               </span>
               Database Sync
             </div>
           </div>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full text-left min-w-[600px] md:min-w-full">
               <thead>
-                <tr className="bg-slate-950/50">
-                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Event Date</th>
-                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Climate Ritual</th>
-                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Contribution</th>
-                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Impact Split</th>
-                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Verification</th>
+                <tr className="bg-white/[0.02]">
+                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">Event Date</th>
+                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">Climate Ritual</th>
+                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">Contribution</th>
+                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">Impact Split</th>
+                  <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">Verification</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-white/10">
                 {ledgerGifts.length > 0 ? (
                   ledgerGifts.map((gift, i) => (
-                    <tr key={gift._id || i} className="hover:bg-white/[0.02] transition-colors">
-                      <td className="px-6 md:px-10 py-4 md:py-6 font-bold text-slate-400 text-xs md:text-sm">
+                    <tr key={gift._id || i} className="hover:bg-white/[0.03] transition-colors">
+                      <td className="px-6 md:px-10 py-4 md:py-6 font-bold text-sage-light/70 text-xs md:text-sm">
                         {new Date(gift.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}
                       </td>
                       <td className="px-6 md:px-10 py-4 md:py-6">
                         <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-teal-400" />
+                          <div className="w-2 h-2 rounded-full bg-accent-emerald" />
                           <span className="font-black text-off-white text-xs md:text-base">{gift.type === 'uplift-her' ? 'Uplift Her Kenya' : 'Kaiti Greening'}</span>
                         </div>
                       </td>
-                      <td className="px-6 md:px-10 py-4 md:py-6 font-black text-teal-400 text-xs md:text-base">${gift.totalCost}</td>
+                      <td className="px-6 md:px-10 py-4 md:py-6 font-black text-accent-emerald text-xs md:text-base">${gift.totalCost}</td>
                       <td className="px-6 md:px-10 py-4 md:py-6 font-medium text-slate-400 text-xs md:text-base">70% Partner</td>
                       <td className="px-6 md:px-10 py-4 md:py-6">
                         <span className="px-2 py-0.5 md:px-3 md:py-1 bg-teal-500/10 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest text-teal-400 border border-teal-500/20">
