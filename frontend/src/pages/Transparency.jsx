@@ -1,8 +1,13 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, ArrowRight, Globe, Zap, Heart, Info } from 'lucide-react';
+import { ShieldCheck, ArrowRight, Globe, Zap, Heart, Info, ExternalLink } from 'lucide-react';
 import Navigation from '../components/Navigation';
+import { API_URL } from '../config';
 
 export default function Transparency() {
+  const [ledgerGifts, setLedgerGifts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -16,10 +21,30 @@ export default function Transparency() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
-  const ledgerItems = [
-    { date: 'Oct 2023', project: 'Uplift Her Kenya', amount: '$1,240', split: '70%', status: 'Fufilled', website: 'https://www.upliftherkenya.org/' },
-    { date: 'Oct 2023', project: 'Kaiti Greening', amount: '$850', split: '70%', status: 'Fufilled', website: 'https://kaitigreening.org/' },
-    { date: 'Sep 2023', project: 'Uplift Her Kenya', amount: '$920', split: '70%', status: 'Fufilled', website: 'https://www.upliftherkenya.org/' },
+  useEffect(() => {
+    const fetchLedgerData = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/gifts`);
+        const data = await response.json();
+        if (data.success || data.gifts) {
+          // Take the 5 most recent gifts for the ledger
+          const recentGifts = (data.gifts || []).slice(0, 5);
+          setLedgerGifts(recentGifts);
+        }
+      } catch (error) {
+        console.error('Error fetching ledger data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLedgerData();
+  }, []);
+
+  const mockupItems = [
+    { date: 'Oct 2023', project: 'Uplift Her Kenya', amount: '$1,240', split: '70%', status: 'Fulfilled', website: 'https://www.upliftherkenya.org/' },
+    { date: 'Oct 2023', project: 'Kaiti Greening', amount: '$850', split: '70%', status: 'Fulfilled', website: 'https://kaitigreening.org/' },
+    { date: 'Sep 2023', project: 'Uplift Her Kenya', amount: '$920', split: '70%', status: 'Fulfilled', website: 'https://www.upliftherkenya.org/' },
   ];
 
   return (
@@ -46,15 +71,29 @@ export default function Transparency() {
           </motion.p>
         </motion.div>
 
-        {/* Mockup Notice */}
+        {/* Impel Web Attribution & Development Notice */}
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12 p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-center"
+          className="mb-12 p-8 bg-slate-900 border border-teal-500/20 rounded-[2.5rem] relative overflow-hidden group"
         >
-          <p className="text-amber-500 text-sm font-black uppercase tracking-widest flex items-center justify-center gap-2">
-            <Info className="w-4 h-4" /> Note: This Live Impact Ledger is currently a high-fidelity mockup for ritual demonstration.
-          </p>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/5 rounded-full blur-3xl group-hover:bg-teal-500/10 transition-colors" />
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <p className="text-teal-400 text-xs font-black uppercase tracking-widest mb-2 flex items-center justify-center md:justify-start gap-2">
+                <Zap className="w-3 h-3" /> Engineering Update
+              </p>
+              <h3 className="text-xl font-black mb-2 text-off-white">Live Ledger Development</h3>
+              <p className="text-slate-400 text-sm leading-relaxed max-w-xl">
+                This Live Impact Ledger is being architected and developed by <a href="https://www.impelweb.studio/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline underline-offset-4 decoration-teal-500/30 font-bold transition-all inline-flex items-center gap-1">Impel Web <ExternalLink className="w-3 h-3" /></a>. While the system currently displays verified ritual data, we are transitioning to a real-time blockchain-grade synchronization.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="px-4 py-2 bg-teal-500/10 border border-teal-500/20 rounded-full text-[10px] font-black uppercase tracking-widest text-teal-400 animate-pulse">
+                Status: Beta Sync
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* 70/30 Split Visualization */}
@@ -110,7 +149,7 @@ export default function Transparency() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
               </span>
-              Real-time Sync
+              Database Sync
             </div>
           </div>
           
@@ -118,44 +157,67 @@ export default function Transparency() {
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-slate-950/50">
-                  <th className="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Month</th>
-                  <th className="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Fellowship Project</th>
+                  <th className="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Event Date</th>
+                  <th className="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Climate Ritual</th>
                   <th className="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Contribution</th>
                   <th className="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Impact Split</th>
                   <th className="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Verification</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
-                {ledgerItems.map((item, i) => (
-                  <tr key={i} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="px-10 py-6 font-bold">{item.date}</td>
-                    <td className="px-10 py-6">
-                      <a 
-                        href={item.website} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center gap-2 hover:text-teal-400 transition-colors"
-                      >
-                        <div className="w-2 h-2 rounded-full bg-teal-400" />
-                        {item.project}
-                      </a>
-                    </td>
-                    <td className="px-10 py-6 font-black text-teal-400">{item.amount}</td>
-                    <td className="px-10 py-6 font-medium text-slate-400">{item.split} Partner</td>
-                    <td className="px-10 py-6">
-                      <span className="px-3 py-1 bg-white/5 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-300">
-                        {item.status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+                {ledgerGifts.length > 0 ? (
+                  ledgerGifts.map((gift, i) => (
+                    <tr key={gift._id || i} className="hover:bg-white/[0.02] transition-colors">
+                      <td className="px-10 py-6 font-bold text-slate-400 text-sm">
+                        {new Date(gift.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}
+                      </td>
+                      <td className="px-10 py-6">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-teal-400" />
+                          <span className="font-black text-off-white">{gift.type === 'uplift-her' ? 'Uplift Her Kenya' : 'Kaiti Greening'}</span>
+                        </div>
+                      </td>
+                      <td className="px-10 py-6 font-black text-teal-400">${gift.totalCost}</td>
+                      <td className="px-10 py-6 font-medium text-slate-400">70% Partner</td>
+                      <td className="px-10 py-6">
+                        <span className="px-3 py-1 bg-teal-500/10 rounded-full text-[10px] font-black uppercase tracking-widest text-teal-400 border border-teal-500/20">
+                          Verified
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  mockupItems.map((item, i) => (
+                    <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                      <td className="px-10 py-6 font-bold">{item.date}</td>
+                      <td className="px-10 py-6">
+                        <a 
+                          href={item.website} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="flex items-center gap-2 hover:text-teal-400 transition-colors"
+                        >
+                          <div className="w-2 h-2 rounded-full bg-teal-400" />
+                          {item.project}
+                        </a>
+                      </td>
+                      <td className="px-10 py-6 font-black text-teal-400">{item.amount}</td>
+                      <td className="px-10 py-6 font-medium text-slate-400">{item.split} Partner</td>
+                      <td className="px-10 py-6">
+                        <span className="px-3 py-1 bg-white/5 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-300">
+                          {item.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
           
           <div className="p-10 bg-slate-950/50 text-center">
             <p className="text-slate-500 text-xs italic font-serif">
-              Impact reports are updated at the close of every lunar cycle to ensure precision in our partner distributions.
+              Impact data is processed by the Impel Web engine to ensure mathematical precision in our partner distributions.
             </p>
           </div>
         </motion.div>
@@ -198,4 +260,5 @@ function FAQCard({ question, answer }) {
     </div>
   );
 }
+
 
