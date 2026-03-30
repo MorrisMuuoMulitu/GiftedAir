@@ -10,9 +10,9 @@ const projects = [
     id: 'uplift-her',
     title: 'Uplift Her Kenya',
     founder: 'Faith Wambiya',
-    impact: '10 Mangroves protected',
-    description: 'Empowering women in rural Kenya through agrivoltaics and sustainable climate farming. Your gift funds infrastructure and training for local women farmers.',
-    fullStory: 'Founded by beVisioneers fellow Faith Wambiya, Uplift Her Kenya is transforming how rural communities interact with their land. By combining solar energy (agrivoltaics) with sustainable crop cultivation, they are creating a blueprint for resilience.',
+    impact: 'Mangroves & Solar',
+    description: 'Empowering women in rural Kenya through agrivoltaics - combining solar energy with sustainable farming to create climate-resilient communities.',
+    fullStory: 'Founded by beVisioneers fellow Faith Wambiya, Uplift Her Kenya is transforming how rural communities interact with their land. By combining solar energy (agrivoltaics) with sustainable crop cultivation, they are creating a blueprint for resilience.\n\nTheir programs focus on:\n- Mangrove restoration along the coast\n- Solar-powered irrigation systems\n- Training women in sustainable agriculture\n- Creating economic opportunities for rural families',
     unit: 'Project Support Unit',
     image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80',
     location: 'Coastal Kenya',
@@ -25,8 +25,8 @@ const projects = [
     title: 'Kaiti Greening Champions',
     founder: 'Community Led',
     impact: 'Tree Restoration',
-    description: '',
-    fullStory: 'The Kaiti Greening Champions are restoration experts. They don\'t just plant trees; they nurture them. Their mission is to reclaim the drylands of Makueni through community-led reforestation efforts that ensure survival rates above 90%.',
+    description: 'A grassroots movement with a 5M tree restoration goal. Your gift directly funds the planting and maintenance of indigenous trees in the Makueni landscape.',
+    fullStory: 'Founded in 2016, Kaiti Greening Champions emerged from a shared concern about environmental degradation and its impact on local livelihoods. What started as a small group of passionate individuals has grown into a vibrant movement of dedicated "champions" from all walks of life.\n\nOur approach is holistic and community-driven. We believe that lasting environmental change can only be achieved when local communities are empowered to take lead roles in conservation efforts.\n\nThrough our diverse programs, we bridge the gap between environmental awareness and practical action, ensuring that every tree planted contributes to a more sustainable and resilient future for Makueni County.',
     unit: 'Indigenous Trees',
     image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80',
     location: 'Makueni, Kenya',
@@ -419,7 +419,7 @@ function ProjectCard({ project, isSelected, onClick }) {
               {isSelected && <Check className="w-3 h-3 md:w-4 md:h-4" />}
             </div>
           </div>
-          <p className="text-sage-light/70 text-sm leading-relaxed mb-4">{project.description || 'A grassroots movement with a 5M tree restoration goal. Your gift directly funds the planting and maintenance of indigenous trees in the Makueni landscape.'}</p>
+          <p className="text-sage-light/70 text-sm leading-relaxed mb-4">{project.description}</p>
         </div>
 
         <div className="flex flex-wrap gap-3 md:gap-4 pt-4 border-t border-white/10">
