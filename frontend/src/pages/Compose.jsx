@@ -150,7 +150,7 @@ export default function Compose() {
         <div className="grid lg:grid-cols-3 gap-8 md:gap-12">
           {/* Marketplace Column */}
           <div className="lg:col-span-2 space-y-8">
-            <h2 className="text-sm font-black uppercase tracking-[0.3em] text-accent-emerald mb-8">Project Marketplace</h2>
+            <h2 className="text-sm font-black uppercase tracking-[0.3em] text-emerald-400 mb-8">Project Marketplace</h2>
             
             {projects.map((project) => (
               <ProjectCard 

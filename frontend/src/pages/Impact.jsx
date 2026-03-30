@@ -243,45 +243,45 @@ export default function Impact() {
               </div>
 
               {/* Recent Rituals Table */}
-              <div className="bg-slate-900 border border-white/5 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl">
-                <div className="p-6 md:p-10 border-b border-white/5 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+              <div className="glass-card-elevated overflow-hidden">
+                <div className="p-6 md:p-10 border-b border-white/10 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
                   <h2 className="text-xl md:text-2xl font-black">Ritual History</h2>
-                  <div className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">
+                  <div className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">
                     Showing {Math.min(5, gifts.length)} of {gifts.length} entries
                   </div>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left min-w-[700px] md:min-w-full">
                     <thead>
-                      <tr className="bg-slate-950/50">
-                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Ritual Date</th>
-                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Recipient</th>
-                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Impact</th>
-                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Status</th>
-                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Action</th>
+                      <tr className="bg-white/[0.02]">
+                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">Ritual Date</th>
+                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">Recipient</th>
+                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">Impact</th>
+                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50">Status</th>
+                        <th className="px-6 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/50 text-right">Action</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/5">
+                    <tbody className="divide-y divide-white/08">
                       {gifts.slice(0, 5).map((gift) => (
                         <tr key={gift._id} className="hover:bg-white/[0.02] transition-colors group">
-                          <td className="px-6 md:px-10 py-4 md:py-6 font-bold text-slate-400 text-xs md:text-sm">
+                          <td className="px-6 md:px-10 py-4 md:py-6 font-bold text-sage-light/70 text-xs md:text-sm">
                             {new Date(gift.createdAt).toLocaleDateString()}
                           </td>
                           <td className="px-6 md:px-10 py-4 md:py-6 font-black text-off-white text-xs md:text-base">
                             {gift.recipientName}
                           </td>
-                          <td className="px-6 md:px-10 py-4 md:py-6 font-bold text-teal-400 text-xs md:text-base">
+                          <td className="px-6 md:px-10 py-4 md:py-6 font-bold text-emerald-400 text-xs md:text-base">
                             {gift.quantity} {gift.type === 'tree' ? 'Seeds' : gift.type === 'ocean' ? 'kg Ocean Sanctuary' : gift.type === 'solar' ? 'Energy Units' : gift.type === 'cookstove' ? 'Toolkits' : 'Impact'}
                           </td>
                           <td className="px-6 md:px-10 py-4 md:py-6">
-                            <span className="px-2 py-0.5 md:px-3 md:py-1 bg-white/5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            <span className="px-2 py-0.5 md:px-3 md:py-1 bg-white/5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest text-sage-light/60">
                               {gift.status}
                             </span>
                           </td>
                           <td className="px-6 md:px-10 py-4 md:py-6 text-right">
                             <button
                               onClick={() => navigate(`/gift/${gift._id}`)}
-                              className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-bronze hover:text-white transition-colors flex items-center gap-2 ml-auto"
+                              className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-2 ml-auto"
                             >
                               Reveal Ritual <ArrowRight className="w-3 h-3" />
                             </button>
@@ -301,13 +301,13 @@ export default function Impact() {
               >
                 <button
                   onClick={() => navigate('/compose')}
-                  className="px-8 md:px-12 py-5 md:py-6 bg-bronze text-white rounded-xl md:rounded-2xl text-lg md:text-xl font-black hover:bg-amber-100 transition-all shadow-2xl shadow-bronze/20 flex items-center gap-3 mx-auto group"
+                  className="px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl md:rounded-2xl text-lg md:text-xl font-bold hover:shadow-lg hover:shadow-emerald-500/20 transition-all flex items-center gap-3 mx-auto group"
                 >
                   Initiate New Ritual <Heart className="w-6 h-6 group-hover:fill-current transition-all" />
                 </button>
                 <button
                   onClick={() => navigate('/')}
-                  className="mt-8 text-slate-500 hover:text-off-white font-black uppercase tracking-[0.2em] text-[9px] md:text-[10px] transition-colors"
+                  className="mt-8 text-sage-light/40 hover:text-emerald-400 font-bold uppercase tracking-[0.2em] text-[9px] md:text-[10px] transition-colors"
                 >
                   ← Return to Sanctuary
                 </button>

@@ -312,21 +312,21 @@ export default function Gallery() {
 
 function ImpactCard({ icon, value, label, color }) {
   return (
-    <div className="text-center p-6 bg-slate-950/50 rounded-2xl border border-white/5">
+    <div className="text-center p-6 glass-card rounded-2xl">
       <div className="text-4xl mb-4">{icon}</div>
       <div className={`text-4xl font-black mb-1 ${color}`}>{value}</div>
-      <div className="text-[10px] font-black uppercase tracking-widest text-slate-500">{label}</div>
+      <div className="text-[10px] font-black uppercase tracking-widest text-sage-light/50">{label}</div>
     </div>
   );
 }
 
 function MiniStat({ icon, value, label }) {
   return (
-    <div className="flex items-center gap-3 bg-slate-950/50 border border-white/5 px-6 py-3 rounded-xl">
+    <div className="flex items-center gap-3 glass-card px-6 py-3 rounded-xl">
       <span className="text-2xl">{icon}</span>
       <div>
         <div className="text-lg font-black">{value}</div>
-        <div className="text-[10px] font-black uppercase tracking-widest text-slate-500">{label}</div>
+        <div className="text-[10px] font-black uppercase tracking-widest text-sage-light/50">{label}</div>
       </div>
     </div>
   );
@@ -391,26 +391,26 @@ function GiftCard({ gift, onClick, index }) {
         )}
       </div>
 
-      <div className="bg-slate-950/50 border border-white/5 rounded-xl md:rounded-2xl p-4 md:p-6 mb-6 md:mb-8 min-h-[80px] md:min-h-[120px]">
-        <p className="text-slate-400 text-xs md:text-sm italic font-serif leading-relaxed line-clamp-3 md:line-clamp-4">
+      <div className="glass-card rounded-xl md:rounded-2xl p-4 md:p-6 mb-6 md:mb-8 min-h-[80px] md:min-h-[120px]">
+        <p className="text-sage-light/70 text-xs md:text-sm italic font-serif leading-relaxed line-clamp-3 md:line-clamp-4">
           "{gift.message}"
         </p>
       </div>
 
-      <div className="flex items-center justify-between pt-4 md:pt-6 border-t border-white/5">
-        <div className="flex items-center gap-1 md:gap-2 text-slate-500">
+      <div className="flex items-center justify-between pt-4 md:pt-6 border-t border-white/10">
+        <div className="flex items-center gap-1 md:gap-2 text-sage-light/50">
           <Calendar className="w-3 h-3 md:w-4 md:h-4" />
           <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">
             {new Date(gift.createdAt).toLocaleDateString()}
           </span>
         </div>
-        <div className="text-lg md:text-xl font-black text-bronze">
+        <div className="text-lg md:text-xl font-black text-emerald-400">
           ${gift.totalCost}
         </div>
       </div>
 
       <div className="mt-4 md:mt-6 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-        <div className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-bronze flex items-center gap-2">
+        <div className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 flex items-center gap-2">
           Reveal Ritual <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
         </div>
       </div>

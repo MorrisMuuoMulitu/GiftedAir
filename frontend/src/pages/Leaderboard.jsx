@@ -18,10 +18,10 @@ const badgeInfo = {
   },
   silver: {
     icon: '🥈',
-    gradient: 'from-gray-300 to-gray-500',
-    glowColor: 'bg-gray-500/20',
-    borderColor: 'border-gray-400/30',
-    textColor: 'text-gray-400',
+    gradient: 'from-slate-300 to-slate-500',
+    glowColor: 'bg-slate-500/20',
+    borderColor: 'border-slate-400/30',
+    textColor: 'text-slate-400',
     label: 'Silver Hero'
   },
   bronze: {
