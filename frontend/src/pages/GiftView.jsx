@@ -1,66 +1,107 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { API_URL } from '../config';
 import QRCode from 'qrcode';
 import Navigation from '../components/Navigation';
 import { quickCelebrate } from '../components/Confetti';
+import { 
+  Leaf, Heart, Share2, Download, Mail, Copy, 
+  MessageCircle, ExternalLink, Edit3, Save, X, ChevronRight 
+} from 'lucide-react';
+
+const TwitterIcon = ({ className = "w-5 h-5" }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+  </svg>
+);
+
+const FacebookIcon = ({ className = "w-5 h-5" }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+  </svg>
+);
 
 const giftTypeDetails = {
   tree: {
     icon: '🌳',
     name: 'Tree Planting',
-    color: 'from-green-400 to-green-600',
+    color: 'from-green-400 to-emerald-600',
+    colorText: 'text-green-400',
+    bgGradient: 'from-green-950/30 to-emerald-950/20',
     impact: 'Trees planted',
-    bgGradient: 'from-green-50 to-emerald-100'
+    co2: 'CO₂ absorbed annually',
+    features: ['Creates wildlife habitat', 'Prevents soil erosion', 'Purifies water sources']
   },
   cookstove: {
     icon: '🏡',
     name: 'Clean Cookstove',
     color: 'from-amber-500 to-orange-600',
+    colorText: 'text-amber-400',
+    bgGradient: 'from-amber-950/30 to-orange-950/20',
     impact: 'Stoves provided',
-    bgGradient: 'from-orange-50 to-amber-100'
+    co2: 'Carbon emissions reduced',
+    features: ['Cleaner indoor air', 'Reduces deforestation', 'Saves families time']
   },
   solar: {
     icon: '☀️',
     name: 'Solar Panel',
     color: 'from-yellow-400 to-orange-500',
+    colorText: 'text-yellow-400',
+    bgGradient: 'from-yellow-950/30 to-orange-950/20',
     impact: 'Panels installed',
-    bgGradient: 'from-yellow-50 to-orange-100'
+    co2: 'Watts of clean energy',
+    features: ['Powers homes sustainably', 'Enables education', 'Economic opportunity']
   },
   ocean: {
     icon: '🌊',
     name: 'Ocean Cleanup',
     color: 'from-blue-400 to-cyan-600',
+    colorText: 'text-blue-400',
+    bgGradient: 'from-blue-950/30 to-cyan-950/20',
     impact: 'Kg of plastic removed',
-    bgGradient: 'from-blue-50 to-cyan-100'
+    co2: 'Marine ecosystems protected',
+    features: ['Protects marine life', 'Cleaner coastlines', 'Sustainable fishing']
   },
   coral: {
     icon: '🪸',
     name: 'Coral Reef Restoration',
     color: 'from-pink-400 to-rose-600',
+    colorText: 'text-pink-400',
+    bgGradient: 'from-pink-950/30 to-rose-950/20',
     impact: 'Coral fragments planted',
-    bgGradient: 'from-pink-50 to-rose-100'
+    co2: 'Biodiversity restored',
+    features: ['Rebuilds fish habitats', 'Protects coastlines', 'Marine biodiversity']
   },
   wildlife: {
     icon: '🦁',
     name: 'Wildlife Conservation',
     color: 'from-amber-600 to-yellow-700',
+    colorText: 'text-amber-500',
+    bgGradient: 'from-amber-950/30 to-yellow-950/20',
     impact: 'Animals protected',
-    bgGradient: 'from-amber-50 to-yellow-100'
+    co2: 'Habitats preserved',
+    features: ['Preserves critical habitats', 'Protects endangered species', 'Ecosystem balance']
   },
   water: {
     icon: '💧',
     name: 'Clean Water Access',
     color: 'from-blue-400 to-sky-600',
+    colorText: 'text-blue-400',
+    bgGradient: 'from-blue-950/30 to-sky-950/20',
     impact: 'People with clean water',
-    bgGradient: 'from-blue-50 to-sky-100'
+    co2: 'Health improved',
+    features: ['Reduces waterborne diseases', 'More time for education', 'Improved quality of life']
   },
   rainforest: {
     icon: '🌴',
     name: 'Rainforest Protection',
     color: 'from-green-600 to-emerald-700',
+    colorText: 'text-green-500',
+    bgGradient: 'from-green-950/30 to-emerald-950/20',
     impact: 'Acres protected',
-    bgGradient: 'from-green-50 to-emerald-100'
+    co2: 'Oxygen produced',
+    features: ['Preserves biodiversity', 'Regulates climate', 'Protects indigenous communities']
   }
 };
 
@@ -89,14 +130,13 @@ export default function GiftView() {
           setGift(data.gift);
           setEditedMessage(data.gift.message);
           
-          // Generate QR code
           const url = window.location.href;
           const qrDataUrl = await QRCode.toDataURL(url, {
             width: 300,
             margin: 2,
             color: {
-              dark: '#2D5016', // forest green
-              light: '#FFFFFF'
+              dark: '#10b981',
+              light: '#ffffff'
             }
           });
           setQrCodeUrl(qrDataUrl);
@@ -213,7 +253,7 @@ export default function GiftView() {
       const data = await response.json();
 
       if (data.success) {
-        quickCelebrate(); // 🎉 Confetti!
+        quickCelebrate();
         setThankYouSent(true);
         setShowThankYou(false);
         setTimeout(() => {
@@ -230,23 +270,34 @@ export default function GiftView() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-blue-50">
-        <div className="text-center">
-          <div className="text-6xl mb-4 animate-float">🌿</div>
-          <p className="text-2xl text-gray-600">Loading your gift...</p>
-        </div>
+      <div className="min-h-screen bg-forest-deep flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center"
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="text-6xl mb-6"
+          >
+            🌱
+          </motion.div>
+          <p className="text-xl font-bold uppercase tracking-[0.3em] text-emerald-400 animate-pulse">Loading Your Gift...</p>
+        </motion.div>
       </div>
     );
   }
 
   if (error || !gift) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-blue-50">
+      <div className="min-h-screen bg-forest-deep flex items-center justify-center">
         <div className="text-center">
-          <p className="text-2xl text-gray-600 mb-4">Gift not found</p>
+          <div className="text-6xl mb-6">😔</div>
+          <p className="text-2xl font-black text-off-white mb-4">Gift not found</p>
           <button
             onClick={() => navigate('/')}
-            className="text-forest hover:underline"
+            className="text-emerald-400 hover:text-emerald-300 font-bold uppercase tracking-widest text-sm transition-colors"
           >
             Return to Home
           </button>
@@ -259,427 +310,435 @@ export default function GiftView() {
 
   return (
     <>
-      <Navigation />
-      <div className={`min-h-screen bg-gradient-to-br ${giftDetails.bgGradient} py-8 md:py-12`}>
-      <div className="container mx-auto px-4 max-w-3xl">
-        {/* Gift Card */}
-        <div className="bg-white rounded-[2rem] md:rounded-3xl shadow-2xl overflow-hidden">
-          {/* Header with animated icon */}
-          <div className={`bg-gradient-to-r ${giftDetails.color} p-8 md:p-12 text-center relative overflow-hidden`}>
-            {gift.impactImage && (
-              <div className="absolute inset-0 opacity-20 hover:opacity-40 transition-opacity duration-700">
-                <img src={gift.impactImage} alt="Impact site" className="w-full h-full object-cover" />
-              </div>
-            )}
-            <div className="relative z-10">
-              <div className="text-7xl md:text-9xl mb-4 animate-grow">{giftDetails.icon}</div>
-              <h1 className="text-2xl md:text-4xl font-bold text-white mb-2">
-                A Gift of Climate Love
-              </h1>
-              <p className="text-lg md:text-xl text-white opacity-90">
-                {giftDetails.name}
-              </p>
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="p-6 md:p-12">
-            {/* Recipient Greeting */}
-            <div className="text-center mb-6 md:mb-8">
-              <p className="text-2xl md:text-3xl text-gray-800 mb-2">
-                Dear <span className="font-bold text-forest">{gift.recipientName}</span>,
-              </p>
-              <p className="text-base md:text-lg text-gray-600">
-                <span className="font-semibold">{gift.senderName}</span> has gifted you something special
-              </p>
-            </div>
-
-            {/* Impact Display */}
-            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 md:p-8 mb-6 md:mb-8 text-center">
-              <div className="text-5xl md:text-6xl font-bold text-forest mb-2">
-                {gift.quantity}
-              </div>
-              <div className="text-lg md:text-xl text-gray-700">
-                {giftDetails.impact}
-              </div>
-              <div className="mt-4 text-xs md:text-sm text-gray-500">
-                Carbon offset value: ${gift.totalCost}
-              </div>
-              {gift.coordinates && gift.coordinates.lat && (
-                <div className="mt-4">
-                  <a 
-                    href={`https://www.google.com/maps?q=${gift.coordinates.lat},${gift.coordinates.lng}`} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-[10px] md:text-xs bg-white/50 px-3 py-1 rounded-full text-forest hover:bg-white transition-all inline-flex items-center gap-1"
-                  >
-                    📍 Impact Location: {gift.coordinates.lat.toFixed(4)}, {gift.coordinates.lng.toFixed(4)}
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* Personal Message */}
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 md:p-10 mb-6 md:mb-8 border-2 border-amber-200 shadow-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-amber-200/20 rounded-full blur-2xl -mr-12 -mt-12" />
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 md:mb-6 relative z-10">
-                <div className="text-4xl md:text-6xl">💌</div>
-                {!isEditing && (
-                  <button
-                    onClick={handleEditClick}
-                    className="text-[10px] md:text-sm bg-white text-forest px-3 md:px-4 py-2 rounded-lg border-2 border-forest hover:bg-green-50 transition-all font-bold"
-                  >
-                    ✏️ Edit Message
-                  </button>
-                )}
-              </div>
-              
-              <div className="max-w-2xl mx-auto relative z-10">
-                {isEditing ? (
-                  <>
-                    <textarea
-                      value={editedMessage}
-                      onChange={(e) => setEditedMessage(e.target.value)}
-                      rows={6}
-                      className="w-full p-3 md:p-4 border-2 border-amber-300 rounded-lg focus:border-forest focus:outline-none resize-none font-poetic text-base md:text-lg leading-relaxed"
-                      placeholder="Write your heartfelt message..."
-                    />
-                    <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-end">
-                      <button
-                        onClick={handleCancelEdit}
-                        disabled={isSaving}
-                        className="w-full sm:w-auto px-6 py-2 rounded-lg border-2 border-gray-400 text-gray-700 hover:bg-gray-50 transition-all disabled:opacity-50"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        onClick={handleSaveEdit}
-                        disabled={isSaving}
-                        className="w-full sm:w-auto px-6 py-2 rounded-lg bg-forest text-white hover:bg-green-800 transition-all disabled:opacity-50 font-bold"
-                      >
-                        {isSaving ? 'Saving...' : 'Save Changes'}
-                      </button>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="text-left mb-4 md:mb-6">
-                      <p className="text-base md:text-lg text-gray-800 font-poetic leading-relaxed whitespace-pre-wrap italic">
-                        "{gift.message}"
-                      </p>
-                    </div>
-                    <div className="text-right mt-6 md:mt-8 pt-4 border-t border-amber-300">
-                      <p className="text-sm md:text-lg text-gray-600 font-poetic italic">
-                        With love,
-                      </p>
-                      <p className="text-lg md:text-xl text-forest font-black mt-1 uppercase tracking-widest">
-                        {gift.senderName}
-                      </p>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-
-            {/* Certificate & Story Actions */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 md:mb-12">
-              <button
-                onClick={() => navigate(`/certificate/${giftId}`)}
-                className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-6 py-4 rounded-xl font-black text-sm md:text-base hover:from-purple-600 hover:to-indigo-600 transition-all transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-2"
-              >
-                📜 Get Certificate
-              </button>
-              <button
-                onClick={() => navigate(`/gift/${giftId}/story`)}
-                className="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-4 rounded-xl font-black text-sm md:text-base hover:from-pink-600 hover:to-rose-600 transition-all transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-2"
-              >
-                📸 Share to Story
-              </button>
-            </div>
-
-            {/* Impact Details */}
-            <div className="border-t border-gray-200 pt-8 md:pt-12">
-              <h3 className="text-xl md:text-2xl font-black text-forest mb-6 md:mb-8 text-center uppercase tracking-widest">
-                Real-World Impact
-              </h3>
-              <div className="space-y-4 md:space-y-6 text-gray-700">
-                {gift.type === 'tree' && (
-                  <>
-                    <ImpactItem icon="🌍" text={`${gift.quantity * 48} lbs of CO₂ absorbed annually`} />
-                    <ImpactItem icon="🦋" text="Creates habitat for wildlife" />
-                    <ImpactItem icon="💧" text="Prevents soil erosion and purifies water" />
-                  </>
-                )}
-                {gift.type === 'cookstove' && (
-                  <>
-                    <ImpactItem icon="🏠" text={`${gift.quantity} families with cleaner air`} />
-                    <ImpactItem icon="🌳" text="Reduces deforestation for firewood" />
-                    <ImpactItem icon="💚" text="Improves health and saves lives" />
-                  </>
-                )}
-                {gift.type === 'solar' && (
-                  <>
-                    <ImpactItem icon="⚡" text={`${gift.quantity * 300} watts of clean energy`} />
-                    <ImpactItem icon="🏘️" text="Powers homes without fossil fuels" />
-                    <ImpactItem icon="📚" text="Enables education and economic opportunity" />
-                  </>
-                )}
-                {gift.type === 'ocean' && (
-                  <>
-                    <ImpactItem icon="🐠" text={`${gift.quantity} kg of plastic removed`} />
-                    <ImpactItem icon="🌊" text="Protects marine ecosystems" />
-                    <ImpactItem icon="🐢" text="Saves sea life from pollution" />
-                  </>
-                )}
-                {gift.type === 'coral' && (
-                  <>
-                    <ImpactItem icon="🪸" text={`${gift.quantity} coral fragments planted`} />
-                    <ImpactItem icon="🐠" text="Rebuilds fish habitats and biodiversity" />
-                    <ImpactItem icon="🌊" text="Protects coastlines from erosion" />
-                  </>
-                )}
-                {gift.type === 'wildlife' && (
-                  <>
-                    <ImpactItem icon="🦁" text={`${gift.quantity} animals protected`} />
-                    <ImpactItem icon="🌳" text="Preserves critical habitats" />
-                    <ImpactItem icon="🌍" text="Maintains ecosystem balance" />
-                  </>
-                )}
-                {gift.type === 'water' && (
-                  <>
-                    <ImpactItem icon="💧" text={`${gift.quantity} people with clean water access`} />
-                    <ImpactItem icon="🏥" text="Reduces waterborne diseases" />
-                    <ImpactItem icon="📚" text="More time for education and work" />
-                  </>
-                )}
-                {gift.type === 'rainforest' && (
-                  <>
-                    <ImpactItem icon="🌴" text={`${gift.quantity} acres of rainforest protected`} />
-                    <ImpactItem icon="🦜" text="Preserves biodiversity hotspots" />
-                    <ImpactItem icon="💨" text="Maintains Earth's oxygen production" />
-                  </>
-                )}
-              </div>
-            </div>
-
-            {/* Footer Quote */}
-            <div className="mt-8 text-center">
-              <blockquote className="text-lg text-gray-600 italic">
-                "Every gift plants a seed of hope for our planet"
-              </blockquote>
-            </div>
-          </div>
+      <div className="min-h-screen bg-forest-deep text-off-white pb-20 overflow-hidden relative">
+        {/* Background Effects */}
+        <div className="fixed inset-0 pointer-events-none">
+          <div className="absolute inset-0 pattern-grid opacity-[0.02]" />
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.2, 0.1]
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className={`absolute top-0 left-0 right-0 h-[60vh] bg-gradient-to-b ${giftDetails.bgGradient} to-transparent`}
+          />
         </div>
 
-        {/* Thank You Note Section */}
-        {!gift.thankYouNote?.message && !thankYouSent && (
-          <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
-            <h3 className="text-2xl font-bold text-center text-purple-900 mb-4">
-              💌 Send a Thank You Note
-            </h3>
-            <p className="text-center text-gray-600 mb-6">
-              Let {gift.senderName} know you appreciate their thoughtful gift!
-            </p>
-            
-            {!showThankYou ? (
-              <div className="text-center">
-                <button
-                  onClick={() => setShowThankYou(true)}
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-xl 
-                           font-semibold hover:from-purple-600 hover:to-pink-600 transition-all 
-                           transform hover:scale-105 shadow-lg"
+        <Navigation />
+
+        <div className="container mx-auto px-4 max-w-3xl pt-28 relative z-10">
+          {/* Gift Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-card-elevated overflow-hidden"
+          >
+            {/* Header */}
+            <div className={`relative p-8 md:p-12 text-center overflow-hidden`}>
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  rotate: [0, 5, -5, 0]
+                }}
+                transition={{ duration: 6, repeat: Infinity }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-full blur-3xl"
+              />
+              
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                className="relative z-10"
+              >
+                <div className="text-7xl md:text-9xl mb-4 drop-shadow-2xl">{giftDetails.icon}</div>
+                <h1 className="text-2xl md:text-4xl font-black text-display mb-2">
+                  A Gift of Climate Love
+                </h1>
+                <p className="text-lg md:text-xl text-sage-light/80">
+                  {giftDetails.name}
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 md:p-10">
+              {/* Recipient Greeting */}
+              <div className="text-center mb-8">
+                <p className="text-2xl md:text-3xl text-off-white mb-2 font-display">
+                  Dear <span className="text-emerald-400 font-black">{gift.recipientName}</span>,
+                </p>
+                <p className="text-base md:text-lg text-sage-light/60">
+                  <span className="font-bold text-off-white">{gift.senderName}</span> has gifted you something special
+                </p>
+              </div>
+
+              {/* Impact Display */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className={`bg-gradient-to-br ${giftDetails.bgGradient} rounded-2xl p-6 md:p-8 mb-8 text-center border border-white/10`}
+              >
+                <motion.div 
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.3, type: "spring" }}
+                  className="text-5xl md:text-6xl font-black text-emerald-400 mb-2"
                 >
-                  Write Thank You Note ✨
-                </button>
+                  {gift.quantity}
+                </motion.div>
+                <div className="text-lg md:text-xl text-sage-light/80 font-bold uppercase tracking-widest mb-2">
+                  {giftDetails.impact}
+                </div>
+                <div className="text-sm text-sage-light/50">
+                  Carbon offset value: <span className="text-emerald-400 font-black">${gift.totalCost}</span>
+                </div>
+                {gift.coordinates && gift.coordinates.lat && (
+                  <div className="mt-4">
+                    <a 
+                      href={`https://www.google.com/maps?q=${gift.coordinates.lat},${gift.coordinates.lng}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs bg-white/10 px-4 py-2 rounded-full text-emerald-300 hover:bg-white/20 transition-all border border-white/10"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      Impact Location: {gift.coordinates.lat.toFixed(4)}, {gift.coordinates.lng.toFixed(4)}
+                    </a>
+                  </div>
+                )}
+              </motion.div>
+
+              {/* Personal Message */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="bg-white/[0.03] rounded-2xl p-6 md:p-8 mb-8 border border-white/10 relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl" />
+                
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 relative z-10">
+                  <div className="text-4xl md:text-5xl">💌</div>
+                  {!isEditing && (
+                    <button
+                      onClick={handleEditClick}
+                      className="text-xs bg-white/[0.05] text-emerald-400 px-4 py-2 rounded-xl border border-emerald-500/20 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all font-bold flex items-center gap-2"
+                    >
+                      <Edit3 className="w-3 h-3" />
+                      Edit Message
+                    </button>
+                  )}
+                </div>
+                
+                <div className="relative z-10">
+                  {isEditing ? (
+                    <>
+                      <textarea
+                        value={editedMessage}
+                        onChange={(e) => setEditedMessage(e.target.value)}
+                        rows={6}
+                        className="w-full p-4 bg-white/[0.03] border border-white/10 rounded-xl text-off-white placeholder:text-sage-light/30 focus:border-emerald-500/50 focus:outline-none resize-none font-display text-base md:text-lg leading-relaxed"
+                        placeholder="Write your heartfelt message..."
+                      />
+                      <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-end">
+                        <button
+                          onClick={handleCancelEdit}
+                          disabled={isSaving}
+                          className="w-full sm:w-auto px-6 py-2.5 rounded-xl border border-white/20 text-sage-light hover:bg-white/5 transition-all disabled:opacity-50 font-bold flex items-center justify-center gap-2"
+                        >
+                          <X className="w-4 h-4" />
+                          Cancel
+                        </button>
+                        <button
+                          onClick={handleSaveEdit}
+                          disabled={isSaving}
+                          className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:shadow-lg hover:shadow-emerald-500/20 transition-all disabled:opacity-50 font-bold flex items-center justify-center gap-2"
+                        >
+                          <Save className="w-4 h-4" />
+                          {isSaving ? 'Saving...' : 'Save Changes'}
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-left mb-6">
+                        <p className="text-base md:text-lg text-off-white font-display leading-relaxed whitespace-pre-wrap italic">
+                          "{gift.message}"
+                        </p>
+                      </div>
+                      <div className="text-right mt-6 pt-4 border-t border-white/10">
+                        <p className="text-sm text-sage-light/60 font-display italic">
+                          With love,
+                        </p>
+                        <p className="text-lg md:text-xl text-emerald-400 font-black mt-1 uppercase tracking-widest">
+                          {gift.senderName}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </motion.div>
+
+              {/* Action Buttons */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => navigate(`/certificate/${giftId}`)}
+                  className="w-full py-4 px-6 bg-gradient-to-r from-violet-500 to-purple-500 text-white rounded-xl font-bold text-sm md:text-base hover:shadow-lg hover:shadow-violet-500/20 transition-all flex items-center justify-center gap-2"
+                >
+                  📜 Get Certificate
+                  <ChevronRight className="w-4 h-4" />
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => navigate(`/gift/${giftId}/story`)}
+                  className="w-full py-4 px-6 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-xl font-bold text-sm md:text-base hover:shadow-lg hover:shadow-rose-500/20 transition-all flex items-center justify-center gap-2"
+                >
+                  📸 Share to Story
+                  <ChevronRight className="w-4 h-4" />
+                </motion.button>
+              </div>
+
+              {/* Impact Details */}
+              <div className="border-t border-white/10 pt-8">
+                <h3 className="text-lg md:text-xl font-black mb-6 text-center uppercase tracking-widest text-sage-light/60">
+                  Real-World Impact
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {giftDetails.features.map((feature, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                      className="flex items-center gap-3 p-4 bg-white/[0.02] rounded-xl border border-white/05"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                      <span className="text-sm text-sage-light/70">{feature}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Footer Quote */}
+              <div className="mt-8 text-center">
+                <blockquote className="text-base text-sage-light/50 italic font-display">
+                  "Every gift plants a seed of hope for our planet"
+                </blockquote>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Thank You Note Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-8 glass-card p-6 md:p-8"
+          >
+            {!gift.thankYouNote?.message && !thankYouSent ? (
+              <div>
+                <h3 className="text-xl font-black mb-4 text-center flex items-center justify-center gap-2">
+                  <Heart className="w-5 h-5 text-rose-400" />
+                  Send a Thank You Note
+                </h3>
+                <p className="text-center text-sage-light/60 mb-6">
+                  Let {gift.senderName} know you appreciate their thoughtful gift!
+                </p>
+                
+                {!showThankYou ? (
+                  <div className="text-center">
+                    <button
+                      onClick={() => setShowThankYou(true)}
+                      className="bg-gradient-to-r from-violet-500 to-rose-500 text-white px-8 py-4 rounded-xl font-bold hover:shadow-lg hover:shadow-violet-500/20 transition-all"
+                    >
+                      Write Thank You Note ✨
+                    </button>
+                  </div>
+                ) : (
+                  <div className="max-w-xl mx-auto animate-fade-in">
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-bold text-sage-light/70 mb-2">
+                          Your Name:
+                        </label>
+                        <input
+                          type="text"
+                          value={thankYouName}
+                          onChange={(e) => setThankYouName(e.target.value)}
+                          placeholder="Your name"
+                          className="w-full p-4 bg-white/[0.03] border border-white/10 rounded-xl text-off-white placeholder:text-sage-light/30 focus:border-violet-500/50 focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold text-sage-light/70 mb-2">
+                          Your Message:
+                        </label>
+                        <textarea
+                          value={thankYouMessage}
+                          onChange={(e) => setThankYouMessage(e.target.value)}
+                          placeholder="Thank you so much for this thoughtful gift! It really means a lot to me..."
+                          rows={4}
+                          className="w-full p-4 bg-white/[0.03] border border-white/10 rounded-xl text-off-white placeholder:text-sage-light/30 focus:border-violet-500/50 focus:outline-none resize-none"
+                        />
+                      </div>
+                      <div className="flex gap-3">
+                        <button
+                          onClick={handleSendThankYou}
+                          className="flex-1 bg-gradient-to-r from-violet-500 to-rose-500 text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all"
+                        >
+                          Send Thank You 💚
+                        </button>
+                        <button
+                          onClick={() => setShowThankYou(false)}
+                          className="px-6 py-3 border border-white/20 rounded-xl font-bold text-sage-light hover:bg-white/5 transition-all"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
-              <div className="max-w-2xl mx-auto animate-fade-in-up">
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Your Name:
-                    </label>
-                    <input
-                      type="text"
-                      value={thankYouName}
-                      onChange={(e) => setThankYouName(e.target.value)}
-                      placeholder="Your name"
-                      className="w-full p-3 border-2 border-purple-200 rounded-lg focus:border-purple-500 focus:outline-none"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Your Message:
-                    </label>
-                    <textarea
-                      value={thankYouMessage}
-                      onChange={(e) => setThankYouMessage(e.target.value)}
-                      placeholder="Thank you so much for this thoughtful gift! It really means a lot to me..."
-                      rows={4}
-                      className="w-full p-3 border-2 border-purple-200 rounded-lg focus:border-purple-500 focus:outline-none resize-none"
-                    />
-                  </div>
-                  <div className="flex gap-3">
-                    <button
-                      onClick={handleSendThankYou}
-                      className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg 
-                               font-semibold hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg"
-                    >
-                      Send Thank You 💚
-                    </button>
-                    <button
-                      onClick={() => setShowThankYou(false)}
-                      className="px-6 py-3 border-2 border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
+              <div className="text-center py-4">
+                <div className="text-5xl mb-4">💚</div>
+                <h3 className="text-xl font-black text-emerald-400 mb-2">
+                  Thank You Note Sent!
+                </h3>
+                <p className="text-sage-light/60">
+                  {gift.senderName} has been notified of your appreciation
+                </p>
               </div>
             )}
-          </div>
-        )}
+          </motion.div>
 
-        {gift.thankYouNote?.message && (
-          <div className="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8 border-2 border-green-300">
-            <div className="text-center">
-              <div className="text-5xl mb-4">💚</div>
-              <h3 className="text-2xl font-bold text-green-900 mb-2">
-                Thank You Note Sent!
-              </h3>
-              <p className="text-gray-600">
-                {gift.senderName} has been notified of your appreciation
-              </p>
+          {/* Share Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="mt-8 glass-card p-6 md:p-8"
+          >
+            <h3 className="text-xl font-black text-center mb-6 flex items-center justify-center gap-2">
+              <Share2 className="w-5 h-5 text-emerald-400" />
+              Share the Love!
+            </h3>
+            <p className="text-center text-sage-light/60 mb-6">
+              Inspire others to join the climate movement
+            </p>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleShareTwitter}
+                className="flex items-center justify-center gap-2 bg-[#1DA1F2] text-white px-4 py-4 rounded-xl font-bold hover:shadow-lg transition-all"
+              >
+                <TwitterIcon className="w-5 h-5" />
+                Twitter
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleShareWhatsApp}
+                className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-4 rounded-xl font-bold hover:shadow-lg transition-all"
+              >
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleShareFacebook}
+                className="flex items-center justify-center gap-2 bg-[#1877F2] text-white px-4 py-4 rounded-xl font-bold hover:shadow-lg transition-all"
+              >
+                <FacebookIcon className="w-5 h-5" />
+                Facebook
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleCopyLink}
+                className="flex items-center justify-center gap-2 bg-white/10 text-white px-4 py-4 rounded-xl font-bold hover:bg-white/20 transition-all border border-white/10"
+              >
+                <Copy className="w-5 h-5" />
+                Copy Link
+              </motion.button>
             </div>
-          </div>
-        )}
+          </motion.div>
 
-        {/* Share Buttons */}
-        <div className="mt-8 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 border-2 border-green-200">
-          <h3 className="text-2xl font-bold text-center text-forest mb-4">
-            📣 Share the Love!
-          </h3>
-          <p className="text-center text-gray-600 mb-6">
-            Inspire others to join the climate movement
-          </p>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <button
-              onClick={handleShareTwitter}
-              className="flex items-center justify-center gap-2 bg-[#1DA1F2] text-white px-6 py-4 rounded-xl font-semibold 
-                       hover:bg-[#1a8cd8] transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-              </svg>
-              Twitter
-            </button>
+          {/* QR Code Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="mt-8 glass-card p-6 md:p-8 text-center"
+          >
+            <h3 className="text-xl font-black mb-3 flex items-center justify-center gap-2">
+              <Download className="w-5 h-5 text-emerald-400" />
+              Print & Share
+            </h3>
+            <p className="text-sage-light/60 mb-6">
+              Download this QR code to print on physical cards or share offline!
+            </p>
             
-            <button
-              onClick={handleShareWhatsApp}
-              className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-xl font-semibold 
-                       hover:bg-[#20ba5a] transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path>
-              </svg>
-              WhatsApp
-            </button>
-            
-            <button
-              onClick={handleShareFacebook}
-              className="flex items-center justify-center gap-2 bg-[#1877F2] text-white px-6 py-4 rounded-xl font-semibold 
-                       hover:bg-[#0d65d9] transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
-              </svg>
-              Facebook
-            </button>
-            
-            <button
-              onClick={handleCopyLink}
-              className="flex items-center justify-center gap-2 bg-gray-700 text-white px-6 py-4 rounded-xl font-semibold 
-                       hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-              Copy Link
-            </button>
-          </div>
-        </div>
-
-        {/* QR Code Section */}
-        <div className="mt-8 bg-white rounded-2xl p-8 border-2 border-gray-200 text-center">
-          <h3 className="text-2xl font-bold text-forest mb-3">
-            📲 Print & Share
-          </h3>
-          <p className="text-gray-600 mb-6">
-            Download this QR code to print on physical cards or share offline!
-          </p>
-          
-          <div className="flex flex-col items-center gap-6">
             {qrCodeUrl && (
-              <>
-                <div className="bg-white p-4 rounded-xl border-4 border-forest shadow-lg">
-                  <img src={qrCodeUrl} alt="QR Code" className="w-64 h-64" />
+              <div className="flex flex-col items-center gap-6">
+                <div className="bg-white p-4 rounded-2xl border-4 border-emerald-500 shadow-lg shadow-emerald-500/20">
+                  <img src={qrCodeUrl} alt="QR Code" className="w-48 h-48 md:w-64 md:h-64" />
                 </div>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handleDownloadQR}
-                  className="bg-forest text-white px-8 py-3 rounded-full font-bold 
-                           hover:bg-green-800 transition-all duration-300 transform hover:scale-105 
-                           shadow-lg flex items-center gap-2"
+                  className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-3 rounded-full font-bold hover:shadow-lg hover:shadow-emerald-500/20 transition-all flex items-center gap-2"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
+                  <Download className="w-5 h-5" />
                   Download QR Code
-                </button>
-              </>
+                </motion.button>
+              </div>
             )}
+          </motion.div>
+
+          {/* Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9 }}
+            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <button
+              onClick={() => navigate('/compose')}
+              className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-emerald-500/20 transition-all flex items-center justify-center gap-2"
+            >
+              <Leaf className="w-5 h-5" />
+              Send Your Own Gift
+            </button>
+            <button
+              onClick={() => navigate('/gallery')}
+              className="px-8 py-4 bg-white/[0.05] text-off-white border border-white/10 rounded-2xl font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+            >
+              🎁 View Gallery
+            </button>
+          </motion.div>
+
+          {/* Back to Home */}
+          <div className="text-center mt-10">
+            <button
+              onClick={() => navigate('/')}
+              className="text-sage-light/40 hover:text-emerald-400 font-bold uppercase tracking-[0.2em] text-xs transition-colors flex items-center justify-center gap-2 mx-auto"
+            >
+              ← Return to Sanctuary
+            </button>
           </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onClick={() => navigate('/compose')}
-            className="bg-forest text-white px-8 py-3 rounded-full font-semibold 
-                     hover:bg-green-800 transition-all duration-300 transform hover:scale-105 
-                     shadow-lg"
-          >
-            Send Your Own Gift
-          </button>
-          <button
-            onClick={() => navigate('/gallery')}
-            className="bg-white text-forest border-2 border-forest px-8 py-3 rounded-full font-semibold 
-                     hover:bg-green-50 transition-all duration-300"
-          >
-            View Gallery 🎁
-          </button>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center mt-8">
-          <button
-            onClick={() => navigate('/')}
-            className="text-forest hover:underline"
-          >
-            ← Back to Home
-          </button>
         </div>
       </div>
-    </div>
     </>
-  );
-}
-
-function ImpactItem({ icon, text }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-2xl">{icon}</span>
-      <span>{text}</span>
-    </div>
   );
 }
